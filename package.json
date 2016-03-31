@@ -1,0 +1,40 @@
+{
+  "name": "shopify-base",
+  "version": "0.0.1",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/estrattonbailey/shopify-base.git"
+  },
+  "author": "estrattonbailey",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/estrattonbailey/shopify-base/issues"
+  },
+  "homepage": "https://github.com/estrattonbailey/shopify-base#README",
+  "devDependencies": {
+    "autoprefixer": "^6.3.1",
+    "browserify": "^12.0.2",
+    "browserify-shim": "^3.8.12",
+    "del": "^2.2.0",
+    "glob": "^6.0.4",
+    "gulp": "^3.9.0",
+    "gulp-copy": "0.0.2",
+    "gulp-postcss": "^6.0.1",
+    "gulp-prettify": "^0.4.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-util": "^3.0.7",
+    "minifyify": "^7.2.1",
+    "pretty-hrtime": "^1.0.1",
+    "watchify": "^3.7.0"
+  },
+  "dependencies": {
+    "svbstrate": "^0.5.6"
+  }
+}

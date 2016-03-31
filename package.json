@@ -4,7 +4,8 @@
   "description": "",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch:js": "onchange './src/js/**/*.js' -- npm run build:js",
+    "build:js": "browserify src/js/main.js | uglifyjs > ./dist/assets/main.min.js"
   },
   "repository": {
     "type": "git",
@@ -19,19 +20,20 @@
   "devDependencies": {
     "autoprefixer": "^6.3.1",
     "browserify": "^12.0.2",
-    "browserify-shim": "^3.8.12",
     "del": "^2.2.0",
-    "glob": "^6.0.4",
     "gulp": "^3.9.0",
     "gulp-copy": "0.0.2",
+    "gulp-jscs": "^3.0.2",
+    "gulp-jshint": "^2.0.0",
     "gulp-postcss": "^6.0.1",
     "gulp-prettify": "^0.4.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.2.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.7",
+    "lodash.assign": "^4.0.6",
     "minifyify": "^7.2.1",
-    "pretty-hrtime": "^1.0.1",
+    "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.7.0"
   },
   "dependencies": {

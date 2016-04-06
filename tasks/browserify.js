@@ -5,42 +5,72 @@ var source = require('vinyl-source-stream');
 var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
 var assign = require('lodash.assign');
+var path = require('path');
+var glob = require('glob');
 
-// add custom browserify options here
+/**
+ * Custom options
+ */
 var customOpts = {
   entries: './src/js/main.js',
   debug: true
 };
+
+/**
+ * Combine with default options
+ * Create Browserify instance
+ */
 var opts = assign({}, watchify.args, customOpts);
 var b = watchify(browserify(opts)); 
 
-// add transformations here
+/**
+ * Tasks
+ */
+gulp.task('js', bundle);
 
-gulp.task('js', bundle); // so you can run `gulp js` to build the file
-gulp.task('js:build', function(){bundle(true)}); // so you can run `gulp js` to build the file
+/**
+ * Manually import modules/components
+ */
+b.require(function(){
+  var Files = glob.sync('./src/js/+(components|modules)/*.js');
+  var files = [];
 
+  for(var i = 0; i < Files.length; i++) {
+    var name = path.basename(Files[i], '.js');
+
+    // Expose module files as "modules/[name]".
+    files.push({
+      file: Files[i],
+      expose: name
+    });
+  }
+
+  return files;
+}());
+
+/**
+ * Utilities
+ */
 b.on('update', bundle); // on any dep update, runs the bundler
 b.on('log', gutil.log); // output build logs to terminal
 
-function bundle(dev) {
-  var dev = dev || false;
-
-  if (!dev){
-    b.plugin('minifyify', {
-      map: outputFile+'.map',
-      output: bundleOpts.output+'.map',
-      compressPath: function(p) {
-        // Start relative paths from root
-        return path.join('../../', p);
-      }
-    });
-  }
+/**
+ * Package
+ */
+function bundle(minify) {
+  // b.plugin('minifyify', {
+  //   map: './main.min.js.map',
+  //   output: './main.min.js.map',
+  //   compressPath: function(p) {
+  //     // Start relative paths from root
+  //     return path.relative('./', p);
+  //   }
+  // });
 
   return b.bundle()
     // log errors if they happen
     .on('error', gutil.log.bind(gutil, 'Browserify Error'))
     .pipe(source('main.js'))
-       // Add transformation tasks to the pipeline here.
-    .pipe(sourcemaps.write('./')) // writes .map file
+    // Add transformation tasks to the pipeline here.
     .pipe(gulp.dest('./dist/assets'));
 }

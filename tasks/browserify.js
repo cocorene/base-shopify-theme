@@ -40,7 +40,6 @@ b.require(function(){
         dirname = path.dirname(Files[i]).split('/'),
         dir = dirname[dirname.length - 1];
 
-    // Expose module files as "modules/[name]".
     files.push({
       file: Files[i],
       expose: dir+'/'+name

@@ -1,5 +1,5 @@
 function test(){
-  console.log('Test')
+  console.log('Compoent')
 }
 
 module.exports = test;

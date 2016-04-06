@@ -36,12 +36,14 @@ b.require(function(){
   var files = [];
 
   for(var i = 0; i < Files.length; i++) {
-    var name = path.basename(Files[i], '.js');
+    var name = path.basename(Files[i], '.js'),
+        dirname = path.dirname(Files[i]).split('/'),
+        dir = dirname[dirname.length - 1];
 
     // Expose module files as "modules/[name]".
     files.push({
       file: Files[i],
-      expose: name
+      expose: dir+'/'+name
     });
   }
 
@@ -72,5 +74,6 @@ function bundle(minify) {
     .on('error', gutil.log.bind(gutil, 'Browserify Error'))
     .pipe(source('main.js'))
     // Add transformation tasks to the pipeline here.
+    .pipe(sourcemaps.write('./')) // writes .map file
     .pipe(gulp.dest('./dist/assets'));
 }

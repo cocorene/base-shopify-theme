@@ -1,5 +1,6 @@
 var watchify = require('watchify');
 var browserify = require('browserify');
+var shim = require('browserify-shim');
 var gulp = require('gulp');
 var source = require('vinyl-source-stream');
 var gutil = require('gulp-util');
@@ -20,6 +21,7 @@ gulp.task('js', bundle);
  */
 var customOpts = {
   entries: './src/assets/js/main.js',
+  transform: [ [shim, { global: true }] ],
   debug: true
 };
 

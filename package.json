@@ -42,5 +42,9 @@
   },
   "dependencies": {
     "svbstrate": "^0.5.6"
+  },
+  "browser": {
+  },
+  "browserify-shim": {
   }
 }

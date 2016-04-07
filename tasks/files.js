@@ -19,6 +19,7 @@ gulp.task('files:copy', function(){
 
 gulp.task('files:watch', ['files:copy'], function(){
   watch('./src/layout/*.liquid', function(){
+    // need to watch for 'unlink'
     copy('./src/layouts/*.liquid', './dist/layout', log)
   });
   watch('./src/templates/**/*.liquid', function(){

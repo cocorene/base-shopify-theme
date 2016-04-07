@@ -19,7 +19,11 @@ document.addEventListener('DOMContentLoaded', function(){
 
     // Initialize the module with the calling element
     if(typeof File === 'function') {
-      new File(el);
+      var snippet = new File(el);
+
+      if (jQuery){
+        $(el).data(type, snippet);
+      }
     }
   }
 });

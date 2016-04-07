@@ -2,10 +2,8 @@ var gulp = require('gulp');
 
 require('./tasks/sass');
 require('./tasks/browserify');
+require('./tasks/files');
 
-gulp.task('default', ['sass', 'js'], function() {
-  // Watch stylesheets
-  gulp.watch(['./**/*.scss'], ['sass']);
+gulp.task('dev', ['sass:dev', 'js:dev', 'files:watch']);
 
-  // Watchify handles the JS 
-});
+gulp.task('default', ['sass', 'js', 'files:copy']);

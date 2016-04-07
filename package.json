@@ -3,8 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "main": "gulpfile.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/estrattonbailey/shopify-base.git"
@@ -20,6 +19,7 @@
     "browserify": "^12.0.2",
     "copy": "^0.2.0",
     "del": "^2.2.0",
+    "delete": "^0.3.0",
     "glob": "^7.0.3",
     "gulp": "^3.9.0",
     "gulp-copy": "0.0.2",
@@ -41,8 +41,6 @@
   "dependencies": {
     "svbstrate": "^0.5.6"
   },
-  "browser": {
-  },
-  "browserify-shim": {
-  }
+  "browser": {},
+  "browserify-shim": {}
 }

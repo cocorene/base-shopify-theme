@@ -4,8 +4,6 @@
   "description": "",
   "main": "gulpfile.js",
   "scripts": {
-    "watch:js": "onchange './src/js/**/*.js' -- npm run build:js",
-    "build:js": "browserify src/js/main.js | uglifyjs > ./dist/assets/main.min.js"
   },
   "repository": {
     "type": "git",

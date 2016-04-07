@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function(){
     if(typeof File === 'function') {
       var snippet = new File(el);
 
-      if (jQuery){
+      if ($ === jQuery){
         $(el).data(type, snippet);
       }
     }

@@ -33,8 +33,13 @@ var b = browserify({
   plugin: [watchify]
 });
 b.plugin(bundle, {
-  delay: 0
+  delay: 0 // reset from 100, compile immediately
 });
+
+/**
+ * Watchify emitted 'update' event 
+ */
+b.on('update', bundle); // on any dep update, runs the bundler
 
 /**
  * Manually import modules/components
@@ -58,12 +63,6 @@ b.require(function(){
 }());
 
 /**
- * Utilities
- */
-b.on('update', bundle); // on any dep update, runs the bundler
-b.on('error', gutil.log.bind(gutil, 'Browserify Error'));
-
-/**
  * DEFAULT Bundler Function
  *
  * @param {boolean} dev If false, output will be minified
@@ -78,7 +77,8 @@ function bundle(dev) {
   }
 
   b.bundle()
-    .pipe(source('main.js'))
+    .on('error', gutil.log.bind(gutil, 'Browserify Error'))
+    .pipe(source('main.js.liquid'))
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(sourcemaps.write('./'))

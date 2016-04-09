@@ -3,7 +3,7 @@ var gulp = require('gulp'),
     watch = require('gulp-watch'),
     del = require('delete'),
     flatten = require('gulp-flatten'),
-    logger = require('./util/log');
+    processLog = require('./util/log');
 
 /**
  * DEFAULT
@@ -41,11 +41,11 @@ var files = {
  * Copies all files from /src to /dist
  */
 gulp.task('files:copy', function(){
-  logger.start('all files', 'Copying'); // start log
-  copy(files.layout.src, files.layout.dest, logger.end.bind(null,'layouts'))
-  copy(files.templates.src, files.templates.dest, logger.end.bind(null, 'templates'))
-  copy(files.snippets.src, files.snippets.dest, {flatten: true}, logger.end.bind(null, 'snippets'))
-  copy(files.assets.src, files.assets.dest, logger.end.bind(null, 'assets'))
+  processLog.start('all files', 'Copying'); // start log
+  copy(files.layout.src, files.layout.dest, processLog.end.bind(null,'layouts'))
+  copy(files.templates.src, files.templates.dest, processLog.end.bind(null, 'templates'))
+  copy(files.snippets.src, files.snippets.dest, {flatten: true}, processLog.end.bind(null, 'snippets'))
+  copy(files.assets.src, files.assets.dest, processLog.end.bind(null, 'assets'))
 });
 
 /**
@@ -83,14 +83,14 @@ function processFiles(vinyl, type, opts){
   opts = opts || {};
 
   if (vinyl.event === 'unlink'){
-    logger.start(type+'/'+filename, 'Deleting'); // start log
+    processLog.start(type+'/'+filename, 'Deleting'); // start log
     del(__dirname+'/../dist/'+type+'/'+filename, {force: true}, function(err){
       if (err) throw err;
-      logger.end();
+      processLog.end();
     });
   } else {
-    logger.start(type+'/'+filename, 'Copying'); // start log
-    copy(files[type].src, files[type].dest, opts, logger.end)
+    processLog.start(type+'/'+filename, 'Copying'); // start log
+    copy(files[type].src, files[type].dest, opts, processLog.end)
   }
 }
 
@@ -101,7 +101,7 @@ function processFiles(vinyl, type, opts){
  * @param {string|array} files The default glob patterns in the files object
  * @param {string} dest The default dist path in the files object
  * @param {object} opts Options (optional)
- * @param {function} cb The logger callback function
+ * @param {function} cb The processLog callback function
  */
 function copy(files, dest, opts, cb){
   if (typeof opts === 'function'){

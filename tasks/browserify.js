@@ -8,7 +8,7 @@ var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
 var path = require('path');
 var glob = require('glob');
-var logger = require('./util/log');
+var processLog = require('./util/log');
 
 /**
  * DEV Bundle Task
@@ -69,7 +69,7 @@ b.on('error', gutil.log.bind(gutil, 'Browserify Error'));
  * @param {boolean} dev If false, output will be minified
  */
 function bundle(dev) {
-  logger.start('main.min.js', 'Bundling'); // start logger
+  processLog.start('main.min.js', 'Bundling'); // start processLog
 
   if (!dev){
     b.plugin('minifyify', {
@@ -84,5 +84,5 @@ function bundle(dev) {
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./dist/assets/'))
 
-  logger.end('main.min.js', 'Bundling')
+  processLog.end('main.min.js', 'Bundling')
 }

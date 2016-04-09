@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-var logger = require('./util/log');
+var processLog = require('./util/log');
 
 /**
  * DEV Task
@@ -20,14 +20,17 @@ gulp.task('sass', function() {
   compile(opts);
 });
 
+/**
+ * MAIN Compile Function
+ */
 function compile(){
   var opts = opts || {};
 
-  logger.start('styles', 'Compiling')
+  processLog.start('styles', 'Compiling')
 
   gulp.src('./src/assets/scss/main.scss')
     .pipe(sass(opts).on('error', sass.logError))
     .pipe(gulp.dest('./dist/assets'));
 
-  logger.end('styles', 'Compiling');
+  processLog.end('styles', 'Compiling');
 }

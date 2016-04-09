@@ -1,19 +1,19 @@
 {
-  "name": "shopify-base",
+  "name": "barrel-shopify-base",
   "version": "0.0.1",
   "description": "",
   "main": "gulpfile.js",
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/estrattonbailey/shopify-base.git"
+    "url": "git+ssh://git@gitlab.com:barrel/barrel-shopify-base.git"
   },
-  "author": "estrattonbailey",
+  "author": "Barrel, LLC",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/estrattonbailey/shopify-base/issues"
+    "url": "https://gitlab.com/barrel/barrel-shopify-base/issues"
   },
-  "homepage": "https://github.com/estrattonbailey/shopify-base#README",
+  "homepage": "https://gitlab.com/barrel/barrel-shopify-base#README",
   "devDependencies": {
     "autoprefixer": "^6.3.1",
     "browserify": "^12.0.2",

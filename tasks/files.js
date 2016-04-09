@@ -1,66 +1,88 @@
 var path = require('path');
 var del = require('delete');
 var gulp = require('gulp');
-var copy = require('copy');
 var watch = require('gulp-watch');
-var gutil = require('gulp-util');
-var prettyHrtime = require('pretty-hrtime');
-var startTime, filePath;
+var flatten = require('gulp-flatten');
+var logger = require('./util/log');
 
-var assets = [
-  './src/assets/*.png',
-  './src/assets/*.jpg',
-  './src/assets/*.svg'
-]
+var files = {
+  layout: {
+    src: './src/layout/*.liquid',
+    dest: './dist/layout/'
+  },
+  templates: {
+    src: './src/templates/**/*.liquid',
+    dest: './dist/templates/'
+  },
+  snippets: {
+    src: './src/snippets/**/*.liquid',
+    dest: './dist/snippets/'
+  },
+  assets: {
+    src: [
+      './src/assets/*.png',
+      './src/assets/*.jpg',
+      './src/assets/*.svg'
+    ],
+    dest: './dist/assets/'
+  }
+}
 
 gulp.task('files:copy', function(){
-  copy('./src/layouts/*.liquid', './dist/layout', log.end)
-  copy('./src/templates/**/*.liquid', './dist/templates', log.end)
-  copy('./src/snippets/**/*.liquid', './dist/snippets', log.end)
-  copy(assets, './dist/assets', log.end)
+  logger.start('all files', 'Copying');
+  copy(files.layout.src, files.layout.dest, logger.end)
+  copy(files.templates.src, files.templates.dest, logger.end)
+  copy(files.snippets.src, files.snippets.dest, {flatten: true}, logger.end)
+  copy(files.assets.src, files.assets.dest, logger.end)
 });
 
 gulp.task('files:watch', ['files:copy'], function(){
-  watch('./src/layout/*.liquid', function(vinyl){
-    log.filepath = 'layouts/'+path.basename(vinyl.path);
-    log.start();
-    copy('./src/layouts/*.liquid', './dist/layout', log.end)
+  watch(files.layout.src, function(vinyl){
+    processFiles(vinyl, 'layouts')
   });
-  watch('./src/templates/**/*.liquid', function(){
-    copy('./src/templates/**/*.liquid', './dist/templates', log.end)
+  watch(files.templates.src, function(vinyl){
+    processFiles(vinyl, 'templates')
   });
-  watch('./src/snippets/**/*.liquid', function(){
-    copy('./src/snippets/**/*.liquid', './dist/snippets', log.end)
+  watch(files.snippets.src, function(vinyl){
+    processFiles(vinyl, 'snippets', { flatten:true })
   });
-  watch(assets, function(vinyl){
-    if (vinyl.event === 'unlink'){
-      del('../dist/assets/'+path.basename(vinyl.path), log.end);
-    } else {
-      copy(assets, './dist/assets', log.end)
-    }
+  watch(files.assets.src, function(vinyl){
+    processFiles(vinyl, 'assets')
   });
 });
 
-// function log(err, file){
-//   var taskTime = process.hrtime(startTime);
-//   var prettyTime = prettyHrtime(taskTime);
-
-//   if (err) {
-//     gutil.log('Error: ', gutil.colors.red(err));
-//   }
-
-//   gutil.log('Copied', gutil.colors.green('files'), 'in', gutil.colors.magenta(prettyTime));
-// }
-
-var log = {
-  filepath: '',
-  start: function(filepath) {
-    startTime = process.hrtime();
-    gutil.log('Copying', gutil.colors.green(this.filepath));
-  },
-  end: function(filepath) {
-    var taskTime = process.hrtime(startTime);
-    var prettyTime = prettyHrtime(taskTime);
-    gutil.log('Copied', gutil.colors.green(log.filepath), 'in', gutil.colors.magenta(prettyTime));
+function copy(files, dest, opts, cb){
+  if (typeof opts === 'function'){
+    cb = opts; 
   }
-};
+
+  if (opts.flatten) {
+    gulp.src(files)
+      .pipe(flatten())
+      .pipe(gulp.dest(dest));
+  } else {
+    gulp.src(files)
+      .pipe(gulp.dest(dest));
+  }
+
+  cb();
+}
+
+function processFiles(vinyl, type, opts){
+  var filename = path.basename(vinyl.path);
+
+  opts = opts || {};
+
+  if (vinyl.event === 'unlink'){
+    logger.start(type+'/'+filename, 'Deleting');
+    del(__dirname+'/../dist/'+type+'/'+filename, {force: true}, function(err){
+      if (err) throw err;
+      logger.end();
+    });
+  } 
+  
+  else {
+    logger.start(type+'/'+filename, 'Copying');
+    copy(files[type].src, files[type].dest, opts, logger.end)
+  }
+}

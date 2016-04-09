@@ -1,5 +1,5 @@
 function slideshow(el){
-  console.log('Slideshow')
+  console.log('Module')
 }
 
 module.exports = slideshow;

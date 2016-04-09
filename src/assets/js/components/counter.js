@@ -1,5 +1,5 @@
 function counter(){
-  var test = '{{ settings.header | json }}';
+  console.log('Component')
 }
 
 module.exports = counter;

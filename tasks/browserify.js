@@ -8,7 +8,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var assign = require('lodash.assign');
 var path = require('path');
 var glob = require('glob');
-var prettyHrtime = require('pretty-hrtime');
+var logger = require('./util/log');
 
 /**
  * Tasks
@@ -63,7 +63,8 @@ b.on('log', gutil.log); // output build logs to terminal
  * Package
  */
 function bundle(minify) {
-  bundleLogger.start('main.min.js');
+  logger.start('main.min.js', 'Bundling');
+
   // b.plugin('minifyify', {
   //   map: './main.min.js.map',
   //   output: './main.min.js.map',
@@ -74,25 +75,10 @@ function bundle(minify) {
   // });
 
   return b.bundle()
-    // log errors if they happen
     .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-    .on('end', function(){
-      bundleLogger.end('main.min.js');
-    })
+    .on('end', logger.end.bind(null, 'main.min.js', 'Bundling'))
     .pipe(source('main.js'))
     // Add transformation tasks to the pipeline here.
     .pipe(sourcemaps.write('./')) // writes .map file
     .pipe(gulp.dest('./dist/assets'));
 }
-
-var bundleLogger = {
-  start: function(filepath) {
-    startTime = process.hrtime();
-    gutil.log('Bundling', gutil.colors.green(filepath));
-  },
-  end: function(filepath) {
-    var taskTime = process.hrtime(startTime);
-    var prettyTime = prettyHrtime(taskTime);
-    gutil.log('Bundled', gutil.colors.green(filepath), 'in', gutil.colors.magenta(prettyTime));
-  }
-};

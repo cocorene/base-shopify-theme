@@ -42,10 +42,10 @@ var files = {
  */
 gulp.task('files:copy', function(){
   logger.start('all files', 'Copying'); // start log
-  copy(files.layout.src, files.layout.dest, logger.end)
-  copy(files.templates.src, files.templates.dest, logger.end)
-  copy(files.snippets.src, files.snippets.dest, {flatten: true}, logger.end)
-  copy(files.assets.src, files.assets.dest, logger.end)
+  copy(files.layout.src, files.layout.dest, logger.end.bind(null,'layouts'))
+  copy(files.templates.src, files.templates.dest, logger.end.bind(null, 'templates'))
+  copy(files.snippets.src, files.snippets.dest, {flatten: true}, logger.end.bind(null, 'snippets'))
+  copy(files.assets.src, files.assets.dest, logger.end.bind(null, 'assets'))
 });
 
 /**

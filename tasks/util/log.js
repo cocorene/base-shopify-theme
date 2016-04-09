@@ -12,9 +12,9 @@ var logger = {
     startTime = process.hrtime();
     gutil.log(this.action, gutil.colors.green(this.filepath));
   },
-  end: function() {
+  end: function(filepath, action) {
     taskTime = prettyHrtime(process.hrtime(startTime));
-    gutil.log(logger.action, gutil.colors.green(logger.filepath), 'in', gutil.colors.magenta(taskTime));
+    gutil.log(action || logger.action, gutil.colors.green(filepath || logger.filepath), 'completed in', gutil.colors.magenta(taskTime));
   }
 }
 

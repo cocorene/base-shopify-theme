@@ -1,10 +1,17 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var logger = require('./util/log');
 
-/** Defines the "sass" task for Gulp. */
-gulp.task('sass:dev', function() {
+/**
+ * DEV Task
+ */
+gulp.task('sass:dev', ['sass'], function() {
   gulp.watch(['./src/assets/scss/**/*.scss'], compile);
 });
+
+/**
+ * DEFAULT Task
+ */
 gulp.task('sass', function() {
   var opts = {
     outputStyle: 'compressed'
@@ -16,7 +23,11 @@ gulp.task('sass', function() {
 function compile(){
   var opts = opts || {};
 
-  return gulp.src('./src/assets/scss/main.scss')
+  logger.start('styles', 'Compiling')
+
+  gulp.src('./src/assets/scss/main.scss')
     .pipe(sass(opts).on('error', sass.logError))
     .pipe(gulp.dest('./dist/assets'));
+
+  logger.end('styles', 'Compiling');
 }

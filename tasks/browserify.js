@@ -62,7 +62,6 @@ b.require(function(){
  */
 b.on('update', bundle); // on any dep update, runs the bundler
 b.on('error', gutil.log.bind(gutil, 'Browserify Error'));
-b.on('end', logger.end.bind(null, 'main.min.js', 'Bundling')); // end logger
 
 /**
  * DEFAULT Bundler Function
@@ -84,4 +83,6 @@ function bundle(dev) {
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./dist/assets/'))
+
+  logger.end('main.min.js', 'Bundling')
 }

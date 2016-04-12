@@ -33,6 +33,14 @@ var files = {
       './src/assets/*.svg'
     ],
     dest: './dist/assets/'
+  },
+  config: {
+    src: './src/config/*.json',
+    dest: './dist/config/'
+  },
+  locales: {
+    src: './src/locales/*.json',
+    dest: './dist/locales/'
   }
 }
 
@@ -46,6 +54,8 @@ gulp.task('files:copy', function(){
   copy(files.templates.src, files.templates.dest, processLog.end.bind(null, 'templates'))
   copy(files.snippets.src, files.snippets.dest, {flatten: true}, processLog.end.bind(null, 'snippets'))
   copy(files.assets.src, files.assets.dest, processLog.end.bind(null, 'assets'))
+  copy(files.config.src, files.config.dest, processLog.end.bind(null, 'config'))
+  copy(files.locales.src, files.locales.dest, processLog.end.bind(null, 'locales'))
 });
 
 /**
@@ -65,6 +75,12 @@ gulp.task('files:watch', ['files:copy'], function(){
   });
   watch(files.assets.src, function(vinyl){
     processFiles(vinyl, 'assets')
+  });
+  watch(files.config.src, function(vinyl){
+    processFiles(vinyl, 'config')
+  });
+  watch(files.locales.src, function(vinyl){
+    processFiles(vinyl, 'locales')
   });
 });
 

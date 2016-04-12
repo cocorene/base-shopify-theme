@@ -50,7 +50,7 @@ var files = {
  */
 gulp.task('files:copy', function(){
   processLog.start('all files', 'Copying'); // start log
-  copy(files.layout.src, files.layout.dest, processLog.end.bind(null,'layouts'))
+  copy(files.layout.src, files.layout.dest, processLog.end.bind(null,'layout'))
   copy(files.templates.src, files.templates.dest, processLog.end.bind(null, 'templates'))
   copy(files.snippets.src, files.snippets.dest, {flatten: true}, processLog.end.bind(null, 'snippets'))
   copy(files.assets.src, files.assets.dest, processLog.end.bind(null, 'assets'))
@@ -65,7 +65,7 @@ gulp.task('files:copy', function(){
  */
 gulp.task('files:watch', ['files:copy'], function(){
   watch(files.layout.src, function(vinyl){
-    processFiles(vinyl, 'layouts')
+    processFiles(vinyl, 'layout')
   });
   watch(files.templates.src, function(vinyl){
     processFiles(vinyl, 'templates')

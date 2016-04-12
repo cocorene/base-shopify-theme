@@ -23,7 +23,7 @@ gulp.task('sass', function() {
 /**
  * MAIN Compile Function
  */
-function compile(){
+function compile(opts){
   var opts = opts || {};
 
   processLog.start('styles', 'Compiling')

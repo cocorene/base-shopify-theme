@@ -1,6 +1,5 @@
 var gulp = require('gulp'),
     path = require('path'),
-    watch = require('gulp-watch'),
     del = require('delete'),
     flatten = require('gulp-flatten'),
     processLog = require('./util/log');
@@ -64,23 +63,23 @@ gulp.task('files:copy', function(){
  * copies changed files.
  */
 gulp.task('files:watch', ['files:copy'], function(){
-  watch(files.layout.src, function(vinyl){
-    processFiles(vinyl, 'layout')
+  gulp.watch(files.layout.src, function(event){
+    processFiles(event, 'layout')
   });
-  watch(files.templates.src, function(vinyl){
-    processFiles(vinyl, 'templates')
+  gulp.watch(files.templates.src, function(event){
+    processFiles(event, 'templates')
   });
-  watch(files.snippets.src, function(vinyl){
-    processFiles(vinyl, 'snippets', { flatten:true })
+  gulp.watch(files.snippets.src, function(event){
+    processFiles(event, 'snippets')
   });
-  watch(files.assets.src, function(vinyl){
-    processFiles(vinyl, 'assets')
+  gulp.watch(files.assets.src, function(event){
+    processFiles(event, 'assets')
   });
-  watch(files.config.src, function(vinyl){
-    processFiles(vinyl, 'config')
+  gulp.watch(files.config.src, function(event){
+    processFiles(event, 'config')
   });
-  watch(files.locales.src, function(vinyl){
-    processFiles(vinyl, 'locales')
+  gulp.watch(files.locales.src, function(event){
+    processFiles(event, 'locales')
   });
 });
 
@@ -89,16 +88,16 @@ gulp.task('files:watch', ['files:copy'], function(){
  * Scrubs event type (change|unlink) and
  * either copies or deletes file
  *
- * @param {stream} vinyl The Vinyl stream returned from watch()
+ * @param {stream} event The object returned from gulp.watch()
  * @param {string} type The type of file being processed
  * @param {object} opts Options to pass to copy() task (optional)
  */
-function processFiles(vinyl, type, opts){
-  var filename = path.basename(vinyl.path);
+function processFiles(event, type, opts){
+  var filename = path.basename(event.path);
 
   opts = opts || {};
 
-  if (vinyl.event === 'unlink'){
+  if (event.event === 'deleted'){
     processLog.start(type+'/'+filename, 'Deleting'); // start log
     del(__dirname+'/../dist/'+type+'/'+filename, {force: true}, function(err){
       if (err) throw err;

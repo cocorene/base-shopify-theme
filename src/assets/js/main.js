@@ -22,10 +22,10 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   }
 
-  [].forEach.call(modules, function(module, i){
-    init(module, module.getAttribute('data-module'), 'modules');
-  });
-  [].forEach.call(components, function(component, i){
-    init(component, component.getAttribute('data-component'), 'components');
-  });
+  for (var i = 0; i < modules.length; i++){
+    init(modules[i], modules[i].getAttribute('data-module'), 'modules');
+  }
+  for (var i = 0; i < components.length; i++){
+    init(components[i], components[i].getAttribute('data-component'), 'components');
+  }
 });

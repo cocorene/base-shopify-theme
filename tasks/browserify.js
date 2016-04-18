@@ -19,7 +19,7 @@ gulp.task('js:dev', bundle.bind(null, true));
  * DEFAULT Bundle Task
  * Will minify the output
  */
-gulp.task('js', bundle);
+gulp.task('js', bundle.bind(null, false));
 
 /**
  * INIT Browserify
@@ -70,7 +70,7 @@ b.require(function(){
 function bundle(dev) {
   processLog.start('main.min.js', 'Bundling'); // start processLog
 
-  if (!dev){
+  if (dev === false){
     b.plugin('minifyify', {
      map: false
     });

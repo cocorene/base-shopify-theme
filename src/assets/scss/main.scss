@@ -1,7 +1,34 @@
-// @import "base/breakpoints";
+/***
+@stylesheet:	main
+@project:		barrel base shopify theme
+@version:		1.0
+@groups:		* base stylesheets
+				* components stylesheets
+				* modules stylesheets
+				* templates stylesheets
+@target:		none
+***/
 
-// @import "elements/_init";
 
-// @import "components/_init";
+/* Base Stylesheets
+------------------------------------------------------------ */
+@import "base/var";
+@import "base/functions";
+@import "base/mixins";
+@import "base/normalize";
+@import "base/layout";
 
-// @import "modules/hero";
+
+/* Components Stylesheets
+------------------------------------------------------------ */
+/* @import "components/**"; */
+
+
+/* Modules Stylesheets
+------------------------------------------------------------ */
+/* @import "modules/**"; */
+
+
+/* Templates Stylesheets
+------------------------------------------------------------ */
+/* @import "templates/**"; */

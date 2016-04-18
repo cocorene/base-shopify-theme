@@ -1,0 +1,18 @@
+{
+  "name": "theme_info",
+  "logo": "https:\/\/cdn.shopify.com\/s\/files\/1\/0818\/7193\/t\/7\/assets\/barrel-logo.png?18160900480179151251",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Barrel Base"
+    },
+    {
+      "type": "paragraph",
+      "content": "v1.0.0"
+    },
+    {
+      "type": "paragraph",
+      "content": "Check out [the repo](https://gitlab.com/barrel/barrel-shopify-base) for more information."
+    }
+  ]
+}

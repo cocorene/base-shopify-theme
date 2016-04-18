@@ -10,6 +10,6 @@ require('./tasks/jshint');
 
 gulp.task('shopify', shell.task(['cd dist/ && theme watch']));
 
-gulp.task('dev', ['sass:dev', 'js:dev', 'files:watch', 'shopify']);
+gulp.task('dev', ['sass:dev', 'js:dev', 'files:watch']);
 
 gulp.task('default', ['sass', 'js', 'files:copy']);

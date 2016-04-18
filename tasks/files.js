@@ -2,7 +2,9 @@ var gulp = require('gulp'),
     path = require('path'),
     del = require('delete'),
     flatten = require('gulp-flatten'),
-    processLog = require('./util/log');
+    processLog = require('./util/log'),
+    concat = require('gulp-concat'),
+    wrap = require('gulp-wrapper');
 
 /**
  * DEFAULT
@@ -34,7 +36,9 @@ var files = {
     dest: './dist/assets/'
   },
   config: {
-    src: './src/config/*.json',
+    src: [
+      './src/config/lib/general-info.json'
+    ],
     dest: './dist/config/'
   },
   locales: {
@@ -53,8 +57,16 @@ gulp.task('files:copy', function(){
   copy(files.templates.src, files.templates.dest, processLog.end.bind(null, 'templates'))
   copy(files.snippets.src, files.snippets.dest, {flatten: true}, processLog.end.bind(null, 'snippets'))
   copy(files.assets.src, files.assets.dest, processLog.end.bind(null, 'assets'))
-  copy(files.config.src, files.config.dest, processLog.end.bind(null, 'config'))
   copy(files.locales.src, files.locales.dest, processLog.end.bind(null, 'locales'))
+});
+gulp.task('config:concat', function(){
+  gulp.src(files.config.src)
+    .pipe(concat('settings_schema.json', {newLine: ','}))
+    .pipe(wrap({
+      header: '[',
+      footer: ']'
+    }))
+    .pipe(gulp.dest(files.config.dest));
 });
 
 /**
@@ -62,7 +74,7 @@ gulp.task('files:copy', function(){
  * Watches filepaths for changes and 
  * copies changed files.
  */
-gulp.task('files:watch', ['files:copy'], function(){
+gulp.task('files:watch', ['files:copy', 'config:concat'], function(){
   gulp.watch(files.layout.src, function(event){
     processFiles(event, 'layout')
   });
@@ -75,12 +87,10 @@ gulp.task('files:watch', ['files:copy'], function(){
   gulp.watch(files.assets.src, function(event){
     processFiles(event, 'assets')
   });
-  gulp.watch(files.config.src, function(event){
-    processFiles(event, 'config')
-  });
   gulp.watch(files.locales.src, function(event){
     processFiles(event, 'locales')
   });
+  gulp.watch(files.config.src, ['config:concat']);
 });
 
 /**

@@ -3,7 +3,8 @@
 @project:		barrel base shopify theme
 @version:		1.0
 @groups:		* misc.
-				* general	
+				* general
+                * layout
 @target:		all
 ***/
 
@@ -17,18 +18,77 @@
         display: table;
     }
 }
+%full {
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+    width: calc( 100% - #{$bleed-small} * 2 );
+    @include breakpoint( tablet ) {
+        width: calc( 100% - #{$bleed-large} * 2 );
+    }
+}
+%container {
+    @extend %full;
+    @include breakpoint( desktop ) {
+        width: $container;
+    }
+}
+%container--large {
+    @extend %full;
+    @include breakpoint( large ) {
+        width: $container-large;
+    }
+}
+%container--wide {
+    @extend %full;
+    @include breakpoint( wide ) {
+        width: $container-wide;
+    }
+}
 
 
 /* General
 ------------------------------------------------------------ */
 * {
+    box-sizing: inherit;
 	margin: 0;
 }
 html,
 body {
+    box-sizing: border-box;
     cursor: default;
     height: 100%;
 }
+a {
+    color: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+}
+input {
+    outline: none;
+}
+input[type="submit"],
+input[type="button"] {
+    cursor: pointer;
+}
+ul,
+ol {
+    list-style: none;
+    margin-right: 0;
+    padding: 0;
+    text-align: left;
+    @include breakpoint( tablet ) {
+        margin-bottom: -$footer-tablet;
+    }
+    @include breakpoint( desktop ) {
+        margin-bottom: -$footer-desktop;
+    }
+}
+
+
+/* Layout
+------------------------------------------------------------ */
 .content {
     height: 100%;
 }

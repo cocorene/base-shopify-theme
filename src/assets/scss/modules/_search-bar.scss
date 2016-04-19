@@ -1,0 +1,28 @@
+/***
+@stylesheet:	search bar
+@project:		barrel base shopify theme
+@version:		1.0
+@groups:		* search bar
+@target:		modules/search-bar.liquid
+***/
+
+
+/* Search Bar
+------------------------------------------------------------ */
+.search-bar {
+
+}
+.search-bar__form {
+
+}
+.search-bar__field {
+
+}
+.search-bar__btn {
+	background: none no-repeat scroll 0 0 transparent;
+	border: none;
+	&:before {
+		content: "\f002";
+		display: block;
+	}
+}

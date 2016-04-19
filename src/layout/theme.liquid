@@ -28,6 +28,7 @@
     <meta name="theme-color" content="{{ settings.color_primary }}">
 
     <!-- CSS ================================================== -->
+    {{ '//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css' | stylesheet_tag }}
     {{ 'main.css' | asset_url | stylesheet_tag }}
 
     <!-- Header hook for plugins ================================================== -->
@@ -160,49 +161,12 @@
                     {% else %}
                         <a class="main-logo" href="#">{{ shop.name }}</a>
                     {% endif %}
-                    {% comment %}
-                        Show number of items in the cart and total cost in the /cart link
-
-                        Ajax Cart Notes:
-                            - #cartCount updates the total number of items in the cart
-                            - #cartCost updates the total cost of the cart
-                            - Documentation:    http://shopify.com/timber#ajax-cart
-                    {% endcomment %}
-                        <a href="/cart" aria-controls="CartDrawer" aria-expanded="false">
-                            <span aria-hidden="true"></span>
-                            {{ 'layout.cart.title' | t }}
-                            (<span>{{ cart.item_count }}</span>
-                            {{ 'layout.cart.items_count' | t: count: cart.item_count }}
-                            <span>{{ cart.total_price | money }}</span>)
-                        </a>
-                    {% comment %}
-                        If customer accounts are enabled, provide login and create account links
-                    {% endcomment %}
-                    {% if shop.customer_accounts_enabled %}
-                    <div>
-                        {% if customer %}
-                            {% if customer.first_name != blank %}
-                                {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
-                                {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
-                            {% else %}
-                                <a href="/account">{{ 'layout.customer.account' | t }}</a>
-                            {% endif %}
-                            | {{ 'layout.customer.log_out' | t | customer_logout_link }}
-                        {% else %}
-                            {{ 'layout.customer.log_in' | t | customer_login_link }}
-                            | {{ 'layout.customer.create_account' | t | customer_register_link }}
-                        {% endif %}
-                    </div>
-                    {% endif %}
-                    <div>
-                        {% include 'search-bar' %}
-                    </div>
-                    <button type="button">
+                    <button type="button" style="display:none;">
                         <span class="icon icon-hamburger"></span>
                         <span class="fallback-text">{{ 'layout.navigation.menu' | t }}</span>
                     </button>
                     <a href="/cart">
-                        <span class="icon-fallback-text">
+                        <span class="icon-fallback-text" style="display:none;">
                             <span class="icon icon-cart"></span>
                             <span class="fallback-text">{{ 'layout.cart.title' | t }}</span>
                         </span>
@@ -224,12 +188,12 @@
                                 {% endcomment %}
                                 {% assign child_list_handle = link.title | handleize %}
                                 {% if linklists[child_list_handle].links != blank %}
-                                    <li class="main-nav__item {% if link.active %} main-nav__item--active {% endif %}">
+                                    <li class="main-nav__item main-nav__item--has-sub {% if link.active %} main-nav__item--active {% endif %}">
                                         <a class="main-nav__link" href="{{ link.url }}">{{ link.title }} </a>
-                                        <ul class="main-nav__sub-list">
+                                        <ul class="main-nav-sub__list">
                                             {% for childlink in linklists[child_list_handle].links %}
-                                                <li class="main-nav__sub-item {% if childlink.active %} main-nav__sub-item--active {% endif %}">
-                                                    <a class="site-nav__sub-link" href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+                                                <li class="main-nav-sub__item {% if childlink.active %} main-nav-sub__item--active {% endif %}">
+                                                    <a class="main-nav-sub__link" href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
                                                 </li>
                                             {% endfor %}
                                         </ul>
@@ -240,6 +204,50 @@
                                     </li>
                                 {% endif %}
                             {% endfor %}
+                        </ul>
+                    </nav>
+                    <nav class="user-nav">
+                        <ul class="user-nav__list">
+                            <li class="user-nav__item">
+                                {% include 'search-bar' %}
+                            </li>
+                            <li class="user-nav__item">
+                                {% comment %}
+                                    Show number of items in the cart and total cost in the /cart link
+
+                                    Ajax Cart Notes:
+                                        - #cartCount updates the total number of items in the cart
+                                        - #cartCost updates the total cost of the cart
+                                        - Documentation:    http://shopify.com/timber#ajax-cart
+                                {% endcomment %}
+                                <a href="/cart">
+                                    {{ 'layout.cart.title' | t }}
+                                    (
+                                    <span>{{ cart.item_count }}</span>
+                                    {{ 'layout.cart.items_count' | t: count: cart.item_count }}
+                                    <span>{{ cart.total_price | money }}</span>
+                                    )
+                                </a>
+                            </li>
+                            <li class="user-nav__item">
+                                {% comment %}
+                                    If customer accounts are enabled, provide login and create account links
+                                {% endcomment %}
+                                {% if shop.customer_accounts_enabled %}
+                                    {% if customer %}
+                                        {% if customer.first_name != blank %}
+                                            {% capture first_name %}<a href="/account">{{ customer.first_name }}</a>{% endcapture %}
+                                            {{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}
+                                        {% else %}
+                                            <a href="/account">{{ 'layout.customer.account' | t }}</a>
+                                        {% endif %}
+                                        | {{ 'layout.customer.log_out' | t | customer_logout_link }}
+                                    {% else %}
+                                        {{ 'layout.customer.log_in' | t | customer_login_link }}
+                                        | {{ 'layout.customer.create_account' | t | customer_register_link }}
+                                    {% endif %}
+                                {% endif %}
+                            </li>
                         </ul>
                     </nav>
                 </div>

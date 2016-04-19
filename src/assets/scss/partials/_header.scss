@@ -3,8 +3,9 @@
 @project:		barrel base shopify theme
 @version:		1.0
 @groups:		* header
-				*
-				*
+				* logo
+				* main navigation
+				* user navigation
 @target:		layout/theme.liquid
 ***/
 
@@ -25,12 +26,13 @@
     }
 }
 .header__container {
-	padding: calc( #{$header-mobile} * 0.10 ) 0;
+	@extend %container--wide;
+	padding: calc( #{$header-mobile} * 0.25 ) 0;
     @include breakpoint( tablet ) {
-		padding: calc( #{$header-tablet} * 0.10 ) 0;
+		padding: calc( #{$header-tablet} * 0.25 ) 0;
     }
     @include breakpoint( desktop ) {
-		padding: calc( #{$header-desktop} * 0.10 ) 0;
+		padding: calc( #{$header-desktop} * 0.25 ) 0;
     }
 }
 
@@ -40,19 +42,93 @@
 .main-logo {
 	@extend %trans-opacity;
     display: inline-block;
-    height: calc( #{$header-mobile} * 0.80 );
+    height: calc( #{$header-mobile} * 0.50 );
     position: relative;
     @include breakpoint( tablet ) {
-    	height: calc( #{$header-tablet} * 0.80 );
+    	height: calc( #{$header-tablet} * 0.50 );
     }
     @include breakpoint( desktop ) {
-    	height: calc( #{$header-desktop} * 0.80 );
+    	height: calc( #{$header-desktop} * 0.50 );
     }
     &:hover {
-    	opacity: 0.6;
+    	opacity: 0.8;
     }
 }
 .main-logo__img {
 	display: block;
 	height: 100%;
+}
+
+
+/* Main Navigation
+------------------------------------------------------------ */
+.main-nav {
+	@extend %clearfix;
+	display: none;
+	height: 50px;
+	left: 0;
+	margin: -25px 0 0;
+	position: absolute;
+	top: 50%;
+    @include breakpoint( desktop ) {
+    	display: block;
+    }
+}
+.main-nav__list {
+	@extend %clearfix;
+	height: 100%;
+}
+.main-nav__item {
+	float: left;
+	margin: 0 0 0 40px;
+	padding: 16px 0;
+	&:first-child {
+		margin-left: 0;
+	}
+}
+.main-nav__item--has-sub {
+
+}
+.main-nav__item--active {
+
+}
+.main-nav__link {
+	display: block;
+}
+.main-nav-sub__list {
+	display: none;
+}
+.main-nav-sub__item {
+
+}
+.main-nav-sub__link {
+
+}
+
+
+/* User Navigation
+------------------------------------------------------------ */
+.user-nav {
+	@extend %clearfix;
+	display: none;
+	height: 50px;
+	right: 0;
+	margin: -25px 0 0;
+	position: absolute;
+	top: 50%;
+    @include breakpoint( desktop ) {
+    	display: block;
+    }
+}
+.user-nav__list {
+	@extend %clearfix;
+	height: 100%;
+}
+.user-nav__item {
+	float: left;
+	margin: 0 0 0 40px;
+	padding: 16px 0;
+	&:first-child {
+		margin-left: 0;
+	}
 }

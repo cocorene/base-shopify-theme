@@ -67,13 +67,25 @@ $blue: (
 ------------------------------------------------------------ */
 
 
+
+/* Containers
+------------------------------------------------------------ */
+/* Container width. */
+$container: 1024px;
+$container-large: 1280px;
+$container-wide: 90%;
+/* Container bleeds (20px on both sides). */
+$bleed-small: 20px;
+$bleed-large: 30px;
+
+
 /* Header
 ------------------------------------------------------------ */
 $header-width: 100%;
 /* Header height. */
-$header-mobile: 80px;
-$header-tablet: 120px;
-$header-desktop: 160px;
+$header-mobile: 60px;
+$header-tablet: 80px;
+$header-desktop: 140px;
 
 
 /* Footer

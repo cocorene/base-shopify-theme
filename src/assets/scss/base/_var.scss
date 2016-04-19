@@ -5,7 +5,7 @@
 @groups:		* breakpoints
 				* colors
 				* transitions
-				* fonts
+				* typography size
 				* containers
 				* header
 				* footer
@@ -16,8 +16,8 @@
 /* Breakpoints
 ------------------------------------------------------------ */
 $breakpoints: (
-	mobile: 360px,
-	tablet: 640px,
+	mobile: 450px,
+	tablet: 850px,
 	desktop: 1024px,
 	large: 1280px,
 	wide: 1440px
@@ -50,9 +50,9 @@ $transition-timing-function: ease-in-out;
 $black: #000;
 $white: #FFF;
 $grey: (
-	dark: #F9F9F9,
-	normal: #F6F6F6,
-	light: #F9F9F9 
+	normal: #292929,
+	light: #E6E6E6,
+	bright: #F9F9F9 
 );
 $blue: (
 	darker: #5A79A5,
@@ -63,9 +63,32 @@ $blue: (
 );
 
 
-/* Fonts
+/* Typography Size
 ------------------------------------------------------------ */
-
+/* Reference size. */
+$font-size-mobile: 13px;
+$font-size-tablet: 15px;
+$font-size-desktop: 15px;
+/* Small text. */
+$font-small: 0.9rem;
+/* Pargraph. */
+$paragraph: 1rem;
+/* Heading 1. */
+$h1-mobile: 1.85rem;
+$h1-tablet: 2rem;
+$h1-desktop: 2.7rem;
+/* Heading 2. */
+$h2-mobile: 1.35rem;
+$h2-tablet: 1.5rem;
+$h2-desktop: 1.9rem;
+/* Heading 3. */
+$h3: 1.3rem;
+/* Heading 4. */
+$h4: 1.15rem;
+/* Heading 5. */
+$h5: 0.95rem;
+/* Heading 6. */
+$h6: 0.75rem;
 
 
 /* Containers
@@ -84,14 +107,14 @@ $bleed-large: 30px;
 $header-width: 100%;
 /* Header height. */
 $header-mobile: 60px;
-$header-tablet: 80px;
-$header-desktop: 140px;
+$header-tablet: 70px;
+$header-desktop: 80px;
 
 
 /* Footer
 ------------------------------------------------------------ */
 $footer-width: 100%;
 /* Footer height. */
-$footer-mobile: 80px;
-$footer-tablet: 120px;
-$footer-desktop: 160px;
+$footer-mobile: 510px;
+$footer-tablet: 280px;
+$footer-desktop: 200px;

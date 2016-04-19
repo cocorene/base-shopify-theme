@@ -12,7 +12,8 @@
 /* Footer
 ------------------------------------------------------------ */
 .footer {
-	background: none no-repeat scroll 0 0 color( $grey, 'normal' );
+	background: none no-repeat scroll 0 0 $white;
+	border-top: 1px solid color( $grey, 'bright' );
     height: $footer-mobile;
     width: $footer-width;
     @include breakpoint( tablet ) {

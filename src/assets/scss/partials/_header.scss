@@ -13,7 +13,8 @@
 /* Header
 ------------------------------------------------------------ */
 .header {
-	background: none no-repeat scroll 0 0 color( $grey, 'normal' );
+	background: none no-repeat scroll 0 0 $white;
+	border-bottom: 1px solid color( $grey, 'bright' );
     height: $header-mobile;
     position: relative;
     text-align: center;
@@ -27,13 +28,6 @@
 }
 .header__container {
 	@extend %container--wide;
-	padding: calc( #{$header-mobile} * 0.25 ) 0;
-    @include breakpoint( tablet ) {
-		padding: calc( #{$header-tablet} * 0.25 ) 0;
-    }
-    @include breakpoint( desktop ) {
-		padding: calc( #{$header-desktop} * 0.25 ) 0;
-    }
 }
 
 
@@ -43,12 +37,15 @@
 	@extend %trans-opacity;
     display: inline-block;
     height: calc( #{$header-mobile} * 0.50 );
+    margin: calc( #{$header-mobile} * 0.25 ) 0;
     position: relative;
     @include breakpoint( tablet ) {
     	height: calc( #{$header-tablet} * 0.50 );
+    	margin: calc( #{$header-tablet} * 0.25 ) 0;
     }
     @include breakpoint( desktop ) {
     	height: calc( #{$header-desktop} * 0.50 );
+    	margin: calc( #{$header-desktop} * 0.25 ) 0;
     }
     &:hover {
     	opacity: 0.8;
@@ -65,11 +62,9 @@
 .main-nav {
 	@extend %clearfix;
 	display: none;
-	height: 50px;
+	height: 100%;
 	left: 0;
-	margin: -25px 0 0;
 	position: absolute;
-	top: 50%;
     @include breakpoint( desktop ) {
     	display: block;
     }

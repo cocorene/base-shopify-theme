@@ -1,0 +1,25 @@
+/***
+@stylesheet:	form
+@project:		barrel base shopify theme
+@version:		1.0
+@groups:		* misc.
+				* text field
+				* dropdown
+@target:		all
+***/
+
+
+/* Misc.
+------------------------------------------------------------ */
+%field {
+	
+}
+
+
+/* Text Field
+------------------------------------------------------------ */
+.field {
+	@extend %field;
+	height: 40px;
+	padding: 10px 12px;
+}

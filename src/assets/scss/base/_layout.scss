@@ -23,7 +23,7 @@
     margin: 0 auto;
     position: relative;
     width: calc( 100% - #{$bleed-small} * 2 );
-    @include breakpoint( tablet ) {
+    @include breakpoint( mobile ) {
         width: calc( 100% - #{$bleed-large} * 2 );
     }
 }
@@ -56,6 +56,7 @@
 html,
 body {
     box-sizing: border-box;
+    color: color( $grey, 'normal' );
     cursor: default;
     height: 100%;
 }
@@ -65,12 +66,19 @@ a {
     text-decoration: none;
     outline: none;
 }
-input {
+button,
+input,
+input[type="button"],
+input[type="submit"] {
+    margin: 0;
     outline: none;
+    padding: 0;
 }
-input[type="submit"],
-input[type="button"] {
+button,
+input[type="button"],
+input[type="submit"] {
     cursor: pointer;
+    display: block;
 }
 ul,
 ol {

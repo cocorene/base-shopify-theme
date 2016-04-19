@@ -10,19 +10,24 @@
 /* Search Bar
 ------------------------------------------------------------ */
 .search-bar {
-
+	display: none;
 }
 .search-bar__form {
-
+	@extend %clearfix;
 }
 .search-bar__field {
-
+	float: left;
 }
 .search-bar__btn {
+	@extend %trans-opacity;
 	background: none no-repeat scroll 0 0 transparent;
 	border: none;
-	&:before {
-		content: "\f002";
-		display: block;
+	float: left;
+	height: 100%;
+	&:after {
+		@extend %fa-search;
+	}
+	&:hover {
+		opacity: 0.5;
 	}
 }

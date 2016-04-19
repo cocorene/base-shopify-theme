@@ -209,7 +209,6 @@
                     <nav class="user-nav">
                         <ul class="user-nav__list">
                             <li class="user-nav__item">
-                                {% include 'search-bar' %}
                             </li>
                             <li class="user-nav__item">
                                 {% comment %}
@@ -251,11 +250,14 @@
                         </ul>
                     </nav>
                 </div>
+                {% include 'search-bar' %}
             </header>
 
             <main class="main" role="main">
 
+                {% comment %}
                 {{ content_for_layout }}
+                {% endcomment %}
 
             </main>
         </div>
@@ -327,7 +329,6 @@
                         </div>
                     {% endif %}
                     <div class="grid__item text-center">
-                        <hr>
                         {% comment %}
                             Loop through available payment methods and show their icons.
                         {% endcomment %}

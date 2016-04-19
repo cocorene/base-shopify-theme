@@ -4,6 +4,7 @@
 @version:		1.0
 @groups:		* breakpoints
 				* colors
+				* transitions
 				* fonts
 				* containers
 				* header
@@ -14,23 +15,51 @@
 
 /* Breakpoints
 ------------------------------------------------------------ */
-$breakpoint: (
-	'mobile': 360px,
-	'tablet': 640px,
-	'medium': 1024px,
-	'large': 1280px,
-	'wide': 1440px
+$breakpoints: (
+	mobile: 360px,
+	tablet: 640px,
+	desktop: 1024px,
+	large: 1280px,
+	wide: 1440px
 );
+
+
+/* Transitions
+------------------------------------------------------------ */
+$transition-properties: (
+	all,
+	background-color,
+	border-color,
+	bottom,
+	color,
+	height,
+	left,
+	margin,
+	opacity,
+	padding,
+	right,
+	top,
+	width
+);
+$transition-duration: 0.2s;
+$transition-timing-function: ease-in-out;
 
 
 /* Colors
 ------------------------------------------------------------ */
+$black: #000;
+$white: #FFF;
+$grey: (
+	dark: #F9F9F9,
+	normal: #F6F6F6,
+	light: #F9F9F9 
+);
 $blue: (
-	'darker': #5A79A5,
-	'dark': #5A79A5,
-	'normal': #5A79A5,
-	'light': #5A79A5,
-	'bright': #5A79A5
+	darker: #5A79A5,
+	dark: #5A79A5,
+	normal: #5A79A5,
+	light: #5A79A5,
+	bright: #5A79A5
 );
 
 
@@ -40,7 +69,17 @@ $blue: (
 
 /* Header
 ------------------------------------------------------------ */
+$header-width: 100%;
+/* Header height. */
+$header-mobile: 80px;
+$header-tablet: 120px;
+$header-desktop: 160px;
 
 
 /* Footer
 ------------------------------------------------------------ */
+$footer-width: 100%;
+/* Footer height. */
+$footer-mobile: 80px;
+$footer-tablet: 120px;
+$footer-desktop: 160px;

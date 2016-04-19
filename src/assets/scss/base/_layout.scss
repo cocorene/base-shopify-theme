@@ -2,12 +2,56 @@
 @stylesheet:	layout
 @project:		barrel base shopify theme
 @version:		1.0
-@groups:		* global	
+@groups:		* misc.
+				* general	
 @target:		all
 ***/
 
 
-/* Global
+/* Misc.
 ------------------------------------------------------------ */
+%clearfix {
+    &:after {
+        clear: both;
+        content: "";
+        display: table;
+    }
+}
+
+
+/* General
+------------------------------------------------------------ */
+* {
+	margin: 0;
+}
+html,
 body {
+    cursor: default;
+    height: 100%;
+}
+.content {
+    height: 100%;
+}
+.wrapper {
+	height: auto !important;
+    height: 100%;
+    min-height: 100%;
+    margin: 0 auto;
+    margin-bottom: -$footer-mobile;
+    @include breakpoint( tablet ) {
+        margin-bottom: -$footer-tablet;
+    }
+    @include breakpoint( desktop ) {
+        margin-bottom: -$footer-desktop;
+    }
+    &:after {
+    	content: "";
+        height: $footer-mobile;
+        @include breakpoint( tablet ) {
+            height: $footer-tablet;
+        }
+        @include breakpoint( desktop ) {
+            height: $footer-desktop;
+        }
+    }
 }

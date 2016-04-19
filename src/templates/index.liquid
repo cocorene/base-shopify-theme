@@ -35,12 +35,12 @@
     {% comment %}
       For onboarding new users to your theme, we add some default products and onboarding tutorials to help populate their store
     {% endcomment %}
-    {% unless emptyState %}
+    <!-- {% unless emptyState %}
       {{ 'theme-onboarding.css' | global_asset_url | stylesheet_tag }}
       {% assign emptyState = true %}
     {% endunless %}
 
-    {% include 'onboarding-featured-products' %}
+    {% include 'onboarding-featured-products' %} -->
 
   {% endfor %}
 
@@ -99,14 +99,14 @@
     For onboarding new users to your theme, we add some default collections and onboarding tutorials to help populate their store
   {% endcomment %}
 
-  {% if isEmpty %}
+  <!-- {% if isEmpty %}
     {% unless emptyState %}
       {{ 'theme-onboarding.css' | global_asset_url | stylesheet_tag }}
       {% assign emptyState = true %}
     {% endunless %}
 
     {% include 'onboarding-featured-collections' %}
-  {% endif %}
+  {% endif %} -->
 
 </div>
 

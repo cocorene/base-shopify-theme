@@ -5,6 +5,7 @@
 @groups:		* base stylesheets
 				* components stylesheets
 				* modules stylesheets
+				* partials stylesheets
 				* templates stylesheets
 @target:		none
 ***/
@@ -15,13 +16,14 @@
 @import "base/var";
 @import "base/functions";
 @import "base/mixins";
+@import "base/transitions";
 @import "base/normalize";
 @import "base/layout";
 
 
 /* Components Stylesheets
 ------------------------------------------------------------ */
-/* @import "components/**"; */
+@import "components/buttons";
 
 
 /* Modules Stylesheets
@@ -29,6 +31,12 @@
 /* @import "modules/**"; */
 
 
+/* Partials Stylesheets
+------------------------------------------------------------ */
+@import "partials/header";
+@import "partials/footer";
+
+
 /* Templates Stylesheets
 ------------------------------------------------------------ */
-/* @import "templates/**"; */
+@import "templates/index";

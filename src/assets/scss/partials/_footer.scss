@@ -1,0 +1,24 @@
+/***
+@stylesheet:	footer
+@project:		barrel base shopify theme
+@version:		1.0
+@groups:		* footer
+				*
+				*
+@target:		layout/theme.liquid
+***/
+
+
+/* Footer
+------------------------------------------------------------ */
+.footer {
+	background: none no-repeat scroll 0 0 color( $grey, 'normal' );
+    height: $footer-mobile;
+    width: $footer-width;
+    @include breakpoint( tablet ) {
+        height: $footer-tablet;
+    }
+    @include breakpoint( desktop ) {
+        height: $footer-desktop;
+    }
+}

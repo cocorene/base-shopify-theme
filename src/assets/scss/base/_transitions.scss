@@ -1,0 +1,21 @@
+/***
+@stylesheet:	transitions
+@project:		barrel base shopify theme
+@version:		1.0
+@groups:		* transitions
+@target:		all
+***/
+
+
+/* Transitions
+------------------------------------------------------------ */
+%trans {
+    transition-duration: $transition-duration;
+    transition-timing-function: $transition-timing-function;
+}
+@each $prop in $transition-properties {
+    %trans-#{$prop} {
+        @extend %trans;
+        transition-property: $prop;
+    }
+}

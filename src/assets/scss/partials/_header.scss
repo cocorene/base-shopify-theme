@@ -1,0 +1,58 @@
+/***
+@stylesheet:	header
+@project:		barrel base shopify theme
+@version:		1.0
+@groups:		* header
+				*
+				*
+@target:		layout/theme.liquid
+***/
+
+
+/* Header
+------------------------------------------------------------ */
+.header {
+	background: none no-repeat scroll 0 0 color( $grey, 'normal' );
+    height: $header-mobile;
+    position: relative;
+    text-align: center;
+    width: $header-width;
+    @include breakpoint( tablet ) {
+        height: $header-tablet;
+    }
+    @include breakpoint( desktop ) {
+        height: $header-desktop;
+    }
+}
+.header__container {
+	padding: calc( #{$header-mobile} * 0.10 ) 0;
+    @include breakpoint( tablet ) {
+		padding: calc( #{$header-tablet} * 0.10 ) 0;
+    }
+    @include breakpoint( desktop ) {
+		padding: calc( #{$header-desktop} * 0.10 ) 0;
+    }
+}
+
+
+/* Logo
+------------------------------------------------------------ */
+.main-logo {
+	@extend %trans-opacity;
+    display: inline-block;
+    height: calc( #{$header-mobile} * 0.80 );
+    position: relative;
+    @include breakpoint( tablet ) {
+    	height: calc( #{$header-tablet} * 0.80 );
+    }
+    @include breakpoint( desktop ) {
+    	height: calc( #{$header-desktop} * 0.80 );
+    }
+    &:hover {
+    	opacity: 0.6;
+    }
+}
+.main-logo__img {
+	display: block;
+	height: 100%;
+}

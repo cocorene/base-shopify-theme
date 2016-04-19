@@ -45,6 +45,9 @@
         width: $container-wide;
     }
 }
+%container--full {
+    @extend %full;
+}
 
 
 /* General
@@ -86,12 +89,6 @@ ol {
     margin-right: 0;
     padding: 0;
     text-align: left;
-    @include breakpoint( tablet ) {
-        margin-bottom: -$footer-tablet;
-    }
-    @include breakpoint( desktop ) {
-        margin-bottom: -$footer-desktop;
-    }
 }
 
 

@@ -2,12 +2,20 @@
 @stylesheet:	header
 @project:		barrel base shopify theme
 @version:		1.0
-@groups:		* header
+@groups:		* misc.
+				* header
 				* logo
 				* main navigation
 				* user navigation
 @target:		layout/theme.liquid
 ***/
+
+
+/* Misc.
+------------------------------------------------------------ */
+%nav-link {
+	
+}
 
 
 /* Header
@@ -27,7 +35,7 @@
     }
 }
 .header__container {
-	@extend %container--wide;
+	@extend %container--full;
 }
 
 
@@ -48,7 +56,7 @@
     	margin: calc( #{$header-desktop} * 0.25 ) 0;
     }
     &:hover {
-    	opacity: 0.8;
+    	opacity: 0.6;
     }
 }
 .main-logo__img {
@@ -65,6 +73,7 @@
 	height: 100%;
 	left: 0;
 	position: absolute;
+	top: 0;
     @include breakpoint( desktop ) {
     	display: block;
     }
@@ -75,8 +84,8 @@
 }
 .main-nav__item {
 	float: left;
-	margin: 0 0 0 40px;
-	padding: 16px 0;
+	height: 100%;
+	margin: 0 0 0 60px;
 	&:first-child {
 		margin-left: 0;
 	}
@@ -89,6 +98,7 @@
 }
 .main-nav__link {
 	display: block;
+	padding: 30px 0;
 }
 .main-nav-sub__list {
 	display: none;

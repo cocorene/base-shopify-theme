@@ -7,6 +7,7 @@
 				* logo
 				* main navigation
 				* user navigation
+				* mobile burger
 @target:		layout/theme.liquid
 ***/
 
@@ -14,8 +15,33 @@
 /* Misc.
 ------------------------------------------------------------ */
 %nav-link {
-	&:after { 
+	display: block;
+	height: 100%;
+	padding: 30px;
+	position: relative;
+	&:after {
+		@extend %trans-height;
+		background: none no-repeat scroll 0 0 $grey;
+		bottom: 0;
+		content: "";
+		height: 0;
+		left: 0;
+		position: absolute;
+		width: 100%;
 	}
+	&:hover {
+		&:after {
+			height: 3px;
+		}
+	}
+}
+%burger-ico {
+    background: none no-repeat scroll 0 0 $white;
+    display: block;
+    height: 2px;
+    left: calc( 50% - #{$header-mobile} / 2 * 0.40 );
+    position: absolute;
+    width: calc( #{$header-mobile} * 0.40 );
 }
 
 
@@ -23,7 +49,7 @@
 ------------------------------------------------------------ */
 .header {
 	background: none no-repeat scroll 0 0 $white;
-	border-bottom: 1px solid $grey-bright;
+	border-bottom: 1px solid $grey-light;
     height: $header-mobile;
     position: relative;
     text-align: center;
@@ -86,10 +112,6 @@
 .main-nav__item {
 	float: left;
 	height: 100%;
-	margin: 0 0 0 60px;
-	&:first-child {
-		margin-left: 0;
-	}
 }
 .main-nav__item--has-sub {
 
@@ -98,8 +120,7 @@
 
 }
 .main-nav__link {
-	display: block;
-	padding: 30px 0;
+	@extend %nav-link;
 }
 .main-nav-sub__list {
 	display: none;
@@ -137,4 +158,55 @@
 	&:first-child {
 		margin-left: 0;
 	}
+}
+
+
+/* Mobile Burger
+------------------------------------------------------------ */
+.mobile-burger {
+	@extend %trans-opacity;
+	background: none no-repeat scroll 0 0 $grey;
+	display: block;
+	height: calc( #{$header-mobile} * 0.60 );
+	left: 0;
+	position: absolute;
+	top: calc( #{$header-mobile} * 0.20 );
+	width: calc( #{$header-mobile} * 0.60 );
+    @include breakpoint( tablet ) {
+		height: calc( #{$header-tablet} * 0.60 );
+		top: calc( #{$header-tablet} * 0.20 );
+		width: calc( #{$header-tablet} * 0.60 );
+    }
+    @include breakpoint( desktop ) {
+    	display: none;
+    }
+	&:before {
+	    @extend %burger-ico;
+	    @include animation( burger-top-origin );
+	    content: "";
+		top: 25%;
+	}
+	&:after {
+	    @extend %burger-ico;
+	    @include animation( burger-bottom-origin );
+	    content: "";
+		top: calc( 75% - 2px );
+	}
+}
+.mobile-burger--active {
+	opacity: 0.9;
+	&:before {
+    	@include animation( burger-top );
+	}
+	&:after {
+    	@include animation( burger-bottom );
+	}
+	> i.mobile-burger__icon {
+    	@include animation( burger-middle );
+	}
+}
+.mobile-burger__icon {
+    @extend %burger-ico;
+	@include animation( burger-middle-origin );
+	top: calc( 50% - 1px );
 }

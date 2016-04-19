@@ -32,6 +32,7 @@ function concatenate() {
             './src/assets/scss/base/var.scss',
             './src/assets/scss/base/mixins.scss',
             './src/assets/scss/base/transitions.scss',
+            './src/assets/scss/base/animations.scss',
             './src/assets/scss/base/normalize.scss',
             './src/assets/scss/base/layout.scss',
             './src/assets/scss/base/typography.scss',

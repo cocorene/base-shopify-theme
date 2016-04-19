@@ -161,15 +161,8 @@
                     {% else %}
                         <a class="main-logo" href="#">{{ shop.name }}</a>
                     {% endif %}
-                    <button type="button" style="display:none;">
-                        <span class="icon icon-hamburger"></span>
-                        <span class="fallback-text">{{ 'layout.navigation.menu' | t }}</span>
-                    </button>
-                    <a href="/cart">
-                        <span class="icon-fallback-text" style="display:none;">
-                            <span class="icon icon-cart"></span>
-                            <span class="fallback-text">{{ 'layout.cart.title' | t }}</span>
-                        </span>
+                    <a class="mobile-burger">
+                        <i class="mobile-burger__icon"></i>
                     </a>
                     <nav class="main-nav">
                         {% comment %}
@@ -249,6 +242,12 @@
                             </li>
                         </ul>
                     </nav>
+                    <a href="/cart">
+                        <span class="icon-fallback-text" style="display:none;">
+                            <span class="icon icon-cart"></span>
+                            <span class="fallback-text">{{ 'layout.cart.title' | t }}</span>
+                        </span>
+                    </a>
                 </div>
                 {% include 'search-bar' %}
             </header>

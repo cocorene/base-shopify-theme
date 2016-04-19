@@ -36,3 +36,10 @@
         }
     }
 }
+
+
+/* Animations
+------------------------------------------------------------ */
+@mixin animation( $animation ) {
+    animation: $animation $animation-duration $animation-timing-function forwards;
+}

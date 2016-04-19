@@ -23,7 +23,7 @@
     margin: 0 auto;
     position: relative;
     width: calc( 100% - #{$bleed-small} * 2 );
-    @include breakpoint( mobile ) {
+    @include breakpoint( desktop ) {
         width: calc( 100% - #{$bleed-large} * 2 );
     }
 }
@@ -59,7 +59,7 @@
 html,
 body {
     box-sizing: border-box;
-    color: $grey-normal;
+    color: $grey;
     cursor: default;
     height: 100%;
 }

@@ -5,6 +5,7 @@
 @groups:		* breakpoints
 				* colors
 				* transitions
+				* animation
 				* typography size
 				* containers
 				* header
@@ -28,18 +29,24 @@ $transition-duration: 0.2s;
 $transition-timing-function: ease-in-out;
 
 
+/* Animations
+------------------------------------------------------------ */
+$animation-duration: 0.4s;
+$animation-timing-function: linear;
+
+
 /* Colors
 ------------------------------------------------------------ */
 $black: #000;
 $white: #FFF;
 /* Grey color. */
-$grey-normal: #292929;
+$grey: #292929;
 $grey-light: #E6E6E6;
 $grey-bright: #F9F9F9;
 /* Blue color. */
 $blue-darker: #5A79A5;
 $blue-dark: #5A79A5;
-$blue-normal: #5A79A5;
+$blue: #5A79A5;
 
 
 /* Typography Size

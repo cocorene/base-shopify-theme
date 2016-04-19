@@ -17,9 +17,17 @@ gem install shopify_theme
 
 5. Replace the `api_key` `password` `store` and `theme_id` values in your new `config.yml` file.
 
-6. Run the `dev` task:
+6. Open a new terminal window. Run the Shopify theme task from within your new `/dist` directory:
+```
+theme watch
+```
+
+7. In a separate terminal tab, run the `dev` task:
 ```
 gulp dev
 ```
 
-**To copy/concat/compile and minifiy all source files, simply run `gulp`**
+**Note:** upon starting `gulp-dev`, all files will be uploaded to the Shopify theme specified in your `config.yml` file, **so make sure it's the right theme.** This is generally a good thing, because it syncs your dev environment with your live theme.
+
+#### SCSS and Shopify
+Shopify supports uploading SCSS to their servers where they handle compilation at load time. This allows developers to add Liquid markup to SCSS partials.

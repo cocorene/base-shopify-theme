@@ -1,36 +1,39 @@
 var gulp = require('gulp');
-var sass = require('gulp-sass');
+var concat = require('gulp-concat');
 var processLog = require('./util/log');
-
-/**
- * DEV Task
- */
-gulp.task('sass:dev', ['sass'], function() {
-  gulp.watch(['./src/assets/scss/**/*.scss'], compile);
-});
 
 /**
  * DEFAULT Task
  */
 gulp.task('sass', function() {
-  var opts = {
-    outputStyle: 'compressed'
-  };
+  // Run immediately
+  concatenate();
 
-  compile(opts);
+  // Watch for future changes
+  gulp.watch(['./src/assets/scss/**/*.scss'], concatenate)
 });
 
-/**
- * MAIN Compile Function
- */
-function compile(opts){
-  var opts = opts || {};
+function concatenate(){
+  processLog.start('SCSS', 'Concatenating');
 
-  processLog.start('styles', 'Compiling')
+  /**
+   * Source the files you need in the
+   * order they need to be in, example:
+   *
+   *  gulp.src([
+   *    './src/assets/scss/base/variables.scss',
+   *    './src/assets/scss/components/counter.scss',
+   *    './src/assets/scss/modules/slideshow.scss'
+   *  ])
+   *
+   * etc
+   */
+  gulp.src([
+    './src/assets/scss/components/counter.scss',
+    './src/assets/scss/modules/slideshow.scss'
+  ])
+    .pipe(concat('style.scss.liquid', {newLine: '\n'}))
+    .pipe(gulp.dest('./dist/assets/'));
 
-  gulp.src('./src/assets/scss/main.scss')
-    .pipe(sass(opts).on('error', sass.logError))
-    .pipe(gulp.dest('./dist/assets'));
-
-  processLog.end('styles', 'Compiling');
+  processLog.end();
 }

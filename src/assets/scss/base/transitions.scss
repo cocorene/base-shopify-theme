@@ -13,7 +13,7 @@
     transition-duration: $transition-duration;
     transition-timing-function: $transition-timing-function;
 }
-@each $prop in $transition-properties {
+@each $prop in all, background-color, border-color, bottom, color, height, left, margin, opacity, padding, right, top, width {
     %trans-#{$prop} {
         @extend %trans;
         transition-property: $prop;

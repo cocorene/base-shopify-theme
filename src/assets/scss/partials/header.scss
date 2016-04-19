@@ -14,7 +14,8 @@
 /* Misc.
 ------------------------------------------------------------ */
 %nav-link {
-	
+	&:after { 
+	}
 }
 
 
@@ -22,7 +23,7 @@
 ------------------------------------------------------------ */
 .header {
 	background: none no-repeat scroll 0 0 $white;
-	border-bottom: 1px solid color( $grey, 'bright' );
+	border-bottom: 1px solid $grey-bright;
     height: $header-mobile;
     position: relative;
     text-align: center;

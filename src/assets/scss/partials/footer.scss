@@ -13,13 +13,13 @@
 ------------------------------------------------------------ */
 .footer {
 	background: none no-repeat scroll 0 0 $white;
-	border-top: 1px solid color( $grey, 'bright' );
+	border-top: 1px solid $grey-bright;
     height: $footer-mobile;
     width: $footer-width;
-    @include breakpoint( tablet ) {
+    /*@include breakpoint( tablet ) {
         height: $footer-tablet;
     }
     @include breakpoint( desktop ) {
         height: $footer-desktop;
-    }
+    }*/
 }

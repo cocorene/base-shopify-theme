@@ -15,32 +15,15 @@
 
 /* Breakpoints
 ------------------------------------------------------------ */
-$breakpoints: (
-	mobile: 450px,
-	tablet: 850px,
-	desktop: 1024px,
-	large: 1280px,
-	wide: 1440px
-);
+$break-mobile: 450px;
+$break-tablet: 850px;
+$break-desktop: 1024px;
+$break-large: 1280px;
+$break-wide: 1440px;
 
 
 /* Transitions
 ------------------------------------------------------------ */
-$transition-properties: (
-	all,
-	background-color,
-	border-color,
-	bottom,
-	color,
-	height,
-	left,
-	margin,
-	opacity,
-	padding,
-	right,
-	top,
-	width
-);
 $transition-duration: 0.2s;
 $transition-timing-function: ease-in-out;
 
@@ -49,18 +32,14 @@ $transition-timing-function: ease-in-out;
 ------------------------------------------------------------ */
 $black: #000;
 $white: #FFF;
-$grey: (
-	normal: #292929,
-	light: #E6E6E6,
-	bright: #F9F9F9 
-);
-$blue: (
-	darker: #5A79A5,
-	dark: #5A79A5,
-	normal: #5A79A5,
-	light: #5A79A5,
-	bright: #5A79A5
-);
+/* Grey color. */
+$grey-normal: #292929;
+$grey-light: #E6E6E6;
+$grey-bright: #F9F9F9;
+/* Blue color. */
+$blue-darker: #5A79A5;
+$blue-dark: #5A79A5;
+$blue-normal: #5A79A5;
 
 
 /* Typography Size

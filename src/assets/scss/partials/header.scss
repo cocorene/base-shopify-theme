@@ -47,7 +47,7 @@
 		@extend %trans-height;
 		background: none no-repeat scroll 0 0 $grey;
 		bottom: 0;
-		content: "";
+		content: '';
 		height: 0;
 		left: 0;
 		position: absolute;
@@ -62,7 +62,7 @@
 %sub-nav {
 	display: none;
 }
-%burger-ico {
+%burger-bar {
     background: none no-repeat scroll 0 0 $white;
     display: block;
     height: 2px;
@@ -110,7 +110,7 @@
     	margin: calc( #{$header-desktop} * 0.25 ) 0;
     }
     &:hover {
-    	opacity: 0.8;
+    	opacity: 0.6;
     }
 }
 .main-logo__img {
@@ -212,23 +212,23 @@
     	display: none;
     }
 	&:before {
-	    @extend %burger-ico;
+	    @extend %burger-bar;
 	    @include animation( burger-top-origin );
-	    content: "";
+	    content: '';
 		top: 25%;
 	}
 	&:after {
-	    @extend %burger-ico;
+	    @extend %burger-bar;
 	    @include animation( burger-bottom-origin );
-	    content: "";
+	    content: '';
 		top: calc( 75% - 2px );
 	}
     &:hover {
-    	opacity: 0.8;
+    	opacity: 0.6;
     }
 }
 .mobile-burger--active {
-	opacity: 0.8;
+	opacity: 0.6;
 	&:before {
     	@include animation( burger-top );
 	}
@@ -240,7 +240,7 @@
 	}
 }
 .mobile-burger__icon {
-    @extend %burger-ico;
+    @extend %burger-bar;
 	@include animation( burger-middle-origin );
 	top: calc( 50% - 1px );
 }
@@ -270,10 +270,10 @@
 		width: calc( #{$header-tablet} * 0.60 );
     }
     &:after {
-    	@extend %fa-cart;
+    	@extend %ico-cart;
     	display: block;
     }
     &:hover {
-    	opacity: 0.8;
+    	opacity: 0.6;
     }
 }

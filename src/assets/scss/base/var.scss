@@ -56,8 +56,13 @@ $font-size-mobile: 13px;
 $font-size-tablet: 15px;
 $font-size-desktop: 15px;
 /* Pargraph. */
-$paragraph: 1rem;
-$paragraph-small: 0.9rem;
+$paragraph: 1rem; 
+/* Paragraph small
+** - 13px (desktop)
+** - 13px (tablet)
+** - 11px (mobile)
+*/
+$paragraph-small: 0.9rem; 
 /* Heading 1
 ** - 40px (desktop)
 ** - 30px (tablet)
@@ -131,7 +136,7 @@ $footer-desktop: 200px;
 
 /* Search Bar
 ------------------------------------------------------------ */
-/* Footer height. */
+/* Search bar height. */
 $search-mobile: 40px;
 $search-tablet: 50px;
 $search-desktop: 50px;

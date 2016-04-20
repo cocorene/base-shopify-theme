@@ -33,21 +33,35 @@
 	@extend %ff-fa;
 	content: '\f002';
 }
-%fa-cart {
-	@extend %ff-fa;
-	content: '\f290';
+%ico-cart {
+	&:after {
+		@extend %ff-fa;
+		content: '\f290';
+	}
 }
-%fa-twitter {
-	@extend %ff-fa;
-	content: '\f099';
+%ico-facebook {
+	&:after {
+		@extend %ff-fa;
+		content: '\f09a';
+	}
 }
-%fa-facebook {
-	@extend %ff-fa;
-	content: '\f09a';
+%ico-twitter {
+	&:after {
+		@extend %ff-fa;
+		content: '\f099';
+	}
 }
-%fa-instagram {
-	@extend %ff-fa;
-	content: '\f16d';
+%ico-instagram {
+	&:after {
+		@extend %ff-fa;
+		content: '\f16d';
+	}
+}
+%ico-mail {
+	&:after {
+		@extend %ff-fa;
+		content: '\f003';
+	}
 }
 
 
@@ -59,7 +73,7 @@ html {
     @include breakpoint( mobile ) {
 		font-size: $font-size-tablet;
     }
-    @include breakpoint( tablet ) {
+    @include breakpoint( desktop ) {
 		font-size: $font-size-desktop;
     }
 }

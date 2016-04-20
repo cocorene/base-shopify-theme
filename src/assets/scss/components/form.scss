@@ -12,7 +12,9 @@
 /* Misc.
 ------------------------------------------------------------ */
 %field {
-	
+	background: none no-repeat scroll 0 0 transparent;
+	border: 1px solid $grey-light;
+	padding: 10px 12px;
 }
 
 
@@ -21,5 +23,4 @@
 .field {
 	@extend %field;
 	height: 40px;
-	padding: 10px 12px;
 }

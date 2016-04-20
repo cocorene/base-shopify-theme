@@ -62,4 +62,7 @@
 	&:after {
 		@extend %fa-search;
 	}
+    &:hover {
+        opacity: 0.6;
+    }
 }

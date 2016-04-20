@@ -18,10 +18,7 @@
 %footer-heading {
     @extend %h5;
     @extend %bold;
-    margin: 0 0 10px;
-    @include breakpoint( mobile ) {
-        margin: 0 0 15px;
-    }
+    margin: 0 0 15px;
 }
 
 
@@ -70,10 +67,12 @@
 .footer__item--social {
     @include breakpoint( tablet ) {
         height: auto;
+        margin: 0 0 50px;
         width: 50%;
     }
     @include breakpoint( desktop ) {
         height: 100%;
+        margin: 0;
         width: 20%;
     }
 }
@@ -96,24 +95,41 @@
     display: inline-block;
     margin: 0 auto;
     position: relative;
-    width: 30%;
+    height: calc( #{$footer-mobile} * 0.10 );
     @include breakpoint( tablet ) {
-        width: 50%;
+        height: calc( #{$footer-tablet} * 0.20 );
+    }
+    @include breakpoint( desktop ) {
+        height: calc( #{$footer-desktop} * 0.30 );
     }
     &:hover {
-        opacity: 0.8;
+        opacity: 0.6;
     }
 }
 .footer-logo__img {
     display: block;
-    width: 100%;
+    height: 100%;
 }
 
 
 /* Footer Information Links
 ------------------------------------------------------------ */
-.footer-info__heading {
-    @extend %footer-heading;
+.footer-info__list {
+    text-align: center;
+    @include breakpoint( tablet ) {
+        text-align: left;
+    }
+}
+.footer-info__item {
+    margin: 10px 0 0;
+    &:first-child {
+        margin: 0;
+    }
+}
+.footer-info__link {
+    @extend %bold;
+    font-size: 0.95rem;
+    white-space: nowrap;
 }
 
 
@@ -123,7 +139,49 @@
     @extend %footer-heading;
 }
 .footer-social__list {
-
+    @extend %clearfix;
+    text-align: center;
+    @include breakpoint( tablet ) {
+        text-align: left;
+    }
+}
+.footer-social__item {
+    display: inline-block;
+    margin: 0 0 0 20px;
+    &:first-child {
+        margin: 0;
+    }
+}
+.footer-social__link {
+    @extend %trans-opacity;
+    display: block;
+    height: 20px;
+    text-align: center;
+    width: 20px;
+    @include breakpoint( tablet ) {
+        height: 22px;
+        width: 22px;
+    }
+    &:after {
+        font-size: 20px;
+        line-height: 20px;
+        @include breakpoint( tablet ) {
+            font-size: 22px;
+            line-height: 22px;
+        }
+    }
+    &:hover {
+        opacity: 0.6;
+    }
+}
+.footer-social__link--facebook {
+    @extend %ico-facebook;
+}
+.footer-social__link--twitter {
+    @extend %ico-twitter; 
+}
+.footer-social__link--instagram {
+    @extend %ico-instagram;  
 }
 
 
@@ -131,6 +189,32 @@
 ------------------------------------------------------------ */
 .footer-newsletter__heading {
     @extend %footer-heading;
+}
+.footer-newsletter__form {
+    width: 100%;
+}
+.footer-newsletter__holder {
+    position: relative;
+}
+.footer-newsletter__field {
+    @extend %field;
+    height: 45px;
+    padding: 12px 40px 12px 18px;
+    width: 100%;
+}
+.footer-newsletter__btn {
+    @extend %trans-opacity;
+    @extend %ico-mail;
+    background: none no-repeat scroll 0 0 transparent;
+    border: none;
+    height: 45px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 45px;
+    &:hover {
+        opacity: 0.6;
+    }
 }
 
 

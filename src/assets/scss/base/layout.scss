@@ -23,7 +23,7 @@
     margin: 0 auto;
     position: relative;
     width: calc( 100% - #{$bleed-small} * 2 );
-    @include breakpoint( desktop ) {
+    @include breakpoint( tablet ) {
         width: calc( 100% - #{$bleed-large} * 2 );
     }
 }
@@ -41,7 +41,10 @@
 }
 %container--wide {
     @extend %full;
-    @include breakpoint( wide ) {
+    @include breakpoint( tablet ) {
+        width: calc( 100% - #{$bleed-large} * 4 );
+    }
+    @include breakpoint( desktop ) {
         width: $container-wide;
     }
 }
@@ -110,7 +113,7 @@ ol {
         margin-bottom: -$footer-desktop;
     }
     &:after {
-    	content: "";
+    	content: '';
         height: $footer-mobile;
         @include breakpoint( tablet ) {
             height: $footer-tablet;

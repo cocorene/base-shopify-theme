@@ -11,21 +11,23 @@
 /* Main Drawer
 ------------------------------------------------------------ */
 .main-drawer {
-	position: absolute;
-	top: $header-mobile;
-	width: 100%;
-	z-index: 999;
-    @include breakpoint( tablet ) {
-		top: $header-tablet;
+	overflow: hidden;
+    width: 100%;
+    @include breakpoint( tablet) {
+        top: $header-tablet;
     }
-    @include breakpoint( desktop ) {
-		top: $header-desktop;
+    @include breakpoint( desktop) {
+        top: $header-desktop;
     }
 }
-
+.main-drawer--absolute {
+    position: absolute;
+    top: $header-mobile;
+    z-index: 999;
+}
 
 /* Mobile Navigation
 ------------------------------------------------------------ */
 .mobile-nav {
-	display: none;
+    display: none;
 }

@@ -17,7 +17,7 @@
 /* Breakpoints
 ------------------------------------------------------------ */
 $break-mobile: 450px;
-$break-tablet: 850px;
+$break-tablet: 640px;
 $break-desktop: 1024px;
 $break-large: 1280px;
 $break-wide: 1440px;
@@ -55,25 +55,48 @@ $blue: #5A79A5;
 $font-size-mobile: 13px;
 $font-size-tablet: 15px;
 $font-size-desktop: 15px;
-/* Small text. */
-$font-small: 0.9rem;
 /* Pargraph. */
 $paragraph: 1rem;
-/* Heading 1. */
+$paragraph-small: 0.9rem;
+/* Heading 1
+** - 40px (desktop)
+** - 30px (tablet)
+** - 24px (mobile) 
+*/
 $h1-mobile: 1.85rem;
 $h1-tablet: 2rem;
 $h1-desktop: 2.7rem;
-/* Heading 2. */
+/* Heading 2
+** - 28px (desktop)
+** - 22px (tablet)
+** - 17px (mobile) 
+*/
 $h2-mobile: 1.35rem;
 $h2-tablet: 1.5rem;
 $h2-desktop: 1.9rem;
-/* Heading 3. */
+/* Heading 3
+** - 21px (desktop)
+** - 18px (tablet)
+** - 15px (mobile) 
+*/
 $h3: 1.3rem;
-/* Heading 4. */
+/* Heading 4
+** - 17px (desktop)
+** - 17px (tablet)
+** - 14px (mobile) 
+*/
 $h4: 1.15rem;
-/* Heading 5. */
+/* Heading 5
+** - 14px (desktop)
+** - 14px (tablet)
+** - 12px (mobile) 
+*/
 $h5: 0.95rem;
-/* Heading 6. */
+/* Heading 6
+** - 11px (desktop)
+** - 11px (tablet)
+** - 11px (mobile) 
+*/
 $h6: 0.75rem;
 
 

@@ -68,7 +68,7 @@
         </div>
     {% endif %}
     {% endcomment %}
-    <div class="main-drawer main-drawer--absolute">
+    <aside class="main-drawer main-drawer--absolute">
         {% include 'search-bar' %}
         <nav class="mobile-nav">
             <ul class="mobile-nav__list">
@@ -107,7 +107,7 @@
                 {% endif %}
             </ul>
         </nav>
-    </div>
+    </aside>
     <div class="content">
         <div class="wrapper">
             <header class="header">
@@ -214,106 +214,103 @@
 
             </main>
         </div>
-        <!-- begin site-footer -->
         <footer class="footer">
             <div class="footer__container">
-                {% if settings.logo_use_image %}
-                    <a class="footer-logo" href="#">
-                        <img class="main-logo__img" src="{{ 'logo.svg' | asset_url }}" alt="{{ shop.name }}">
-                    </a>
-                {% else %}
-                    <a class="footer-logo" href="#">{{ shop.name }}</a>
-                {% endif %}
-                {% if settings.footer_social_enable %}
-                    <div class="grid__item large--one-third medium--one-half">
-                        <h3>{{ 'layout.footer.social_title' | t }}</h3>
-                            <ul class="inline-list social-icons">
-                                {% if settings.social_twitter_link != blank %}
-                                    <li>
-                                        <a class="icon-fallback-text" href="{{ settings.social_twitter_link }}" title="{{ shop.name }} on Twitter">
-                                            <span class="icon icon-twitter" aria-hidden="true"></span>
-                                            <span class="fallback-text">Twitter</span>
-                                        </a>
+                <ul class="footer__list">
+                    <li class="footer__item footer__item--logo">
+                    {% if settings.logo_use_image %}
+                        <a class="footer-logo" href="#">
+                            <img class="footer-logo__img" src="{{ 'logo.svg' | asset_url }}" alt="{{ shop.name }}">
+                        </a>
+                    {% else %}
+                        <a class="footer-logo__link" href="#">{{ shop.name }}</a>
+                    {% endif %}
+                    </li>
+                    <li class="footer__item footer__item-info">
+                        <!-- TO EDIT -->
+                        <h5 class="footer-info__heading">Contact Us</h5>
+                        <!-- END TO EDIT -->
+                    </li>
+                    {% if settings.footer_social_enable %}
+                        <li class="footer__item footer__item--social">
+                            <h5 class="footer-social__heading">{{ 'layout.footer.social_title' | t }}</h5>
+                            <ul class="footer-social__list">
+                                {% if settings.social_facebook_link != blank %}
+                                    <li class="footer-social__item">
+                                        <a class="footer-social__link footer-social__link--facebook" href="{{ settings.social_facebook_link }}" title="{{ shop.name }} on Facebook"></a>
                                     </li>
                                 {% endif %}
-                                {% if settings.social_facebook_link != blank %}
-                                    <li>
-                                        <a class="icon-fallback-text" href="{{ settings.social_facebook_link }}" title="{{ shop.name }} on Facebook">
-                                            <span class="icon icon-facebook" aria-hidden="true"></span>
-                                            <span class="fallback-text">Facebook</span>
-                                        </a>
+                                {% if settings.social_twitter_link != blank %}
+                                    <li class="footer-social__item">
+                                        <a class="footer-social__link footer-social__link--twitter" href="{{ settings.social_twitter_link }}" title="{{ shop.name }} on Twitter"></a>
+                                    </li>
+                                {% endif %}
+                                {% if settings.social_instagram_link != blank %}
+                                    <li class="footer-social__item">
+                                        <a class="footer-social__link footer-social__link--instagram" href="{{ settings.social_instagram_link }}" title="{{ shop.name }} on Instagram"></a>
                                     </li>
                                 {% endif %}
                             </ul>
-                    </div>
-                {% endif %}
-                {% if settings.footer_newsletter_enable %}
-                    <div class="grid__item large--one-third push--large--one-third medium--one-half">
-                        {% comment %}
-                            MailChimp is the go-to newsletter service for Shopify.
-                            Use the link below to find your MailChimp form action
-                            and insert it in your site settings.
+                        </li>
+                    {% endif %}
+                    {% if settings.footer_newsletter_enable %}
+                        <li class="footer__item footer__item--newsletter">
+                            {% comment %}
+                                MailChimp is the go-to newsletter service for Shopify.
+                                Use the link below to find your MailChimp form action
+                                and insert it in your site settings.
 
-                            If the form action URL is not set in the theme settings,
-                            it will fallback to a customer form so you can still capture the email.
+                                If the form action URL is not set in the theme settings,
+                                it will fallback to a customer form so you can still capture the email.
 
-                            MailChimp newsletter integration and requirement:
-                             - http://docs.shopify.com/support/configuration/store-customization/where-do-i-get-my-mailchimp-form-action
-                        {% endcomment %}
-                        <h3>{{ 'layout.footer.newsletter_title' | t }}</h3>
-                        {% if settings.newsletter_form_action != blank %}
-                            <form action="{{ settings.newsletter_form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="input-group">
-                                <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="EMAIL" id="mail" class="input-group-field" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off">
-                                <span class="input-group-btn">
-                                    <input type="submit" class="btn" name="subscribe" id="subscribe" value="{{ 'general.newsletter_form.submit' | t }}">
-                                </span>
-                            </form>
-                        {% else %}
-                            {% form 'customer' %}
-                                {{ form.errors | default_errors }}
-                                {% if form.posted_successfully? %}
-                                    <p class="note form-success">{{ 'general.newsletter_form.confirmation' | t }}</p>
-                                {% else %}
-                                    <div class="input-group">
-                                        <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="contact[email]" id="Email" class="input-group-field" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off">
-                                        <input type="hidden" name="contact[tags]" value="newsletter">
-                                        <span class="input-group-btn">
-                                            <input type="submit" class="btn" name="subscribe" id="subscribe" value="{{ 'general.newsletter_form.submit' | t }}">
-                                        </span>
-                                    </div>
-                                {% endif %}
-                            {% endform %}
-                        {% endif %}
-
-                    </div>
-                {% endif %}
-                {% comment %}
-                    Loop through available payment methods and show their icons.
-                {% endcomment %}
-                {% unless shop.enabled_payment_types == empty %}
-                    <h4 class="text-center">{{ 'layout.footer.accepted_payments' | t }}</h4>
-                    <ul class="inline-list payment-icons">
-                        {% for type in shop.enabled_payment_types %}
-                            <li>
-                                <span class="icon-fallback-text">
-                                    <span class="icon icon-{{type}}" aria-hidden="true"></span>
-                                    <span class="fallback-text">{{ type | replace: '_',' '}}</span>
-                                </span>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% endunless %}
+                                MailChimp newsletter integration and requirement:
+                                 - http://docs.shopify.com/support/configuration/store-customization/where-do-i-get-my-mailchimp-form-action
+                            {% endcomment %}
+                            <h5 class="footer-newsletter__heading">{{ 'layout.footer.newsletter_title' | t }}</h5>
+                            {% if settings.newsletter_form_action != blank %}
+                                <form action="{{ settings.newsletter_form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="input-group">
+                                    <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="EMAIL" id="mail" class="input-group-field" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off">
+                                    <span class="input-group-btn">
+                                        <input type="submit" class="btn" name="subscribe" id="subscribe" value="{{ 'general.newsletter_form.submit' | t }}">
+                                    </span>
+                                </form>
+                            {% else %}
+                                {% form 'customer' %}
+                                    {{ form.errors | default_errors }}
+                                    {% if form.posted_successfully? %}
+                                        <p class="note form-success">{{ 'general.newsletter_form.confirmation' | t }}</p>
+                                    {% else %}
+                                        <div class="input-group">
+                                            <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="contact[email]" id="Email" class="input-group-field" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off">
+                                            <input type="hidden" name="contact[tags]" value="newsletter">
+                                            <span class="input-group-btn">
+                                                <input type="submit" class="btn" name="subscribe" id="subscribe" value="{{ 'general.newsletter_form.submit' | t }}">
+                                            </span>
+                                        </div>
+                                    {% endif %}
+                                {% endform %}
+                            {% endif %}
+                        </li>
+                    {% endif %}
+                </ul>
+                <h6 class="footer-disclaimer">
+                    <!-- TO EDIT -->
+                    © 2016 Barrel Co. Ltd. All Rights Reserved. Terms and Conditions and Privacy Policy.
+                    <!-- END TO EDIT -->
+                </h6>
             </div>
         </footer>
-        <!-- //site-footer -->
     </div>
 
+    {% comment %}
     {{ 'fastclick.min.js' | asset_url | script_tag }}
     {{ 'timber.js' | asset_url | script_tag }}
+    {% endcomment %}
 
     {% comment %}
         Template-specific js
     {% endcomment %}
+    {% comment %}
     <script>
         {% if resetPassword %}
             $(function() {
@@ -321,12 +318,14 @@
             });
         {% endif %}
     </script>
+    {% endcomment %}
 
     {% comment %}
         Ajaxify your cart with this plugin.
         Documentation:
             - http://shopify.com/timber#ajax-cart
     {% endcomment %}
+    {% comment %}
     {% if settings.ajax_cart_method == "drawer" %}
         {{ 'handlebars.min.js' | asset_url | script_tag }}
         {% include 'ajax-cart-template' %}
@@ -349,6 +348,7 @@
             });
         </script>
     {% endif %}
+    {% endcomment %}
 
 </body>
 </html>

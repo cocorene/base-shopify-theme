@@ -2,11 +2,27 @@
 @stylesheet:	footer
 @project:		barrel base shopify theme
 @version:		1.0
-@groups:		* footer
+@groups:		* Misc.
+                * footer
                 * footer logo
-				*
+                * footer information links
+				* footer social links
+                * footer newsletter
+                * footer disclaimer
 @target:		layout/theme.liquid
 ***/
+
+
+/* Misc.
+------------------------------------------------------------ */
+%footer-heading {
+    @extend %h5;
+    @extend %bold;
+    margin: 0 0 10px;
+    @include breakpoint( mobile ) {
+        margin: 0 0 15px;
+    }
+}
 
 
 /* Footer
@@ -25,6 +41,51 @@
 }
 .footer__container {
     @extend %container--wide;
+    padding: 30px 0 0;
+    @include breakpoint( mobile ) {
+        padding: 40px 0 10px;
+    }
+}
+.footer__list {
+    @extend %clearfix;
+    height: 100%;
+}
+.footer__item {
+    margin: 30px 0 0;
+    text-align: center;
+    @include breakpoint( tablet ) {
+        float: left;
+        height: 100%;
+        margin: 0;
+        text-align: left;
+        width: 25%;
+    }
+    @include breakpoint( desktop ) {
+        width: 20%;
+    }
+    &:first-child {
+        margin: 0;
+    }
+}
+.footer__item--social {
+    @include breakpoint( tablet ) {
+        height: auto;
+        width: 50%;
+    }
+    @include breakpoint( desktop ) {
+        height: 100%;
+        width: 20%;
+    }
+}
+.footer__item--newsletter {
+    @include breakpoint( tablet ) {
+        height: auto;
+        width: 50%;
+    }
+    @include breakpoint( desktop ) {
+        height: 100%;
+        width: 40%;
+    }
 }
 
 
@@ -33,17 +94,11 @@
 .footer-logo {
     @extend %trans-opacity;
     display: inline-block;
-    float: left;
-    height: calc( #{$footer-mobile} * 0.50 );
-    margin: calc( #{$footer-mobile} * 0.25 ) 0;
+    margin: 0 auto;
     position: relative;
+    width: 30%;
     @include breakpoint( tablet ) {
-        height: calc( #{$footer-tablet} * 0.50 );
-        margin: calc( #{$footer-tablet} * 0.25 ) 0;
-    }
-    @include breakpoint( desktop ) {
-        height: calc( #{$footer-desktop} * 0.50 );
-        margin: calc( #{$footer-desktop} * 0.25 ) 0;
+        width: 50%;
     }
     &:hover {
         opacity: 0.8;
@@ -51,5 +106,44 @@
 }
 .footer-logo__img {
     display: block;
-    height: 100%;
+    width: 100%;
+}
+
+
+/* Footer Information Links
+------------------------------------------------------------ */
+.footer-info__heading {
+    @extend %footer-heading;
+}
+
+
+/* Footer Social Links
+------------------------------------------------------------ */
+.footer-social__heading {
+    @extend %footer-heading;
+}
+.footer-social__list {
+
+}
+
+
+/* Footer Newsletter
+------------------------------------------------------------ */
+.footer-newsletter__heading {
+    @extend %footer-heading;
+}
+
+
+/* Footer Disclaimer
+------------------------------------------------------------ */
+.footer-disclaimer {
+    bottom: 15px;
+    display: block;
+    opacity: 0.5;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    @include breakpoint( tablet ) {
+        bottom: 10px;
+    }
 }

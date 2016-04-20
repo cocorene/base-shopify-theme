@@ -16,8 +16,9 @@
       "footer_newsletter_enable": true,
       "footer_social_enable": true,
       "logo_use_image": true,
-      "social_facebook_link": "",
-      "social_twitter_link": ""
+      "social_facebook_link": "https://www.facebook.com/barrelny",
+      "social_twitter_link": "https://twitter.com/barrelny",
+      "social_instagram_link": "https://www.instagram.com/barrelny/"
     }
   }
 }

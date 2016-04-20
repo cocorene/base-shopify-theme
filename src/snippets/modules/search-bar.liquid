@@ -18,7 +18,7 @@
     <form class="search-bar__form" action="/search" method="get">
         {% comment %}<input type="hidden" name="type" value="product">{% endcomment %}
         <input class="search-bar__field" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}">
-        <button class="search-bar__btn" type="submit">{% comment %}{{ 'general.search.submit' | t }}{% endcomment %}</button>
+        <button class="search-bar__btn" type="submit">{{ 'general.search.submit' | t }}</button>
     </form>
 </div>
 

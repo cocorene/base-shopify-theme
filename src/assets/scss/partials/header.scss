@@ -14,11 +14,30 @@
 
 /* Misc.
 ------------------------------------------------------------ */
+%nav {
+	@extend %clearfix;
+	display: none;
+	height: 100%;
+	position: absolute;
+	top: 0;
+    @include breakpoint( desktop ) {
+    	display: block;
+    }
+}
+%nav-list {
+	@extend %clearfix;
+	height: 100%;
+}
+%nav-item {
+	float: left;
+	height: 100%;
+}
 %nav-link {
 	display: block;
 	height: 100%;
-	padding: 30px;
+	padding: 30px 20px;
 	position: relative;
+	text-transform: capitalize;
 	&:after {
 		@extend %trans-height;
 		background: none no-repeat scroll 0 0 $grey;
@@ -34,6 +53,9 @@
 			height: 3px;
 		}
 	}
+}
+%sub-nav {
+	display: none;
 }
 %burger-ico {
     background: none no-repeat scroll 0 0 $white;
@@ -95,23 +117,14 @@
 /* Main Navigation
 ------------------------------------------------------------ */
 .main-nav {
-	@extend %clearfix;
-	display: none;
-	height: 100%;
+	@extend %nav;
 	left: 0;
-	position: absolute;
-	top: 0;
-    @include breakpoint( desktop ) {
-    	display: block;
-    }
 }
 .main-nav__list {
-	@extend %clearfix;
-	height: 100%;
+	@extend %nav-list;
 }
 .main-nav__item {
-	float: left;
-	height: 100%;
+	@extend %nav-item;
 }
 .main-nav__item--has-sub {
 
@@ -123,7 +136,7 @@
 	@extend %nav-link;
 }
 .main-nav-sub__list {
-	display: none;
+	@extend %sub-nav;
 }
 .main-nav-sub__item {
 
@@ -136,28 +149,32 @@
 /* User Navigation
 ------------------------------------------------------------ */
 .user-nav {
-	@extend %clearfix;
-	display: none;
-	height: 50px;
+	@extend %nav;
 	right: 0;
-	margin: -25px 0 0;
-	position: absolute;
-	top: 50%;
-    @include breakpoint( desktop ) {
-    	display: block;
-    }
 }
 .user-nav__list {
-	@extend %clearfix;
-	height: 100%;
+	@extend %nav-list;
 }
 .user-nav__item {
-	float: left;
-	margin: 0 0 0 40px;
-	padding: 16px 0;
-	&:first-child {
-		margin-left: 0;
-	}
+	@extend %nav-item;
+}
+.user-nav__item--has-sub {
+
+}
+.user-nav__item--active {
+
+}
+.user-nav__link {
+	@extend %nav-link;
+}
+.user-nav-sub__list {
+	@extend %sub-nav;
+}
+.user-nav-sub__item {
+
+}
+.user-nav-sub__link {
+
 }
 
 

@@ -3,7 +3,7 @@
 @project:		barrel base shopify theme
 @version:		1.0
 @groups:		* footer
-				*
+                * footer logo
 				*
 @target:		layout/theme.liquid
 ***/
@@ -22,4 +22,34 @@
     @include breakpoint( desktop ) {
         height: $footer-desktop;
     }
+}
+.footer__container {
+    @extend %container--wide;
+}
+
+
+/* Footer Logo
+------------------------------------------------------------ */
+.footer-logo {
+    @extend %trans-opacity;
+    display: inline-block;
+    float: left;
+    height: calc( #{$footer-mobile} * 0.50 );
+    margin: calc( #{$footer-mobile} * 0.25 ) 0;
+    position: relative;
+    @include breakpoint( tablet ) {
+        height: calc( #{$footer-tablet} * 0.50 );
+        margin: calc( #{$footer-tablet} * 0.25 ) 0;
+    }
+    @include breakpoint( desktop ) {
+        height: calc( #{$footer-desktop} * 0.50 );
+        margin: calc( #{$footer-desktop} * 0.25 ) 0;
+    }
+    &:hover {
+        opacity: 0.8;
+    }
+}
+.footer-logo__img {
+    display: block;
+    height: 100%;
 }

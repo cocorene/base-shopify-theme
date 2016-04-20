@@ -4,10 +4,11 @@
 @version:		1.0
 @groups:		* misc.
 				* header
-				* logo
+				* main logo
 				* main navigation
 				* user navigation
 				* mobile burger
+				* mobile cart
 @target:		layout/theme.liquid
 ***/
 
@@ -30,12 +31,16 @@
 }
 %nav-item {
 	float: left;
+	margin: 0 0 0 40px;
 	height: 100%;
+	&:first-child {
+		margin: 0;
+	}
 }
 %nav-link {
 	display: block;
 	height: 100%;
-	padding: 30px 20px;
+	padding: 30px 0;
 	position: relative;
 	text-transform: capitalize;
 	&:after {
@@ -88,7 +93,7 @@
 }
 
 
-/* Logo
+/* Main Logo
 ------------------------------------------------------------ */
 .main-logo {
 	@extend %trans-opacity;
@@ -105,7 +110,7 @@
     	margin: calc( #{$header-desktop} * 0.25 ) 0;
     }
     &:hover {
-    	opacity: 0.6;
+    	opacity: 0.8;
     }
 }
 .main-logo__img {
@@ -167,6 +172,15 @@
 .user-nav__link {
 	@extend %nav-link;
 }
+.user-nav__link--search {
+	&:before {
+		@extend %fa-search;
+	    display: block;
+	    float: left;
+	    font-size: 0.8rem;
+	    padding: 0.1rem 0.2em 0.1rem 0;
+	}
+}
 .user-nav-sub__list {
 	@extend %sub-nav;
 }
@@ -209,9 +223,12 @@
 	    content: "";
 		top: calc( 75% - 2px );
 	}
+    &:hover {
+    	opacity: 0.8;
+    }
 }
 .mobile-burger--active {
-	opacity: 0.9;
+	opacity: 0.8;
 	&:before {
     	@include animation( burger-top );
 	}
@@ -226,4 +243,37 @@
     @extend %burger-ico;
 	@include animation( burger-middle-origin );
 	top: calc( 50% - 1px );
+}
+
+
+/* Mobile Cart
+------------------------------------------------------------ */
+.mobile-cart {
+	display: block;
+    position: absolute;
+    right: 0;
+	top: calc( #{$header-mobile} * 0.20 );
+    @include breakpoint( desktop ) {
+    	display: none;
+    }
+}
+.mobile-cart__icon {
+	@extend %trans-opacity;
+	display: block;
+	font-size: 1.5rem;
+	height: calc( #{$header-mobile} * 0.60 );
+	line-height: calc( #{$header-mobile} * 0.60 );
+	width: calc( #{$header-mobile} * 0.60 );
+    @include breakpoint( tablet ) {
+		height: calc( #{$header-tablet} * 0.60 );
+		line-height: calc( #{$header-tablet} * 0.60 );
+		width: calc( #{$header-tablet} * 0.60 );
+    }
+    &:after {
+    	@extend %fa-cart;
+    	display: block;
+    }
+    &:hover {
+    	opacity: 0.8;
+    }
 }

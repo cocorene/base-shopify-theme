@@ -10,24 +10,56 @@
 /* Search Bar
 ------------------------------------------------------------ */
 .search-bar {
-	display: none;
+	background: none no-repeat scroll 0 0 $grey-bright;
+	height: $search-mobile;
+	position: relative;
+	width: 100%;
+    @include breakpoint( mobile ) {
+		height: $search-tablet;
+    }
+    @include breakpoint( tablet ) {
+		height: $search-desktop;
+    }
+}
+.search-bar__container {
+	@extend %container--full;
 }
 .search-bar__form {
 	@extend %clearfix;
+	height: 100%;
+	width: 100%;
 }
 .search-bar__field {
-	float: left;
+	background: none no-repeat scroll 0 0 transparent;
+	border: none;
+	height: 100%;
+	padding: 0 1rem 0 0;
+	width: calc( 100% - #{$search-mobile} / 2 );
+    @include breakpoint( mobile ) {
+		width: calc( 100% - #{$search-tablet} / 2 );
+    }
+    @include breakpoint( tablet ) {
+		width: calc( 100% - #{$search-desktop} / 2 );
+    }
 }
 .search-bar__btn {
 	@extend %trans-opacity;
 	background: none no-repeat scroll 0 0 transparent;
 	border: none;
-	float: left;
-	height: 100%;
+	height: $search-mobile;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: $search-mobile / 2;
+    @include breakpoint( mobile ) {
+		height: $search-tablet;
+		width: $search-tablet / 2;
+    }
+    @include breakpoint( tablet ) {
+		height: $search-desktop;
+		width: $search-desktop / 2;
+    }
 	&:after {
 		@extend %fa-search;
-	}
-	&:hover {
-		opacity: 0.5;
 	}
 }

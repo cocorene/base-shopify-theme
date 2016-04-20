@@ -41,6 +41,7 @@ function concatenate() {
             './src/assets/scss/modules/search-bar.scss',
             './src/assets/scss/partials/header.scss',
             './src/assets/scss/partials/footer.scss',
+            './src/assets/scss/partials/drawer.scss',
             './src/assets/scss/templates/index.scss'
         ] )
         .pipe( concat( 'style.scss.liquid', { newLine: '\n' } ) )

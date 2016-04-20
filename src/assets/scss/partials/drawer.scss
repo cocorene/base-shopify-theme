@@ -1,0 +1,31 @@
+/***
+@stylesheet:	header
+@project:		barrel base shopify theme
+@version:		1.0
+@groups:		* main drawer
+				* mobile navigation
+@target:		layout/theme.liquid
+***/
+
+
+/* Main Drawer
+------------------------------------------------------------ */
+.main-drawer {
+	position: absolute;
+	top: $header-mobile;
+	width: 100%;
+	z-index: 999;
+    @include breakpoint( tablet ) {
+		top: $header-tablet;
+    }
+    @include breakpoint( desktop ) {
+		top: $header-desktop;
+    }
+}
+
+
+/* Mobile Navigation
+------------------------------------------------------------ */
+.mobile-nav {
+	display: none;
+}

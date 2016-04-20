@@ -19,11 +19,16 @@
 }
 %ff-fa {
     font-family: FontAwesome;
+    font-style: normal;
     font-weight: normal;
 }
 %fa-search {
 	@extend %ff-fa;
 	content: '\f002';
+}
+%fa-cart {
+	@extend %ff-fa;
+	content: '\f290';
 }
 
 

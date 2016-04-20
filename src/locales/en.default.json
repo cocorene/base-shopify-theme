@@ -159,7 +159,9 @@
       "password": "Password",
       "forgot_password": "Forgot your password?",
       "sign_in": "Sign In",
-      "cancel": "Return to Store",
+      "not_registered": "Don’t have an account?",
+      "create_account": "Register now.",
+      "cancel": "Return to Home",
       "guest_title": "Continue as a guest",
       "guest_continue": "Continue"
     },
@@ -213,8 +215,10 @@
       "last_name": "Last Name",
       "email": "Email",
       "password": "Password",
-      "submit": "Create",
-      "cancel": "Return to Store"
+      "submit": "Create Account",
+      "already_registered": "Already have an account?",
+      "sign_in": "Sign in here.",
+      "cancel": "Return to Home"
     }
   },
   "homepage": {

@@ -3,6 +3,7 @@
 @project:		barrel base shopify theme
 @version:		1.0
 @groups:		* misc.
+				* row
 				* text field
 				* dropdown
 @target:		all
@@ -18,9 +19,32 @@
 }
 
 
+/* Row
+------------------------------------------------------------ */
+.row {
+	margin: 20px 0 0;
+	width: 100%;
+	&:first-child {
+		margin: 0;
+	}
+}
+.row--submit {
+	margin-top: 40px;
+}
+
+
 /* Text Field
 ------------------------------------------------------------ */
 .field {
 	@extend %field;
-	height: 40px;
+	height: 45px;
+	width: 100%;
+}
+
+
+/* Label
+------------------------------------------------------------ */
+.label {
+	display: block;
+	margin: 0 0 10px;
 }

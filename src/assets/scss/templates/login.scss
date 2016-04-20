@@ -1,0 +1,29 @@
+/***
+@stylesheet:	login
+@project:		barrel base shopify theme
+@version:		1.0
+@groups:		* login page
+@target:		templates/customers/login.liquid
+***/
+
+
+/* Login Page
+------------------------------------------------------------ */
+.register__container {
+	@extend %container;
+	text-align: center;
+}
+.register__heading {
+	@extend %h2;
+}
+.register__holder {
+	margin: 50px 0 30px;
+	text-align: left;
+}
+.register__note {
+	display: block;
+	margin: 0 0 60px;
+	width: 100%;
+}
+.register__cancel {
+}

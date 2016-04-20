@@ -127,9 +127,13 @@
     }
 }
 .footer-info__link {
+    @extend %trans-opacity;
     @extend %bold;
     font-size: 0.95rem;
     white-space: nowrap;
+    &:hover {
+        opacity: 0.6;
+    }
 }
 
 

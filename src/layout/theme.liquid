@@ -286,18 +286,18 @@
                                     </div>
                                 </form>
                             {% else %}
+                                <div class="footer-newsletter__holder">
                                 {% form 'customer', class: 'footer-newsletter__form' %}
-                                    {{ form.errors | default_errors }}
                                     {% if form.posted_successfully? %}
                                         <p class="footer-newsletter__msg--valid">{{ 'general.newsletter_form.confirmation' | t }}</p>
                                     {% else %}
-                                        <div class="footer-newsletter__holder">
-                                            <input class="footer-newsletter__field" type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="contact[email]" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off">
-                                            <input type="hidden" name="contact[tags]" value="newsletter">
-                                            <button class="footer-newsletter__btn" type="submit" name="subscribe">{% comment %}{{ 'general.newsletter_form.submit' | t }}{% endcomment %}</button>
-                                        </div>
+                                        <input class="footer-newsletter__field" type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="contact[email]" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off">
+                                        <input type="hidden" name="contact[tags]" value="newsletter">
+                                        <button class="footer-newsletter__btn" type="submit" name="subscribe">{% comment %}{{ 'general.newsletter_form.submit' | t }}{% endcomment %}</button>
                                     {% endif %}
+                                    {{ form.errors | default_errors }}
                                 {% endform %}
+                                </div>
                             {% endif %}
                         </li>
                     {% endif %}

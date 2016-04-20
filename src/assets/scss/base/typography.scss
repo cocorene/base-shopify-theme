@@ -4,7 +4,7 @@
 @version:		1.0
 @groups:		* fonts
 				* icons
-				* general
+				* global
 				* headings
 				* paragraphs
 				* links
@@ -65,7 +65,7 @@
 }
 
 
-/* General
+/* Global
 ------------------------------------------------------------ */
 html {
     @extend %ff-arial;
@@ -135,5 +135,12 @@ html {
 /* Links
 ------------------------------------------------------------ */
 %a {
-
+	@extend %trans-opacity;
+	text-decoration: underline;
+	&:hover {
+		opacity: 0.6;
+	}
+}
+.link {
+	@extend %a;
 }

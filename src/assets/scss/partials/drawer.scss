@@ -11,6 +11,7 @@
 /* Main Drawer
 ------------------------------------------------------------ */
 .main-drawer {
+    height: 0;
 	overflow: hidden;
     width: 100%;
     @include breakpoint( tablet) {

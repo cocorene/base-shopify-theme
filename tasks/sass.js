@@ -42,7 +42,9 @@ function concatenate() {
             './src/assets/scss/partials/header.scss',
             './src/assets/scss/partials/footer.scss',
             './src/assets/scss/partials/drawer.scss',
-            './src/assets/scss/templates/index.scss'
+            './src/assets/scss/templates/index.scss',
+            './src/assets/scss/templates/login.scss',
+            './src/assets/scss/templates/register.scss'
         ] )
         .pipe( concat( 'style.scss.liquid', { newLine: '\n' } ) )
         .pipe( gulp.dest( './dist/assets/' ) );

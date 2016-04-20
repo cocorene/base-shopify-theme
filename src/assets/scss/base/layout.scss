@@ -3,7 +3,7 @@
 @project:		barrel base shopify theme
 @version:		1.0
 @groups:		* misc.
-				* general
+				* global
                 * layout
 @target:		all
 ***/
@@ -53,7 +53,7 @@
 }
 
 
-/* General
+/* Global
 ------------------------------------------------------------ */
 * {
     box-sizing: inherit;
@@ -76,9 +76,7 @@ button,
 input,
 input[type="button"],
 input[type="submit"] {
-    margin: 0;
     outline: none;
-    padding: 0;
 }
 button,
 input[type="button"],
@@ -121,5 +119,14 @@ ol {
         @include breakpoint( desktop ) {
             height: $footer-desktop;
         }
+    }
+}
+.main {
+    padding: 50px 0 ( $footer-mobile + 50px );
+    @include breakpoint( tablet ) {
+        padding: 60px 0 ( $footer-tablet + 60px );
+    }
+    @include breakpoint( desktop ) {
+        padding: 90px 0 ( $footer-desktop + 90px );
     }
 }

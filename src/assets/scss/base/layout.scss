@@ -27,19 +27,22 @@
         width: calc( 100% - #{$bleed-large} * 2 );
     }
 }
+.container,
 %container {
     @extend %full;
     @include breakpoint( desktop ) {
         width: $container;
     }
 }
+.container-large
 %container--large {
     @extend %full;
     @include breakpoint( large ) {
         width: $container-large;
     }
 }
-%container--wide {
+.container-wide,
+%container-wide {
     @extend %full;
     @include breakpoint( tablet ) {
         width: calc( 100% - #{$bleed-large} * 4 );
@@ -48,7 +51,8 @@
         width: $container-wide;
     }
 }
-%container--full {
+.container-full,
+%container- dfull {
     @extend %full;
 }
 

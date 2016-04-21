@@ -10,11 +10,7 @@
 /* Reset Page
 ------------------------------------------------------------ */
 .reset__container {
-	@extend %container;
 	text-align: center;
-}
-.reset__head {
-	@extend %h2;
 }
 .reset__holder {
 	margin: 50px 0 0;

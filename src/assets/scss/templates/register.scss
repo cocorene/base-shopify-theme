@@ -10,11 +10,7 @@
 /* Register Page
 ------------------------------------------------------------ */
 .register__container {
-	@extend %container;
 	text-align: center;
-}
-.register__head {
-	@extend %h2;
 }
 .register__holder {
 	margin: 50px 0 30px;

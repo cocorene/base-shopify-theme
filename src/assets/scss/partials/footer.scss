@@ -37,7 +37,6 @@
     }
 }
 .footer__container {
-    @extend %container--wide;
     padding: 30px 0 0;
     @include breakpoint( mobile ) {
         padding: 40px 0 10px;

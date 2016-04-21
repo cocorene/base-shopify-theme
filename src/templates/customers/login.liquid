@@ -1,6 +1,6 @@
 <!-- /templates/customers/login.liquid -->
 
-<div class="login__container">
+<div class="login__container container">
     <h2 class="login__head">{{ 'customer.login.title' | t }}</h2>
     <div class="login__holder">
     {% form 'customer_login', class: 'login__form' %}
@@ -26,7 +26,7 @@
 </div>
 
 {% comment %}
-<div class="recover__container">
+<div class="recover__container container">
     <h2 class="recover__head">{{ 'customer.recover_password.title' | t }}</h2>
     <div class="recover__holder">
     {% form 'recover_customer_password', class: 'recover__form' %}

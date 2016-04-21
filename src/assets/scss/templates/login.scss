@@ -11,11 +11,7 @@
 /* Login Page
 ------------------------------------------------------------ */
 .login__container {
-	@extend %container;
 	text-align: center;
-}
-.login__head {
-	@extend %h2;
 }
 .login__holder {
 	margin: 50px 0 30px;
@@ -37,9 +33,6 @@
 .recover__container {
 	@extend %container;
 	text-align: center;
-}
-.recover__head {
-	@extend %h2;
 }
 .recover__holder {
 	margin: 50px 0 60px;

@@ -15,7 +15,7 @@
 
 /* Misc.
 ------------------------------------------------------------ */
-%footer-heading {
+%footer-head {
     @extend %h5;
     @extend %bold;
     margin: 0 0 15px;
@@ -139,8 +139,8 @@
 
 /* Footer Social Links
 ------------------------------------------------------------ */
-.footer-social__heading {
-    @extend %footer-heading;
+.footer-social__head {
+    @extend %footer-head;
 }
 .footer-social__list {
     @extend %clearfix;
@@ -191,8 +191,8 @@
 
 /* Footer Newsletter
 ------------------------------------------------------------ */
-.footer-newsletter__heading {
-    @extend %footer-heading;
+.footer-newsletter__head {
+    @extend %footer-head;
 }
 .footer-newsletter__form {
     width: 100%;

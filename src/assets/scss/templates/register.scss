@@ -9,21 +9,19 @@
 
 /* Register Page
 ------------------------------------------------------------ */
-.login__container {
+.register__container {
 	@extend %container;
 	text-align: center;
 }
-.login__heading {
+.register__head {
 	@extend %h2;
 }
-.login__holder {
+.register__holder {
 	margin: 50px 0 30px;
 	text-align: left;
 }
-.login__note {
+.register__note {
 	display: block;
 	margin: 0 0 60px;
 	width: 100%;
-}
-.register__cancel {
 }

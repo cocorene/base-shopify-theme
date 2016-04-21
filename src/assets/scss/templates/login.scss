@@ -3,27 +3,45 @@
 @project:		barrel base shopify theme
 @version:		1.0
 @groups:		* login page
+				* recover password page
 @target:		templates/customers/login.liquid
 ***/
 
 
 /* Login Page
 ------------------------------------------------------------ */
-.register__container {
+.login__container {
 	@extend %container;
 	text-align: center;
 }
-.register__heading {
+.login__head {
 	@extend %h2;
 }
-.register__holder {
+.login__holder {
 	margin: 50px 0 30px;
 	text-align: left;
 }
-.register__note {
+.login__link--recover {
+	display: block;
+	margin: 0 0 30px;
+}
+.login__note {
 	display: block;
 	margin: 0 0 60px;
 	width: 100%;
 }
-.register__cancel {
+
+
+/* Recover Password Page
+------------------------------------------------------------ */
+.recover__container {
+	@extend %container;
+	text-align: center;
+}
+.recover__head {
+	@extend %h2;
+}
+.recover__holder {
+	margin: 50px 0 60px;
+	text-align: left;
 }

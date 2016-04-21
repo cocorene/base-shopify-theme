@@ -44,7 +44,8 @@ function concatenate() {
             './src/assets/scss/partials/drawer.scss',
             './src/assets/scss/templates/index.scss',
             './src/assets/scss/templates/login.scss',
-            './src/assets/scss/templates/register.scss'
+            './src/assets/scss/templates/register.scss',
+            './src/assets/scss/templates/reset.scss'
         ] )
         .pipe( concat( 'style.scss.liquid', { newLine: '\n' } ) )
         .pipe( gulp.dest( './dist/assets/' ) );

@@ -36,11 +36,6 @@
     <!-- {% include 'oldIE-js' %} -->
 
     {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
-    {{ 'modernizr.min.js' | asset_url | script_tag }}
-
-    {% comment %}
-        If you store has customer accounts disabled, you can remove the following JS file
-    {% endcomment %}
     {% if template contains 'customers' %}
         {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
     {% endif %}
@@ -51,23 +46,7 @@
     Add the page template as a class for easy page or template specific styling.
 {% endcomment %}
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
-    <!-- TO UNCOMMENT -->
-    {% comment %}
-    {% if settings.ajax_cart_method == "drawer" %}
-        <div id="CartDrawer" class="drawer drawer--right">
-            <div class="drawer__header">
-                <div class="drawer__title h3">{{ 'cart.general.title' | t }}</div>
-                <div class="drawer__close js-drawer-close">
-                    <button type="button" class="icon-fallback-text">
-                        <span class="icon icon-x" aria-hidden="true"></span>
-                        <span class="fallback-text">{{ 'cart.general.close_cart' | t | json }}</span>
-                    </button>
-                </div>
-            </div>
-            <div id="CartContainer"></div>
-        </div>
-    {% endif %}
-    {% endcomment %}
+
     <div class="content">
         <div class="wrapper">
             <header class="header">
@@ -165,6 +144,7 @@
                     </a>
                 </div>
             </header>
+            {% comment %}
             <aside class="main-drawer">
                 {% include 'search-bar' %}
                 <nav class="mobile-nav">
@@ -205,6 +185,7 @@
                     </ul>
                 </nav>
             </aside>
+            {% endcomment %}
 
             <main class="main" role="main">
 
@@ -244,7 +225,7 @@
                     </li>
                     {% if settings.footer_social_enable %}
                         <li class="footer__item footer__item--social">
-                            <h5 class="footer-social__heading">{{ 'layout.footer.social_title' | t }}</h5>
+                            <h5 class="footer-social__head">{{ 'layout.footer.social_title' | t }}</h5>
                             <ul class="footer-social__list">
                                 {% if settings.social_facebook_link != blank %}
                                     <li class="footer-social__item">
@@ -277,7 +258,7 @@
                                 MailChimp newsletter integration and requirement:
                                  - http://docs.shopify.com/support/configuration/store-customization/where-do-i-get-my-mailchimp-form-action
                             {% endcomment %}
-                            <h5 class="footer-newsletter__heading">{{ 'layout.footer.newsletter_title' | t }}</h5>
+                            <h5 class="footer-newsletter__head">{{ 'layout.footer.newsletter_title' | t }}</h5>
                             {% if settings.newsletter_form_action != blank %}
                                 <form class="footer-newsletter__form" action="{{ settings.newsletter_form_action }}" method="post" name="mc-embedded-subscribe-form" target="_blank">
                                     <div class="footer-newsletter__holder">
@@ -289,7 +270,7 @@
                                 <div class="footer-newsletter__holder">
                                 {% form 'customer', class: 'footer-newsletter__form' %}
                                     {% if form.posted_successfully? %}
-                                        <p class="footer-newsletter__msg--valid">{{ 'general.newsletter_form.confirmation' | t }}</p>
+                                        <span class="footer-newsletter__msg--valid">{{ 'general.newsletter_form.confirmation' | t }}</span>
                                     {% else %}
                                         <input class="footer-newsletter__field" type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="contact[email]" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off">
                                         <input type="hidden" name="contact[tags]" value="newsletter">
@@ -310,54 +291,6 @@
             </div>
         </footer>
     </div>
-
-    {% comment %}
-    {{ 'fastclick.min.js' | asset_url | script_tag }}
-    {{ 'timber.js' | asset_url | script_tag }}
-    {% endcomment %}
-
-    {% comment %}
-        Template-specific js
-    {% endcomment %}
-    {% comment %}
-    <script>
-        {% if resetPassword %}
-            $(function() {
-                timber.resetPasswordSuccess();
-            });
-        {% endif %}
-    </script>
-    {% endcomment %}
-
-    {% comment %}
-        Ajaxify your cart with this plugin.
-        Documentation:
-            - http://shopify.com/timber#ajax-cart
-    {% endcomment %}
-    {% comment %}
-    {% if settings.ajax_cart_method == "drawer" %}
-        {{ 'handlebars.min.js' | asset_url | script_tag }}
-        {% include 'ajax-cart-template' %}
-        {{ 'ajax-cart.js' | asset_url | script_tag }}
-        <script>
-            jQuery(function($) {
-                ajaxCart.init({
-                    formSelector: '#AddToCartForm',
-                    cartContainer: '#CartContainer',
-                    addToCartSelector: '#AddToCart',
-                    cartCountSelector: '#CartCount',
-                    cartCostSelector: '#CartCost',
-                    moneyFormat: {{ shop.money_format | json }}
-                });
-            });
-
-            jQuery('body').on('ajaxCart.afterCartLoad', function(evt, cart) {
-                // Bind to 'ajaxCart.afterCartLoad' to run any javascript after the cart has loaded in the DOM
-                timber.RightDrawer.open();
-            });
-        </script>
-    {% endif %}
-    {% endcomment %}
 
 </body>
 </html>

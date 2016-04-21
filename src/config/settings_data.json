@@ -2,7 +2,6 @@
   "current": "Default",
   "presets": {
     "Default": {
-      "ajax_cart_method": "drawer",
       "cart_notes_enable": true,
       "color_body_bg": "#FFF",
       "color_body_text": "#333333",

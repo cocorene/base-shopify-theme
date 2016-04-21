@@ -1,6 +1,6 @@
 <!-- /templates/customers/register.liquid -->
 <div class="register__container">
-    <h2 class="register__heading">{{ 'customer.register.title' | t }}</h2>
+    <h2 class="register__head">{{ 'customer.register.title' | t }}</h2>
     <div class="register__holder">
     {% form 'create_customer', class: 'register__form' %}
         <div class="row">
@@ -27,6 +27,8 @@
         </div>
     {% endform %}
     </div>
-    <span class="register__note">{{ 'customer.register.already_registered' | t }} <a class="link" href="/account/login">{{ 'customer.register.sign_in' | t }}</a></span>
+    <span class="register__note">
+        {{ 'customer.register.already_registered' | t }} <a class="register__link link" href="/account/login">{{ 'customer.register.sign_in' | t }}</a>
+    </span>
     <a class="register__link--cancel link" href="{{ shop.url }}">{{ 'customer.register.cancel' | t }}</a>
 </div>

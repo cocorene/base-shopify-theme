@@ -9,14 +9,13 @@
 				* user navigation
 				* mobile burger
 				* mobile cart
-@target:		layout/theme.liquid
+@target:		snippets/partials/header.liquid
 ***/
 
 
 /* Misc.
 ------------------------------------------------------------ */
 %nav {
-	@extend %clearfix;
 	display: none;
 	height: 100%;
 	position: absolute;
@@ -26,11 +25,10 @@
     }
 }
 %nav-list {
-	@extend %clearfix;
 	height: 100%;
 }
 %nav-item {
-	float: left;
+	display: inline-block;
 	margin: 0 0 0 40px;
 	height: 100%;
 	&:first-child {
@@ -38,26 +36,11 @@
 	}
 }
 %nav-link {
+	@include hover-underline( 3px );
 	display: block;
 	height: 100%;
 	padding: 30px 0;
-	position: relative;
 	text-transform: capitalize;
-	&:after {
-		@extend %trans-height;
-		background: none no-repeat scroll 0 0 $grey;
-		bottom: 0;
-		content: '';
-		height: 0;
-		left: 0;
-		position: absolute;
-		width: 100%;
-	}
-	&:hover {
-		&:after {
-			height: 3px;
-		}
-	}
 }
 %sub-nav {
 	display: none;
@@ -93,7 +76,7 @@
 /* Main Logo
 ------------------------------------------------------------ */
 .main-logo {
-	@extend %trans-opacity;
+	@include hover-opacity( 0.6 );
     display: inline-block;
     height: calc( #{$header-mobile} * 0.50 );
     margin: calc( #{$header-mobile} * 0.25 ) 0;
@@ -105,9 +88,6 @@
     @include breakpoint( desktop ) {
     	height: calc( #{$header-desktop} * 0.50 );
     	margin: calc( #{$header-desktop} * 0.25 ) 0;
-    }
-    &:hover {
-    	opacity: 0.6;
     }
 }
 .main-logo__img {
@@ -169,7 +149,7 @@
 .user-nav__link {
 	@extend %nav-link;
 }
-.user-nav__link--search {
+.user-nav__search-link {
 	&:before {
 		@extend %fa-search;
 	    display: block;
@@ -192,7 +172,7 @@
 /* Mobile Burger
 ------------------------------------------------------------ */
 .mobile-burger {
-	@extend %trans-opacity;
+	@include hover-opacity( 0.6 );
 	background: none no-repeat scroll 0 0 $grey;
 	display: block;
 	height: calc( #{$header-mobile} * 0.60 );
@@ -210,22 +190,18 @@
     }
 	&:before {
 	    @extend %burger-bar;
-	    @include animation( burger-top-origin );
+	    @include animation( burger-top-reset );
 	    content: '';
 		top: 25%;
 	}
 	&:after {
 	    @extend %burger-bar;
-	    @include animation( burger-bottom-origin );
+	    @include animation( burger-bottom-reset );
 	    content: '';
 		top: calc( 75% - 2px );
 	}
-    &:hover {
-    	opacity: 0.6;
-    }
 }
 .mobile-burger--active {
-	opacity: 0.6;
 	&:before {
     	@include animation( burger-top );
 	}
@@ -238,7 +214,7 @@
 }
 .mobile-burger__icon {
     @extend %burger-bar;
-	@include animation( burger-middle-origin );
+	@include animation( burger-middle-reset );
 	top: calc( 50% - 1px );
 }
 
@@ -255,7 +231,7 @@
     }
 }
 .mobile-cart__icon {
-	@extend %trans-opacity;
+	@include hover-opacity( 0.6 );
 	display: block;
 	font-size: 1.5rem;
 	height: calc( #{$header-mobile} * 0.60 );
@@ -269,8 +245,5 @@
     &:after {
     	@extend %ico-cart;
     	display: block;
-    }
-    &:hover {
-    	opacity: 0.6;
     }
 }

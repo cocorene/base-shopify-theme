@@ -3,8 +3,10 @@
 @project:		barrel base shopify theme
 @version:		1.0
 @groups:		* misc.
+                * container
 				* global
                 * layout
+                * head
 @target:		all
 ***/
 
@@ -18,6 +20,10 @@
         display: table;
     }
 }
+
+
+/* Container.
+------------------------------------------------------------ */
 %full {
     height: 100%;
     margin: 0 auto;
@@ -35,7 +41,7 @@
     }
 }
 .container-large
-%container--large {
+%container-large {
     @extend %full;
     @include breakpoint( large ) {
         width: $container-large;
@@ -52,7 +58,7 @@
     }
 }
 .container-full,
-%container- dfull {
+%container-full {
     @extend %full;
 }
 
@@ -90,10 +96,14 @@ input[type="submit"] {
 }
 ul,
 ol {
+    font-size: 0; /* Kill whitespace for displayed inline-block items. */
     list-style: none;
     margin-right: 0;
     padding: 0;
     text-align: left;
+}
+li {
+    font-size: initial;
 }
 
 
@@ -133,4 +143,11 @@ ol {
     @include breakpoint( desktop ) {
         padding: 90px 0 ( $footer-desktop + 90px );
     }
+}
+
+
+/* Head.
+------------------------------------------------------------ */
+.head {
+    margin-bottom: 50px;
 }

@@ -2,17 +2,10 @@
 @stylesheet:	reset
 @project:		barrel base shopify theme
 @version:		1.0
-@groups:		* reset page
+@groups:		* reset layout
 @target:		templates/customers/reset.liquid
 ***/
 
 
-/* Reset Page
+/* Reset Layout
 ------------------------------------------------------------ */
-.reset__container {
-	text-align: center;
-}
-.reset__holder {
-	margin: 50px 0 0;
-	text-align: left;
-}

@@ -2,39 +2,30 @@
 @stylesheet:	login
 @project:		barrel base shopify theme
 @version:		1.0
-@groups:		* login page
-				* recover password page
+@groups:		* login layout
+				* recover password layout
 @target:		templates/customers/login.liquid
 ***/
 
 
-/* Login Page
+/* Login Layout
 ------------------------------------------------------------ */
-.login__container {
-	text-align: center;
-}
 .login__holder {
-	margin: 50px 0 30px;
-	text-align: left;
+	margin: 0 0 30px;
 }
-.login__link--recover {
+.login__recover-link {
 	display: block;
 	margin: 0 0 30px;
 }
-.login__note {
+.login__foot {
 	display: block;
 	margin: 0 0 60px;
 	width: 100%;
 }
 
 
-/* Recover Password Page
+/* Recover Password Layout
 ------------------------------------------------------------ */
-.recover__container {
-	@extend %container;
-	text-align: center;
-}
-.recover__holder {
+.recover-pwd__holder {
 	margin: 50px 0 60px;
-	text-align: left;
 }

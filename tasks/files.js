@@ -24,7 +24,7 @@ var files = {
         dest: './dist/templates/'
     },
     snippets: {
-        src: './src/snippets/modules/*.liquid',
+        src: ['./src/snippets/modules/*.liquid', './src/snippets/partials/*.liquid'],
         dest: './dist/snippets/'
     },
     assets: {

@@ -35,6 +35,7 @@ function concatenate() {
             './src/assets/scss/base/animations.scss',
             './src/assets/scss/base/normalize.scss',
             './src/assets/scss/base/layout.scss',
+            './src/assets/scss/base/align.scss',
             './src/assets/scss/base/typography.scss',
             './src/assets/scss/components/buttons.scss',
             './src/assets/scss/components/form.scss',
@@ -42,10 +43,11 @@ function concatenate() {
             './src/assets/scss/partials/header.scss',
             './src/assets/scss/partials/footer.scss',
             './src/assets/scss/partials/drawer.scss',
-            './src/assets/scss/templates/index.scss',
+            './src/assets/scss/partials/account-nav.scss',
             './src/assets/scss/templates/login.scss',
             './src/assets/scss/templates/register.scss',
-            './src/assets/scss/templates/reset.scss'
+            './src/assets/scss/templates/reset.scss',
+            './src/assets/scss/templates/account.scss'
         ] )
         .pipe( concat( 'style.scss.liquid', { newLine: '\n' } ) )
         .pipe( gulp.dest( './dist/assets/' ) );

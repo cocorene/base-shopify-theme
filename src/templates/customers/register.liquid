@@ -1,8 +1,11 @@
 <!-- /templates/customers/register.liquid -->
-<div class="register__container container">
-    <h2 class="register__head">{{ 'customer.register.title' | t }}</h2>
-    <div class="register__holder">
+
+<div class="register container align-c">
+    <h2 class="register__head head">{{ 'customer.register.title' | t }}</h2>
+
+    <div class="register__holder align-l">
     {% form 'create_customer', class: 'register__form' %}
+
         <div class="row">
             <label class="label">{{ 'customer.register.first_name' | t }}</label>
             <input class="field" type="text" name="customer[first_name]" placeholder="{{ 'customer.register.first_name' | t }}" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autocapitalize="words" autofocus>
@@ -13,22 +16,26 @@
         </div>
         <div class="row">
             <label class="label">{{ 'customer.register.email' | t }}</label>
-            <input class="field {% if form.errors contains 'email' %}field--error{% endif %}" type="email" name="customer[email]" placeholder="{{ 'customer.register.email' | t }}" {% if form.email %} value="{{ form.email }}"{% endif %} autocorrect="off" autocapitalize="off">
+            <input class="field" type="email" name="customer[email]" placeholder="{{ 'customer.register.email' | t }}" {% if form.email %} value="{{ form.email }}"{% endif %} autocorrect="off" autocapitalize="off">
         </div>
         <div class="row">
             <label class="label">{{ 'customer.register.password' | t }}</label>
-            <input class="field {% if form.errors contains 'password' %}field--error{% endif %}" type="password" name="customer[password]" placeholder="{{ 'customer.register.password' | t }}">
+            <input class="field" type="password" name="customer[password]" placeholder="{{ 'customer.register.password' | t }}">
         </div>
+        {% if form.errors %}
         <div class="row row--error">
-        {{ form.errors | default_errors }}
+            {{ form.errors | default_errors }}
         </div>
-        <div class="row row--submit">
+        {% endif %}
+        <div class="row row--end">
             <input class="btn btn--full" type="submit" value="{{ 'customer.register.submit' | t }}">
         </div>
+
     {% endform %}
     </div>
-    <span class="register__note">
-        {{ 'customer.register.already_registered' | t }} <a class="register__link link" href="/account/login">{{ 'customer.register.sign_in' | t }}</a>
+    
+    <span class="register__foot">
+        {{ 'customer.register.already_registered' | t }} <a class="register__login-link link" href="/account/login">{{ 'customer.register.sign_in' | t }}</a>
     </span>
-    <a class="register__link--cancel link" href="{{ shop.url }}">{{ 'customer.register.cancel' | t }}</a>
+    <a class="register__cancel-link link" href="{{ shop.url }}">{{ 'customer.register.cancel' | t }}</a>
 </div>

@@ -3,6 +3,8 @@
 @project:       barrel base shopify theme
 @version:       1.0
 @groups:        * breakpoints
+                * animations
+                * hover effects
 @target:        none
 ***/
 
@@ -43,3 +45,51 @@
 @mixin animation( $animation ) {
     animation: $animation $animation-duration $animation-timing-function forwards;
 }
+
+
+/* Hover Effects
+------------------------------------------------------------ */
+@mixin hover-opacity( $prop ) {
+    @extend %trans-opacity;
+    opacity: 1;
+    &:hover {
+        opacity: $prop;
+    }
+}
+@mixin hover-underline( $prop ) {
+    position: relative;
+    &:after {
+        @extend %trans-height;
+        background: none no-repeat scroll 0 0 $grey;
+        bottom: 0;
+        content: '';
+        height: 0;
+        left: 0;
+        position: absolute;
+        width: 100%;
+    }
+    &:hover {
+        &:after {
+            height: $prop;
+        }
+    }
+}
+@mixin hover-drawline( $prop ) {
+    position: relative;
+    &:after {
+        @extend %trans-width;
+        background: none no-repeat scroll 0 0 $grey;
+        bottom: 0;
+        content: '';
+        height: $prop;
+        left: 0;
+        position: absolute;
+        width: 0;
+    }
+    &:hover {
+        &:after {
+            width: 100%;
+        }
+    }
+}
+

@@ -120,7 +120,8 @@
     "account": {
       "title": "My Account",
       "details": "Account Details",
-      "view_addresses": "View Addresses",
+      "view_orders": "Order History",
+      "view_addresses": "Manage Addresses",
       "return": "Return to Account Details"
     },
     "activate_account": {
@@ -166,7 +167,7 @@
       "guest_continue": "Continue"
     },
     "orders": {
-      "title": "Order History",
+      "title": "Your Order History",
       "order_number": "Order",
       "date": "Date",
       "payment_status": "Payment Status",

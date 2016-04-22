@@ -24,7 +24,7 @@
         transform: rotate( 45deg );
     }
 }
-@keyframes burger-top-origin {
+@keyframes burger-top-reset {
     0% {
 		top: calc( 50% - 1px );
         transform: rotate( 45deg );
@@ -52,7 +52,7 @@
         transform: rotate( 45deg );
     }
 }
-@keyframes burger-middle-origin {
+@keyframes burger-middle-reset {
     0% {
 		top: calc( 50% - 1px );
         transform: rotate( 45deg );
@@ -80,7 +80,7 @@
         transform: rotate( -45deg );
     }
 }
-@keyframes burger-bottom-origin {
+@keyframes burger-bottom-reset {
     0% {
 		top: calc( 50% - 1px );
         transform: rotate( -45deg );

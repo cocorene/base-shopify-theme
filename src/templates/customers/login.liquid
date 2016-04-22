@@ -1,51 +1,65 @@
 <!-- /templates/customers/login.liquid -->
 
-<div class="login__container container">
-    <h2 class="login__head">{{ 'customer.login.title' | t }}</h2>
-    <div class="login__holder">
+<div class="login container align-c">
+    <h2 class="login__head head">{{ 'customer.login.title' | t }}</h2>
+
+    <div class="login__holder align-l">
     {% form 'customer_login', class: 'login__form' %}
+
         <div class="row">
             <label class="label">{{ 'customer.login.email' | t }}</label>
-            <input class="field {% if form.errors contains 'email' or 'invalid' %}field--error{% endif %}" type="email" name="customer[email]" placeholder="{{ 'customer.login.email' | t }}" autocorrect="off" autocapitalize="off" autofocus>
+            <input class="field" type="email" name="customer[email]" placeholder="{{ 'customer.login.email' | t }}" autocorrect="off" autocapitalize="off" autofocus>
         </div>
         <div class="row">
             <label class="label">{{ 'customer.login.password' | t }}</label>
-            <input class="field {% if form.errors contains 'password' or 'invalid' %}field--error{% endif %}" type="password" name="customer[password]" placeholder="{{ 'customer.login.password' | t }}">
+            <input class="field" type="password" name="customer[password]" placeholder="{{ 'customer.login.password' | t }}">
         </div>
+        {% if form.errors %}
         <div class="row row--error">
             {{ form.errors | default_errors }}
         </div>
-        <div class="row row--submit">
+        {% endif %}
+        <div class="row row--end">
             <input class="btn btn--full" type="submit" value="{{ 'customer.login.sign_in' | t }}">
         </div>
+
     {% endform %}
     </div>
-    <a class="login__link--recover link" href="#recover">{{ 'customer.login.forgot_password' | t }}</a>
-    <span class="register__note">{{ 'customer.login.not_registered' | t }} <a class="login__link--register link" href="/account/register">{{ 'customer.login.create_account' | t }}</a></span>
-    <a class="login__link--cancel link" href="{{ shop.url }}">{{ 'customer.login.cancel' | t }}</a>
+
+    <a class="login__recover-link link" href="#recover">{{ 'customer.login.forgot_password' | t }}</a>
+    <span class="login__foot">
+        {{ 'customer.login.not_registered' | t }} <a class="login__register-link link" href="/account/register">{{ 'customer.login.create_account' | t }}</a>
+    </span>
+    <a class="login__cancel-link link" href="{{ shop.url }}">{{ 'customer.login.cancel' | t }}</a>
 </div>
 
 {% comment %}
-<div class="recover__container container">
-    <h2 class="recover__head">{{ 'customer.recover_password.title' | t }}</h2>
-    <div class="recover__holder">
+<div class="recover-pwd container align-c">
+    <h2 class="recover-pwd__head head">{{ 'customer.recover_password.title' | t }}</h2>
+
+    <div class="recover-pwd__holder align-l">
     {% form 'recover_customer_password', class: 'recover__form' %}
+
         {% if form.posted_successfully? %}
-            <span class="recover__msg--valid">{{ 'customer.recover_password.success' | t }}</span>
+            <span class="recover-pwd__msg--valid">{{ 'customer.recover_password.success' | t }}</span>
         {% else %}
             <div class="row">
                 <label class="label">{{ 'customer.recover_password.email' | t }}</label>
-                <input class="field {% if form.errors contains 'email' or 'invalid' %}field--error{% endif %}" type="email" name="email" placeholder="{{ 'customer.recover_password.email' | t }}" autocorrect="off" autocapitalize="off">
+                <input class="field" type="email" name="email" placeholder="{{ 'customer.recover_password.email' | t }}" autocorrect="off" autocapitalize="off">
             </div>
+            {% if form.errors %}
             <div class="row row--error">
                 {{ form.errors | default_errors }}
             </div>
-            <div class="row row--submit">
+            {% endif %}
+            <div class="row row--end">
                 <input class="btn btn--full" type="submit" value="{{ 'customer.recover_password.submit' | t }}">
             </div>
         {% endif %}
+
     {% endform %}
     </div>
-    <a class="recover__link--cancel link">{{ 'customer.recover_password.cancel' | t }}</a>
+    
+    <a class="recover-pwd__cancel-link link">{{ 'customer.recover_password.cancel' | t }}</a>
 </div>
 {% endcomment %}

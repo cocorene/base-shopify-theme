@@ -168,10 +168,10 @@
     },
     "orders": {
       "title": "Your Order History",
-      "order_number": "Order",
+      "order_number": "Order Number",
       "date": "Date",
       "payment_status": "Payment Status",
-      "fulfillment_status": "Fulfillment Status",
+      "shipping_status": "Shipping Status",
       "total": "Total",
       "none": "You haven't placed any orders yet."
     },
@@ -183,7 +183,7 @@
       "billing_address": "Billing Address",
       "payment_status": "Payment Status",
       "shipping_address": "Shipping Address",
-      "fulfillment_status": "Fulfillment Status",
+      "shipping_status": "Shipping Status",
       "discount": "Discount",
       "shipping": "Shipping",
       "tax": "Tax",

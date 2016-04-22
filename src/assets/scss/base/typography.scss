@@ -63,6 +63,18 @@
 		content: '\f003';
 	}
 }
+%ico-arw-left {
+	&:after {
+		@extend %ff-fa;
+		content: '\f104';
+	}
+}
+%ico-arw-right {
+	&:after {
+		@extend %ff-fa;
+		content: '\f105';
+	}
+}
 
 
 /* Global

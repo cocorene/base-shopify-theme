@@ -8,27 +8,28 @@
     <div class="order-history align-l">
         <h3 class="order-history__head">{{ 'customer.orders.title' | t }}</h3>
 
-        {% paginate customer.orders by 10 %}
+        <!-- TO EDIT -->
+        {% paginate customer.addresses by 2 %}
             <div class="order-history__holder">
                 {% if customer.orders.size != 0 %}
-                    <table class="full">
-                        <thead>
-                            <tr>
-                                <th>{{ 'customer.orders.order_number' | t }}</th>
-                                <th>{{ 'customer.orders.date' | t }}</th>
-                                <th>{{ 'customer.orders.payment_status' | t }}</th>
-                                <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
-                                <th>{{ 'customer.orders.total' | t }}</th>
+                    <table class="table">
+                        <thead class="tb__head">
+                            <tr class="tb__row-head">
+                                <th class="tb__cell-head">{{ 'customer.orders.order_number' | t }}</th>
+                                <th class="tb__cell-head">{{ 'customer.orders.date' | t }}</th>
+                                <th class="tb__cell-head">{{ 'customer.orders.payment_status' | t }}</th>
+                                <th class="tb__cell-head">{{ 'customer.orders.shipping_status' | t }}</th>
+                                <th class="tb__cell-head">{{ 'customer.orders.total' | t }}</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="tb__body">
                             {% for order in customer.orders %}
-                                <tr>
-                                    <td>{{ order.name | link_to: order.customer_url }}</td>
-                                    <td>{{ order.created_at | date: format: 'month_day_year' }}</td>
-                                    <td>{{ order.financial_status_label }}</td>
-                                    <td>{{ order.fulfillment_status_label }}</td>
-                                    <td>{{ order.total_price | money }}</td>
+                                <tr class="tb__row">
+                                    <td class="tb__cell"><a class="order-history__link" href="{{ order.customer_url }}">{{ order.name  }}</a></td>
+                                    <td class="tb__cell">{{ order.created_at | date: format: 'month_day_year' }}</td>
+                                    <td class="tb__cell">{{ order.financial_status_label }}</td>
+                                    <td class="tb__cell">{{ order.fulfillment_status_label }}</td>
+                                    <td class="tb__cell">{{ order.total_price | money }}</td>
                                 </tr>
                             {% endfor %}
                         </tbody>
@@ -37,11 +38,8 @@
                     <p class="order-history__none-msg align-c">{{ 'customer.orders.none' | t }}</p>
                 {% endif %}
             </div>
-            {% if paginate.pages > 1 %}
-                <div class="pagination">
-                    {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
-                </div>
-            {% endif %}
+
+            {%include 'pagination' %}
         {% endpaginate %}
     </div>
 </div>

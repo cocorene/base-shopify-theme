@@ -34,7 +34,7 @@
 	        background: none no-repeat scroll 0 0 $grey;
 	        bottom: 0;
 	        content: '';
-	        height: 2px;
+	        height: 1px;
 	        left: 0;
 	        position: absolute;
 	        width: 100%;
@@ -42,6 +42,6 @@
 	}
 }
 .account-nav__link {
-	@include hover-drawline( 2px );
+	@include hover-drawline( 1px );
 	padding: 0 0 2px;
 }

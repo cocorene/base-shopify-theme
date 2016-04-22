@@ -1,0 +1,51 @@
+/***
+@stylesheet:	pagination
+@project:		barrel base shopify theme
+@version:		1.0
+@groups:		* pagination layout
+@target:		snippets/modules/pagination.liquid
+***/
+
+
+/* Pagination Layout
+------------------------------------------------------------ */
+.pagination {
+
+}
+.page__list {
+	display: inline-block;
+}
+.page__item {
+	display: inline-block;
+	margin: 0 0 0 20px;
+	&:first-child {
+		margin: 0;
+	}
+}
+.page__link {
+	display: block;
+	height: 38px;
+	line-height: 38px;
+	text-align: center;
+	width: 38px;
+}
+.page__link--active {
+	background: none no-repeat scroll 0 0 $grey-light;
+	border-radius: 50%;
+	cursor: default;
+}
+.page-nav__link {
+	padding: 8px;
+}
+.page-nav__link--inactive {
+	cursor: default;
+	opacity: 0.4;
+}
+.page-nav__link--prev {
+	@extend %ico-arw-left;
+	margin: 0 30px 0 0;
+}
+.page-nav__link--next {
+	@extend %ico-arw-right;
+	margin: 0 0 0 30px;
+}

@@ -1,0 +1,154 @@
+/***
+@stylesheet:	layout
+@project:		barrel base shopify theme
+@version:		1.0
+@groups:		* misc.
+                * container
+				* global
+                * layout
+                * head
+@target:		all
+***/
+
+
+/* Misc.
+------------------------------------------------------------ */
+%clearfix {
+    &:after {
+        clear: both;
+        content: "";
+        display: table;
+    }
+}
+
+
+/* Container.
+------------------------------------------------------------ */
+%full {
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+    width: calc( 100% - #{$bleed-small} * 2 );
+    @include breakpoint( tablet ) {
+        width: calc( 100% - #{$bleed-large} * 2 );
+    }
+}
+.container,
+%container {
+    @extend %full;
+    @include breakpoint( desktop ) {
+        width: $container;
+    }
+}
+.container-large
+%container-large {
+    @extend %full;
+    @include breakpoint( large ) {
+        width: $container-large;
+    }
+}
+.container-wide,
+%container-wide {
+    @extend %full;
+    @include breakpoint( tablet ) {
+        width: calc( 100% - #{$bleed-large} * 4 );
+    }
+    @include breakpoint( desktop ) {
+        width: $container-wide;
+    }
+}
+.container-full,
+%container-full {
+    @extend %full;
+}
+
+
+/* Global
+------------------------------------------------------------ */
+* {
+    box-sizing: inherit;
+	margin: 0;
+}
+html,
+body {
+    box-sizing: border-box;
+    color: $grey;
+    cursor: default;
+    height: 100%;
+}
+a {
+    color: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+}
+button,
+input,
+input[type="button"],
+input[type="submit"] {
+    outline: none;
+}
+button,
+input[type="button"],
+input[type="submit"] {
+    cursor: pointer;
+    display: block;
+}
+ul,
+ol {
+    font-size: 0; /* Kill whitespace for displayed inline-block items. */
+    list-style: none;
+    margin-right: 0;
+    padding: 0;
+    text-align: left;
+}
+li {
+    font-size: initial;
+}
+
+
+/* Layout
+------------------------------------------------------------ */
+.content {
+    height: 100%;
+}
+.wrapper {
+    background: none no-repeat scroll 0 0 $grey-bright;
+	height: auto !important;
+    height: 100%;
+    min-height: 100%;
+    margin: 0 auto;
+    margin-bottom: -$footer-mobile;
+    @include breakpoint( tablet ) {
+        margin-bottom: -$footer-tablet;
+    }
+    @include breakpoint( desktop ) {
+        margin-bottom: -$footer-desktop;
+    }
+    &:after {
+    	content: '';
+        height: $footer-mobile;
+        @include breakpoint( tablet ) {
+            height: $footer-tablet;
+        }
+        @include breakpoint( desktop ) {
+            height: $footer-desktop;
+        }
+    }
+}
+.main {
+    padding: 50px 0 ( $footer-mobile + 50px );
+    @include breakpoint( tablet ) {
+        padding: 60px 0 ( $footer-tablet + 60px );
+    }
+    @include breakpoint( desktop ) {
+        padding: 90px 0 ( $footer-desktop + 90px );
+    }
+}
+
+
+/* Head.
+------------------------------------------------------------ */
+.head {
+    margin-bottom: 50px;
+}

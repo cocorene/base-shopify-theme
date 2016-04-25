@@ -1,0 +1,143 @@
+/***
+@stylesheet:	variables
+@project:		barrel base shopify theme
+@version:		1.0
+@groups:		* breakpoints
+				* colors
+				* transitions
+				* animation
+				* typography size
+				* containers
+				* header
+				* footer
+@target:		none
+***/
+
+
+/* Breakpoints
+------------------------------------------------------------ */
+$break-mobile: 450px;
+$break-tablet: 640px;
+$break-desktop: 1024px;
+$break-large: 1280px;
+$break-wide: 1440px;
+
+
+/* Transitions
+------------------------------------------------------------ */
+$transition-duration: 0.2s;
+$transition-timing-function: ease-in-out;
+
+
+/* Animations
+------------------------------------------------------------ */
+$animation-duration: 0.4s;
+$animation-timing-function: linear;
+
+
+/* Colors
+------------------------------------------------------------ */
+$black: #000;
+$red: #FF7F7F;
+$white: #FFF;
+/* Grey color. */
+$grey: #292929;
+$grey-light: #E6E6E6;
+$grey-bright: #F9F9F9;
+/* Blue color. */
+$blue-darker: #5A79A5;
+$blue-dark: #5A79A5;
+$blue: #5A79A5;
+
+
+/* Typography Size
+------------------------------------------------------------ */
+/* Reference size. */
+$font-size-mobile: 13px;
+$font-size-tablet: 15px;
+$font-size-desktop: 15px;
+/* Pargraph. */
+$paragraph: 1rem; 
+/* Paragraph small
+** - 13px (desktop)
+** - 13px (tablet)
+** - 11px (mobile)
+*/
+$paragraph-small: 0.9rem; 
+/* Heading 1
+** - 40px (desktop)
+** - 30px (tablet)
+** - 24px (mobile) 
+*/
+$h1-mobile: 1.85rem;
+$h1-tablet: 2rem;
+$h1-desktop: 2.7rem;
+/* Heading 2
+** - 28px (desktop)
+** - 22px (tablet)
+** - 17px (mobile) 
+*/
+$h2-mobile: 1.35rem;
+$h2-tablet: 1.5rem;
+$h2-desktop: 1.9rem;
+/* Heading 3
+** - 21px (desktop)
+** - 18px (tablet)
+** - 15px (mobile) 
+*/
+$h3: 1.3rem;
+/* Heading 4
+** - 17px (desktop)
+** - 17px (tablet)
+** - 14px (mobile) 
+*/
+$h4: 1.15rem;
+/* Heading 5
+** - 14px (desktop)
+** - 14px (tablet)
+** - 12px (mobile) 
+*/
+$h5: 0.95rem;
+/* Heading 6
+** - 11px (desktop)
+** - 11px (tablet)
+** - 11px (mobile) 
+*/
+$h6: 0.75rem;
+
+
+/* Containers
+------------------------------------------------------------ */
+/* Container width. */
+$container: 820px;
+$container-large: 1280px;
+$container-wide: 90%;
+/* Container bleeds (20px on both sides). */
+$bleed-small: 20px;
+$bleed-large: 30px;
+
+
+/* Header
+------------------------------------------------------------ */
+$header-width: 100%;
+/* Header height. */
+$header-mobile: 60px;
+$header-tablet: 70px;
+$header-desktop: 80px;
+
+
+/* Footer
+------------------------------------------------------------ */
+$footer-width: 100%;
+/* Footer height. */
+$footer-mobile: 510px;
+$footer-tablet: 280px;
+$footer-desktop: 200px;
+
+
+/* Search Bar
+------------------------------------------------------------ */
+/* Search bar height. */
+$search-mobile: 40px;
+$search-tablet: 50px;
+$search-desktop: 50px;

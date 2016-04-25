@@ -1,0 +1,53 @@
+/***
+@stylesheet:	buttons
+@project:		barrel base shopify theme
+@version:		1.0
+@groups:		* primary button
+				* secondary button
+				* button states
+				* icon field button
+@target:		all
+***/
+
+
+/* Misc.
+------------------------------------------------------------ */
+%btn {
+	@extend %trans;
+	border: 1px solid $grey;
+    display: inline-block;
+    padding: 14px;
+    text-align: center;
+    text-transform: capitalize;
+    transition-property: background-color, color;
+}
+
+/* Primary Button
+------------------------------------------------------------ */
+.btn {
+	@extend %btn;
+	background: none no-repeat scroll 0 0 transparent;
+	border: 1px solid $grey;
+	color: $grey;
+    &:hover {
+    	background-color: $grey;
+    	color: $white;
+    }
+}
+.btn--full {
+	display: block;
+	width: 100%;
+}
+
+
+/* Secondary Button
+------------------------------------------------------------ */
+.btn-secondary {
+	@extend %btn;
+	background: none no-repeat scroll 0 0 $grey;
+	color: $white;
+    &:hover {
+    	background-color: transparent;
+    	color: $grey;
+    }
+}

@@ -1,0 +1,96 @@
+/***
+@stylesheet:	animations
+@project:		barrel base shopify theme
+@version:		1.0
+@groups:		* animations
+				* mobile burger animation
+@target:		all
+***/
+
+
+/* Mobile Burger Animation
+------------------------------------------------------------ */
+@keyframes burger-top {
+    0% {
+		top: 25%;
+        transform: rotate( 0deg );
+    }
+    50% {
+		top: calc( 50% - 1px );
+        transform: rotate( 0deg );
+    }
+    100% {
+		top: calc( 50% - 1px );
+        transform: rotate( 45deg );
+    }
+}
+@keyframes burger-top-reset {
+    0% {
+		top: calc( 50% - 1px );
+        transform: rotate( 45deg );
+    }
+    50% {
+		top: calc( 50% - 1px );
+        transform: rotate( 0deg );
+    }
+    100% {
+		top: 25%;
+        transform: rotate( 0deg );
+    }
+}
+@keyframes burger-middle {
+    0% {
+		top: calc( 50% - 1px );
+        transform: rotate( 0deg );
+    }
+    50% {
+		top: calc( 50% - 1px );
+        transform: rotate( 0deg );
+    }
+    100% {
+		top: calc( 50% - 1px );
+        transform: rotate( 45deg );
+    }
+}
+@keyframes burger-middle-reset {
+    0% {
+		top: calc( 50% - 1px );
+        transform: rotate( 45deg );
+    }
+    50% {
+		top: calc( 50% - 1px );
+        transform: rotate( 0deg );
+    }
+    100% {
+		top: calc( 50% - 1px );
+        transform: rotate( 0deg );
+    }
+}
+@keyframes burger-bottom {
+    0% {
+		top: calc( 75% - 2px );
+        transform: rotate( 0deg );
+    }
+    50% {
+		top: calc( 50% - 1px );
+        transform: rotate( 0deg );
+    }
+    100% {
+		top: calc( 50% - 1px );
+        transform: rotate( -45deg );
+    }
+}
+@keyframes burger-bottom-reset {
+    0% {
+		top: calc( 50% - 1px );
+        transform: rotate( -45deg );
+    }
+    50% {
+		top: calc( 50% - 1px );
+        transform: rotate( 0deg );
+    }
+    100% {
+		top: calc( 75% - 2px );
+        transform: rotate( 0deg );
+    }
+}

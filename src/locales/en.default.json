@@ -120,7 +120,8 @@
     "account": {
       "title": "My Account",
       "details": "Account Details",
-      "view_addresses": "View Addresses",
+      "view_orders": "Order History",
+      "view_addresses": "Manage Addresses",
       "return": "Return to Account Details"
     },
     "activate_account": {
@@ -159,16 +160,18 @@
       "password": "Password",
       "forgot_password": "Forgot your password?",
       "sign_in": "Sign In",
-      "cancel": "Return to Store",
+      "not_registered": "Don’t have an account?",
+      "create_account": "Register now.",
+      "cancel": "Return to Home",
       "guest_title": "Continue as a guest",
       "guest_continue": "Continue"
     },
     "orders": {
-      "title": "Order History",
-      "order_number": "Order",
+      "title": "Your Order History",
+      "order_number": "Order Number",
       "date": "Date",
       "payment_status": "Payment Status",
-      "fulfillment_status": "Fulfillment Status",
+      "shipping_status": "Shipping Status",
       "total": "Total",
       "none": "You haven't placed any orders yet."
     },
@@ -180,7 +183,7 @@
       "billing_address": "Billing Address",
       "payment_status": "Payment Status",
       "shipping_address": "Shipping Address",
-      "fulfillment_status": "Fulfillment Status",
+      "shipping_status": "Shipping Status",
       "discount": "Discount",
       "shipping": "Shipping",
       "tax": "Tax",
@@ -202,7 +205,7 @@
     },
     "reset_password": {
       "title": "Reset account password",
-      "subtext": "Enter a new password for {{ email }}",
+      "subtext": "Please enter a new password below.",
       "password": "Password",
       "password_confirm": "Confirm Password",
       "submit": "Reset Password"
@@ -213,8 +216,10 @@
       "last_name": "Last Name",
       "email": "Email",
       "password": "Password",
-      "submit": "Create",
-      "cancel": "Return to Store"
+      "submit": "Create Account",
+      "already_registered": "Already have an account?",
+      "sign_in": "Sign in here.",
+      "cancel": "Return to Home"
     }
   },
   "homepage": {

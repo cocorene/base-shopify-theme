@@ -1,0 +1,223 @@
+/***
+@stylesheet:	footer
+@project:		barrel base shopify theme
+@version:		1.0
+@groups:		* Misc.
+                * footer
+                * footer logo
+                * footer information links
+				* footer social links
+                * footer newsletter
+                * footer disclaimer
+@target:		snippets/partials/footer.liquid
+***/
+
+
+/* Misc.
+------------------------------------------------------------ */
+%footer-head {
+    @extend %h5;
+    @extend %bold;
+    margin: 0 0 15px;
+}
+
+
+/* Footer
+------------------------------------------------------------ */
+.footer {
+	background: none no-repeat scroll 0 0 $white;
+	border-top: 1px solid $grey-light;
+    height: $footer-mobile;
+    width: $footer-width;
+    @include breakpoint( tablet ) {
+        height: $footer-tablet;
+    }
+    @include breakpoint( desktop ) {
+        height: $footer-desktop;
+    }
+}
+.footer__container {
+    padding: 30px 0 0;
+    @include breakpoint( mobile ) {
+        padding: 40px 0 10px;
+    }
+}
+.footer__list {
+    @extend %clearfix;
+    height: 100%;
+}
+.footer__item {
+    margin: 30px 0 0;
+    text-align: center;
+    @include breakpoint( tablet ) {
+        float: left;
+        height: 100%;
+        margin: 0;
+        text-align: left;
+        width: 25%;
+    }
+    @include breakpoint( desktop ) {
+        width: 20%;
+    }
+    &:first-child {
+        margin: 0;
+    }
+}
+.footer__item--social {
+    @include breakpoint( tablet ) {
+        height: auto;
+        margin: 0 0 50px;
+        width: 50%;
+    }
+    @include breakpoint( desktop ) {
+        height: 100%;
+        margin: 0;
+        width: 20%;
+    }
+}
+.footer__item--newsletter {
+    @include breakpoint( tablet ) {
+        height: auto;
+        width: 50%;
+    }
+    @include breakpoint( desktop ) {
+        height: 100%;
+        width: 40%;
+    }
+}
+
+
+/* Footer Logo
+------------------------------------------------------------ */
+.footer-logo {
+    @include hover-opacity( 0.6 );
+    display: inline-block;
+    margin: 0 auto;
+    position: relative;
+    height: calc( #{$footer-mobile} * 0.10 );
+    @include breakpoint( tablet ) {
+        height: calc( #{$footer-tablet} * 0.20 );
+    }
+    @include breakpoint( desktop ) {
+        height: calc( #{$footer-desktop} * 0.30 );
+    }
+}
+.footer-logo__img {
+    display: block;
+    height: 100%;
+}
+
+
+/* Footer Information Links
+------------------------------------------------------------ */
+.footer-info__list {
+    text-align: center;
+    @include breakpoint( tablet ) {
+        text-align: left;
+    }
+}
+.footer-info__item {
+    margin: 10px 0 0;
+    &:first-child {
+        margin: 0;
+    }
+}
+.footer-info__link {
+    @include hover-opacity( 0.6 );
+    @extend %bold;
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+
+/* Footer Social Links
+------------------------------------------------------------ */
+.footer-social__head {
+    @extend %footer-head;
+}
+.footer-social__list {
+    text-align: center;
+    @include breakpoint( tablet ) {
+        text-align: left;
+    }
+}
+.footer-social__item {
+    display: inline-block;
+    margin: 0 0 0 25px;
+    &:first-child {
+        margin: 0;
+    }
+}
+.footer-social__link {
+    @include hover-opacity( 0.6 );
+    display: block;
+    height: 20px;
+    text-align: center;
+    width: 20px;
+    @include breakpoint( tablet ) {
+        height: 22px;
+        width: 22px;
+    }
+    &:after {
+        font-size: 20px;
+        line-height: 20px;
+        @include breakpoint( tablet ) {
+            font-size: 22px;
+            line-height: 22px;
+        }
+    }
+}
+.footer-social__link--facebook {
+    @extend %ico-facebook;
+}
+.footer-social__link--twitter {
+    @extend %ico-twitter; 
+}
+.footer-social__link--instagram {
+    @extend %ico-instagram;  
+}
+
+
+/* Footer Newsletter
+------------------------------------------------------------ */
+.footer-newsletter__head {
+    @extend %footer-head;
+}
+.footer-newsletter__form {
+    width: 100%;
+}
+.footer-newsletter__holder {
+    position: relative;
+}
+.footer-newsletter__field {
+    @extend %field;
+    height: 45px;
+    padding: 12px 40px 12px 18px;
+    width: 100%;
+}
+.footer-newsletter__btn {
+    @include hover-opacity( 0.6 );
+    @extend %ico-mail;
+    background: none no-repeat scroll 0 0 transparent;
+    border: none;
+    height: 45px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 45px;
+}
+
+
+/* Footer Disclaimer
+------------------------------------------------------------ */
+.footer-disclaimer {
+    bottom: 15px;
+    display: block;
+    opacity: 0.5;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    @include breakpoint( tablet ) {
+        bottom: 10px;
+    }
+}

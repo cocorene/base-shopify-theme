@@ -1,0 +1,249 @@
+/***
+@stylesheet:	header
+@project:		barrel base shopify theme
+@version:		1.0
+@groups:		* misc.
+				* header
+				* main logo
+				* main navigation
+				* user navigation
+				* mobile burger
+				* mobile cart
+@target:		snippets/partials/header.liquid
+***/
+
+
+/* Misc.
+------------------------------------------------------------ */
+%nav {
+	display: none;
+	height: 100%;
+	position: absolute;
+	top: 0;
+    @include breakpoint( desktop ) {
+    	display: block;
+    }
+}
+%nav-list {
+	height: 100%;
+}
+%nav-item {
+	display: inline-block;
+	margin: 0 0 0 40px;
+	height: 100%;
+	&:first-child {
+		margin: 0;
+	}
+}
+%nav-link {
+	@include hover-underline( 3px );
+	display: block;
+	height: 100%;
+	padding: 30px 0;
+	text-transform: capitalize;
+}
+%sub-nav {
+	display: none;
+}
+%burger-bar {
+    background: none no-repeat scroll 0 0 $white;
+    display: block;
+    height: 2px;
+    left: calc( 50% - #{$header-mobile} / 2 * 0.40 );
+    position: absolute;
+    width: calc( #{$header-mobile} * 0.40 );
+}
+
+
+/* Header
+------------------------------------------------------------ */
+.header {
+	background: none no-repeat scroll 0 0 $white;
+	border-bottom: 1px solid $grey-light;
+    height: $header-mobile;
+    position: relative;
+    text-align: center;
+    width: $header-width;
+    @include breakpoint( tablet ) {
+        height: $header-tablet;
+    }
+    @include breakpoint( desktop ) {
+        height: $header-desktop;
+    }
+}
+
+
+/* Main Logo
+------------------------------------------------------------ */
+.main-logo {
+	@include hover-opacity( 0.6 );
+    display: inline-block;
+    height: calc( #{$header-mobile} * 0.50 );
+    margin: calc( #{$header-mobile} * 0.25 ) 0;
+    position: relative;
+    @include breakpoint( tablet ) {
+    	height: calc( #{$header-tablet} * 0.50 );
+    	margin: calc( #{$header-tablet} * 0.25 ) 0;
+    }
+    @include breakpoint( desktop ) {
+    	height: calc( #{$header-desktop} * 0.50 );
+    	margin: calc( #{$header-desktop} * 0.25 ) 0;
+    }
+}
+.main-logo__img {
+	display: block;
+	height: 100%;
+}
+
+
+/* Main Navigation
+------------------------------------------------------------ */
+.main-nav {
+	@extend %nav;
+	left: 0;
+}
+.main-nav__list {
+	@extend %nav-list;
+}
+.main-nav__item {
+	@extend %nav-item;
+}
+.main-nav__item--has-sub {
+
+}
+.main-nav__item--active {
+
+}
+.main-nav__link {
+	@extend %nav-link;
+}
+.main-nav-sub__list {
+	@extend %sub-nav;
+}
+.main-nav-sub__item {
+
+}
+.main-nav-sub__link {
+
+}
+
+
+/* User Navigation
+------------------------------------------------------------ */
+.user-nav {
+	@extend %nav;
+	right: 0;
+}
+.user-nav__list {
+	@extend %nav-list;
+}
+.user-nav__item {
+	@extend %nav-item;
+}
+.user-nav__item--has-sub {
+
+}
+.user-nav__item--active {
+
+}
+.user-nav__link {
+	@extend %nav-link;
+}
+.user-nav__search-link {
+	&:before {
+		@extend %fa-search;
+	    display: block;
+	    float: left;
+	    font-size: 0.8rem;
+	    padding: 0.1rem 0.2em 0.1rem 0;
+	}
+}
+.user-nav-sub__list {
+	@extend %sub-nav;
+}
+.user-nav-sub__item {
+
+}
+.user-nav-sub__link {
+
+}
+
+
+/* Mobile Burger
+------------------------------------------------------------ */
+.mobile-burger {
+	@include hover-opacity( 0.6 );
+	background: none no-repeat scroll 0 0 $grey;
+	display: block;
+	height: calc( #{$header-mobile} * 0.60 );
+	left: 0;
+	position: absolute;
+	top: calc( #{$header-mobile} * 0.20 );
+	width: calc( #{$header-mobile} * 0.60 );
+    @include breakpoint( tablet ) {
+		height: calc( #{$header-tablet} * 0.60 );
+		top: calc( #{$header-tablet} * 0.20 );
+		width: calc( #{$header-tablet} * 0.60 );
+    }
+    @include breakpoint( desktop ) {
+    	display: none;
+    }
+	&:before {
+	    @extend %burger-bar;
+	    @include animation( burger-top-reset );
+	    content: '';
+		top: 25%;
+	}
+	&:after {
+	    @extend %burger-bar;
+	    @include animation( burger-bottom-reset );
+	    content: '';
+		top: calc( 75% - 2px );
+	}
+}
+.mobile-burger--active {
+	&:before {
+    	@include animation( burger-top );
+	}
+	&:after {
+    	@include animation( burger-bottom );
+	}
+	> i.mobile-burger__icon {
+    	@include animation( burger-middle );
+	}
+}
+.mobile-burger__icon {
+    @extend %burger-bar;
+	@include animation( burger-middle-reset );
+	top: calc( 50% - 1px );
+}
+
+
+/* Mobile Cart
+------------------------------------------------------------ */
+.mobile-cart {
+	display: block;
+    position: absolute;
+    right: 0;
+	top: calc( #{$header-mobile} * 0.20 );
+    @include breakpoint( desktop ) {
+    	display: none;
+    }
+}
+.mobile-cart__icon {
+	@include hover-opacity( 0.6 );
+	display: block;
+	font-size: 1.5rem;
+	height: calc( #{$header-mobile} * 0.60 );
+	line-height: calc( #{$header-mobile} * 0.60 );
+	width: calc( #{$header-mobile} * 0.60 );
+    @include breakpoint( tablet ) {
+		height: calc( #{$header-tablet} * 0.60 );
+		line-height: calc( #{$header-tablet} * 0.60 );
+		width: calc( #{$header-tablet} * 0.60 );
+    }
+    &:after {
+    	@extend %ico-cart;
+    	display: block;
+    }
+}

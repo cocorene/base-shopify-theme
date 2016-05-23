@@ -1,5 +1,6 @@
-function slideshow( el ) {
-    console.log( 'Module' )
+function slideshow( el, param ) {
+    console.log( 'slideshow' );
+    console.log(param);
 }
 
 module.exports = slideshow;

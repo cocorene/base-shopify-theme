@@ -1,52 +1,113 @@
-var watchify = require('watchify');
-var browserify = require('browserify');
-var shim = require('browserify-shim');
+var MODE
+var DEV = false
+var BUILD = false
+var path = require('path')
+var glob = require('glob')
+var fs = require('fs')
+var browserify = require('browserify')
+var watchify = require('watchify')
+var exorcist = require('exorcist')
+var shim = require('browserify-shim')
+var mkdirp = require('mkdirp')
 var gulp = require('gulp');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
-var gutil = require('gulp-util');
-var sourcemaps = require('gulp-sourcemaps');
-var path = require('path');
-var glob = require('glob');
 var processLog = require('./util/log');
 
 /**
  * DEV Bundle Task
  * Will not minify the output
  */
-gulp.task('js:dev', bundle.bind(null, true));
+gulp.task('js:dev', function(){
+  DEV = true
+  bundle()
+});
+
 /**
  * DEFAULT Bundle Task
  * Will minify the output
  */
-gulp.task('js', bundle.bind(null, false));
+gulp.task('js', function(){
+  DEV = false
+  BUILD = true
+  bundle()
+});
+
+/**
+ * Set MODE
+ * Dev: non-minified
+ * Prod: minified
+ */
+MODE = DEV ? 'DEVELOPMENT' : 'PRODUCTION'
+
+/**
+ * Make directories (if not already there)
+ */
+mkdirp.sync('dist/assets', function(err){
+  if (err) return console.log('ERROR: ',err)
+  console.log('Created /dist/assets directory for JS')
+})
 
 /**
  * INIT Browserify
  */
 var b = browserify({
   entries: ['./src/assets/js/main.js'],
-  transform: [ [shim, { global: true }] ],
-  debug: true,
+  transform: [ 
+    [shim, 
+      { global: true }
+    ], 
+    [ "babelify",
+      {
+        "presets": [
+          "es2015",
+          "react"
+        ]
+      }
+    ]
+  ],
+  debug: true, // gen sourcemap
   cache: {},
-  packageCache: {},
-  plugin: [watchify]
+  packageCache: {}
 });
-b.plugin(bundle, {
-  delay: 0 // reset from 100, compile immediately
+/**
+ * Watchify Plugin 
+ */
+b.plugin(watchify)
+
+/**
+ * Default Bundler Plugin 
+ */
+b.plugin(bundle, { 
+  delay: 0 
 });
+
+/**
+ * Minify Plugin 
+ * In dev mode, don't minify
+ */
+if (MODE === 'PRODUCTION'){
+  b.plugin('minifyify', {
+    map: 'main.js.map',
+    output: __dirname+'/dist/assets/main.js.map'
+  })
+}
 
 /**
  * Watchify emitted 'update' event 
  */
-b.on('update', bundle); // on any dep update, runs the bundler
+b.on('update', bundle) // on any dep update, runs the bundler
+
+/**
+ * Watchify emitted 'log' event 
+ * Logs 'X bytes written (Y seconds)' 
+ */
+b.on('log', console.log)
 
 /**
  * Manually import modules/components
  */
 b.require(function(){
-  var Files = glob.sync('./src/assets/js/+(components|modules)/*.js');
-  var files = [];
+  var Files = glob.sync('./src/js/+(components|modules|lib)/*.js')
+  var files = []
 
   for(var i = 0; i < Files.length; i++) {
     var name = path.basename(Files[i], '.js'),
@@ -59,30 +120,31 @@ b.require(function(){
     });
   }
 
-  return files;
+  return files
 }());
 
 /**
  * DEFAULT Bundler Function
- *
- * @param {boolean} dev If false, output will be minified
  */
-function bundle(dev) {
-  processLog.start('main.min.js', 'Bundling'); // start processLog
+function bundle() {
+  var writeFile = fs.createWriteStream('./dist/assets/main.js.liquid')
 
-  if (dev === false){
-    b.plugin('minifyify', {
-     map: false
-    });
-  }
+  processLog.start( 'javascript', 'Bundling' );
 
-  b.bundle()
-    .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-    .pipe(source('main.js.liquid'))
-    .pipe(buffer())
-    .pipe(sourcemaps.init({loadMaps: true}))
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('./dist/assets/'))
+  if (BUILD) writeFile.on('close', process.exit)
+  writeFile.on('error', console.log)
 
-  processLog.end('main.min.js', 'Bundling')
+  writeFile.on('open', function(){
+    b.bundle()
+      .on('error', function(err){
+        console.log(err.message)
+        this.emit('end')
+      })
+      .pipe(exorcist('./dist/assets/main.js.map'))
+      .pipe(writeFile)
+      .on('end', function(){
+        processLog.end();
+      })
+  })
 }
+

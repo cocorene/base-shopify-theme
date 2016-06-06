@@ -3,7 +3,26 @@
   "version": "0.0.1",
   "description": "",
   "main": "gulpfile.js",
-  "scripts": {},
+  "barrel": {
+    "types": [
+      "module",
+      "component"
+    ]
+  },
+  "scripts": {
+    "start": "npm run assets:build ; parallelshell 'npm run js:watch' 'npm run css:watch' 'gulp files:watch'",
+    "dev": "npm run assets:build ; parallelshell 'npm run js:watch' 'npm run css:watch' 'gulp files:watch'",
+    "build": "npm run assets:build ; gulp files:copy",
+    "assets:watch": "parallelshell 'npm run js:watch' 'npm run css:watch'",
+    "assets:build": "npm run css:build && npm run js:build",
+    "js:watch": "npm run js:dev",
+    "js:build": "node browserify.js --build",
+    "js:dev": "node browserify.js --dev",
+    "css:watch": "onchange './src/assets/scss/**/*.scss' -- npm run css:build",
+    "css:build": "npm run css:scss && npm run css:autoprefixer",
+    "css:scss": "node-sass src/assets/scss/main.scss dist/assets/main.css.liquid",
+    "css:autoprefixer": "postcss -u autoprefixer -r dist/assets/main.css.liquid"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@gitlab.com:barrel/barrel-shopify-base.git"
@@ -45,6 +64,9 @@
     "minifyify": "^7.2.1",
     "mkdirp": "^0.5.1",
     "node-sass": "^3.7.0",
+    "onchange": "^2.4.0",
+    "parallelshell": "^2.0.0",
+    "postcss-cli": "^2.5.2",
     "pretty-hrtime": "^1.0.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",

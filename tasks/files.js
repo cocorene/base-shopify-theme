@@ -37,7 +37,8 @@ var files = {
     },
     config: {
         src: [
-            './src/config/lib/general-info.json'
+            './src/config/lib/general-info.json',
+            './src/config/lib/global.json'
         ],
         dest: './dist/config/'
     },

@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var processLog = require('./util/log');
+var rename = require('gulp-rename');
 
 /**
  * DEV Task
@@ -30,7 +31,8 @@ function compile(opts){
 
   gulp.src('./src/assets/scss/main.scss')
     .pipe(sass(opts).on('error', sass.logError))
-    .pipe(gulp.dest('./dist/assets'));
+    .pipe(rename('main.css.liquid'))
+    .pipe(gulp.dest('../dist/assets'))
 
   processLog.end('styles', 'Compiling');
 }

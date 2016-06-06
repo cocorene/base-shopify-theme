@@ -15,11 +15,15 @@
     "build": "npm run assets:build ; gulp files:copy",
     "assets:watch": "parallelshell 'npm run js:watch' 'npm run css:watch'",
     "assets:build": "npm run css:build && npm run js:build",
-    "js:watch": "parallelshell 'npm run js:dev' 'npm run js:validate:watch'",
+    "js:watch": "parallelshell 'npm run js:dev' 'npm run jscs:watch'",
     "js:build": "node browserify.js --build",
     "js:dev": "node browserify.js --dev",
-    "js:validate:watch": "onchange './src/assets/js/**/*.js' -- npm run js:validate",
-    "js:validate": "jscs src/assets/js/**/*.js src/assets/js/*.js > jscs.js",
+
+    "jscs:watch": "onchange './src/assets/js/**/*.js' -- npm run jscs",
+    "jscs": "jscs src/assets/js/**/*.js src/assets/js/*.js > jscs.js || true",
+    "jshint:watch": "onchange './src/assets/js/**/*.js' -- npm run jshint",
+    "jshint": "jshint src/assets/js/**/*.js src/assets/js/*.js > jshint.js || true",
+
     "css:watch": "onchange './src/assets/scss/**/*.scss' -- npm run css:build",
     "css:build": "npm run css:scss",
     "css:scss": "node-sass src/assets/scss/main.scss | postcss -u autoprefixer > dist/assets/main.css.liquid",

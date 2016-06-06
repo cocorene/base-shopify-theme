@@ -19,8 +19,8 @@
     "js:build": "node browserify.js --build",
     "js:dev": "node browserify.js --dev",
     "css:watch": "onchange './src/assets/scss/**/*.scss' -- npm run css:build",
-    "css:build": "npm run css:scss && npm run css:autoprefixer",
-    "css:scss": "node-sass src/assets/scss/main.scss dist/assets/main.css.liquid",
+    "css:build": "npm run css:scss",
+    "css:scss": "node-sass src/assets/scss/main.scss | postcss -u autoprefixer > dist/assets/main.css.liquid",
     "css:autoprefixer": "postcss -u autoprefixer -r dist/assets/main.css.liquid"
   },
   "repository": {

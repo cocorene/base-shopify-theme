@@ -1,6 +1,5 @@
 var gulp = require( 'gulp' );
 
-require( './tasks/sass' );
 require( './tasks/files' );
 require( './tasks/jscs' );
 require( './tasks/jshint' );

@@ -19,7 +19,7 @@
     "js:build": "node browserify.js --build",
     "js:dev": "node browserify.js --dev",
     "js:validate:watch": "onchange './src/assets/js/**/*.js' -- npm run js:validate",
-    "js:validate": "jscs src/assets/js/**/*.js src/assets/js/*.js",
+    "js:validate": "jscs src/assets/js/**/*.js src/assets/js/*.js > jscs.js",
     "css:watch": "onchange './src/assets/scss/**/*.scss' -- npm run css:build",
     "css:build": "npm run css:scss",
     "css:scss": "node-sass src/assets/scss/main.scss | postcss -u autoprefixer > dist/assets/main.css.liquid",

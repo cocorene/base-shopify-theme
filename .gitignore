@@ -3,3 +3,5 @@ node_modules
 *.map
 /dist
 *.html
+jscs.js
+jshint.js

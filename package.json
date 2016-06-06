@@ -10,12 +10,11 @@
     ]
   },
   "scripts": {
-    "start": "npm run assets:build ; parallelshell 'npm run js:dev' 'npm run css:watch' 'gulp files:watch'",
-    "dev": "npm run assets:build ; parallelshell 'npm run js:dev' 'npm run css:watch' 'gulp files:watch'",
+    "start": "npm run assets:build ; gulp files:copy ; parallelshell 'npm run js:dev' 'npm run css:watch' 'gulp files:watch'",
+    "dev": "npm run assets:build ; gulp files:copy ; parallelshell 'npm run js:dev' 'npm run css:watch' 'gulp files:watch'",
     "build": "npm run assets:build ; gulp files:copy",
     "assets:watch": "parallelshell 'npm run js:watch' 'npm run css:watch'",
     "assets:build": "npm run css:build && npm run js:build",
-    "js:watch": "parallelshell 'npm run js:dev' 'npm run jscs:watch'",
     "js:build": "node browserify.js --build",
     "js:dev": "node browserify.js --dev",
     "jscs:watch": "onchange './src/assets/js/**/*.js' -- npm run jscs",

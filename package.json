@@ -42,7 +42,6 @@
     "babelify": "^7.3.0",
     "browserify": "^12.0.2",
     "browserify-shim": "^3.8.12",
-    "del": "^2.2.0",
     "delete": "^0.3.0",
     "exorcist": "^0.4.0",
     "glob": "^7.0.3",
@@ -65,8 +64,7 @@
     "parallelshell": "^2.0.0",
     "postcss-cli": "^2.5.2",
     "pretty-hrtime": "^1.0.2",
-    "watchify": "^3.7.0",
-    "yamljs": "^0.2.7"
+    "watchify": "^3.7.0"
   },
   "dependencies": {},
   "browser": {},

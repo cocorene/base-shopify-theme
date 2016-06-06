@@ -1,0 +1,46 @@
+{
+  "name": "Logo and favicon",
+  "settings": [
+    {
+      "type": "image",
+      "id": "favicon.png",
+      "label": "Favicon",
+      "info": "Upload a 32x32 px PNG to use as your favicon."
+    },
+    {
+      "type": "header",
+      "content": "Logo settings"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "checkbox",
+      "id": "logo_enabled",
+      "label": "Enable custom logo",
+      "info": "Use a logo image on your site.",
+      "default": true
+    },
+    {
+      "type": "image",
+      "id": "logo.png",
+      "label": "Logo",
+      "info": "440 x 200px .png (recommended). Note that your logo will display at 220 x 100px, but we recommend uploading an image twice as large as this for high-resolution displays."
+    },
+    {
+      "type": "checkbox",
+      "id": "use_mobile_logo",
+      "label": "Enable mobile logo",
+      "info": "Using a smaller logo on smaller screens is helpful if your full logo is very large or has a lot of detail. A smaller logo could be an abbreviated or simpler version of your full logo.",
+      "default": false
+    },
+    {
+      "type": "image",
+      "id": "logo--sm.png",
+      "label": "Logo - mobile",
+      "info": "340 x 140px .png (recommended). Note that this smaller logo will display at 170 x 70px on smaller screens, but we recommend uploading an image twice as large as this for high-resolution displays."
+    }
+  ]
+}

@@ -1,58 +1,37 @@
-var gulp = require( 'gulp' );
-var concat = require( 'gulp-concat' );
-var processLog = require( './util/log' );
+var gulp = require('gulp');
+var sass = require('gulp-sass');
+var processLog = require('./util/log');
+
+/**
+ * DEV Task
+ */
+gulp.task('sass:dev', ['sass'], function() {
+  gulp.watch(['./src/assets/scss/**/*.scss'], compile);
+});
 
 /**
  * DEFAULT Task
  */
-gulp.task( 'sass', function() {
-    // Run immediately
-    concatenate();
+gulp.task('sass', function() {
+  var opts = {
+    outputStyle: 'compressed'
+  };
 
-    // Watch for future changes
-    gulp.watch( [ './src/assets/scss/**/*.scss' ], concatenate )
-} );
+  compile(opts);
+});
 
-function concatenate() {
-    processLog.start( 'SCSS', 'Concatenating' );
+/**
+ * MAIN Compile Function
+ */
+function compile(opts){
+  var opts = opts || {};
 
-    /**
-     * Source the files you need in the
-     * order they need to be in, example:
-     *
-     *  gulp.src([
-     *    './src/assets/scss/base/variables.scss',
-     *    './src/assets/scss/components/counter.scss',
-     *    './src/assets/scss/modules/slideshow.scss'
-     *  ])
-     *
-     * etc
-     */
-    gulp.src( [
-            './src/assets/scss/base/var.scss',
-            './src/assets/scss/base/mixins.scss',
-            './src/assets/scss/base/transitions.scss',
-            './src/assets/scss/base/animations.scss',
-            './src/assets/scss/base/normalize.scss',
-            './src/assets/scss/base/layout.scss',
-            './src/assets/scss/base/align.scss',
-            './src/assets/scss/base/typography.scss',
-            './src/assets/scss/components/buttons.scss',
-            './src/assets/scss/components/table.scss',
-            './src/assets/scss/components/form.scss',
-            './src/assets/scss/modules/pagination.scss',
-            './src/assets/scss/modules/search-bar.scss',
-            './src/assets/scss/partials/header.scss',
-            './src/assets/scss/partials/footer.scss',
-            './src/assets/scss/partials/drawer.scss',
-            './src/assets/scss/partials/account-nav.scss',
-            './src/assets/scss/templates/login.scss',
-            './src/assets/scss/templates/register.scss',
-            './src/assets/scss/templates/reset.scss',
-            './src/assets/scss/templates/account.scss'
-        ] )
-        .pipe( concat( 'style.scss.liquid', { newLine: '\n' } ) )
-        .pipe( gulp.dest( './dist/assets/' ) );
+  processLog.start('styles', 'Compiling')
 
-    processLog.end();
+  gulp.src('./src/assets/scss/main.scss')
+    .pipe(sass(opts).on('error', sass.logError))
+    .pipe(gulp.dest('./dist/assets'));
+
+  processLog.end('styles', 'Compiling');
 }
+

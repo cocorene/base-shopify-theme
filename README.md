@@ -8,31 +8,30 @@
 
 ## Getting Started
 1. Make sure your node environment is updated. You're using Homebrew for this, right? You should be.
+  ```bash
+  # check kegs and brew version
+  brew update 
 
-```bash
-# check kegs and brew version
-brew update 
-
-# update node
-brew upgrade node
-```
+  # update node
+  brew upgrade node
+  ```
 
 2. Install dependencies:
-```
-npm i
-```
+  ```
+  npm i
+  ```
 
 3. Install the [Shopify Theme](https://github.com/Shopify/shopify_theme) ruby gem globally.
-```
-gem install shopify_theme
-```
+  ```
+  gem install shopify_theme
+  ```
 
 4. Create a private app on the Shopify store you're working on. See the [Shopify Theme README](https://github.com/Shopify/shopify_theme) above for more info.
 
 5. Run the provided setup script:
-```
-npm run setup
-```
+  ```
+  npm run setup
+  ```
 
 6. Open `dist/config.yml` and replace the `api_key` `password` `store` and `theme_id` values with the data from the private app you created in #4.
 
@@ -41,15 +40,15 @@ After the steps above, you're ready to go. With this setup, you'll need to run t
 
 ### Watching Theme Files
 Open a new terminal window and change directory into the `dist/` directory in the root of your project. The following script will watch for changes to any files copied to the `dist/` directory by your build task.
-```
-theme watch
-```
+  ```
+  theme watch
+  ```
 
 ### Watching Development Files
 In a separate terminal tab, run the provided build scripts. See [Build Scripts](#using-build-scripts) for more information. The main script below will compile CSS and JS, concatenate your config and locale JSON files, and copy all changed files to the `dist/` directory to be uploaded to Shopify.
-```bash
-npm start
-```
+  ```bash
+  npm start
+  ```
 
 **Note:** upon running `npm start`, all files will be uploaded to the Shopify theme specified in your `config.yml` file, **so make sure it's the right theme.** This is generally a good thing, because it syncs your dev environment with your live theme on startup.
 

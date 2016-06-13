@@ -8,13 +8,13 @@
 
 ## Getting Started
 1. Make sure your node environment is updated. You're using Homebrew for this, right? You should be.
-  ```bash
-  # check kegs and brew version
-  brew update 
-
-  # update node
-  brew upgrade node
-  ```
+    ```bash
+    # check kegs and brew version
+    brew update 
+    
+    # update node
+    brew upgrade node
+    ```
 
 2. Install dependencies:
   ```

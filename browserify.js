@@ -93,7 +93,7 @@ b.on('log', console.log)
  * Manually import modules/components
  */
 b.require(function(){
-  var Files = glob.sync('./src/js/+(components|modules|lib)/*.js')
+  var Files = glob.sync('./src/assets/js/+(components|modules|lib)/*.js')
   var files = []
 
   for(var i = 0; i < Files.length; i++) {

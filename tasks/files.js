@@ -49,17 +49,9 @@ var files = {
 }
 
 /**
- * DEFAULT Copy Task
- * Copies all files from /src to /dist
+ * Concats src/config/lib/*.json into
+ * a single settings_schema.json
  */
-gulp.task( 'files:copy', function() {
-    processLog.start( 'all files', 'Copying' ); // start log
-    copy( files.layout.src, files.layout.dest, processLog.end.bind( null, 'layout' ) )
-    copy( files.templates.src, files.templates.dest, processLog.end.bind( null, 'templates' ) )
-    copy( files.snippets.src, files.snippets.dest, { flatten: true }, processLog.end.bind( null, 'snippets' ) )
-    copy( files.assets.src, files.assets.dest, processLog.end.bind( null, 'assets' ) )
-    copy( files.locales.src, files.locales.dest, processLog.end.bind( null, 'locales' ) )
-} );
 gulp.task( 'config:concat', function() {
     gulp.src( files.config.src )
         .pipe( concat( 'settings_schema.json', { newLine: ',' } ) )
@@ -68,6 +60,19 @@ gulp.task( 'config:concat', function() {
             footer: ']'
         } ) )
         .pipe( gulp.dest( files.config.dest ) );
+});
+
+/**
+ * DEFAULT Copy Task
+ * Copies all files from /src to /dist
+ */
+gulp.task( 'files:copy', [ 'config:concat' ], function() {
+    processLog.start( 'all files', 'Copying' ); // start log
+    copy( files.layout.src, files.layout.dest, processLog.end.bind( null, 'layout' ) )
+    copy( files.templates.src, files.templates.dest, processLog.end.bind( null, 'templates' ) )
+    copy( files.snippets.src, files.snippets.dest, { flatten: true }, processLog.end.bind( null, 'snippets' ) )
+    copy( files.assets.src, files.assets.dest, processLog.end.bind( null, 'assets' ) )
+    copy( files.locales.src, files.locales.dest, processLog.end.bind( null, 'locales' ) )
 } );
 
 /**

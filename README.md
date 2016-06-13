@@ -2,34 +2,50 @@
 
 ## Table of Contents
 1. [Getting Started](#getting-started)
+2. [Developing](#developing)
 2. [Build Scripts](#using-build-scripts)
 3. [Liquid in CSS/JS](#using-liquid-in-css-and-js)
 
 ## Getting Started
-1. Install dependencies:
+1. Make sure your node environment is updated. You're using Homebrew for this, right? You should be.
+```bash
+# check kegs and brew version
+brew update 
+
+# update node
+brew upgrade node
+```
+2. Install dependencies:
 ```
 npm i
 ```
 
-2. Install the [Shopify Theme](https://github.com/Shopify/shopify_theme) ruby gem globally.
+3. Install the [Shopify Theme](https://github.com/Shopify/shopify_theme) ruby gem globally.
 ```
 gem install shopify_theme
 ```
 
-3. Create a private app on the Shopify store you're working on. See the [Shopify Theme README](https://github.com/Shopify/shopify_theme) above for more info.
+4. Create a private app on the Shopify store you're working on. See the [Shopify Theme README](https://github.com/Shopify/shopify_theme) above for more info.
 
-4. Create a `dist/` directory, and copy `src/config-sample.yml` to `dist/config.yml`
+5. Run the provided setup script:
+```
+npm run setup
+```
 
-5. Replace the `api_key` `password` `store` and `theme_id` values in your new `config.yml` file.
+6. Open `dist/config.yml` and replace the `api_key` `password` `store` and `theme_id` values with the data from the private app you created in #4.
 
-6. Open a new terminal window. Run the Shopify theme task from within your new `/dist` directory:
+## Developing
+After the steps above, you're ready to go. With this setup, you'll need to run two commands in two separate terminal tabs.
+
+### Watching Theme Files
+Open a new terminal window and change directory into the `dist/` directory in the root of your project. The following script will watch for changes to any files copied to the `dist/` directory by your build task.
 ```
 theme watch
 ```
 
-7. In a separate terminal tab, run the provided build scripts. See [Build Scripts](#using-build-scripts) for more information. 
+### Watching Development Files
+In a separate terminal tab, run the provided build scripts. See [Build Scripts](#using-build-scripts) for more information. The main script below will compile CSS and JS, concatenate your config and locale JSON files, and copy all changed files to the `dist/` directory to be uploaded to Shopify.
 ```bash
-# main script
 npm start
 ```
 

@@ -23,7 +23,7 @@
     "jshint": "jshint src/assets/js/**/*.js src/assets/js/*.js > jshint.js || true",
     "css:build": "node-sass src/assets/scss/main.scss | postcss -u autoprefixer > dist/assets/main.css.liquid",
     "css:dev": "onchange './src/assets/scss/**/*.scss' -- npm run css:build",
-    "setup": "mkdir dist && cd dist && mkdir assets && cd assets"
+    "setup": "node setup.js"
   },
   "repository": {
     "type": "git",
@@ -45,6 +45,7 @@
     "browserify-shim": "^3.8.12",
     "delete": "^0.3.0",
     "exorcist": "^0.4.0",
+    "fs-extra": "^0.30.0",
     "glob": "^7.0.3",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
@@ -55,7 +56,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-util": "^3.0.7",
     "gulp-wrapper": "^1.0.0",
-    "inquirer": "^1.0.0",
+    "inquirer": "^1.0.3",
     "jscs": "^3.0.4",
     "jshint": "^2.9.1",
     "minifyify": "^7.2.1",

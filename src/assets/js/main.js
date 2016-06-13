@@ -1,4 +1,4 @@
-import config from '../../package.json'
+import config from '../../../package.json'
 import initScripts from './lib/initScripts'
 
 document.addEventListener('DOMContentLoaded', function(){

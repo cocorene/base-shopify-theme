@@ -84,6 +84,7 @@ export default function(el, type){
  * @param {string} type Classification of script
  */
 export function init(el, args, type){
+  let instance
   var context,
       returnData,  
       fns = [];
@@ -116,15 +117,32 @@ export function init(el, args, type){
    */
   if(fns.length) {
     for (var i = 0; i < fns.length; i++){
-      returnData = fns[i](args.params)
-      fns[i+1] ? fns[i+1](returnData) : null
+
+      /**
+       * Try executing on ES2015 module syntax,
+       * fallback to ES5+CommonJS syntax
+       */
+      try {
+        returnData = fns[i].default(args.params)
+        fns[i+1] ? fns[i+1].default(returnData) : null
+      } catch(e){
+        returnData = fns[i](args.params)
+        fns[i+1] ? fns[i+1](returnData) : null
+      }
     }
   }
 
   /**
    * Fire main snippet
+   *
+   * Try executing on ES2015 module syntax,
+   * fallback to ES5+CommonJS syntax
    */
-  var instance = new context(el, returnData)
+  try {
+    instance = new context.default(el, returnData) 
+  } catch(e){
+    instance = new context(el, returnData) 
+  }
 
   if (args.namespace) {
     window.app[type][args.namespace] = instance
@@ -134,3 +152,4 @@ export function init(el, args, type){
     $(el).data(type, instance)
   }
 }
+

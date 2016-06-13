@@ -7,7 +7,8 @@ window.app = {};
  * @param {string} type Classification of script
  */
 export default function(el, type){
-  var raw, sequences
+  let raw
+  let sequences
 
   window.app[type] = {}
 
@@ -16,12 +17,12 @@ export default function(el, type){
   sequences = raw.indexOf(',') ? raw.split(/\,\s|\,/) : raw
 
   sequences.forEach(function(seq){
-    var _return,
-        namespace,
-        args,
-        context,
-        snippets = [],
-        params = [];
+    let _return
+    let namespace
+    let args
+    let context
+    let snippets = []
+    let params = []
 
     namespace = seq.split(/\s\#/)[1] || null
 
@@ -85,9 +86,9 @@ export default function(el, type){
  */
 export function init(el, args, type){
   let instance
-  var context,
-      returnData,  
-      fns = [];
+  let context
+  let returnData
+  let fns = []
 
   /**
    * Set default param data

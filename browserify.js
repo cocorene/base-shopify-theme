@@ -132,8 +132,7 @@ function bundle() {
         console.log(err.message)
         this.emit('end')
       })
-      .pipe(exorcist('./dist/assets/main.js.map'))
+      .pipe(exorcist('./dist/assets/main.js.map', '{{ "main.js.map" | asset_url }}'))
       .pipe(writeFile)
   })
 }
-

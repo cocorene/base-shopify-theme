@@ -7,6 +7,8 @@ var browserify = require('browserify')
 var watchify = require('watchify')
 var exorcist = require('exorcist')
 var shim = require('browserify-shim')
+var uglifyify = require('uglifyify')
+var babelify = require('babelify')
 var mkdirp = require('mkdirp')
 
 /**
@@ -20,9 +22,15 @@ var BUILD = args.filter(function(arg){ return arg === '--build' }).length > 0 ? 
  * Dev: non-minified
  * Prod: minified
  */
-MODE = DEV ? 'DEVELOPMENT' : 'PRODUCTION'
+MODE = DEV ? 'development' : 'production'
 
-console.log('Browserify MODE:',MODE,' BUILD:',BUILD);
+/**
+ * Set NODE_ENV variable
+ *
+ * In 'production', React will build
+ * without added dev tools
+ */
+process.env.NODE_ENV = MODE 
 
 /**
  * Make directories (if not already there)
@@ -41,7 +49,7 @@ var b = browserify({
     [shim, 
       { global: true }
     ], 
-    [ "babelify",
+    [babelify,
       {
         "presets": [
           "es2015",
@@ -71,10 +79,9 @@ b.plugin(bundle, {
  * Minify Plugin 
  * In dev mode, don't minify
  */
-if (MODE === 'PRODUCTION'){
-  b.plugin('minifyify', {
-    map: 'main.js.map',
-    output: __dirname+'/dist/assets/main.js.map'
+if (MODE === 'production'){
+  b.transform(uglifyify, {
+    global: true
   })
 }
 
@@ -129,3 +136,4 @@ function bundle() {
       .pipe(writeFile)
   })
 }
+

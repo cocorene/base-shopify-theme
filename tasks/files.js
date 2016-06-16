@@ -1,10 +1,25 @@
-var gulp = require( 'gulp' ),
-    path = require( 'path' ),
-    del = require( 'delete' ),
-    flatten = require( 'gulp-flatten' ),
-    processLog = require( './util/log' ),
-    concat = require( 'gulp-concat' ),
-    wrap = require( 'gulp-wrapper' );
+const gulp = require('gulp')
+const path = require('path')
+const del = require('delete')
+const flatten = require('gulp-flatten')
+const processLog = require('./util/log')
+const concat = require('gulp-concat')
+const wrap = require('gulp-wrapper')
+
+/**
+ * Relative to the tasks/ dir
+ */
+const rootPath = `${__dirname}/..`
+
+/**
+ * @param {string|array} arg Array of globs, or single glob
+ */
+function getPath(arg){
+  if (Array.isArray(arg)){
+    return arg.map((str) => `${rootPath}/${str}`)
+  }
+  return `${rootPath}/${arg}`
+}
 
 /**
  * DEFAULT
@@ -14,90 +29,95 @@ var gulp = require( 'gulp' ),
  * [Assets] will need to be expanded on to
  * accommodate more file types
  */
-var files = {
-    layout: {
-        src: './src/layout/*.liquid',
-        dest: './dist/layout/'
-    },
-    templates: {
-        src: './src/templates/**/*.liquid',
-        dest: './dist/templates/'
-    },
-    snippets: {
-        src: ['./src/snippets/modules/*.liquid', './src/snippets/partials/*.liquid'],
-        dest: './dist/snippets/'
-    },
-    assets: {
-        src: [
-            './src/assets/*.png',
-            './src/assets/*.jpg',
-            './src/assets/*.svg'
-        ],
-        dest: './dist/assets/'
-    },
-    config: {
-        src: [
-            './src/config/lib/general-info.json',
-            './src/config/lib/global.json'
-        ],
-        dest: './dist/config/'
-    },
-    locales: {
-        src: './src/locales/*.json',
-        dest: './dist/locales/'
-    }
+const files = {
+  layout: {
+    src: 'src/layout',
+    glob: 'src/layout/*.liquid',
+    dest: 'dist/layout'
+  },
+  templates: {
+    src: 'src/templates',
+    glob: 'src/templates/**/*.liquid',
+    dest: 'dist/templates'
+  },
+  snippets: {
+    src: 'src/snippets',
+    glob: ['src/snippets/modules/*.liquid', 'src/snippets/partials/*.liquid'],
+    dest: 'dist/snippets'
+  },
+  assets: {
+    src: 'src/assets',
+    glob: [
+      'src/assets/*.png',
+      'src/assets/*.jpg',
+      'src/assets/*.svg'
+    ],
+    dest: 'dist/assets'
+  },
+  config: {
+    glob: [
+      'src/config/lib/general-info.json',
+      'src/config/lib/global.json'
+    ],
+    dest: 'dist/config'
+  },
+  locales: {
+    glob: 'src/locales/*.json',
+    dest: 'dist/locales'
+  }
 }
 
 /**
  * Concats src/config/lib/*.json into
  * a single settings_schema.json
  */
-gulp.task( 'config:concat', function() {
-    gulp.src( files.config.src )
-        .pipe( concat( 'settings_schema.json', { newLine: ',' } ) )
-        .pipe( wrap( {
-            header: '[',
-            footer: ']'
-        } ) )
-        .pipe( gulp.dest( files.config.dest ) );
-});
+gulp.task('config:concat', function() {
+  gulp.src( getPath(files.config.glob) )
+  .pipe(concat( 'settings_schema.json', {newLine: ','}))
+  .pipe(wrap({
+    header: '[',
+    footer: ']'
+  }))
+  .pipe(gulp.dest( getPath(files.config.dest) ));
+})
 
 /**
  * DEFAULT Copy Task
  * Copies all files from /src to /dist
  */
-gulp.task( 'files:copy', [ 'config:concat' ], function() {
-    processLog.start( 'all files', 'Copying' ); // start log
-    copy( files.layout.src, files.layout.dest, processLog.end.bind( null, 'layout' ) )
-    copy( files.templates.src, files.templates.dest, processLog.end.bind( null, 'templates' ) )
-    copy( files.snippets.src, files.snippets.dest, { flatten: true }, processLog.end.bind( null, 'snippets' ) )
-    copy( files.assets.src, files.assets.dest, processLog.end.bind( null, 'assets' ) )
-    copy( files.locales.src, files.locales.dest, processLog.end.bind( null, 'locales' ) )
-} );
+gulp.task('files:copy', ['config:concat'], function(){
+  processLog.start('all files', 'Copying') // start log
+
+  copy(getPath(files.layout.glob), getPath(files.layout.dest), processLog.end.bind(null, 'layout'))
+  copy(getPath(files.templates.glob), getPath(files.templates.dest), processLog.end.bind(null, 'templates'))
+  copy(getPath(files.snippets.glob), getPath(files.snippets.dest), {flatten: true}, processLog.end.bind(null, 'snippets'))
+  copy(getPath(files.assets.glob), getPath(files.assets.dest), processLog.end.bind(null, 'assets'))
+  copy(getPath(files.locales.glob), getPath(files.locales.dest), processLog.end.bind(null, 'locales'))
+})
 
 /**
  * DEV Copy Task
  * Watches filepaths for changes and 
  * copies changed files.
  */
-gulp.task( 'files:watch', [ 'files:copy', 'config:concat' ], function() {
-    gulp.watch( files.layout.src, function( event ) {
-        processFiles( event, 'layout' )
-    } );
-    gulp.watch( files.templates.src, function( event ) {
-        processFiles( event, 'templates' )
-    } );
-    gulp.watch( files.snippets.src, function( event ) {
-        processFiles( event, 'snippets' )
-    } );
-    gulp.watch( files.assets.src, function( event ) {
-        processFiles( event, 'assets' )
-    } );
-    gulp.watch( files.locales.src, function( event ) {
-        processFiles( event, 'locales' )
-    } );
-    gulp.watch( files.config.src, [ 'config:concat' ] );
-} );
+gulp.task('files:watch', function(){
+  gulp.watch(getPath(files.layout.glob), function(event){
+    processFiles(event, 'layout')
+  });
+  gulp.watch(getPath(files.templates.glob), function(event){
+    processFiles(event, 'templates')
+  });
+  gulp.watch(getPath(files.snippets.glob), function(event){
+    processFiles(event, 'snippets')
+  });
+  gulp.watch(getPath(files.assets.glob), function(event){
+    processFiles(event, 'assets')
+  });
+  gulp.watch(getPath(files.locales.glob), function(event){
+    processFiles(event, 'locales')
+  });
+  gulp.watch(getPath(files.config.glob), ['config:concat']);
+});
 
 /**
  * Watch Handler
@@ -108,21 +128,25 @@ gulp.task( 'files:watch', [ 'files:copy', 'config:concat' ], function() {
  * @param {string} type The type of file being processed
  * @param {object} opts Options to pass to copy() task (optional)
  */
-function processFiles( event, type, opts ) {
-    var filename = path.basename( event.path );
+function processFiles(event, type, opts){
+  let srcname = event.path.split(/src/)[1].replace(/^((\w)|^(\/\w))+\//,'')
+  let destname = path.basename(event.path) 
 
-    opts = opts || {};
+  let srcpath = getPath(`${files[type].src}/${srcname}`)
+  let destpath = getPath(`${files[type].dest}/${destname}`)
 
-    if ( event.event === 'deleted' ) {
-        processLog.start( type + '/' + filename, 'Deleting' ); // start log
-        del( __dirname + '/../dist/' + type + '/' + filename, { force: true }, function( err ) {
-            if ( err ) throw err;
-            processLog.end();
-        } );
-    } else {
-        processLog.start( type + '/' + filename, 'Copying' ); // start log
-        copy( files[ type ].src, files[ type ].dest, opts, processLog.end )
-    }
+  opts = opts || {}
+
+  if (event.event === 'deleted'){
+    processLog.start(destname, 'Deleting'); // start log
+    del(destpath, { force: true }, function(err){
+      if (err) throw err
+      processLog.end()
+    })
+  } else {
+    processLog.start(srcname, 'Copying') // start log
+    copy(srcpath, files[type].dest, opts, processLog.end)
+  }
 }
 
 /**
@@ -134,19 +158,19 @@ function processFiles( event, type, opts ) {
  * @param {object} opts Options (optional)
  * @param {function} cb The processLog callback function
  */
-function copy( files, dest, opts, cb ) {
-    if ( typeof opts === 'function' ) {
-        cb = opts;
-    }
+function copy(files, dest, opts, cb){
+  if (typeof opts === 'function' ){
+    cb = opts
+  }
 
-    if ( opts.flatten ) {
-        gulp.src( files )
-            .pipe( flatten() )
-            .pipe( gulp.dest( dest ) );
-    } else {
-        gulp.src( files )
-            .pipe( gulp.dest( dest ) );
-    }
+  if (opts.flatten){
+    gulp.src(files)
+      .pipe(flatten())
+      .pipe(gulp.dest(dest))
+  } else {
+    gulp.src(files)
+      .pipe(gulp.dest(dest))
+  }
 
-    cb();
+  cb()
 }

@@ -40,13 +40,6 @@
     </div>
 
     {% comment %}
-      Show off meta information like comments and tags.
-    {% endcomment %}
-    <ul class="inline-list">
-      {% include 'tags-article' %}
-    </ul>
-
-    {% comment %}
       Create links to the next and previous articles, if available.
     {% endcomment %}
     {% if blog.next_article or blog.previous_article %}
@@ -107,7 +100,17 @@
               {% endcomment %}
               {% for comment in article.comments %}
                 <li id="{{ comment.id }}" class="comment{% unless number_of_comments > article.comments_count %}{% if forloop.first %} first{% endif %}{% endunless %}{% if forloop.last %} last {% endif %}">
-                  {% include 'comment' %}
+                  <div class="comment">
+                    <div class="rte">
+                      {{ comment.content }}
+                    </div>
+
+                    <span>
+                      {% capture author %}<strong>{{ comment.author }}</strong>{% endcapture %}
+                      {% capture date %}<strong><time datetime="{{ comment.created_at | date: '%Y-%m-%d' }}">{{ comment.created_at | date: format: 'month_day_year' }}</time></strong>{% endcapture %}
+                      {{ 'blogs.article.comment_meta_html' | t: author: author, date: date }}
+                    </span>
+                  </div>
                 </li>
 
                 {% unless forloop.last %}

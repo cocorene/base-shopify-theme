@@ -1,3 +1,5 @@
+'use strict';
+
 const gulp = require('gulp')
 const path = require('path')
 const del = require('delete')
@@ -37,27 +39,33 @@ const files = {
   },
   templates: {
     src: 'src/templates',
-    glob: 'src/templates/**/*.liquid',
+    glob: ['src/templates/**/*.liquid'],
     dest: 'dist/templates'
   },
   snippets: {
     src: 'src/snippets',
-    glob: ['src/snippets/modules/*.liquid', 'src/snippets/partials/*.liquid'],
+    glob: ['src/snippets/**/*.liquid'],
     dest: 'dist/snippets'
   },
   assets: {
     src: 'src/assets',
     glob: [
-      'src/assets/*.png',
-      'src/assets/*.jpg',
-      'src/assets/*.svg'
+      'src/assets/images/*.png',
+      'src/assets/images/*.jpg'
     ],
     dest: 'dist/assets'
   },
   config: {
     glob: [
       'src/config/lib/general-info.json',
-      'src/config/lib/global.json'
+      'src/config/lib/mailchimp.json',
+      'src/config/lib/social.json',
+      'src/config/lib/page-home.json',
+      'src/config/lib/page-mto.json',
+      'src/config/lib/page-lookbook.json',
+      'src/config/lib/page-about.json',
+      'src/config/lib/page-contact.json',
+      'src/config/lib/page-404.json',
     ],
     dest: 'dist/config'
   },
@@ -128,24 +136,45 @@ gulp.task('files:watch', function(){
  * @param {string} type The type of file being processed
  * @param {object} opts Options to pass to copy() task (optional)
  */
-function processFiles(event, type, opts){
-  let srcname = event.path.split(/src/)[1].replace(/^((\w)|^(\/\w))+\//,'')
-  let destname = path.basename(event.path) 
+function processFiles(event, type, opts = {}){
+  /**
+   * Full file path
+   */
+  let srcPath = event.path 
 
-  let srcpath = getPath(`${files[type].src}/${srcname}`)
-  let destpath = getPath(`${files[type].dest}/${destname}`)
+  /**
+   * File and first level directory if present.
+   * Regex removes trailing/preceding / and spaces
+   */
+  let srcName = srcPath.split(/src/)[1].replace(/^((\w)|^(\/\w))+\//,'')
 
-  opts = opts || {}
+  /**
+   * Get full *relative* destination path
+   * including file name
+   */
+  let destName = getPath(`${files[type].dest}/${srcName}`)
 
-  if (event.event === 'deleted'){
-    processLog.start(destname, 'Deleting'); // start log
-    del(destpath, { force: true }, function(err){
+  /**
+   * The path to the destination file
+   */
+  let destPath = path.dirname(destName)
+
+  /**
+   * Delete event
+   */
+  if (event.event === 'unlink'){
+    processLog.start(destName, 'Deleting'); // start log
+    del(destPath, { force: true }, function(err){
       if (err) throw err
       processLog.end()
     })
-  } else {
-    processLog.start(srcname, 'Copying') // start log
-    copy(srcpath, files[type].dest, opts, processLog.end)
+  } 
+  /**
+   * Otherwise copy it over
+   */
+  else {
+    processLog.start(srcName, 'Copying') // start log
+    copy(srcPath, destPath, opts, processLog.end)
   }
 }
 
@@ -163,14 +192,9 @@ function copy(files, dest, opts, cb){
     cb = opts
   }
 
-  if (opts.flatten){
-    gulp.src(files)
-      .pipe(flatten())
-      .pipe(gulp.dest(dest))
-  } else {
-    gulp.src(files)
-      .pipe(gulp.dest(dest))
-  }
+  // console.log(`Source: ${files}, Destination: ${dest}`)
+
+  gulp.src(files).pipe(gulp.dest(dest))
 
   cb()
 }

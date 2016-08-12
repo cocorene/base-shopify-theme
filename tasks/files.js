@@ -50,8 +50,9 @@ const files = {
   assets: {
     src: 'src/assets',
     glob: [
-      'src/assets/images/*.png',
-      'src/assets/images/*.jpg'
+      'src/assets/**/*.png',
+      'src/assets/**/*.jpg',
+      'src/assets/**/*.svg'
     ],
     dest: 'dist/assets'
   },
@@ -99,7 +100,7 @@ gulp.task('files:copy', ['config:concat'], function(){
   copy(getPath(files.layout.glob), getPath(files.layout.dest), processLog.end.bind(null, 'layout'))
   copy(getPath(files.templates.glob), getPath(files.templates.dest), processLog.end.bind(null, 'templates'))
   copy(getPath(files.snippets.glob), getPath(files.snippets.dest), {flatten: true}, processLog.end.bind(null, 'snippets'))
-  copy(getPath(files.assets.glob), getPath(files.assets.dest), processLog.end.bind(null, 'assets'))
+  copy(getPath(files.assets.glob), getPath(files.assets.dest), {flatten: true}, processLog.end.bind(null, 'assets'))
   copy(getPath(files.locales.glob), getPath(files.locales.dest), processLog.end.bind(null, 'locales'))
 })
 
@@ -116,7 +117,7 @@ gulp.task('files:watch', function(){
     processFiles(event, 'templates')
   });
   gulp.watch(getPath(files.snippets.glob), function(event){
-    processFiles(event, 'snippets')
+    processFiles(event, 'snippets', {flatten: true})
   });
   gulp.watch(getPath(files.assets.glob), function(event){
     processFiles(event, 'assets')
@@ -159,6 +160,10 @@ function processFiles(event, type, opts = {}){
    */
   let destPath = path.dirname(destName)
 
+  if (opts.flatten){
+    destPath = destName.replace(new RegExp(srcName),'') 
+  }
+
   /**
    * Delete event
    */
@@ -192,8 +197,7 @@ function copy(files, dest, opts, cb){
     cb = opts
   }
 
-  // console.log(`Source: ${files}, Destination: ${dest}`)
-
+  console.log(`Source: ${files}, Destination: ${dest}`)
   gulp.src(files).pipe(gulp.dest(dest))
 
   cb()

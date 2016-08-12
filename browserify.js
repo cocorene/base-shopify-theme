@@ -54,6 +54,9 @@ var b = browserify({
         "presets": [
           "es2015",
           "react"
+        ],
+        "plugins": [
+          'transform-object-assign'
         ]
       }
     ]
@@ -100,7 +103,7 @@ b.on('log', console.log)
  * Manually import modules/components
  */
 b.require(function(){
-  var Files = glob.sync('./src/assets/js/+(components|modules|lib)/*.js')
+  var Files = glob.sync('./src/assets/js/+(pages|modules|components)/*.js')
   var files = []
 
   for(var i = 0; i < Files.length; i++) {
@@ -121,7 +124,7 @@ b.require(function(){
  * DEFAULT Bundler Function
  */
 function bundle() {
-  var writeFile = fs.createWriteStream('./dist/assets/main.js')
+  var writeFile = fs.createWriteStream('./dist/assets/main.js.liquid')
 
   if (BUILD) writeFile.on('close', process.exit)
   writeFile.on('error', console.log)

@@ -5,15 +5,15 @@
   "main": "gulpfile.js",
   "barrel": {
     "types": [
+      "page",
       "module",
       "component"
     ]
   },
   "scripts": {
-    "start": "npm run assets:build ; gulp files:copy ; parallelshell 'npm run js:dev' 'npm run css:dev' 'gulp files:watch'",
-    "dev": "npm run assets:build ; gulp files:copy ; parallelshell 'npm run js:dev' 'npm run css:dev' 'gulp files:watch'",
-    "build": "npm run assets:build ; gulp files:copy",
-    "assets:watch": "parallelshell 'npm run js:watch' 'npm run css:dev'",
+    "start": "parallelshell 'npm run assets:watch' 'gulp files:watch'",
+    "build": "npm run assets:build && gulp files:copy",
+    "assets:watch": "parallelshell 'npm run js:dev' 'npm run css:dev'",
     "assets:build": "npm run css:build && npm run js:build",
     "js:build": "node browserify.js --build",
     "js:dev": "node browserify.js --dev",
@@ -38,6 +38,7 @@
   "devDependencies": {
     "autoprefixer": "^6.3.1",
     "babel-core": "^6.9.1",
+    "babel-plugin-transform-object-assign": "^6.8.0",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
     "babelify": "^7.3.0",
@@ -68,7 +69,10 @@
     "uglifyify": "^3.0.1",
     "watchify": "^3.7.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "feature.js": "^1.0.0",
+    "pubsub-js": "^1.5.3"
+  },
   "browser": {},
   "browserify-shim": {}
 }

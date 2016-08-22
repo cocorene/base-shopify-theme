@@ -14,7 +14,7 @@
 <section class="outer mt2">
   <div class="container--m mha pv1">
 
-    <div class="order__status mb2 px1 bg-cg025 flex flex-items-center flex-justify-between flex-wrap">
+    <div class="order__status mb2 px1 bg-cg1 flex flex-items-center flex-justify-between flex-wrap">
       <div class="order__status__item pv05 w1 w12_m w14_l">Payment: {{ order.financial_status_label }}</div>
       <div class="order__status__item pv05 w1 w12_m w14_l">Shipping: {{ order.fulfillment_status_label }}</div>
       <div class="order__status__item pv05 w1 w12_m w14_l">Total: {{ order.total_price | money }} {{ order.currency }}</div>
@@ -146,7 +146,7 @@
     <div class="flex flex-wrap flex-justify mhn1 mt2">
       <div class="address w1 w12_m ph1 mb1 auto-height">
         <h4 class="uppercase mb1">Billing</h4>
-        <div class="address__inner pv2 ph2 bg-cg025 relative">
+        <div class="address__inner pv2 ph2 bg-cg1 relative">
           <div class="address__info p">
             {{ order.billing_address.name | capitalize }}<br>
             {% if address.company != '' %}{{ order.billing_address.company }}<br>{% endif %}
@@ -160,7 +160,7 @@
 
       <div class="address w1 w12_m ph1 mb1 auto-height">
         <h4 class="mb1 uppercase">Shipping</h4>
-        <div class="address__inner pv2 ph2 bg-cg025 relative">
+        <div class="address__inner pv2 ph2 bg-cg1 relative">
           <div class="address__info p">
             {{ order.shipping_address.name | capitalize }}<br>
             {% if address.company != '' %}{{ order.shipping_address.company }}<br>{% endif %}

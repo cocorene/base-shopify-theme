@@ -27,7 +27,7 @@
       
       {% for address in customer.addresses %}
         <div class="address w1 mb2">
-          <div class="address__inner pv2 ph2 bg-cg025 relative">
+          <div class="address__inner pv2 ph2 bg-cg1 relative">
             {% if address == customer.default_address %}
               <div class="address__default absolute fit-r bg-c1 cw pv025 ph075 p0">Default</div>
             {% endif %}
@@ -39,7 +39,7 @@
               {{ address.country }}<br>
               {{ address.phone }}
             </div>
-            <div class="address__footer mt2 rte cg2 absolute">
+            <div class="address__footer mt2 rte cg6 absolute">
               {{ 'customer.addresses.edit' | t | edit_customer_address_link: address.id }} |
               {{ 'customer.addresses.delete' | t | delete_customer_address_link: address.id }}
             </div>

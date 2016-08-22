@@ -45,13 +45,15 @@
 </head>
 
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
+
   {% include 'header' %}
 
-  <main id="page" role="main">
+  <main id="page" class="relative z0" role="main">
     {{ content_for_layout }}
 
-    {% include 'footer' %}
   </main>
+
+  {% include 'footer' %}
 
   {{ 'main.js' | asset_url | script_tag }}
 </body>

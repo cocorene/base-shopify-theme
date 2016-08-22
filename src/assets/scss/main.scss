@@ -1,7 +1,7 @@
 //VARIABLES
 @import "lib/colors";
 $border: 1px solid $cb;
-$borderLight: 1px solid $cg025;
+$borderLight: 1px solid $cg1;
 
 // BASE
 @import "lib/normalize";
@@ -13,16 +13,20 @@ $borderLight: 1px solid $cg025;
 @import "lib/flexbox";
 @import "lib/align";
 @import "lib/floats";
-@import "lib/spacing";
 @import "lib/z-index";
+@import "lib/typography";
 @import "lib/buttons";
 @import "lib/forms";
 @import "lib/lists";
 @import "lib/tables";
-@import "lib/typography";
+@import "lib/spacing";
 
 // PAGES
 @import "pages/account";
+
+#page {
+  min-height: 100vh;
+}
 
 // GENERAL STYLES
 .outer {

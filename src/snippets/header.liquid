@@ -1,8 +1,8 @@
-<header class="header outer pv1">
+<header class="header outer w1 pv1 bg-cg1">
   <div class="container--l mha">
-    <a class="h1 c1 bold" href="{{ shop.url }}">{{ shop.name }}</a>
+    <a class="inline-block relative h1 c1 bold mr1" href="{{ shop.url }}">{{ shop.name }}</a>
 
-    <nav class="block mt1">
+    <nav class="inline-block mt1">
       <ul class="list--reset">
         {% for link in linklists.main-menu.links %}
           {% assign child_list_handle = link.title | handleize %}
@@ -27,23 +27,23 @@
       </ul>
     </nav>
 
-    <nav class="block mt1 italic">
+    <nav class="inline-block mt1 italic">
       <ul class="list--reset">
-        <li class="inline-block mr1">
+        <li class="inline-block mr1{% if link.active %} c1{% endif %}">
           <a href="/search">Search</a>
         </li>
         {% if shop.customer_accounts_enabled %}
           {% if customer %}
-            <li class="inline-block mr1">
+            <li class="inline-block mr1{% if link.active %} c1{% endif %}">
               <a href="/account">My Account</a>
             </li>
           {% else %}
-            <li class="inline-block mr1">
+            <li class="inline-block mr1{% if link.active %} c1{% endif %}">
               <a href="/account/login">Sign In</a>
             </li>
           {% endif %}
         {% endif %}
-        <li class="inline-block mr1">
+        <li class="inline-block mr1{% if link.active %} c1{% endif %}">
           <a href="/cart">Cart ({{ cart.item_count }})</a>
         </li>
       </ul>

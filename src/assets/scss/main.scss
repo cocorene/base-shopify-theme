@@ -1,8 +1,9 @@
+//VARIABLES
 @import "lib/colors";
-
 $border: 1px solid $cb;
 $borderLight: 1px solid $cg025;
 
+// BASE
 @import "lib/normalize";
 @import "lib/breakpoints";
 @import "lib/display";
@@ -19,8 +20,10 @@ $borderLight: 1px solid $cg025;
 @import "lib/tables";
 @import "lib/typography";
 
-@import "pages/account"
+// PAGES
+@import "pages/account";
 
+// GENERAL STYLES
 .outer {
   padding-left: 2em;
   padding-right: 2em;

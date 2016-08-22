@@ -1,56 +1,52 @@
-<div class="header-spacer"></div>
-
 {% assign account_page_title = 'My Account' %}
 {% include 'account-titles' %}
 
 <section class="outer mt2">
-  <div class="container--m pv2">
-    <h2 class="h4 mb1">Your Order History</h2>
+  <div class="container--m pv2 mha">
+    <h2 class="h3 mb1 uppercase">Your Order History</h2>
 
     {% paginate customer.orders by 50 %}
 
-      <div class="container--m">
-        {% if customer.orders.size != 0 %}
-          <div class="orders-table relative w1">
-            <div class="orders-table__header table__row w1">
-              <div class="__prop table__cell pv1">{{ 'customer.orders.order_number' | t }}</div>
-              <div class="__prop table__cell pv1 align-c">{{ 'customer.orders.date' | t }}</div>
-              <div class="__prop table__cell pv1 align-c">{{ 'customer.orders.payment_status' | t }}</div>
-              <div class="__prop table__cell pv1 align-c">{{ 'customer.orders.shipping_status' | t }}</div>
-              <div class="__prop table__cell pv1 align-c">{{ 'customer.orders.total' | t }}</div>
-            </div>
-            {% for order in customer.orders %}
-              <div class="orders-table__order relative pv1">
-                <div class="__prop __title">
-                  <span class="__label inline-block">Order No:</span>
-                  <a class="link" href="{{ order.customer_url }}">{{ order.name  }}</a>
-                </div>
-                <div class="__prop">
-                  <span class="__label inline-block">Date:</span>
-                  {{ order.created_at | date: format: 'month_day_year' }}
-                </div>
-                <div class="__prop">
-                  <span class="__label inline-block">Payment:</span>
-                  {{ order.financial_status_label }}
-                </div>
-                <div class="__prop">
-                  <span class="__label inline-block">Shipping:</span>
-                  {{ order.fulfillment_status_label }}
-                </div>
-                <div class="__prop">
-                  <span class="__label inline-block">Total:</span>
-                  {{ order.total_price | money }}
-                </div>
-              </div>
-            {% endfor %}
+      {% if customer.orders.size != 0 %}
+        <div class="orders-table relative w1">
+          <div class="orders-table__header table__row w1">
+            <div class="__prop table__cell pv1">{{ 'customer.orders.order_number' | t }}</div>
+            <div class="__prop table__cell pv1 align-c">{{ 'customer.orders.date' | t }}</div>
+            <div class="__prop table__cell pv1 align-c">{{ 'customer.orders.payment_status' | t }}</div>
+            <div class="__prop table__cell pv1 align-c">{{ 'customer.orders.shipping_status' | t }}</div>
+            <div class="__prop table__cell pv1 align-c">{{ 'customer.orders.total' | t }}</div>
           </div>
+          {% for order in customer.orders %}
+            <div class="orders-table__order relative pv1">
+              <div class="__prop __title">
+                <span class="__label inline-block">Order No:</span>
+                <a class="link" href="{{ order.customer_url }}">{{ order.name  }}</a>
+              </div>
+              <div class="__prop">
+                <span class="__label inline-block">Date:</span>
+                {{ order.created_at | date: format: 'month_day_year' }}
+              </div>
+              <div class="__prop">
+                <span class="__label inline-block">Payment:</span>
+                {{ order.financial_status_label }}
+              </div>
+              <div class="__prop">
+                <span class="__label inline-block">Shipping:</span>
+                {{ order.fulfillment_status_label }}
+              </div>
+              <div class="__prop">
+                <span class="__label inline-block">Total:</span>
+                {{ order.total_price | money }}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
 
-        {% else %}
-          
-          <p class="align-c pv4 bg-cg1">You don't have any orders yet!</p>
+      {% else %}
+        
+        <p class="align-c pv4 bg-cg1">You don't have any orders yet!</p>
 
-        {% endif %}
-      </div>
+      {% endif %}
 
       {% include 'pagination' %}
 

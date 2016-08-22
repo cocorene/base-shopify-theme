@@ -1,12 +1,11 @@
-<!-- /snippets/partials/account-nav.liquid -->
-
-<nav class="account-nav">
-    <ul class="account-nav__list align-c">
-        <li class="account-nav__item {% if template contains 'account' %}account-nav__item--active{% endif %}">
-            <a class="account-nav__link" href="/account">{{ 'customer.account.view_orders' | t }}</a>
-        </li>
-        <li class="account-nav__item {% if template contains 'addresses' %}account-nav__item--active{% endif %}">
-            <a class="account-nav__link" href="/account/addresses">{{ 'customer.account.view_addresses' | t }}</a>
-        </li>
-    </ul>
+<nav class="account__nav p">
+  <ul class="list--reset align-c">
+    <li class="account__nav__link inline-block">
+      <a class="ph1 {% if template contains 'account' %}underline c1{% endif %}" href="/account">Account Home</a>
+    </li>
+    <span class="o-divider--vertical"></span>
+    <li class="account__nav__link inline-block">
+      <a class="ph1 {% if template contains 'addresses' %}underline c1{% endif %}" href="/account/addresses">Manage Addresses</a>
+    </li>
+  </ul>
 </nav>

@@ -72,7 +72,8 @@
   },
   "dependencies": {
     "feature.js": "^1.0.0",
-    "pubsub-js": "^1.5.3"
+    "pubsub-js": "^1.5.3",
+    "svbstrate": "^2.0.1"
   },
   "browser": {},
   "browserify-shim": {}

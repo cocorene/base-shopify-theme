@@ -1,44 +1,60 @@
-<!-- /templates/customers/account.liquid -->
+<div class="header-spacer"></div>
 
-<div class="account container align-c">
-    <h2 class="account__head head">{{ 'customer.account.title' | t }}</h2>
+{% assign account_page_title = 'My Account' %}
+{% include 'account-titles' %}
 
-    {% include 'account-nav' %}
+<section class="outer mt2">
+  <div class="container--m pv2">
+    <h2 class="h4 mb1">Your Order History</h2>
 
-    <div class="order-history align-l">
-        <h3 class="order-history__head">{{ 'customer.orders.title' | t }}</h3>
+    {% paginate customer.orders by 50 %}
 
-        {% paginate customer.orders by 10 %}
-            <div class="order-history__holder">
-                {% if customer.orders.size != 0 %}
-                    <table class="table">
-                        <thead class="tb__head">
-                            <tr class="tb__row-head">
-                                <th class="tb__cell-head">{{ 'customer.orders.order_number' | t }}</th>
-                                <th class="tb__cell-head">{{ 'customer.orders.date' | t }}</th>
-                                <th class="tb__cell-head">{{ 'customer.orders.payment_status' | t }}</th>
-                                <th class="tb__cell-head">{{ 'customer.orders.shipping_status' | t }}</th>
-                                <th class="tb__cell-head">{{ 'customer.orders.total' | t }}</th>
-                            </tr>
-                        </thead>
-                        <tbody class="tb__body">
-                            {% for order in customer.orders %}
-                                <tr class="tb__row">
-                                    <td class="tb__cell"><a class="order-history__link" href="{{ order.customer_url }}">{{ order.name  }}</a></td>
-                                    <td class="tb__cell">{{ order.created_at | date: format: 'month_day_year' }}</td>
-                                    <td class="tb__cell">{{ order.financial_status_label }}</td>
-                                    <td class="tb__cell">{{ order.fulfillment_status_label }}</td>
-                                    <td class="tb__cell">{{ order.total_price | money }}</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                {% else %}
-                    <p class="order-history__none-msg align-c">{{ 'customer.orders.none' | t }}</p>
-                {% endif %}
+      <div class="container--m">
+        {% if customer.orders.size != 0 %}
+          <div class="orders-table relative w1">
+            <div class="orders-table__header table__row w1">
+              <div class="__prop table__cell pv1">{{ 'customer.orders.order_number' | t }}</div>
+              <div class="__prop table__cell pv1 align-c">{{ 'customer.orders.date' | t }}</div>
+              <div class="__prop table__cell pv1 align-c">{{ 'customer.orders.payment_status' | t }}</div>
+              <div class="__prop table__cell pv1 align-c">{{ 'customer.orders.shipping_status' | t }}</div>
+              <div class="__prop table__cell pv1 align-c">{{ 'customer.orders.total' | t }}</div>
             </div>
+            {% for order in customer.orders %}
+              <div class="orders-table__order relative pv1">
+                <div class="__prop __title">
+                  <span class="__label inline-block">Order No:</span>
+                  <a class="link" href="{{ order.customer_url }}">{{ order.name  }}</a>
+                </div>
+                <div class="__prop">
+                  <span class="__label inline-block">Date:</span>
+                  {{ order.created_at | date: format: 'month_day_year' }}
+                </div>
+                <div class="__prop">
+                  <span class="__label inline-block">Payment:</span>
+                  {{ order.financial_status_label }}
+                </div>
+                <div class="__prop">
+                  <span class="__label inline-block">Shipping:</span>
+                  {{ order.fulfillment_status_label }}
+                </div>
+                <div class="__prop">
+                  <span class="__label inline-block">Total:</span>
+                  {{ order.total_price | money }}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
 
-            {%include 'pagination' %}
-        {% endpaginate %}
-    </div>
-</div>
+        {% else %}
+          
+          <p class="align-c pv4 bg-cg1">You don't have any orders yet!</p>
+
+        {% endif %}
+      </div>
+
+      {% include 'pagination' %}
+
+    {% endpaginate %}
+
+  </div>
+</section>

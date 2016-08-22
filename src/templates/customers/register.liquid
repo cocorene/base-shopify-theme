@@ -1,41 +1,72 @@
-<!-- /templates/customers/register.liquid -->
+<div class="header-spacer"></div>
 
-<div class="register container align-c">
-    <h2 class="register__head head">{{ 'customer.register.title' | t }}</h2>
+<div class="outer mt2 align-c">
 
-    <div class="register__holder align-l">
-    {% form 'create_customer', class: 'register__form' %}
+  <div id="register" class="container--s">
 
-        <div class="row">
-            <label class="label">{{ 'customer.register.first_name' | t }}</label>
-            <input class="field" type="text" name="customer[first_name]" placeholder="{{ 'customer.register.first_name' | t }}" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autocapitalize="words" autofocus>
-        </div>
-        <div class="row">
-            <label class="label">{{ 'customer.register.last_name' | t }}</label>
-            <input class="field" type="text" name="customer[last_name]" placeholder="{{ 'customer.register.last_name' | t }}" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} autocapitalize="words">
-        </div>
-        <div class="row">
-            <label class="label">{{ 'customer.register.email' | t }}</label>
-            <input class="field" type="email" name="customer[email]" placeholder="{{ 'customer.register.email' | t }}" {% if form.email %} value="{{ form.email }}"{% endif %} autocorrect="off" autocapitalize="off">
-        </div>
-        <div class="row">
-            <label class="label">{{ 'customer.register.password' | t }}</label>
-            <input class="field" type="password" name="customer[password]" placeholder="{{ 'customer.register.password' | t }}">
-        </div>
-        {% if form.errors %}
-        <div class="row row--error">
-            {{ form.errors | default_errors }}
-        </div>
-        {% endif %}
-        <div class="row row--end">
-            <input class="btn btn--full" type="submit" value="{{ 'customer.register.submit' | t }}">
-        </div>
+    <h1 class="h3 mb075">Create An Account</h1>
 
+    {% form 'create_customer', class: 'account-entry-form mha' %}
+      {% if form.posted_successfully? %}
+        <div class="alert_message bg-c2 px1 flex items-center mha align-l">
+          <div class="alert__icon mr1 flex">
+            <svg viewBox='0 0 18 18'>
+              <use xlink:Href="#checkmark" x='0' y='0'></use>
+            </svg>
+          </div>
+          <span>We have sent an email to lucas.ballasy@barrelny.com. Please click the link in your email to verify your account.</span>
+        </div>
+      {% endif %}
+
+      <p>
+        <span class="prefixed-input flex items-center {% if form.errors %}error{% endif %}">
+          <label for="name" class="inline-block mb0 pl1 pr05">First Name:</label>
+          <input class="flex-grow" type="text" name="customer[first_name]" value="" autocapitalize="words">
+        </span>
+      </p>
+      <p>
+        <span class="prefixed-input flex items-center {% if form.errors %}error{% endif %}">
+          <label for="name" class="inline-block mb0 pl1 pr05">Last Name:</label>
+          <input class="flex-grow" type="text" name="customer[last_name]" value="" autocapitalize="words">
+        </span>
+      </p>
+      <p>
+        <span class="prefixed-input flex items-center">
+          <label for="name" class="inline-block mb0 pl1 pr05">Email:</label>
+          <input class="flex-grow" type="text" name="customer[email]" {% if form.email %} value="{{ form.email }}"{% endif %} autocorrect="off" autocapitalize="off" autocapitalize="words">
+        </span>
+      </p>
+      <p>
+        <span class="prefixed-input flex items-center">
+          <label for="name" class="inline-block mb0 pl1 pr05">Password:</label>
+          <input class="flex-grow" type="password" name="customer[password]" value="" autocapitalize="words">
+        </span>
+      </p>
+
+      {% if form.errors %}
+        {% for field in form.errors %}
+          {% if field == 'form' %}
+            <p class="p0 c3 align-c">{{ form.errors.messages[field] }}</p>
+          {% else %}
+            <p class="p0 c3 align-c">{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}.</p>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
+      <p class="mt1 pt05 align-c">
+        <label class="checkbox">
+          <input type="checkbox" name="customer[accepts_marketing]"> 
+          Subscribe to our newsletter
+        </label>
+      </p>
+
+      <div class="mv1 pv05">
+        <button type="submit" class="button">Create Account</button>
+      </div>
     {% endform %}
-    </div>
-    
-    <span class="register__foot">
-        {{ 'customer.register.already_registered' | t }} <a class="register__login-link link" href="/account/login">{{ 'customer.register.sign_in' | t }}</a>
+
+    <span class="block mt1">
+      Already have an account? <a class="link block" href="/account/login">Sign in here.</a>
     </span>
-    <a class="register__cancel-link link" href="{{ shop.url }}">{{ 'customer.register.cancel' | t }}</a>
+  </div>
 </div>

@@ -1,29 +1,33 @@
-<!-- /templates/customers/activate_account.liquid -->
+<div class="header-spacer"></div>
 
-<div class="grid">
-  <div class="grid__item large--one-third push--large--one-third text-center">
+<div class="outer mt2 align-c">
 
-    <h1>{{ 'customer.activate_account.title' | t }}</h1>
-    <p>{{ 'customer.activate_account.subtext' | t }}</p>
+  <div id="login_form" class="container--s">
+    <h1 class="h3 mb05">Activate Your Account</h1>
 
-    {% comment %}
-      This form must use 'activate_customer_password'
-    {% endcomment %}
-    <div class="form-vertical">
-      {% form 'activate_customer_password' %}
+    {% form 'activate_customer_password', class: 'account-entry-form mha' %}
 
-        {{ form.errors | default_errors }}
+      {{ form.errors | default_errors }}
 
-        <label for="CustomerPassword" class="hidden-label">{{ 'customer.activate_account.password' | t }}</label>
-        <input type="password" value="" name="customer[password]" id="CustomerPassword" class="input-full" placeholder="{{ 'customer.activate_account.password' | t }}">
+      <p>
+        <span class="prefixed-input flex items-center {% if form.errors %}error{% endif %}">
+          <label for="name" class="inline-block mb0 pl1 pr05">Password:</label>
+          <input class="flex-grow" type="password" name="customer[password]" autocorrect="off" autocapitalize="off" value="">
+        </span>
+      </p>
+      <p>
+        <span class="prefixed-input flex items-center {% if form.errors %}error{% endif %}">
+          <label for="name" class="inline-block mb0 pl1 pr05">Confirm:</label>
+          <input class="flex-grow" type="password" name="customer[password_confirmation]" autocorrect="off" autocapitalize="off" value="">
+        </span>
+      </p>
 
-        <label for="CustomerPasswordConfirmation" class="hidden-label">{{ 'customer.activate_account.password_confirm' | t }}</label>
-        <input type="password" value="" name="customer[password_confirmation]" id="CustomerPasswordConfirmation" class="input-full" placeholder="{{ 'customer.activate_account.password_confirm' | t }}">
+      <div class="mt2">
+        <button type="submit" class="button">Activate</button>
+        <button type="submit" name="decline" class="link ml1">Cancel</button>
+      </div>
 
-        <input type="submit" class="btn btn--full" value="{{ 'customer.activate_account.submit' | t }}">
-        <input type="submit" class="btn--secondary btn--full" name="decline" value="{{ 'customer.activate_account.cancel' | t }}">
-      {% endform %}
-    </div>
+    {% endform %}
 
   </div>
 </div>

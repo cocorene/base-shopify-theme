@@ -1,13 +1,10 @@
-<div class="header-spacer"></div>
-
 {% assign account_page_title = 'My Account' %}
 {% include 'account-titles' %}
 
 {% paginate customer.addresses by 50 %}
 
 <section class="outer mv2 pt1">
-  <div class="container--m">
-
+  <div class="container--m mha">
 
     {% assign form_outer_id = 'AddAddress' %}
     {% assign form_action = customer.new_address %}
@@ -17,8 +14,8 @@
 
     {% include 'account-address-form' %}
 
-    <div class="relative">
-      <h2 class="h4 mb1">{{ 'customer.addresses.title' | t }}</h2>
+    <div class="relative mb1">
+      <h2 class="h3 uppercase">{{ 'customer.addresses.title' | t }}</h2>
       <a href="#0" class="new-address link absolute fit-r fit-t" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">+ Add Address</a>
     </div>
 
@@ -26,11 +23,11 @@
       List all customer addresses with a unique edit form.
       Also add pagination in case they have a large number of addresses
     {% endcomment %}
-    <div class="flex flex-wrap flex-justify mhn1">
+    <div class="mha">
       
       {% for address in customer.addresses %}
-        <div class="address w1 ph1 mb2">
-          <div class="address__inner px2 bg-c2 relative">
+        <div class="address w1 mb2">
+          <div class="address__inner pv2 ph2 bg-cg025 relative">
             {% if address == customer.default_address %}
               <div class="address__default absolute fit-r bg-c1 cw pv025 ph075 p0">Default</div>
             {% endif %}
@@ -53,7 +50,7 @@
         {% assign form_action = address %}
         {% assign form_title = 'Edit Address' %}
         {% assign form_cta = 'Update Address' %}
-        {% assign form_classes = 'mb2 ph1 active-top' %}
+        {% assign form_classes = 'mb2 active-top' %}
 
         {% include 'account-address-form' %}
 
@@ -62,12 +59,11 @@
     </div>
 
     {% if customer.addresses == empty %}
-      <div class="mt10">
-        <div class="bg-cg1 px2 align-c">
-          You have no saved address.
-        </div>
+      <div class="bg-cg1 px2 align-c">
+        You have no saved address.
       </div>
     {% endif %}
+
     {% if paginate.pages > 1 %}
       <hr>
       <div class="pagination">

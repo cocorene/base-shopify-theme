@@ -33,7 +33,7 @@
             {% endif %}
             <div class="address__info p">
               {{ address.first_name | capitalize }} {{ address.last_name | capitalize }}<br>
-              {% if address.company %}{{ address.company }}<br>{% endif %}
+              {% if address.company != '' %}{{ address.company }}<br>{% endif %}
               {{ address.street }}<br>
               {{ address.city | capitalize }}{% if address.province_code %}, {{ address.province_code | upcase }} {% endif %} {{ address.zip | upcase }}<br>
               {{ address.country }}<br>

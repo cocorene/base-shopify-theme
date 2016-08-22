@@ -3,7 +3,7 @@
   {% form 'customer_address', form_action %}
 
     {% assign form_id = form.id %}
-    {% capture form_script %}{% if form_id == 'new' %}Shopify.CustomerAddress.toggleNewForm(); return false;{% else %}Shopify.CustomerAddress.toggleForm({{form_id}}); return false;{% endif %}{% endcapture %}
+    {% capture form_script %}{% if form_id == 'new' %}barrel.toggleNewForm(event){% else %}barrel.toggleForm(event, {{form_id}}){% endif %}{% endcapture %}
     {% capture form_suffix %}{% if form_id and form_id != 'new' %}_{{form_id}}{% endif %}{% endcapture %}
 
     {% capture form_city_id %}{% if form_id == 'new' %}AddressCityNew{% else %}AddressCity{% endif %}{% endcapture%}
@@ -64,7 +64,7 @@
         <span id="{{form_province_container_id}}{{form_suffix}}" style="display:none">
           <label for="{{form_province_id}}{{form_suffix}}" class="block">Province:</label>
           <span class="select-wrapper w1">
-            <select id="{{form_province_id}}{{form_suffix}}" class="w1" name="address[province]" data-default="{{ form.province }}">{{ country_option_tags }}</select>
+            <select id="{{form_province_id}}{{form_suffix}}" class="w1" name="address[province]" data-default="{{ form.province }}"></select>
           </span>
         </span>
       </p>
@@ -92,3 +92,95 @@
 
 {% assign form_id = false %}
 {% assign form_classes = '' %}
+
+<script>
+(function(){
+  var form = document.getElementById({{form_outer_id | json}})
+  var countrySelector = document.getElementById({{form_country_id | json}}+{{form_suffix | json}})
+  var provinceContainer = document.getElementById({{form_province_container_id | json}}+{{form_suffix | json}})
+  var provinceSelector = document.getElementById({{form_province_id | json}}+{{form_suffix | json}})
+  var countryDefault = countrySelector.getAttribute('data-default')
+  var provinceDefault = provinceSelector.getAttribute('data-default')
+
+  /**
+   * Select an option within a <select>
+   * based on a given value
+   *
+   * @param {string} value Value to search for
+   * @param {element} select <select> element
+   * @return {element} The first matching select option
+   */
+  function selectOption(value, select){
+    return Array.prototype.slice.call(select.options).filter(function(option, i){
+      if (option.value === value){
+        select.selectedIndex = i
+        return true
+      }
+      return false
+    })[0]
+  }
+
+  /**
+   * Generate province options and show select element
+   *
+   * @param {array} options Array of arrays from selected country
+   */ 
+  function showProvinces(options){
+    var previousValue = provinceSelector.options[0] ? provinceSelector.options[0].value : false 
+    var isNewValue = !previousValue || options[0][0] !== previousValue ? true : false
+
+    if (isNewValue){
+      // Emptry provinces select
+      provinceSelector.innerHTML = ''
+
+      // Generate new options from values
+      for (var i = 0; i < options.length; i++){
+        var option = document.createElement('option')
+        option.value = options[i][0]
+        option.innerHTML = options[i][1]
+        provinceSelector.appendChild(option) 
+      }
+    }
+
+    // Select the default province
+    if (provinceDefault.length > 0) selectOption(provinceDefault, provinceSelector)
+
+    // Show provinces
+    provinceContainer.style.display = 'block'
+  }
+
+  /**
+   * Hide provinces container
+   */
+  function hideProvinces(){
+    provinceContainer.style.display = 'none'
+  }
+
+  /**
+   * If we have an active default country,
+   * select it and select it's default province
+   *
+   * (this is for the edit form)
+   */
+  function selectDefaults(){
+    if (countryDefault.length < 1) return
+
+    var selectedCountry = selectOption(countryDefault, countrySelector)
+    var options = JSON.parse(selectedCountry.getAttribute('data-provinces'))
+
+    showProvinces(options)
+  }
+
+  /**
+   * Setup onchange listener for countries
+   */
+  countrySelector.onchange = function(e){
+    var selectedOption = countrySelector.options[countrySelector.selectedIndex]
+    var options = JSON.parse(selectedOption.getAttribute('data-provinces')) || []
+
+    options.length > 0 ? showProvinces(options) : hideProvinces()
+  }
+
+  selectDefaults()
+})()
+</script>

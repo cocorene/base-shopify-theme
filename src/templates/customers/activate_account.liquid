@@ -1,26 +1,21 @@
-<div class="header-spacer"></div>
+<div class="outer mt2">
 
-<div class="outer mt2 align-c">
-
-  <div id="login_form" class="container--s">
+  <div id="login_form" class="account-entry-form mha">
     <h1 class="h3 mb05">Activate Your Account</h1>
 
-    {% form 'activate_customer_password', class: 'account-entry-form mha' %}
+    {% form 'activate_customer_password', class: 'mha' %}
 
       {{ form.errors | default_errors }}
 
-      <p>
-        <span class="prefixed-input flex items-center {% if form.errors %}error{% endif %}">
-          <label for="name" class="inline-block mb0 pl1 pr05">Password:</label>
-          <input class="flex-grow" type="password" name="customer[password]" autocorrect="off" autocapitalize="off" value="">
-        </span>
-      </p>
-      <p>
-        <span class="prefixed-input flex items-center {% if form.errors %}error{% endif %}">
-          <label for="name" class="inline-block mb0 pl1 pr05">Confirm:</label>
-          <input class="flex-grow" type="password" name="customer[password_confirmation]" autocorrect="off" autocapitalize="off" value="">
-        </span>
-      </p>
+      {% assign field_label = 'Password' %}
+      {% assign field_name = 'password' %}
+      {% assign field_type = 'password' %}
+      {% include 'input-text' %}
+
+      {% assign field_label = 'Confirm' %}
+      {% assign field_name = 'password_confirmation' %}
+      {% assign field_type = 'password' %}
+      {% include 'input-text' %}
 
       <div class="mt2">
         <button type="submit" class="button">Activate</button>

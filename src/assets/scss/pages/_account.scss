@@ -1,7 +1,3 @@
-$line-color: #f5f5f5;
-$tablet-min: 768px;
-$tablet-max: 1024px;
-
 .account-entry-form {
   max-width: 350px;
 }
@@ -9,17 +5,10 @@ $tablet-max: 1024px;
 .account__logout {
   border: $border;
   border-right: 0;
-  border-radius: $borderRadius;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  box-shadow: $shadow;
   float: right;
   margin-top: 0.5em;
 
   @media (min-width: break(m)){
-    position: absolute;
-    top: 100px; // under header
-    right: 0;
     margin-top: 0;
   }
 }
@@ -95,7 +84,6 @@ $tablet-max: 1024px;
 
 }
 .order__status {
-  border-radius: $borderRadius;
   @media (min-width: break(m)){
     padding: 2em;
   }
@@ -131,9 +119,6 @@ $tablet-max: 1024px;
   top: base(20);
   border: $border;
   border-right: 0;
-  border-radius: $borderRadius;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
 }
 .address__footer {
   left: 2em;

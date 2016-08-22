@@ -1,69 +1,57 @@
-<!doctype html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
+<!DOCTYPE html>
+<html>
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
 
-    <!-- Basic page needs ================================================== -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  {% comment %} <link rel="apple-touch-icon" sizes="180x180" href="{{'apple-touch-icon.png' | asset_url }}"> {% endcomment %}
+  {% comment %} <link rel="icon" type="image/png" href="{{'favicon-32x32.png' | asset_url }}" sizes="32x32"> {% endcomment %}
+  {% comment %} <link rel="icon" type="image/png" href="{{'favicon-16x16.png' | asset_url }}" sizes="16x16"> {% endcomment %}
+  {% comment %} <link rel="manifest" href="{{'manifest.json' | asset_url }}"> {% endcomment %}
+  {% comment %} <link rel="mask-icon" href="{{'safari-pinned-tab.svg' | asset_url }}" color="#5bbad5"> {% endcomment %}
+  {% comment %} <meta name="theme-color" content="#ffffff"> {% endcomment %}
 
-    {% if settings.favicon_enable %}
-    <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
-    {% endif %}
+  {% comment %} {% include 'social-meta-tags' %} {% endcomment %}
 
-    <!-- Title and description ================================================== -->
-    <title>
-    {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
-    </title>
+  {% comment %} {{ content_for_header }} {% endcomment %}
 
-    {% if page_description %}
-    <meta name="description" content="{{ page_description | escape }}">
-    {% endif %}
+  <script>
+    /*
+    (function(d) {
+      var config = {
+        kitId: 'zzf3uyu',
+        scriptTimeout: 40000,
+        async: true
+      },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
 
-    <!-- Helpers ================================================== -->
-    {% include 'social-meta-tags' %}
-    <link rel="canonical" href="{{ canonical_url }}">
-    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-    <meta name="theme-color" content="{{ settings.color_primary }}">
+    // Show fonts regardless of if they've loaded, after 10s
+    setTimeout(function(){
+      var doc = document.documentElement
+      if (!doc.classList.contains('wf-active')) doc.classList.add('wf-active')
+    }, 10000)
+    */
+  </script>
 
-    <!-- CSS ================================================== -->
-    {{ '//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css' | stylesheet_tag }}
-    {{ 'main.css' | asset_url | stylesheet_tag }}
+  {{ 'main.css' | asset_url | stylesheet_tag }}
 
-    <!-- Header hook for plugins ================================================== -->
-    {{ content_for_header }}
-    <!-- {% include 'oldIE-js' %} -->
+  {{ "shopify_common.js"  | shopify_asset_url | script_tag }}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
-    {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
-    {% if template contains 'customers' %}
-        {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
-    {% endif %}
-
+  <title> {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %} </title>
 </head>
 
-{% comment %}
-    Add the page template as a class for easy page or template specific styling.
-{% endcomment %}
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
+  {% include 'header' %}
 
-    <div class="content">
-        <div class="wrapper">
-            {% include 'header' %}
+  <main id="page" role="main">
+    {{ content_for_layout }}
 
-            {% comment %}
-            {%include 'drawer' %}
-            {% endcomment %}
-
-            <main class="main" role="main">
-
-                {{ content_for_layout }}
-
-            </main>
-        </div>
-
-        {% include 'footer' %}
-    </div>
+    {% include 'footer' %}
+  </main>
 
   {{ 'main.js' | asset_url | script_tag }}
 </body>

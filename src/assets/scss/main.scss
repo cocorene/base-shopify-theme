@@ -1,10 +1,14 @@
+@import "lib/colors";
+
+$border: 1px solid $cb;
+$borderLight: 1px solid $cg025;
+
 @import "lib/normalize";
 @import "lib/breakpoints";
 @import "lib/display";
 @import "lib/widths";
 @import "lib/containers";
 @import "lib/positioning";
-@import "lib/colors";
 @import "lib/align";
 @import "lib/floats";
 @import "lib/spacing";
@@ -14,3 +18,5 @@
 @import "lib/lists";
 @import "lib/tables";
 @import "lib/typography";
+
+@import "pages/account"

@@ -4,18 +4,15 @@
     <h1 class="h2 mb05">{{ 'customer.login.title' | t }}</h1>
 
     {% form 'customer_login', class: 'mha' %}
-      <p>
-        <span class="block {% if form.errors %}error{% endif %}">
-          <label for="name" class="block">Email:</label>
-          <input class="block w1" type="text" name="customer[email]" autocorrect="off" autocapitalize="off" value="">
-        </span>
-      </p>
-      <p>
-        <span class="block {% if form.errors %}error{% endif %}">
-          <label for="password" class="block">Password:</label>
-          <input class="block w1" type="password" name="customer[password]" autocorrect="off" autocapitalize="off" value="">
-        </span>
-      </p>
+      {% assign field_label = 'Email' %}
+      {% assign field_name = 'email' %}
+      {% assign field_type = 'email' %}
+      {% include 'input-text' %}
+
+      {% assign field_label = 'Password' %}
+      {% assign field_name = 'password' %}
+      {% assign field_type = 'password' %}
+      {% include 'input-text' %}
 
       {% if form.errors %}
         {% for field in form.errors %}
@@ -52,12 +49,10 @@
         {% if form.posted_successfully? %}
           <span class="mb1 recovery-success">Success! Check your email for a link to reset your password.</span>
         {% else %}
-          <p>
-            <span class="block {% if form.errors %}error{% endif %}">
-              <label for="email" class="block">Email:</label>
-              <input class="block w1" type="text" name="customer[email]" autocorrect="off" autocapitalize="off" value="">
-            </span>
-          </p>
+          {% assign field_label = 'Email' %}
+          {% assign field_name = 'email' %}
+          {% assign field_type = 'email' %}
+          {% include 'input-text' %}
 
           {% if form.errors %}
             {% for field in form.errors %}

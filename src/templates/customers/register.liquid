@@ -1,12 +1,10 @@
-<div class="header-spacer"></div>
+<div class="outer mt2">
 
-<div class="outer mt2 align-c">
+  <div id="register" class="account-entry-form mha">
 
-  <div id="register" class="container--s">
+    <h1 class="h2 mb075">Create An Account</h1>
 
-    <h1 class="h3 mb075">Create An Account</h1>
-
-    {% form 'create_customer', class: 'account-entry-form mha' %}
+    {% form 'create_customer', class: 'mha' %}
       {% if form.posted_successfully? %}
         <div class="alert_message bg-c2 px1 flex items-center mha align-l">
           <div class="alert__icon mr1 flex">
@@ -18,30 +16,28 @@
         </div>
       {% endif %}
 
-      <p>
-        <span class="prefixed-input flex items-center {% if form.errors %}error{% endif %}">
-          <label for="name" class="inline-block mb0 pl1 pr05">First Name:</label>
-          <input class="flex-grow" type="text" name="customer[first_name]" value="" autocapitalize="words">
-        </span>
-      </p>
-      <p>
-        <span class="prefixed-input flex items-center {% if form.errors %}error{% endif %}">
-          <label for="name" class="inline-block mb0 pl1 pr05">Last Name:</label>
-          <input class="flex-grow" type="text" name="customer[last_name]" value="" autocapitalize="words">
-        </span>
-      </p>
-      <p>
-        <span class="prefixed-input flex items-center">
-          <label for="name" class="inline-block mb0 pl1 pr05">Email:</label>
-          <input class="flex-grow" type="text" name="customer[email]" {% if form.email %} value="{{ form.email }}"{% endif %} autocorrect="off" autocapitalize="off" autocapitalize="words">
-        </span>
-      </p>
-      <p>
-        <span class="prefixed-input flex items-center">
-          <label for="name" class="inline-block mb0 pl1 pr05">Password:</label>
-          <input class="flex-grow" type="password" name="customer[password]" value="" autocapitalize="words">
-        </span>
-      </p>
+      {% assign field_label = 'First Name' %}
+      {% assign field_name = 'first_name' %}
+      {% assign field_type = 'text' %}
+      {% include 'input-text' %}
+
+      {% assign field_label = 'Last Name' %}
+      {% assign field_name = 'last_name' %}
+      {% assign field_type = 'text' %}
+      {% include 'input-text' %}
+
+      {% assign field_label = 'Email' %}
+      {% assign field_name = 'email' %}
+      {% assign field_type = 'email' %}
+      {% if form.email %}
+        {% assign field_value = form.email %}
+      {% endif %}
+      {% include 'input-text' %}
+
+      {% assign field_label = 'Password' %}
+      {% assign field_name = 'password' %}
+      {% assign field_type = 'password' %}
+      {% include 'input-text' %}
 
       {% if form.errors %}
         {% for field in form.errors %}
@@ -53,7 +49,7 @@
         {% endfor %}
       {% endif %}
 
-      <p class="mt1 pt05 align-c">
+      <p class="mt1 pt05">
         <label class="checkbox">
           <input type="checkbox" name="customer[accepts_marketing]"> 
           Subscribe to our newsletter

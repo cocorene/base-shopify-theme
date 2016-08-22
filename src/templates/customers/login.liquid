@@ -1,21 +1,19 @@
-<div class="header-spacer"></div>
+<div class="outer mt2 align-l" data-page="login">
 
-<div class="outer mt2 align-c" data-page="login">
+  <div id="login_form" class="account-entry-form mha">
+    <h1 class="h2 mb05">{{ 'customer.login.title' | t }}</h1>
 
-  <div id="login_form" class="container--s">
-    <h1 class="h3 mb05">{{ 'customer.login.title' | t }}</h1>
-
-    {% form 'customer_login', class: 'account-entry-form mha' %}
+    {% form 'customer_login', class: 'mha' %}
       <p>
-        <span class="prefixed-input flex items-center {% if form.errors %}error{% endif %}">
-          <label for="name" class="inline-block mb0 pl1 pr05">Email:</label>
-          <input class="flex-grow" type="text" name="customer[email]" autocorrect="off" autocapitalize="off" value="">
+        <span class="block {% if form.errors %}error{% endif %}">
+          <label for="name" class="block">Email:</label>
+          <input class="block w1" type="text" name="customer[email]" autocorrect="off" autocapitalize="off" value="">
         </span>
       </p>
       <p>
-        <span class="prefixed-input flex items-center {% if form.errors %}error{% endif %}">
-          <label for="name" class="inline-block mb0 pl1 pr05">Password:</label>
-          <input class="flex-grow" type="password" name="customer[password]" value="">
+        <span class="block {% if form.errors %}error{% endif %}">
+          <label for="password" class="block">Password:</label>
+          <input class="block w1" type="password" name="customer[password]" autocorrect="off" autocapitalize="off" value="">
         </span>
       </p>
 
@@ -35,7 +33,7 @@
     {% endform %}
 
     <p class="mb0">
-      <a class="link mt1 no-anchor" id="recovery_link" href="#recover">Forgot your password?</a>
+      <a class="link mt1" id="recovery_link" href="#recover">Forgot your password?</a>
     </p>
     <p>
       <span class="mt1">
@@ -44,20 +42,20 @@
     </p>
   </div>
 
-  <div id="recover" class="hide mha">
-    <h2 class="h3 mb05">Forgot your password?</h2>
+  <div id="recover" class="account-entry-form hide mha">
+    <h2 class="h2 mb05">Forgot your password?</h2>
     <p>Enter your email and we will send you a password reset link.</p>
 
     <div class="inline-block">
-      {% form 'recover_customer_password', class: 'account-entry-form mha' %}
+      {% form 'recover_customer_password', class: 'mha' %}
 
         {% if form.posted_successfully? %}
           <span class="mb1 recovery-success">Success! Check your email for a link to reset your password.</span>
         {% else %}
           <p>
-            <span class="prefixed-input flex items-center {% if form.errors %}error{% endif %}">
-              <label for="name" class="inline-block mb0 pl1 pr05">Email:</label>
-              <input class="flex-grow" type="text" name="email" autocorrect="off" autocapitalize="off">
+            <span class="block {% if form.errors %}error{% endif %}">
+              <label for="email" class="block">Email:</label>
+              <input class="block w1" type="text" name="customer[email]" autocorrect="off" autocapitalize="off" value="">
             </span>
           </p>
 

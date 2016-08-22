@@ -20,3 +20,13 @@ $borderLight: 1px solid $cg025;
 @import "lib/typography";
 
 @import "pages/account"
+
+.outer {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+// Text links
+.link {
+  color: $c1;
+}

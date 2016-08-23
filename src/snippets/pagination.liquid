@@ -1,13 +1,13 @@
 {% if paginate.pages > 1 %}
-  <div class="align-c mt2">
-    <a class="{% unless paginate.previous %}cg2{% endunless %}" {% if paginate.previous %}href="{{ paginate.previous.url }}"{% endif %}>{% comment %}{{ paginate.previous.title }}{% endcomment %}</a>
-    <ul class="list--reset">
+  <div class="pagination align-c mt2">
+    <a class="pagination__arrow inline-block decoration--none{% unless paginate.previous %} cg2{% endunless %}" {% if paginate.previous %}href="{{ paginate.previous.url }}"{% endif %}>&larr;</a>
+    <ul class="list--reset inline-block mh1">
       {% for part in paginate.parts %}
-        <li class="inline-block">
-      <a class="mh1 {% unless part.is_link %}page__link--active{% endunless %}" {% if part.is_link %}href="{{ part.url }}"{% endif %}>{{ part.title }}</a>
-      </li>
-    {% endfor %}
+        <li class="pagination__page inline-block mh05 align-c bg-cg1">
+          <a class="inline-block pv05 ph05{% if part.is_link %} c1{% endif %}" {% if part.is_link %}href="{{ part.url }}"{% endif %}>{{ part.title }}</a>
+        </li>
+      {% endfor %}
     </ul>
-    <a class="page-nav__link page-nav__link--next {% unless paginate.next %}page-nav__link--inactive{% endunless %}" {% if paginate.next %}href="{{ paginate.next.url }}"{% endif %}>{% comment %}{{ paginate.next.title }}{% endcomment %}</a>
+    <a class="pagination__arrow inline-block decoration--none{% unless paginate.next %} cg2{% endunless %}" {% if paginate.next %}href="{{ paginate.next.url }}"{% endif %}>&rarr;</a>
   </div>
 {% endif %}

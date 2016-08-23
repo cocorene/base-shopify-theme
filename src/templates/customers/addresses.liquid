@@ -1,7 +1,7 @@
 {% assign account_page_title = 'My Account' %}
 {% include 'account-titles' %}
 
-{% paginate customer.addresses by 50 %}
+{% paginate customer.addresses by 10 %}
 
 <section class="outer mv2 pt1">
   <div class="container--m mha">
@@ -65,7 +65,7 @@
     {% if paginate.pages > 1 %}
       <hr>
       <div class="pagination">
-        {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+        {% include 'pagination' %}
       </div>
     {% endif %}
   </div>

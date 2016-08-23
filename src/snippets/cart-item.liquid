@@ -46,10 +46,16 @@
   <div class="cart__item__price hide align-t">
     <p>{{price}}</p>
   </div>
-  <div class="cart__item__quantity mt1 align-t">
-    <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0">
+  <div class="cart__item__quantity mt1 align-t align-c">
+    <div class="counter inline-block" data-component="cart-item-counter">
+      <button type="button" data-count="-"><span>–</span></button> 
+      <input type="number" name="updates[]" id="updates_{{item.id}}" value="{{item.quantity}}" min="0" max="10">
+      <button type="button" data-count="+"><span>+</span></button> 
+    </div>
+
     <div class="mt075">
-      <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="link ml05">Remove</a>
+      <button type="submit" name="update" class="cart__item__update inline-block link js-update">Update</button>
+      <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="inline-block link ml05">Remove</a>
     </div>
   </div>
   <div class="cart__item__total absolute mt1 fit-t fit-r align-t">

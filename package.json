@@ -71,7 +71,9 @@
     "watchify": "^3.7.0"
   },
   "dependencies": {
+    "closest": "0.0.1",
     "feature.js": "^1.0.0",
+    "knot.js": "^1.1.1",
     "pubsub-js": "^1.5.3",
     "svbstrate": "^2.0.2"
   },

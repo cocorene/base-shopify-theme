@@ -1,5 +1,10 @@
 //VARIABLES
 @import "lib/colors";
+
+// Transitions
+$speed: 200ms;
+$ease: ease-in-out;
+
 $border: 1px solid $cb;
 $borderLight: 1px solid $cg1;
 
@@ -20,6 +25,9 @@ $borderLight: 1px solid $cg1;
 @import "lib/lists";
 @import "lib/tables";
 @import "lib/spacing";
+
+// Components
+@import "components/counter";
 
 // PAGES
 @import "pages/account";

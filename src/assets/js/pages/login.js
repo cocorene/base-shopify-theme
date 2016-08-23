@@ -26,5 +26,4 @@ export default (el) => {
     recoveryForm.style.display = 'none'
     loginForm.style.display = 'block'
   })
-
 }

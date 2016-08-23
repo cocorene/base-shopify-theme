@@ -1,11 +1,11 @@
-import counter from './counter'
+import updown from 'up-down'
 
 export default (el) => {
-  const quantity = counter(el)
-  const initialValue = quantity.value
+  const counter = updown(el)
+  const initialValue = counter.value
   const updateButton = el.parentNode.querySelector('.js-update') 
 
-  quantity.on('change', (val) => {
+  counter.on('change', (val) => {
     if (val !== initialValue){
       updateButton.classList.add('is-active')
     } else if (val === initialValue){

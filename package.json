@@ -21,7 +21,7 @@
     "jscs": "jscs src/assets/js/**/*.js src/assets/js/*.js > jscs.js || true",
     "jshint:watch": "onchange './src/assets/js/**/*.js' -- npm run jshint",
     "jshint": "jshint src/assets/js/**/*.js src/assets/js/*.js > jshint.js || true",
-    "css:build": "node-sass src/assets/scss/main.scss | postcss -u autoprefixer -u cssnano > dist/assets/main.css",
+    "css:build": "node-sass src/assets/scss/main.scss | postcss -u autoprefixer > dist/assets/main.css",
     "css:dev": "onchange './src/assets/scss/**/*.scss' -- npm run css:build",
     "setup": "node setup.js"
   },
@@ -73,9 +73,9 @@
   "dependencies": {
     "closest": "0.0.1",
     "feature.js": "^1.0.0",
-    "knot.js": "^1.1.1",
     "pubsub-js": "^1.5.3",
-    "svbstrate": "^2.0.2"
+    "svbstrate": "^2.0.2",
+    "up-down": "0.0.1"
   },
   "browser": {},
   "browserify-shim": {}

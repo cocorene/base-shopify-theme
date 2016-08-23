@@ -7,33 +7,42 @@
 3. [Liquid in CSS/JS](#using-liquid-in-css-and-js)
 
 ## Getting Started
-1. Make sure your node environment is updated. You're using Homebrew for this, right? You should be.
-    ```bash
-    # check kegs and brew version
-    brew update 
-    
-    # update node
-    brew upgrade node
-    ```
 
-2. Install dependencies:
-  ```
-  npm i
-  ```
+#### Update Environment
+Make sure your node environment is updated. You're using Homebrew for this, right? You should be.
 
-3. Install [Theme Kit](http://themekit.cat/) utility globally.
-  ```
-  curl https://raw.githubusercontent.com/Shopify/themekit/installers/install | python 
-  ```
+```bash
+# check kegs and brew version
+brew update 
 
-4. Create a private app on the Shopify store you're working on to access your API key and password. See the [Shopify Theme README](https://github.com/Shopify/shopify_theme) above for more info.
+# update node
+brew upgrade node
+```
 
-5. Run the provided setup script:
-  ```
-  npm run setup
-  ```
+#### Install dependencies:
 
-6. Open `dist/config.yml` and replace the `api_key` `password` `store` and `theme_id` values with the data from the private app you created in #4.
+```
+npm i
+```
+
+#### Install ThemeKit
+Install [Theme Kit](http://themekit.cat/) utility globally.
+
+```
+curl https://raw.githubusercontent.com/Shopify/themekit/installers/install | python 
+```
+
+#### Get API Key and Password
+Create a private app on the Shopify store you're working on to access your API key and password. See the [Shopify Theme README](https://github.com/Shopify/shopify_theme) above for more info.
+
+#### Run Setup Script
+
+```
+npm run setup
+```
+
+#### Edit Config File
+Open `dist/config.yml` and replace the `api_key` `password` `store` and `theme_id` values with the data from the private app you created in #4.
 
 ## Developing
 After the steps above, you're ready to go. With this setup, you'll need to run two commands in two separate terminal tabs.

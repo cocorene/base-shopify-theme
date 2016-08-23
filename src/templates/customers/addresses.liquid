@@ -62,12 +62,7 @@
       <div class="bg-cg1 pv2 ph2 align-c">You have no saved address.</div>
     {% endif %}
 
-    {% if paginate.pages > 1 %}
-      <hr>
-      <div class="pagination">
-        {% include 'pagination' %}
-      </div>
-    {% endif %}
+    {% include 'pagination' %}
   </div>
 </section>
 

@@ -5,7 +5,7 @@
   <div class="container--m pv2 mha">
     <h2 class="h3 mb1 uppercase">Your Order History</h2>
 
-    {% paginate customer.orders by 50 %}
+    {% paginate customer.orders by 4 %}
 
       {% if customer.orders.size != 0 %}
         <div class="orders-table relative w1">

@@ -13,6 +13,8 @@
   "scripts": {
     "start": "parallelshell 'npm run assets:watch' 'gulp files:watch'",
     "build": "npm run assets:build && gulp files:copy",
+    "files:copy": "gulp files:copy",
+    "files:watch": "gulp files:watch",
     "assets:watch": "parallelshell 'npm run js:dev' 'npm run css:dev'",
     "assets:build": "npm run css:build && npm run js:build",
     "js:build": "node browserify.js --build",

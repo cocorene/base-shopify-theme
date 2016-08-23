@@ -21,12 +21,12 @@
   npm i
   ```
 
-3. Install the [Shopify Theme](https://github.com/Shopify/shopify_theme) ruby gem globally.
+3. Install [Theme Kit](http://themekit.cat/) utility globally.
   ```
-  gem install shopify_theme
+  curl https://raw.githubusercontent.com/Shopify/themekit/installers/install | python 
   ```
 
-4. Create a private app on the Shopify store you're working on. See the [Shopify Theme README](https://github.com/Shopify/shopify_theme) above for more info.
+4. Create a private app on the Shopify store you're working on to access your API key and password. See the [Shopify Theme README](https://github.com/Shopify/shopify_theme) above for more info.
 
 5. Run the provided setup script:
   ```
@@ -50,47 +50,52 @@ In a separate terminal tab, run the provided build scripts. See [Build Scripts](
   npm start
   ```
 
-**Note:** upon running `npm start`, all files will be uploaded to the Shopify theme specified in your `config.yml` file, **so make sure it's the right theme.** This is generally a good thing, because it syncs your dev environment with your live theme on startup.
-
+**Note:** the CSS and javscript will build immediately, so if you're running `theme watch` concurrently, they will be uploaded. *So make sure you have the right theme setup*, or you may overwrite something you don't want to. 
 
 ## Using Build Scripts
 There are a variety of build scripts provided in the `package.json` that can be run directly in your terminal window. All scripts can be run via `npm run <scriptName>`, with the exception of `npm start`.
 
-### `[start]`
-This is the default task. You'll use this the most.
+### `npm start`
+Runs a watch script on you CSS and JS paths, as well as all theme files. Does not copy any files, but does build CSS and JS once before starting the watch script. 
 
-### `[dev]`
-This is an alias for `npm start`.
+### `npm run build`
+Build assets and copy all files.
 
-### `[assets:watch]`
+### `npm run files:copy`
+Copies all theme files, aside from CSS and JS, from `src/` to `dist/`.
+
+### `npm run files:watch`
+Watches all theme files, aside from CSS and JS, for changes and copies changed files from `src/` to `dist/`.
+
+### `npm run assets:watch`
 Runs a watch task on your javascripts and CSS sheets.
 
-### `[assets:build]`
+### `npm run assets:build`
 Builds your javascript bundle and CSS sheet once.
 
-### `[js:build]`
-Builds your javascript bundle once.
+### `npm run js:build`
+Builds your javascript bundle once using production variables if available.
 
-### `[js:dev]`
+### `npm run js:dev`
 Runs a watch task on your javascripts. On change events, runs `[js:build]`.
 
-### `[jscs]`
-Lints your javascript partials and writes a `jscs.js` file in the root of the project.
-
-### `[jscs:watch]`
-Runs a watch task on your javascripts. On change events, runs `[jscs]`.
-
-### `[jshint]`
-Analyze your javascript partials and writes a `jshint.js` file in the root of the project.
-
-### `[jshint:watch]`
-Runs a watch task on your javascripts. On change events, runs `[jshint]`.
-
-### `[css:build]`
+### `npm run css:build`
 Compiles and prefixes your CSS using Libass, POSTCSS and Autoprefixer.
 
-## `[css:dev]`
+## `npm run css:dev`
 Runs a watch task on your CSS. On change events, runs `[css:build]`.
+
+### `npm run jscs`
+Lints your javascript partials and writes a `jscs.js` file in the root of the project.
+
+### `npm run jscs:watch`
+Runs a watch task on your javascripts. On change events, runs `[jscs]`.
+
+### `npm run jshint`
+Analyze your javascript partials and writes a `jshint.js` file in the root of the project.
+
+### `npm run jshint:watch`
+Runs a watch task on your javascripts. On change events, runs `[jshint]`.
 
 
 ## Using Liquid in CSS and JS

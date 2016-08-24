@@ -99,7 +99,7 @@
   var countrySelector = document.getElementById({{form_country_id | json}}+{{form_suffix | json}})
   var provinceContainer = document.getElementById({{form_province_container_id | json}}+{{form_suffix | json}})
   var provinceSelector = document.getElementById({{form_province_id | json}}+{{form_suffix | json}})
-  var countryDefault = countrySelector.getAttribute('data-default')
+  var countryDefault = countrySelector.getAttribute('data-default') ? countrySelector.getAttribute('data-default') : countrySelector.options[0].value
   var provinceDefault = provinceSelector.getAttribute('data-default')
 
   /**

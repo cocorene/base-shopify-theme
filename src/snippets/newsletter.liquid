@@ -1,0 +1,43 @@
+<div class="newsletter ph2 align-c" data-component="newsletter-form">
+
+  <div class="container--xs mha">
+    <h3 class="bold">Newsletter</h3>
+    <p>Sign up for our newsletter and all of your wildest dreams will come true.</p>
+  </div>
+
+  <div class="newsletter__inner container--xs mha">
+
+    {% if settings.mailchimp_url != blank %}
+
+      <div id="newsletterSuccess" class="newsletter__success hide bg-c1 cw fit-x ph1 pv05"><p>Thank you for signing up!</p></div>
+
+      <form target="_blank" action="{{ settings.mailchimp_url }}" method="post">
+        <div class="mv1">
+          <input class="newsletter__field" required name="EMAIL" type="email" placeholder="Email Address" value="{% if customer %}{{ customer.email }}{% endif %}" autocorrect="off" autocapitalize="off">
+          <input type="hidden" name="b_52c780ad75d8594bde40d34fc_a0aba77311" value="">
+        </div>
+
+        <button type="submit" class="button">Submit</button>
+      </form>
+
+    {% else %}
+
+      {% form 'customer' %}
+        {% if form.posted_successfully? %}
+          <div id="newsletterSuccess" class="newsletter__success c1 mv05"><p>Thank you for signing up!</p></div>
+        {% else %}
+          <div class="mv1">
+            <input class="newsletter__field" id="newsletterEmail" name="contact[email]" type="email" placeholder="Email Address" required value="{% if customer %}{{ customer.email }}{% endif %}" autocorrect="off" autocapitalize="off">
+            {% if form.errors %}
+              <p class="newsletter__error align-c c3 mt05">*Invalid email address, try again.</p>
+            {% endif %}
+          </div>
+
+          <button type="submit" class="button">Submit</button>
+        {% endif %}
+      {% endform %}
+
+    {% endif %}
+
+  </div>
+</div>

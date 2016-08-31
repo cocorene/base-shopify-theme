@@ -59,14 +59,8 @@ const files = {
   config: {
     glob: [
       'src/config/lib/general-info.json',
-      'src/config/lib/mailchimp.json',
-      'src/config/lib/social.json',
-      'src/config/lib/page-home.json',
-      'src/config/lib/page-mto.json',
-      'src/config/lib/page-lookbook.json',
-      'src/config/lib/page-about.json',
-      'src/config/lib/page-contact.json',
-      'src/config/lib/page-404.json',
+      'src/config/lib/global.json',
+      'src/config/lib/newsletter.json'
     ],
     dest: 'dist/config'
   },

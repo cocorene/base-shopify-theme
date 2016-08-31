@@ -1,0 +1,10 @@
+{
+  "name": "Mailchimp Integration",
+  "settings": [
+    {
+      "type": "text",
+      "id": "mailchimp_url",
+      "label": "Form Action URL"
+    }
+  ]
+}

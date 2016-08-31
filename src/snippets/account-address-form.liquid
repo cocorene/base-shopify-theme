@@ -157,21 +157,6 @@
   }
 
   /**
-   * If we have an active default country,
-   * select it and select it's default province
-   *
-   * (this is for the edit form)
-   */
-  function selectDefaults(){
-    if (countryDefault.length < 1) return
-
-    var selectedCountry = selectOption(countryDefault, countrySelector)
-    var options = JSON.parse(selectedCountry.getAttribute('data-provinces'))
-
-    showProvinces(options)
-  }
-
-  /**
    * Setup onchange listener for countries
    */
   countrySelector.onchange = function(e){

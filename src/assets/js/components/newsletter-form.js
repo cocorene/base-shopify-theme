@@ -1,4 +1,4 @@
-import form from '../lib/forms'
+import conform from 'conform.js'
 import closest from 'closest'
 
 const addError = (field) => {
@@ -21,14 +21,12 @@ export default (el) => {
     }
   }
 
-  const newsletter = new form(el, {
+  const newsletter = conform(el, {
+    jsonp: true,
     success: (data, res, req) => {
-      console.log(req)
       formSuccess.style.display = 'block'
     },
     error: (data, res, req) => {
-      console.log(req)
-      console.log('Newsletter form error.')
       if (res) console.log(res)
     },
     tests: [
@@ -44,7 +42,5 @@ export default (el) => {
   })
 
   newsletter.action = newsletter.action.replace(/post\?u=/, 'post-json?u=')
-
-  console.dir(newsletter)
 }
 

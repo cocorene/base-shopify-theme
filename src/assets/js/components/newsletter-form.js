@@ -1,4 +1,4 @@
-import conform from 'conform.js'
+import conform from '../lib/forms'
 import closest from 'closest'
 
 const addError = (field) => {
@@ -22,18 +22,20 @@ export default (el) => {
   }
 
   const newsletter = conform(el, {
-    jsonp: true,
-    success: (data, res, req) => {
-      formSuccess.style.display = 'block'
+    success: (fields, res, req) => {
+      console.log('Success')
+      console.log(res)
+      if (formSuccess) formSuccess.style.display = 'block'
     },
-    error: (data, res, req) => {
+    error: (fields, res, req) => {
+      console.log('Error')
       if (res) console.log(res)
     },
     tests: [
       {
-        name: 'EMAIL',
-        validate: (data) => {
-          return typeof data.value === 'string' && data.value.length > 1 && data.value.match(/.+\@.+\..+/) ? true : false
+        name: /EMAIL|customer\[email\]/,
+        validate: (field) => {
+          return typeof field.value === 'string' && field.value.length > 1 && field.value.match(/.+\@.+\..+/) ? true : false
         },
         success: removeError,
         error: addError 
@@ -41,6 +43,9 @@ export default (el) => {
     ]
   })
 
-  newsletter.action = newsletter.action.replace(/post\?u=/, 'post-json?u=')
-}
+  if (newsletter.action.match(/post\?u=/)){
+    newsletter.action = newsletter.action.replace(/post\?u=/, 'post-json?u=')
+  }
 
+  window.news = newsletter
+}

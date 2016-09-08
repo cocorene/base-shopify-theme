@@ -1,33 +1,6 @@
 import nanoajax from 'nanoajax'
 import jsonp from 'micro-jsonp'
 
-const origin = window.location.origin || window.location.protocol+'//'+window.location.host
-
-const getAction = (form) => {
-  let action = form.getAttribute('action')
-  return action.split(/\#/)[0]
-}
-
-/**
- * Merge two objects into a 
- * new object
- *
- * @param {object} target Root object
- * @param {object} source Object to merge 
- *
- * @return {object} A *new* object with all props of the passed objects
- */
-export const merge = (target, ...args) => {
-  for (let i = 0; i < args.length; i++){
-    let source = args[i]
-    for (let key in source){
-      if (source[key]) target[key] = source[key]
-    }
-  }
-
-  return target 
-}
-
 const toQueryString = (fields) => {
   let data = ''
   let names = Object.keys(fields)
@@ -52,24 +25,22 @@ const isValid = (fields) => {
 }
 
 const getFormFields = (form) => {
-  let fields = [].slice.call(form.querySelectorAll('[name]'))
+  let fields = [].slice.call(form.querySelectorAll('[name]')) || false
 
   if (!fields) return
 
-  return fields.reduce((result, field) => {
-    result[field.getAttribute('name')] = {
-      valid: true,
-      name: field.getAttribute('name'),
-      value: field.value || undefined,
-      field
-    }
-
-    return result
-  }, {}) 
+  return fields.map(f => ({
+    name: f.getAttribute('name'),
+    value: f.value || undefined,
+    valid: true,
+    node: f
+  }))
 } 
 
 const runValidation = (fields, tests) => tests.forEach((test => {
-  let field = fields[test.name]
+  let field = fields.filter(f => test.name instanceof RegExp ? f.name.match(test.name) : test.name === f.name)[0]
+
+  if (!field) return
 
   if (test.validate(field)){
     test.success(field)
@@ -80,9 +51,13 @@ const runValidation = (fields, tests) => tests.forEach((test => {
   }
 }))
 
+const scrubAction = (base, data) => {
+  const query = base.match(/\?/) ? true : false
+  return `${base}${query ? '&' : '?'}${toQueryString(data)}`
+}
+
 const jsonpSend = (action, fields, successCb, errorCb) => {
-  console.log(`${action}&${toQueryString(fields)}`)
-  jsonp(`${action}&${toQueryString(fields)}`, {
+  jsonp(scrubAction(action, fields), {
     param: 'c',
     response: (err, data) => {
       err ? errorCb(fields, err, null) : successCb(fields, data, null)
@@ -90,10 +65,11 @@ const jsonpSend = (action, fields, successCb, errorCb) => {
   })
 } 
 
-const send = (action, fields, successCb, errorCb) => nanoajax.ajax({
-  url: `${action}&${toQueryString(fields)}`,
-  method: 'GET'
+const send = (method, action, fields, successCb, errorCb) => nanoajax.ajax({
+  url: scrubAction(action, fields),
+  method: method
 }, (status, res, req) => {
+  console.log(req)
   let success = status >= 200 && status <= 300
   success ? successCb(fields, res, req) : errorCb(fields, res, req)
 })
@@ -101,14 +77,14 @@ const send = (action, fields, successCb, errorCb) => nanoajax.ajax({
 export default (form, options = {}) => {
   form = form.getAttribute('action') ? form : form.getElementsByTagName('form')[0]
 
-  const instance = Object({})
-
-  merge(instance, {
-    success: (data, response) => {},
-    error: (data, response) => {},
-    action: getAction(form),
-    tests: []
-  }, options)
+  const instance = {
+    method: options.method || 'POST',
+    success: options.success ? options.success : (fields, res, req) => {},
+    error: options.error ? options.error : (fields, res, req) => {},
+    tests: options.tests || [],
+    action: form.getAttribute('action'),
+    jsonp: options.jsonp || false
+  } 
 
   form.onsubmit = (e) => {
     e.preventDefault()
@@ -120,10 +96,9 @@ export default (form, options = {}) => {
     isValid(instance.fields) ?
       !!instance.jsonp ? 
         jsonpSend(instance.action, instance.fields, instance.success, instance.error)
-        : send(instance.action, instance.fields, instance.success, instance.error)
+        : send(instance.method, instance.action, instance.fields, instance.success, instance.error)
       : instance.error(fields)
   }
 
   return instance
 }
-

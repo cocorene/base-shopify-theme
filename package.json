@@ -76,6 +76,7 @@
     "closest": "0.0.1",
     "conform.js": "0.0.2",
     "feature.js": "^1.0.0",
+    "micro-jsonp": "^1.0.1",
     "nanoajax": "^0.4.3",
     "pubsub-js": "^1.5.3",
     "svbstrate": "^2.0.2",

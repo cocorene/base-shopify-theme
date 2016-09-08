@@ -23,18 +23,16 @@
     {% else %}
 
       {% form 'customer' %}
-        {% if form.posted_successfully? %}
-          <div id="newsletterSuccess" class="newsletter__success c1 mv05"><p>Thank you for signing up!</p></div>
-        {% else %}
-          <div class="mv1">
-            <input id="newsletterEmail" class="newsletter__field" name="contact[email]" type="email" placeholder="Email Address" required value="{% if customer %}{{ customer.email }}{% endif %}" autocorrect="off" autocapitalize="off">
-            {% if form.errors %}
-              <p class="newsletter__error align-c c3 mt05">*Invalid email address, try again.</p>
-            {% endif %}
-          </div>
+        <div id="newsletterSuccess" class="newsletter__success c1 mv05{% unless form.posted_successfully? %} hide{% endunless %}"><p>Thank you for signing up!</p></div>
 
-          <button type="submit" class="button">Submit</button>
-        {% endif %}
+        <div class="mv1">
+          <input id="newsletterEmail" class="newsletter__field" name="contact[email]" type="email" placeholder="Email Address" required value="{% if customer %}{{ customer.email }}{% endif %}" autocorrect="off" autocapitalize="off">
+          {% if form.errors %}
+            <p class="newsletter__error align-c c3 mt05">*Invalid email address, try again.</p>
+          {% endif %}
+        </div>
+
+        <button type="submit" class="button">Submit</button>
       {% endform %}
 
     {% endif %}

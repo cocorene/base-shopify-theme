@@ -137,7 +137,9 @@ gulp.task( 'files:watch', function() {
  * @param {string} type The type of file being processed
  * @param {object} opts Options to pass to copy() task (optional)
  */
-function processFiles( event, type, opts = {} ) {
+function processFiles( event, type, opts ) {
+    _.defaults( opts, {} );
+
     /**
      * Full file path
      */

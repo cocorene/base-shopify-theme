@@ -1,0 +1,14 @@
+<!-- /snippets/item-counter.liquid -->
+
+{% assign class = class | default: '' %}
+{% assign id = id | default: '' %}
+{% assign name = name | default: '' %}
+{% assign value = value | default: '' %}
+{% assign min = min | default: '1' %}
+{% assign max = max | default: '9999' %}
+
+<div class="counter inline-block {{ class }}" data-component="item-counter">
+    <button type="button" data-count="-"><span>–</span></button> 
+    <input type="number" name="{{ name }}" id="{{ id }}" value="{{ value }}" min="{{ min }}" max="{{ max }}">
+    <button type="button" data-count="+"><span>+</span></button> 
+</div>

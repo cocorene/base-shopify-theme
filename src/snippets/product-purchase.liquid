@@ -1,5 +1,15 @@
 <!-- /snippets/product-purchase.liquid -->
 
+{% comment %}
+	To display different thumbnails depending on the selected variant, go to "Admin".
+	Then for each product image, edit the alt text like below:
+
+		'[option title handleized]-[variant title handleized], [image alt text]'
+		
+		ex: 'size-30-cm, This is a 30 cm wax candle.'
+
+{% endcomment %}
+
 {% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
 
 {{ current_variant.title }}
@@ -12,32 +22,18 @@
 
 	    {% if product.images.size > 1 %}
 	        <ul class="product-purchase__thumbnails" id="ProductThumbs">
-	        	{% comment %}
-					To display different thumbnails depending on the selected variant, go to "Admin".
-					Then for each product image, edit the alt text like below:
-
-						'[option title handleized]-[variant title handleized], [image alt text]'
-						
-						ex: 'size-30-cm, This is a 30 cm wax candle.'
-
-	        	{% endcomment %}
 				{% for option in product.options %}
-				    {% assign option_title = option | handleize | append: '-' %}
+				    {% assign option_title = option | handleize %}
 				    {% for variant in product.variants %}
 				        {% if variant == product.selected_or_first_available_variant %}
-				            {% assign current_variant = variant.title | handleize | prepend: option_title %}
+				            {% assign current_variant = variant.title | handleize | prepend: '-' | prepend: option_title %}
 				        {% endif %}
 				    {% endfor %}
 		            {% for image in product.images %}
-		            	{% comment %}
-							For each image we get the alt text and then split it to retrieve:
-							- [option title handleized]-[variant title handleized]
-							- [image alt text]
-		            	{% endcomment %}
                         {% assign image_info = image.alt | escape | split: ',' %}
                         {% assign variant_title = image_info | first | handleize | strip %}
                         {% assign image_alt = image_info | last | strip %}
-		                <li class="__item {% if image.src == featured_image %}is-active{% endif %}" {% unless image.alt contains first_variant %}hidden{% endunless %} data-thumbnail="{{ variant_title }}">
+		                <li class="__item {% if image.src == featured_image %}is-active{% endif %}" {% unless image.alt contains current_variant %}hidden{% endunless %} data-thumbnail="{{ variant_title }}">
 		                    <a class="__link" href="{{ image.src | img_url: 'large' }}" title="{{ image_alt }}">
 		                        <img class="__img" src="{{ image.src | img_url: 'compact' }}" alt="{{ image_alt }}" title="{{ image_alt }}">
 		                    </a>
@@ -54,7 +50,7 @@
             <meta itemprop="priceCurrency" content="{{ shop.currency }}">
             <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
 
-            <form id="AddToCartForm" action="/cart/add" method="post" enctype="multipart/form-data">
+            <form action="/cart/add" method="post" enctype="multipart/form-data">
                 <select id="productSelect" name="id">
                     {% for variant in product.variants %}
                         {% if variant.available %}
@@ -71,23 +67,19 @@
                 </select>
 
                 <span>{{ 'products.general.regular_price' | t }}</span>
-                <span id="ProductPrice" itemprop="price">
+                <span itemprop="price">
                     {{ current_variant.price | money }}
                 </span>
 
                 {% if product.compare_at_price_max > product.price %}
                     <span>{{ 'products.general.sale_price' | t }}</span>
-                    <p id="ComparePrice">
-                        {{ 'products.product.compare_at' | t }} {{ current_variant.compare_at_price | money }}
-                    </p>
+                    <p>{{ 'products.product.compare_at' | t }} {{ current_variant.compare_at_price | money }}</p>
                 {% endif %}
 
-                <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
-                <input id="Quantity" type="number" name="quantity" value="1" min="1">
+                <label>{{ 'products.product.quantity' | t }}</label>
+		        {% include 'item-counter', name: 'quantity', value: '1', min: '1', max: '10' %}
 
-                <button id="AddToCart" type="submit" name="add">
-                    <span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span>
-                </button>
+                <button type="submit" name="add">{{ 'products.product.add_to_cart' | t }}</button>
             </form>
 
         </div>
@@ -98,15 +90,12 @@
     </div>
 </div>
 
-{{ 'option_selection.js' | shopify_asset_url | script_tag }}
-
 <script type="text/javascript">
     var select = document.getElementById( 'productSelect' );
     var switchVariant = function( id ) {
         window.history.pushState( null, null, '/products/{{ product.handle }}?variant=' + id );
     }
 
-    // On select change, rewrite URL to add correct variant parameter.
     select.addEventListener( 'change', function() {
         var id = select.options[ select.selectedIndex ].value;
 

@@ -138,8 +138,8 @@ gulp.task( 'files:watch', function() {
  * @param {object} opts Options to pass to copy() task (optional)
  */
 function processFiles( event, type, opts ) {
-    _.defaults( opts, {} );
-
+    opts = opts || {};
+    
     /**
      * Full file path
      */

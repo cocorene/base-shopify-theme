@@ -63,6 +63,7 @@
     "inquirer": "^1.0.3",
     "jscs": "^3.0.4",
     "jshint": "^2.9.1",
+    "matches-selector": "^1.0.0",
     "minifyify": "^7.2.1",
     "node-sass": "^3.7.0",
     "onchange": "^2.4.0",

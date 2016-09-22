@@ -1,105 +1,107 @@
+<!-- /templates/customers/addresses.liquid -->
+
 {% assign account_page_title = 'My Account' %}
 {% include 'account-titles' %}
 
 {% paginate customer.addresses by 10 %}
 
 <section class="outer mv2 pt1">
-  <div class="container--m mha">
+    <div class="container--m mha">
 
-    {% assign form_outer_id = 'newAddress' %}
-    {% assign form_action = customer.new_address %}
-    {% assign form_title = 'Add New Address' %}
-    {% assign form_cta = 'Add Address' %}
-    {% assign form_classes = 'mb2 pb1' %}
-
-    {% include 'account-address-form' %}
-
-    <div class="relative mb1">
-      <h2 class="h3 uppercase">{{ 'customer.addresses.title' | t }}</h2>
-      <a href="#0" class="new-address link absolute fit-r fit-t" onclick="barrel.toggleNewForm(event)">+ Add Address</a>
-    </div>
-
-    {% comment %}
-      List all customer addresses with a unique edit form.
-      Also add pagination in case they have a large number of addresses
-    {% endcomment %}
-    <div class="mha">
-      
-      {% for address in customer.addresses %}
-        <div class="address w1 mb2">
-          <div class="address__inner pv2 ph2 bg-cg1 relative">
-            {% if address == customer.default_address %}
-              <div class="address__default absolute fit-r bg-c1 cw pv025 ph075 p0">Default</div>
-            {% endif %}
-            <div class="address__info p">
-              {{ address.first_name | capitalize }} {{ address.last_name | capitalize }}<br>
-              {% if address.company != '' %}{{ address.company }}<br>{% endif %}
-              {{ address.street }}<br>
-              {{ address.city | capitalize }}{% if address.province_code %}, {{ address.province_code | upcase }} {% endif %} {{ address.zip | upcase }}<br>
-              {{ address.country }}<br>
-              {{ address.phone }}
-            </div>
-            <div class="address__footer mt2 rte cg6 absolute">
-              <a href="#0" onclick="barrel.toggleForm(event, {{address.id}})">Edit</a>
-              <a href="#0" onclick="barrel.removeAddress(event, {{address.id}})">Delete</a>
-            </div>
-          </div>
-        </div>
-
-        {% assign form_outer_id = 'editAddress' | append: '_' | append: address.id %}
-        {% assign form_action = address %}
-        {% assign form_title = 'Edit Address' %}
-        {% assign form_cta = 'Update Address' %}
-        {% assign form_classes = 'mb2 active-top' %}
+        {% assign form_outer_id = 'newAddress' %}
+        {% assign form_action = customer.new_address %}
+        {% assign form_title = 'Add New Address' %}
+        {% assign form_cta = 'Add Address' %}
+        {% assign form_classes = 'mb2 pb1' %}
 
         {% include 'account-address-form' %}
 
-      {% endfor %}
+        <div class="relative mb1">
+            <h2 class="h3 uppercase">{{ 'customer.addresses.title' | t }}</h2>
+            <a href="#0" class="new-address link absolute fit-r fit-t" onclick="barrel.toggleNewForm(event)">+ Add Address</a>
+        </div>
 
+        {% comment %}
+            List all customer addresses with a unique edit form.
+            Also add pagination in case they have a large number of addresses
+        {% endcomment %}
+        <div class="mha">
+            
+            {% for address in customer.addresses %}
+                <div class="address w1 mb2">
+                    <div class="address__inner pv2 ph2 bg-cg1 relative">
+                        {% if address == customer.default_address %}
+                            <div class="address__default absolute fit-r bg-c1 cw pv025 ph075 p0">Default</div>
+                        {% endif %}
+                        <div class="address__info p">
+                            {{ address.first_name | capitalize }} {{ address.last_name | capitalize }}<br>
+                            {% if address.company != '' %}{{ address.company }}<br>{% endif %}
+                            {{ address.street }}<br>
+                            {{ address.city | capitalize }}{% if address.province_code %}, {{ address.province_code | upcase }} {% endif %} {{ address.zip | upcase }}<br>
+                            {{ address.country }}<br>
+                            {{ address.phone }}
+                        </div>
+                        <div class="address__footer mt2 rte cg6 absolute">
+                            <a href="#0" onclick="barrel.toggleForm(event, {{address.id}})">Edit</a>
+                            <a href="#0" onclick="barrel.removeAddress(event, {{address.id}})">Delete</a>
+                        </div>
+                    </div>
+                </div>
+
+                {% assign form_outer_id = 'editAddress' | append: '_' | append: address.id %}
+                {% assign form_action = address %}
+                {% assign form_title = 'Edit Address' %}
+                {% assign form_cta = 'Update Address' %}
+                {% assign form_classes = 'mb2 active-top' %}
+
+                {% include 'account-address-form' %}
+
+            {% endfor %}
+
+        </div>
+
+        {% if customer.addresses == empty %}
+            <div class="bg-cg1 pv2 ph2 align-c">You have no saved address.</div>
+        {% endif %}
+
+        {% include 'pagination' %}
     </div>
-
-    {% if customer.addresses == empty %}
-      <div class="bg-cg1 pv2 ph2 align-c">You have no saved address.</div>
-    {% endif %}
-
-    {% include 'pagination' %}
-  </div>
 </section>
 
 <script>
-  window.barrel = {
-    toggleForm: function(e, id) {
-      e.preventDefault()
-      var el = document.getElementById('editAddress_'+id)
-      el.style.display = el.style.display == 'none' ? '' : 'none'
-    },
-    toggleNewForm: function(e) {
-      e.preventDefault()
-      var el = document.getElementById('newAddress')
-      el.style.display = el.style.display == 'none' ? '' : 'none'
-    },
-    removeAddress: function removeAddress(e, id){
-      e.preventDefault()
+    window.barrel = {
+        toggleForm: function(e, id) {
+            e.preventDefault()
+            var el = document.getElementById('editAddress_'+id)
+            el.style.display = el.style.display == 'none' ? '' : 'none'
+        },
+        toggleNewForm: function(e) {
+            e.preventDefault()
+            var el = document.getElementById('newAddress')
+            el.style.display = el.style.display == 'none' ? '' : 'none'
+        },
+        removeAddress: function removeAddress(e, id){
+            e.preventDefault()
 
-      if (!confirm("Are you sure you wish to delete this address?")) return
+            if (!confirm("Are you sure you wish to delete this address?")) return
 
-      var form = document.createElement("form")
-      var input = document.createElement("input");
+            var form = document.createElement("form")
+            var input = document.createElement("input");
 
-      form.setAttribute('method', 'post')
-      form.setAttribute("action", '/account/addresses/'+id)
+            form.setAttribute('method', 'post')
+            form.setAttribute("action", '/account/addresses/'+id)
 
-      input.setAttribute("type", "hidden")
-      input.setAttribute("name", '_method')
-      input.setAttribute("value", 'delete')
+            input.setAttribute("type", "hidden")
+            input.setAttribute("name", '_method')
+            input.setAttribute("value", 'delete')
 
-      form.appendChild(input)
+            form.appendChild(input)
 
-      document.body.appendChild(form)
-      form.submit()
-      document.body.removeChild(form)
-    }
-  } 
+            document.body.appendChild(form)
+            form.submit()
+            document.body.removeChild(form)
+        }
+    } 
 </script>
 
 {% endpaginate %}

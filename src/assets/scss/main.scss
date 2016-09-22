@@ -1,14 +1,22 @@
-//VARIABLES
+/* 
+ * Variables 
+ */
 @import "lib/colors";
 
-// Transitions
+
+/* 
+ * Transitions 
+ */
 $speed: 200ms;
 $ease: ease-in-out;
 
 $border: 1px solid $cb;
 $borderLight: 1px solid $cg1;
 
-// BASE
+
+/* 
+ * Base 
+ */
 @import "lib/normalize";
 @import "lib/breakpoints";
 @import "lib/display";
@@ -26,24 +34,32 @@ $borderLight: 1px solid $cg1;
 @import "lib/tables";
 @import "lib/spacing";
 
-// Components
+
+/* 
+ * Components 
+ */
 @import "components/counter";
 
-// PAGES
+
+/* 
+ * Pages 
+ */
 @import "pages/account";
 @import "pages/cart";
 
-#page {
-  min-height: 100vh;
-}
+#page { min-height: 100vh; }
 
-// GENERAL STYLES
+
+/* 
+ * General Styles 
+ */
 .outer {
-  padding-left: 2em;
-  padding-right: 2em;
+	padding-left: 2em;
+	padding-right: 2em;
 }
 
-// Text links
-.link {
-  color: $c1;
-}
+
+/* 
+ * Text Links 
+ */
+.link { color: $c1; }

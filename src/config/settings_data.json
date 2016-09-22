@@ -1,23 +1,23 @@
 {
-  "current": "Default",
-  "presets": {
-    "Default": {
-      "cart_notes_enable": true,
-      "color_body_bg": "#FFF",
-      "color_body_text": "#333333",
-      "color_borders": "#E5E5E5",
-      "color_footer_bg": "#F2F2F2",
-      "color_footer_social_link": "#BBB",
-      "color_footer_text": "#636363",
-      "color_primary": "#747474",
-      "color_secondary": "#BBB",
-      "favicon_enable": false,
-      "footer_newsletter_enable": true,
-      "footer_social_enable": true,
-      "logo_use_image": true,
-      "social_facebook_link": "https://www.facebook.com/barrelny",
-      "social_twitter_link": "https://twitter.com/barrelny",
-      "social_instagram_link": "https://www.instagram.com/barrelny/"
+    "current": "Default",
+    "presets": {
+        "Default": {
+            "cart_notes_enable": true,
+            "color_body_bg": "#FFF",
+            "color_body_text": "#333333",
+            "color_borders": "#E5E5E5",
+            "color_footer_bg": "#F2F2F2",
+            "color_footer_social_link": "#BBB",
+            "color_footer_text": "#636363",
+            "color_primary": "#747474",
+            "color_secondary": "#BBB",
+            "favicon_enable": false,
+            "footer_newsletter_enable": true,
+            "footer_social_enable": true,
+            "logo_use_image": true,
+            "social_facebook_link": "https://www.facebook.com/barrelny",
+            "social_twitter_link": "https://twitter.com/barrelny",
+            "social_instagram_link": "https://www.instagram.com/barrelny/"
+        }
     }
-  }
 }

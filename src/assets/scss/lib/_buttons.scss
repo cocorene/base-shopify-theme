@@ -1,29 +1,36 @@
-// RESET
+/*
+ * Reset
+ */
 button {
-  -webkit-appearance: none;
-  border: 0;
-  border-radius: 0;
-  background-color: transparent;
-  color: inherit;
-}
-button[disabled], 
-input[disabled] { 
-  cursor: default 
+    -webkit-appearance: none;
+    background-color: transparent;
+    border-radius: 0;
+    border: 0;
+    color: inherit;
 }
 
-// STYLES 
-// Buttons should be button.button or
-// element[rel="button"] for accessibility
+button[disabled],
+input[disabled] {
+    cursor: default;
+}
+
+
+/*
+ * STYLES:
+ * Buttons should be button.button or
+ * element[rel="button"] for accessibility
+ */
 button.button,
 .button,
 a[rel="button"],
 .button[rel="button"],
 input[type="submit"].button {
-  display: inline-block;
-  background-color: $c1;
-  color: white;
-  cursor: pointer;
-  padding: 0.7em 2em;
-  text-decoration: none;
-  text-align: center;
+    background-color: $c1;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    padding: 0.7em 2em;
+    text-align: center;
+    text-decoration: none;
 }
+

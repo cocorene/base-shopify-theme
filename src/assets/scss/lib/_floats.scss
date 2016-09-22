@@ -1,22 +1,21 @@
-.float-l { 
-  float: left 
-}
-.float-r { 
-  float: right 
-}
-.float-n { 
-  float: none 
-}
+.float-l { float: left; }
 
-// CLEARFIX
+.float-r { float: right; }
+
+.float-n { float: none; 
+
+
+/* 
+ * Clearfix 
+ */
 .clear {
-  &::before,
-  &::after {
-    content:' ';
-    display: table;
-  }
-
-  &::after {
-    clear: both;
-  }
+    &::before,
+    &::after {
+        content: ' ';
+        display: table;
+    }
+    &::after {
+        clear: both;
+    }
 }
+

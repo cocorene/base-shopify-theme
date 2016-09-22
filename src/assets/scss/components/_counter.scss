@@ -1,79 +1,77 @@
 .counter {
-  position: relative;
-  white-space: nowrap;
-  border: $border;
-  width: 90px;
-  height: 40px;
-  background-color: inherit;
-  color: inherit;
-
-  input[type="number"]{
-    position: absolute;
-    bottom: 0; left: 0; right: 0; top: 0;
-    margin: auto;
-    border: 0;
-    width: 2em;
-    padding-left: 0;
-    padding-right: 0;
-    appearance: textfield;
-    text-align: center;
-
-    &::-webkit-inner-spin-button,
-    &::-webkit-outer-spin-button {
-      appearance: none;
+    background-color: inherit;
+    border: $border;
+    color: inherit;
+    height: 40px;
+    position: relative;
+    white-space: nowrap;
+    width: 90px;
+    input[type="number"] {
+        appearance: textfield;
+        border: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        padding-left: 0;
+        padding-right: 0;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        top: 0;
+        width: 2em;
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+            appearance: none;
+        }
     }
-  }
-  button {
-    display: inline-block;
-    position: absolute;
-    bottom: 0; top: 0;
-    margin: auto;
-    height: 30px;
-    cursor: pointer;
-    transition: opacity $speed $ease;
-    outline: 0;
-
-    &[disabled]{
-      opacity: 0.3;
-      pointer-events: none;
-
-      &:hover::before {
-        opacity: 0;
-      }
+    button {
+        bottom: 0;
+        cursor: pointer;
+        display: inline-block;
+        height: 30px;
+        margin: auto;
+        outline: 0;
+        position: absolute;
+        top: 0;
+        transition: opacity $speed $ease;
+        &[disabled] {
+            opacity: 0.3;
+            pointer-events: none;
+            &:hover::before {
+                opacity: 0;
+            }
+        }
+        &:focus::before {
+            opacity: 1;
+        }
+        &:first-child {
+            left: 5px;
+        }
+        &:last-child {
+            right: 5px;
+        }
+        &:hover::before {
+            opacity: 1;
+        }
+        &::before {
+            background: $cg1;
+            border-radius: 100px;
+            bottom: 0;
+            content: '';
+            display: block;
+            height: 18px;
+            left: 0;
+            margin: auto;
+            opacity: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: opacity $speed $ease;
+            width: 18px;
+        }
+        span {
+            position: relative;
+        }
     }
-
-    &:focus::before {
-      opacity: 1;
-    }
-
-    &:first-child {
-      left: 5px;
-    }
-    &:last-child {
-      right: 5px;
-    }
-
-    &:hover::before {
-      opacity: 1;
-    }
-
-    &::before {
-      content:'';
-      display: block;
-      position: absolute;
-      bottom: 0; left: 0; right: 0; top: 0;
-      width: 18px;
-      height: 18px;
-      margin: auto;
-      border-radius: 100px;
-      background: $cg1;
-      opacity: 0;
-      transition: opacity $speed $ease;
-    }
-
-    span {
-      position: relative;
-    }
-  }
 }
 

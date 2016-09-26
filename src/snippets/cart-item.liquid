@@ -49,8 +49,7 @@
         <p>{{price}}</p>
     </div>
     <div class="cart__item__quantity mt1 align-t align-c">
-        {% assign counter_id = item.id | prepend: 'updates_' %}
-        {% include 'item-counter', id: counter_id, name: 'updates[]', value: item.quantity,  max: '10' %}
+        {% include 'item-counter', mode: 'cart', min: '0',  max: '10' %}
 
         <div class="mt075">
             <button type="submit" name="update" class="cart__item__update inline-block link js-update">Update</button>

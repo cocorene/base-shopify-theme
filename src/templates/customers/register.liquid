@@ -18,13 +18,13 @@
                 </div>
             {% endif %}
 
-            {% include 'input-text', type: 'text', label: 'First Name', name: 'customer[first_name]' %}
+            {% include 'input-text', label: 'First Name', name: 'customer[first_name]' %}
 
-            {% include 'input-text', type: 'text', label: 'Last Name', name: 'customer[last_name]' %}
-            
-            {% include 'input-text', type: 'email', label: 'Email', name: 'customer[email]', value: form.email %}
+            {% include 'input-text', label: 'Last Name', name: 'customer[last_name]' %}
 
-            {% include 'input-text', type: 'password', label: 'Password', name: 'customer[password]' %}
+            {% include 'input-text', label: 'Email', name: 'customer[email]', type: 'email', value: form.email %}
+
+            {% include 'input-text', label: 'Password', name: 'customer[password]', type: 'password' %}
 
             {% if form.errors %}
                 {% for field in form.errors %}

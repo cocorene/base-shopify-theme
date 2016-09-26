@@ -6,16 +6,18 @@
 
 {% assign label = label | default: false %}
 {% assign name = name | default: false %}
+{% assign id = id | default: false %}
 {% assign type = type | default: 'text' %}
 {% assign value = value | default: false %}
 {% assign autocorrect = autocorrect | default: false %}
 {% assign autocapitalize = autocapitalize | default: false %}
+{% assign class = class | default: '' %}
 
-{% if label and name %}
-    <div class="input-group">
+{% if name and label %}
+    <div class="{{ class }} input-group">
         <span class="block{% if form.errors %} has-error{% endif %}">
             <label for="{{ name }}" class="block">{{ label }}:</label>
-            <input class="block w1" type="{{ type }}" name="{{ name }}" autocorrect="{{ autocorrect }}" autocapitalize="{{ autocapitalize }}" {% if value %}value="{{ value }}{% endif %}">
+            <input class="block w1" {% if id %}id="{{ id }}"{% endif %} type="{{ type }}" name="{{ name }}" autocorrect="{{ autocorrect }}" autocapitalize="{{ autocapitalize }}" {% if value %}value="{{ value }}{% endif %}">
         </span>
     </div>
 {% else %}

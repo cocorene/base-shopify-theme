@@ -18,6 +18,6 @@
 
 <div class="counter inline-block {{ class }}" data-component="item-counter">
     <button type="button" data-count="-"><span>–</span></button>
-	<input type="number" {% if id %}id="{{ id }}"{% endif %} name="{{ name }}" value="{{ value }}" min="{{ min }}" max="{{ max }}">
+	<input {% if id %}id="{{ id }}"{% endif %} type="number" name="{{ name }}" value="{{ value }}" min="{{ min }}" max="{{ max }}">
     <button type="button" data-count="+"><span>+</span></button> 
 </div>

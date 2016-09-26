@@ -16,43 +16,33 @@
         <h4>{{form_title}}</h4>
 
         <div class="address__form__group flex flex-wrap flex-justify">
-            <div class="address__form__field input-group">
-                <label for="AddressFirstNameNew{{form_suffix}}" class="block">First Name:</label>
-                <input id="AddressFirstNameNew{{form_suffix}}" class="block w1" type="text" name="address[first_name]" value="{{form.first_name}}" autocapitalize="words">
-            </div>
-            <div class="address__form__field input-group">
-                <label for="AddressLastNameNew{{form_suffix}}" class="block">Last Name:</label>
-                <input id="AddressLastNameNew{{form_suffix}}" class="block w1" type="text" name="address[last_name]" value="{{form.last_name}}" autocapitalize="words">
-            </div>
+            {% assign address_field_id = 'AddressFirstNameNew' | append: form_suffix %}
+            {% include 'input-text', label: 'First Name', name: 'address[first_name]', value: form.first_name, autocapitalize: 'words', id: address_field_id, class: 'address__form__field' %}
+
+            {% assign address_field_id = 'AddressLastNameNew' | append: form_suffix %}
+            {% include 'input-text', label: 'Last Name', name: 'address[last_name]', value: form.last_name, autocapitalize: 'words', id: address_field_id, class: 'address__form__field' %}
         </div>
 
         <div class="address__form__group flex flex-wrap flex-justify">
-            <div class="address__form__field input-group">
-                <label for="AddressCompanyNew{{form_suffix}}" class="block">Company:</label>
-                <input id="AddressCompanyNew{{form_suffix}}" class="block w1" type="text" name="address[company]" value="{{form.company}}" autocapitalize="words">
-            </div>
-            <div class="address__form__field input-group">
-                <label for="AddressPhoneNew{{form_suffix}}" class="block">Phone:</label>
-                <input id="AddressPhoneNew{{form_suffix}}" class="block w1" type="tel" name="address[phone]" value="{{form.phone}}">
-            </div>
+            {% assign address_field_id = 'AddressCompanyNew' | append: form_suffix %}
+            {% include 'input-text', label: 'Company', name: 'address[company]', value: form.company, autocapitalize: 'words', id: address_field_id, class: 'address__form__field' %}
+
+            {% assign address_field_id = 'AddressPhoneNew' | append: form_suffix %}
+            {% include 'input-text', label: 'Phone', name: 'address[phone]', type: 'tel', value: form.phone, id: address_field_id, class: 'address__form__field' %}
         </div>
 
         <div class="address__form__group flex flex-wrap flex-justify">
-            <div class="address__form__field input-group">
-                <label for="AddressAddress1New{{form_suffix}}" class="block">Address1:</label>
-                <input id="AddressAddress1New{{form_suffix}}" class="block w1" type="text" name="address[address1]" value="{{form.address1}}" autocapitalize="words">
-            </div>
-            <div class="address__form__field input-group">
-                <label for="AddressAddress2New{{form_suffix}}" class="block">Address2:</label>
-                <input id="AddressAddress2New{{form_suffix}}" class="block w1" type="text" name="address[address2]" value="{{form.address2}}" autocapitalize="words">
-            </div>
+            {% assign address_field_id = 'AddressAddress1New' | append: form_suffix %}
+            {% include 'input-text', label: 'Address1', name: 'address[address1]', value: form.address1, autocapitalize: 'words', id: address_field_id, class: 'address__form__field' %}
+            
+            {% assign address_field_id = 'AddressAddress2New' | append: form_suffix %}
+            {% include 'input-text', label: 'Address2', name: 'address[address2]', value: form.address2, autocapitalize: 'words', id: address_field_id, class: 'address__form__field' %}
         </div>
 
         <div class="address__form__group flex flex-wrap flex-justify">
-            <div class="address__form__field input-group">
-                <label for="{{form_city_id}}{{form_suffix}}" class="block">City:</label>
-                <input id="{{form_city_id}}{{form_suffix}}" class="block w1" type="text" name="address[city]" value="{{form.city}}" autocapitalize="words">
-            </div>
+            {% assign address_field_id = form_city_id | append: form_suffix %}
+            {% include 'input-text', label: 'City', name: 'address[city]', value: form.city, autocapitalize: 'words', id: address_field_id, class: 'address__form__field' %}
+
             <div class="address__form__field input-group">
                 <label for="{{form_country_id}}{{form_suffix}}" class="block">Country:</label>
                 <span class="select-wrapper w1">
@@ -70,10 +60,9 @@
                     </span>
                 </span>
             </div>
-            <div class="address__form__field input-group">
-                <label for="AddressZipNew{{form_suffix}}" class="block">Zip:</label>
-                <input id="AddressZipNew{{form_suffix}}" class="block w1" type="text" name="address[zip]" value="{{form.zip}}" autocapitalize="words">
-            </div>
+
+            {% assign address_field_id = 'AddressZipNew' | append: form_suffix %}
+            {% include 'input-text', label: 'Zip', name: 'address[zip]', value: form.zip, autocapitalize: 'words', id: address_field_id, class: 'address__form__field' %}
         </div>
 
         <div class="input-group">

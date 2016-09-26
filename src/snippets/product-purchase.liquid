@@ -27,7 +27,7 @@
 {% endcomment %}
 {% assign thumbnails = thumbnails | split: '&%%&' %}
 
-<div class="product-purchase container--m pv2 mha">
+<div class="product-purchase container--m pv2 mha" data-module="product-purchase">
 
 	<div class="product-purchase__preview">
         {% if product.images.size > 1 %}
@@ -70,7 +70,7 @@
                     <div class="input-group inline-block">
                         <label class="block">{{ option }}</label>
                         <span class="select-wrapper w1">
-                            <select class="block w1">
+                            <select class="block w1 js-variant">
                                 {% capture option_index %}option{{ forloop.index }}{% endcapture %}
                                 {% assign option_values = product.variants | map: option_index | uniq %}
                                 {% for value in option_values %}

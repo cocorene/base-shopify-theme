@@ -1,5 +1,9 @@
 form { margin: 0; }
 
+.input-group {
+    @extend p;
+}
+
 input,
 select,
 textarea {

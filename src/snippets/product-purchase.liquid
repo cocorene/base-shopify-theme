@@ -51,20 +51,21 @@
             <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
 
             <form action="/cart/add" method="post" enctype="multipart/form-data">
-                <select id="productSelect" name="id">
-                    {% for variant in product.variants %}
-                        {% if variant.available %}
-                            <option value="{{ variant.id }}" data-sku="{{ variant.sku }}" {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}>
-                        		{{ variant.title }} - {{ variant.price | money_with_currency }}
-                        	</option>
-
-                        {% else %}
-                            <option disabled="disabled">
-                                {{ variant.title }} - {{ 'products.product.sold_out' | t }}
-                            </option>
-                        {% endif %}
-                    {% endfor %}
-                </select>
+                <span class="select-wrapper w1">
+                    <select class="block w1" id="productSelect" name="id">
+                        {% for variant in product.variants %}
+                            {% if variant.available %}
+                                <option value="{{ variant.id }}" data-sku="{{ variant.sku }}" {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}>
+                            		{{ variant.title }} - {{ variant.price | money_with_currency }}
+                            	</option>
+                            {% else %}
+                                <option disabled="disabled">
+                                    {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+                                </option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </span>
 
                 <span>{{ 'products.general.regular_price' | t }}</span>
                 <span itemprop="price">
@@ -79,7 +80,7 @@
                 <label>{{ 'products.product.quantity' | t }}</label>
 		        {% include 'item-counter', mode: 'default', max: '10' %}
 
-                <button type="submit" name="add">{{ 'products.product.add_to_cart' | t }}</button>
+                <button class="button" type="submit" name="add">{{ 'products.product.add_to_cart' | t }}</button>
             </form>
 
         </div>

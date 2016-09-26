@@ -16,72 +16,72 @@
         <h4>{{form_title}}</h4>
 
         <div class="address__form__group flex flex-wrap flex-justify">
-            <p class="address__form__field">
+            <div class="address__form__field input-group">
                 <label for="AddressFirstNameNew{{form_suffix}}" class="block">First Name:</label>
                 <input id="AddressFirstNameNew{{form_suffix}}" class="block w1" type="text" name="address[first_name]" value="{{form.first_name}}" autocapitalize="words">
-            </p>
-            <p class="address__form__field">
+            </div>
+            <div class="address__form__field input-group">
                 <label for="AddressLastNameNew{{form_suffix}}" class="block">Last Name:</label>
                 <input id="AddressLastNameNew{{form_suffix}}" class="block w1" type="text" name="address[last_name]" value="{{form.last_name}}" autocapitalize="words">
-            </p>
+            </div>
         </div>
 
         <div class="address__form__group flex flex-wrap flex-justify">
-            <p class="address__form__field">
+            <div class="address__form__field input-group">
                 <label for="AddressCompanyNew{{form_suffix}}" class="block">Company:</label>
                 <input id="AddressCompanyNew{{form_suffix}}" class="block w1" type="text" name="address[company]" value="{{form.company}}" autocapitalize="words">
-            </p>
-            <p class="address__form__field">
+            </div>
+            <div class="address__form__field input-group">
                 <label for="AddressPhoneNew{{form_suffix}}" class="block">Phone:</label>
                 <input id="AddressPhoneNew{{form_suffix}}" class="block w1" type="tel" name="address[phone]" value="{{form.phone}}">
-            </p>
+            </div>
         </div>
 
         <div class="address__form__group flex flex-wrap flex-justify">
-            <p class="address__form__field">
+            <div class="address__form__field input-group">
                 <label for="AddressAddress1New{{form_suffix}}" class="block">Address1:</label>
                 <input id="AddressAddress1New{{form_suffix}}" class="block w1" type="text" name="address[address1]" value="{{form.address1}}" autocapitalize="words">
-            </p>
-            <p class="address__form__field">
+            </div>
+            <div class="address__form__field input-group">
                 <label for="AddressAddress2New{{form_suffix}}" class="block">Address2:</label>
                 <input id="AddressAddress2New{{form_suffix}}" class="block w1" type="text" name="address[address2]" value="{{form.address2}}" autocapitalize="words">
-            </p>
+            </div>
         </div>
 
         <div class="address__form__group flex flex-wrap flex-justify">
-            <p class="address__form__field">
+            <div class="address__form__field input-group">
                 <label for="{{form_city_id}}{{form_suffix}}" class="block">City:</label>
                 <input id="{{form_city_id}}{{form_suffix}}" class="block w1" type="text" name="address[city]" value="{{form.city}}" autocapitalize="words">
-            </p>
-            <p class="address__form__field">
+            </div>
+            <div class="address__form__field input-group">
                 <label for="{{form_country_id}}{{form_suffix}}" class="block">Country:</label>
                 <span class="select-wrapper w1">
                     <select id="{{form_country_id}}{{form_suffix}}" class="block w1" name="address[country]" data-default="{{ form.country }}">{{ country_option_tags }}</select>
                 </span>
-            </p>
+            </div>
         </div>
 
         <div class="address__form__group flex flex-wrap flex-justify">
-            <p class="address__form__field">
+            <div class="address__form__field input-group">
                 <span id="{{form_province_container_id}}{{form_suffix}}" style="display:none">
                     <label for="{{form_province_id}}{{form_suffix}}" class="block">Province:</label>
                     <span class="select-wrapper w1">
                         <select id="{{form_province_id}}{{form_suffix}}" class="w1" name="address[province]" data-default="{{ form.province }}"></select>
                     </span>
                 </span>
-            </p>
-            <p class="address__form__field">
+            </div>
+            <div class="address__form__field input-group">
                 <label for="AddressZipNew{{form_suffix}}" class="block">Zip:</label>
                 <input id="AddressZipNew{{form_suffix}}" class="block w1" type="text" name="address[zip]" value="{{form.zip}}" autocapitalize="words">
-            </p>
+            </div>
         </div>
 
-        <p>
+        <div class="input-group">
             <label for="address_default_address_new{{form_suffix}}" class="checkbox mr05">
                 {{ form.set_as_default_checkbox }}
                 Set as default address
             </label>
-        </p>
+        </div>
 
         <p class="pt1">
             <button type="submit" class="button">{{form_cta}}</button> 

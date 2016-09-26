@@ -2,51 +2,22 @@
 
 {% comment %}
     Reusable text field snippet.
-
-    Requires:
-    field_name typeof string
-    field_label typeof string 
-
-    Defaults:
-    field_type default 'text'
-    field_value default ''
-    field_autocorrect default false
-    field_autocapitalize default false
 {% endcomment %}
 
-{% comment %}
-    Assign defaults if now values are given
-{% endcomment %}
-{% unless field_type %}
-    {% assign field_type = 'text' %}
-{% endunless %}
-{% unless field_value %}
-    {% assign field_value = '' %}
-{% endunless %}
-{% unless field_autocorrect %}
-    {% assign field_autocorrect = false %}
-{% endunless %}
-{% unless field_autocapitalize %}
-    {% assign field_autocapitalize = false %}
-{% endunless %}
+{% assign label = label | default: false %}
+{% assign name = name | default: false %}
+{% assign type = type | default: 'text' %}
+{% assign value = value | default: false %}
+{% assign autocorrect = autocorrect | default: false %}
+{% assign autocapitalize = autocapitalize | default: false %}
 
-{% if field_label and field_name %}
-    <p>
+{% if label and name %}
+    <div class="input-group">
         <span class="block{% if form.errors %} has-error{% endif %}">
-            <label for="{{field_name}}" class="block">{{field_label}}:</label>
-            <input class="block w1" type="{{field_type}}" name="customer[{{field_name}}]" autocorrect="{{field_autocorrect}}" autocapitalize="{{field_autocapitalize}}" value="{{field_value}}">
+            <label for="{{ name }}" class="block">{{ label }}:</label>
+            <input class="block w1" type="{{ type }}" name="{{ name }}" autocorrect="{{ autocorrect }}" autocapitalize="{{ autocapitalize }}" {% if value %}value="{{ value }}{% endif %}">
         </span>
-    </p>
+    </div>
 {% else %}
     <p class="italic bold">Whoops! Looks like you missed a value for this field :)</p>
 {% endif %}
-
-{% comment %}
-    Reset values to false 
-{% endcomment %}
-{% assign field_label = false %}
-{% assign field_name = false %}
-{% assign field_type = false %}
-{% assign field_value = false %}
-{% assign field_autocorrect = false %}
-{% assign field_autocapitalize = false %}

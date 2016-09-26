@@ -6,15 +6,9 @@
         <h1 class="h2 mb05">{{ 'customer.login.title' | t }}</h1>
 
         {% form 'customer_login', class: 'mha' %}
-            {% assign field_label = 'Email' %}
-            {% assign field_name = 'email' %}
-            {% assign field_type = 'email' %}
-            {% include 'input-text' %}
-
-            {% assign field_label = 'Password' %}
-            {% assign field_name = 'password' %}
-            {% assign field_type = 'password' %}
-            {% include 'input-text' %}
+            {% include 'input-text', type: 'email', label: 'Email', name: 'customer[email]' %}
+                
+            {% include 'input-text', type: 'password', label: 'Password', name: 'customer[password]' %}
 
             {% if form.errors %}
                 {% for field in form.errors %}
@@ -51,10 +45,8 @@
                 {% if form.posted_successfully? %}
                     <span class="mb1 recovery-success">Success! Check your email for a link to reset your password.</span>
                 {% else %}
-                    {% assign field_label = 'Email' %}
-                    {% assign field_name = 'email' %}
-                    {% assign field_type = 'email' %}
-                    {% include 'input-text' %}
+                
+                    {% include 'input-text', type: 'email', label: 'Email', name: 'customer[email]' %}
 
                     {% if form.errors %}
                         {% for field in form.errors %}

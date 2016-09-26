@@ -271,8 +271,7 @@
             "previous_product_html": "&larr; Previous Product",
             "next_product_html": "Next Product &rarr;",
             "from_text_html": "From {{ price }}",
-            "sale_price": "Sale price",
-            "regular_price": "Regular price"
+            "sale_price": "Sale price"
         },
         "product": {
             "sold_out": "Sold Out",

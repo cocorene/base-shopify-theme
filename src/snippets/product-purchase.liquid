@@ -5,34 +5,21 @@
     each image as follow: '[option title handleized]-[variant title handleized], [image alt text]'.
 {% endcomment %}
 
-{% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
-{% assign current_variant = false %}
+{% assign current_variant = product.selected_or_first_available_variant %}
+{% assign current_variant_handle = current_variant.title | handleize %}
+{% assign featured_image = current_variant.featured_image | default: product.featured_image %}
 {% assign thumbnails = '' %}
-
-{% comment %} 
-    Get current variant name.
-{% endcomment %}
-{% for option in product.options %}
-    {% assign option_title = option | handleize %}
-    {% for variant in product.variants %}
-        {% if variant == product.selected_or_first_available_variant %}
-            {% assign current_variant = variant.title | handleize | prepend: '-' | prepend: option_title %}
-        {% endif %}
-    {% endfor %}
-{% endfor %}
 
 {% comment %} 
     Get each thumbnail data: (0) Variant Title, (1) Alt Text, (2) Image Small URL, (3) Image Large URL.
 {% endcomment %}
-{% for option in product.options %}
-    {% for image in product.images %}
-        {% assign image_variant = image.alt | split: ',' | first | handleize | strip | append: ',' %}
-        {% assign image_alt = image.alt | split: ',' | last | append: ',' %}
-        {% assign image_src_small = image.src | img_url: 'small' | append: ',' %}
-        {% assign image_src_large = image.src | img_url: 'large' %}
+{% for image in product.images %}
+    {% assign image_variant = image.alt | split: ',' | first | handleize | strip | append: ',' %}
+    {% assign image_alt = image.alt | split: ',' | last | append: ',' %}
+    {% assign image_src_small = image.src | img_url: 'small' | append: ',' %}
+    {% assign image_src_large = image.src | img_url: 'large' %}
 
-        {% assign thumbnails = thumbnails | append: image_variant | append: image_alt | append: image_src_small | append: image_src_large | append: '&%%&' %}
-    {% endfor %}
+    {% assign thumbnails = thumbnails | append: image_variant | append: image_alt | append: image_src_small | append: image_src_large | append: '&%%&' %}
 {% endfor %}
 
 {% comment %}
@@ -51,8 +38,8 @@
 	        <ul class="product-purchase__thumbnails" id="ProductThumbs">
                 {% for thumbnail in thumbnails %}
                     {% assign data = thumbnail | split: ',' %}
-                    
-                    <li class="__item {% if data[2] contains featured_image %}is-active{% endif %}" data-thumbnail="{{ data[0] }}" {% unless data[0] contains current_variant %}hidden{% endunless %}>
+
+                    <li class="__item {% if data[2] contains featured_image %}is-active{% endif %}" data-thumbnail="{{ data[0] }}" {% unless data[0] contains current_variant_handle %}hidden{% endunless %}>
                         <a class="__link" href="{{ data[3] }}" title="{{ data[1] }}">
                             <img class="__img" src="{{ data[2] }}" alt="{{ data[1] }}" title="{{ data[1] }}">
                         </a>
@@ -64,43 +51,57 @@
 
     <div class="product-purchase__infos">
         <h1 class="h1" itemprop="name">{{ product.title }}</h1>
+
+        <span itemprop="price">
+            {{ product.selected_or_first_available_variant.price | money }}
+        </span>
+
+        {% if product.compare_at_price_max > product.price %}
+            <span>{{ 'products.general.sale_price' | t }}</span>
+            <p>{{ 'products.product.compare_at' | t }} {{ current_variant.compare_at_price | money }}</p>
+        {% endif %}
+
         <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
             <meta itemprop="priceCurrency" content="{{ shop.currency }}">
             <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
 
             <form action="/cart/add" method="post" enctype="multipart/form-data">
-                <span class="select-wrapper w1">
-                    <select class="block w1" id="productSelect" name="id">
-                        {% for variant in product.variants %}
-                            {% if variant.available %}
-                                <option value="{{ variant.id }}" data-sku="{{ variant.sku }}" {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}>
-                            		{{ variant.title }} - {{ variant.price | money_with_currency }}
-                            	</option>
-                            {% else %}
-                                <option disabled="disabled">
-                                    {{ variant.title }} - {{ 'products.product.sold_out' | t }}
-                                </option>
-                            {% endif %}
-                        {% endfor %}
-                    </select>
-                </span>
+                {% for option in product.options %}
+                    <div class="input-group inline-block">
+                        <label class="block">{{ option }}</label>
+                        <span class="select-wrapper w1">
+                            <select class="block w1">
+                                {% capture option_index %}option{{ forloop.index }}{% endcapture %}
+                                {% assign option_values = product.variants | map: option_index | uniq %}
+                                {% for value in option_values %}
+                                    <option value="{{ value | handleize }}">{{ value }}</option>
+                                {% endfor %}
+                            </select>
+                        </span>
+                    </div>
+                {% endfor %}
 
-                <span>{{ 'products.general.regular_price' | t }}</span>
-                <span itemprop="price">
-                    {{ current_variant.price | money }}
-                </span>
+                <select class="hide" id="productSelect" name="id">
+                    {% for variant in product.variants %}
+                        {% if variant.available %}
+                            <option value="{{ variant.id }}" data-variant="{{ variant.title | handleize }}" data-price="{{ variant.price | money_with_currency }}" {% if variant == current_variant %}selected="selected"{% endif %}>
+                                {{ variant.title }}
+                            </option>
+                        {% else %}
+                            <option data-variant="{{ variant.title | handleize }}" data-price="{{ variant.price | money_with_currency }}" disabled="disabled">
+                                {{ variant.title }}
+                            </option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
 
-                {% if product.compare_at_price_max > product.price %}
-                    <span>{{ 'products.general.sale_price' | t }}</span>
-                    <p>{{ 'products.product.compare_at' | t }} {{ current_variant.compare_at_price | money }}</p>
-                {% endif %}
-
-                <label>{{ 'products.product.quantity' | t }}</label>
-		        {% include 'item-counter', mode: 'default', max: '10' %}
+                <div class="input-group inline-block">
+                    <label class="block">{{ 'products.product.quantity' | t }}</label>
+    		        {% include 'item-counter', mode: 'default', max: '10' %}
+                </div>
 
                 <button class="button" type="submit" name="add">{{ 'products.product.add_to_cart' | t }}</button>
             </form>
-
         </div>
 
         <div class="product-purchase__description" itemprop="description">
@@ -110,14 +111,14 @@
 </div>
 
 <script type="text/javascript">
-    var select = document.getElementById( 'productSelect' );
-    var switchVariant = function( id ) {
-        window.history.pushState( null, null, '/products/{{ product.handle }}?variant=' + id );
-    }
+    // var select = document.getElementById( 'productSelect' );
+    // var switchVariant = function( id ) {
+    //     window.history.pushState( null, null, '/products/{{ product.handle }}?variant=' + id );
+    // }
 
-    select.addEventListener( 'change', function() {
-        var id = select.options[ select.selectedIndex ].value;
+    // select.addEventListener( 'change', function() {
+    //     var id = select.options[ select.selectedIndex ].value;
 
-        switchVariant( id );
-    } );
+    //     switchVariant( id );
+    // } );
 </script>

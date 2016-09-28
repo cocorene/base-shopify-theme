@@ -9,15 +9,9 @@
 
             {{ form.errors | default_errors }}
 
-            {% assign field_label = 'Password' %}
-            {% assign field_name = 'password' %}
-            {% assign field_type = 'password' %}
-            {% include 'input-text' %}
+            {% include 'input-text', label: 'Confirm', name: 'customer[password]', type: 'password' %}
 
-            {% assign field_label = 'Confirm' %}
-            {% assign field_name = 'password_confirmation' %}
-            {% assign field_type = 'password' %}
-            {% include 'input-text' %}
+            {% include 'input-text', label: 'Confirm', name: 'customer[password_confirmation]', type: 'password' %}
 
             <div class="mt2">
                 <button type="submit" class="button">Activate</button>

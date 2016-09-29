@@ -21,6 +21,14 @@ select, {
   border: 1px solid $cb;
   padding: .35em .65em;
   outline: 0;
+
+  &.has-error {
+    outline: red; // customize this!
+
+    & + .form-error {
+      display: block;
+    }
+  }
 }
 label {
   color: $cg6;

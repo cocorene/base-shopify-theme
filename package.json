@@ -74,7 +74,7 @@
   },
   "dependencies": {
     "closest": "0.0.1",
-    "conform.js": "0.0.2",
+    "conform.js": "^0.3.3",
     "feature.js": "^1.0.0",
     "micro-jsonp": "^1.0.1",
     "nanoajax": "^0.4.3",

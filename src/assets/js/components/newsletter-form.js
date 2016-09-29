@@ -1,51 +1,49 @@
-import conform from '../lib/forms'
-import closest from 'closest'
-
-const addError = (field) => {
-  let target = closest(field.node, '.js-field', true)
-  if (target) target.classList.add('has-error')
-}
-
-const removeError = (field) => {
-  let target = closest(field.node, '.js-field', true)
-  if (target) target.classList.remove('has-error')
-}
+import conform from 'conform.js'
 
 export default (el) => {
-  let emailInput = document.getElementById('newsletterEmail')
-  let formSuccess = document.getElementById('newsletterSuccess')
+  const form = el.getElementsByTagName('form')[0]
+  const success = document.getElementById('newsletterSuccess')
 
-  emailInput.onchange = (e) => {
-    if (e.target.value.length < 1){
-      removeError({node: emailInput})
-    }
-  }
-
-  const newsletter = conform(el, {
-    success: (fields, res, req) => {
-      console.log('Success')
-      console.log(res)
-      if (formSuccess) formSuccess.style.display = 'block'
-    },
-    error: (fields, res, req) => {
-      console.log('Error')
-      if (res) console.log(res)
-    },
+  const newsletter = conform(form, {
     tests: [
       {
-        name: /EMAIL|customer\[email\]/,
-        validate: (field) => {
-          return typeof field.value === 'string' && field.value.length > 1 && field.value.match(/.+\@.+\..+/) ? true : false
-        },
-        success: removeError,
-        error: addError 
+        name: /EMAIL|contact\[email\]/,
+        validate: ({ value }) => /.+\@.+\..+/.test(value), // basic email check
+        success: ({node}) => node.classList.remove('has-error'),
+        error: ({node}) => node.classList.add('has-error')
       }
     ]
   })
 
-  if (newsletter.action.match(/post\?u=/)){
+  /**
+   * Convert action to work with JSONp
+   * Mailchimp API
+   *
+   * Enable JSONp flag on Conform instance
+   */
+  if (/post\?u=/.test(newsletter.action)){
+    newsletter.jsonp = 'c'
     newsletter.action = newsletter.action.replace(/post\?u=/, 'post-json?u=')
   }
 
-  window.news = newsletter
+  newsletter.on('submit', () => {
+    //
+  })
+
+  newsletter.on('error', () => {
+    //
+  })
+
+  /**
+   * If a message is returned (Mailchimp only)
+   * show the message. Otherwise, show
+   * default message hard-coded in
+   * the markup.
+   */
+  newsletter.on('success', data => {
+    let msg = data.res.msg
+    form.style.display = 'none'
+    if (msg){ success.innerHTML = msg }
+    success.style.display = 'block'
+  })
 }

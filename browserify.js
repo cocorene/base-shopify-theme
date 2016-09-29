@@ -54,9 +54,6 @@ var b = browserify({
         "presets": [
           "es2015",
           "react"
-        ],
-        "plugins": [
-          'transform-object-assign'
         ]
       }
     ]

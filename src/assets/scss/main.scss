@@ -47,3 +47,8 @@ $borderLight: 1px solid $cg1;
 .link {
   color: $c1;
 }
+
+// Shopify Overrides
+.shopify-preview-bar {
+  display: none !important;
+}

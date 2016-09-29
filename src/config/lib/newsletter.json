@@ -1,10 +1,36 @@
 {
-  "name": "Mailchimp Integration",
+  "name": "Newsletter",
   "settings": [
+    {
+      "type": "textarea",
+      "id": "newsletter_prompt",
+      "label": "Newsletter prompt",
+      "default": "Sign up for our newsletter to be the first to know about new products, exclusive releases and promotions."
+    },
+    {
+      "type": "textarea",
+      "id": "newsletter_success",
+      "label": "Success Message",
+      "info": "If Mailchimp is enabled, this message will be ignored in favor of the response message from the Mailchimp servers.",
+      "default": "Thank you for signing up!"
+    },
+    {
+      "type": "textarea",
+      "id": "newsletter_error",
+      "label": "Error Message",
+      "default": "Whoops, something went wrong. If this issue persists, please <a href=\"/pages/contact\">contact us.</a>"
+    },
+    {
+      "type": "checkbox",
+      "id": "mailchimp_enabled",
+      "label": "Enable Mailchimp"
+    },
     {
       "type": "text",
       "id": "mailchimp_url",
-      "label": "Form Action URL"
+      "label": "Mailchimp form action URL",
+      "info": "For more info on where to find this, check out [this post](https://help.shopify.com/themes/customization/communication/get-a-mailchimp-form-action-url)."
     }
   ]
 }
+

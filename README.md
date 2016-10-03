@@ -10,7 +10,7 @@
 ## Getting Started
 
 #### Run Setup Script
-This simply installs dependencies and creates a `dist/` directory with a `config.yml` file in it.
+This simply installs dependencies and creates a `dist/` directory with a `config.yml` file and an `assets/` directory in it.
 ```
 npm run setup
 ```
@@ -21,21 +21,27 @@ Create a private app on the Shopify store you're working on to access your API k
 #### Edit Config File
 Open `dist/config.yml` and replace the `api_key` `password` `store` and `theme_id` values with the data from the private app you created in #4. [Example here.](http://themekit.cat/docs/#config-example)
 
+#### Copy Files
+IF this is your first time starting up the theme, you'll need to run the following to copy all existing files from `src` to `dist`, where you will watch them for changes and upload to your Shopify theme:
+```bash
+npm run files:copy
+```
+
 
 ## Developing
 After the steps above, you're ready to go. With this setup, you'll need to run two commands in two separate terminal tabs.
 
 ### Watching Theme Files
 Open a new terminal window and change directory into the `dist/` directory in the root of your project. The following script will watch for changes to any files copied to the `dist/` directory by your build task.
-  ```
-  theme watch
-  ```
+```
+theme watch
+```
 
 ### Watching Development Files
-In a separate terminal tab, run the provided build scripts. See [Build Scripts](#using-build-scripts) for more information. The main script below will compile CSS and JS, concatenate your config and locale JSON files, and copy all changed files to the `dist/` directory to be uploaded to Shopify.
-  ```bash
-  npm start
-  ```
+In a separate terminal tab, run the provided build scripts. See [Build Scripts](#using-build-scripts) for more information. The main script below will compile CSS and JS, concatenate your config and locale JSON files, and watch/copy all changed files to the `dist/` directory to be uploaded to Shopify.
+```bash
+npm start
+```
 
 **Note:** the javscript will build immediately, so if you're running `theme watch` concurrently, compiled JS will be uploaded. *So make sure you have the right theme configured in `dist/config.yml`*, or you may overwrite something you don't want to. 
 

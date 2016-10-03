@@ -9,7 +9,6 @@ var exorcist = require('exorcist')
 var shim = require('browserify-shim')
 var uglifyify = require('uglifyify')
 var babelify = require('babelify')
-var mkdirp = require('mkdirp')
 
 /**
  * Parse flags, returns boolean
@@ -31,14 +30,6 @@ MODE = DEV ? 'development' : 'production'
  * without added dev tools
  */
 process.env.NODE_ENV = MODE 
-
-/**
- * Make directories (if not already there)
- */
-mkdirp.sync('dist/assets', function(err){
-  if (err) return console.log('ERROR: ',err)
-  console.log('Created /dist/assets directory for our javascripts.')
-})
 
 /**
  * INIT Browserify

@@ -1,0 +1,16 @@
+{
+  "name": "Promo Bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "promobar_enabled",
+      "label": "Enable"
+    },
+    {
+      "type": "textarea",
+      "id": "promobar_content",
+      "label": "Text Content",
+      "info": "Can contain HTML"
+    }
+  ]
+}

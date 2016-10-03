@@ -60,6 +60,7 @@ const files = {
     glob: [
       'src/config/lib/general-info.json',
       'src/config/lib/global.json',
+      'src/config/lib/promobar.json',
       'src/config/lib/newsletter.json'
     ],
     dest: 'dist/config'

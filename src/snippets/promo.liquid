@@ -1,0 +1,10 @@
+{% if settings.promobar_enabled and settings.promobar_content != '' %}
+
+  <header id="promobar" class="promobar" data-component="promo">
+    <button class="promobar__close js-promobarClose"></button>
+    <div class="promobar__inner">
+      <div id="promobarContent" class="promobar__content p">{{settings.promobar_content}}</div>
+    </div>
+  </header>
+
+{% endif %}

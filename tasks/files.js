@@ -115,7 +115,7 @@ gulp.task('files:watch', function(){
     processFiles(event, 'snippets', {flatten: true})
   });
   gulp.watch(getPath(files.assets.glob), function(event){
-    processFiles(event, 'assets')
+    processFiles(event, 'assets', {flatten: true})
   });
   gulp.watch(getPath(files.locales.glob), function(event){
     processFiles(event, 'locales')
@@ -193,7 +193,7 @@ function copy(files, dest, opts, cb){
   }
 
   console.log(`Source: ${files}, Destination: ${dest}`)
-  gulp.src(files).pipe(gulp.dest(dest))
+  gulp.src(files).pipe(flatten()).pipe(gulp.dest(dest))
 
   cb()
 }

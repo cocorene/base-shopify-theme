@@ -9,16 +9,18 @@
     "files:copy": "gulp files:copy",
     "files:watch": "gulp files:watch",
     "assets:watch": "parallelshell 'npm run js:dev' 'npm run css:dev'",
-    "assets:build": "npm run css:build && npm run js:build",
-    "js:build": "node browserify.js --build",
-    "js:dev": "node browserify.js --dev",
+    "assets:build": "npm run setup:assets && npm run css:build && npm run js:build",
+    "js:build": "npm run setup:assets && node browserify.js --build",
+    "js:dev": "npm run setup:assets && node browserify.js --dev",
     "jscs:watch": "onchange './src/assets/js/**/*.js' -- npm run jscs",
     "jscs": "jscs src/assets/js/**/*.js src/assets/js/*.js > jscs.js || true",
     "jshint:watch": "onchange './src/assets/js/**/*.js' -- npm run jshint",
     "jshint": "jshint src/assets/js/**/*.js src/assets/js/*.js > jshint.js || true",
-    "css:build": "node-sass src/assets/scss/main.scss | postcss -u autoprefixer > dist/assets/main.css",
+    "css:build": "npm run setup:assets && node-sass src/assets/scss/main.scss | postcss -u autoprefixer > dist/assets/main.css",
     "css:dev": "onchange './src/assets/scss/**/*.scss' -- npm run css:build",
-    "setup": "npm i && node setup.js"
+    "setup:assets": "mkdir -p dist && mkdir -p dist/assets",
+    "setup:config": "mkdir -p dist && cp src/config-sample.yml dist/config.yml",
+    "setup": "npm i && npm run setup:config && npm run setup:assets"
   },
   "repository": {
     "type": "git",

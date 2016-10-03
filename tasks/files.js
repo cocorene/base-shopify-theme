@@ -94,8 +94,8 @@ gulp.task('files:copy', ['config:concat'], function(){
 
   copy(getPath(files.layout.glob), getPath(files.layout.dest), processLog.end.bind(null, 'layout'))
   copy(getPath(files.templates.glob), getPath(files.templates.dest), processLog.end.bind(null, 'templates'))
-  copy(getPath(files.snippets.glob), getPath(files.snippets.dest), {flatten: true}, processLog.end.bind(null, 'snippets'))
-  copy(getPath(files.assets.glob), getPath(files.assets.dest), {flatten: true}, processLog.end.bind(null, 'assets'))
+  copy(getPath(files.snippets.glob), getPath(files.snippets.dest), processLog.end.bind(null, 'snippets'))
+  copy(getPath(files.assets.glob), getPath(files.assets.dest), processLog.end.bind(null, 'assets'))
   copy(getPath(files.locales.glob), getPath(files.locales.dest), processLog.end.bind(null, 'locales'))
 })
 
@@ -174,7 +174,7 @@ function processFiles(event, type, opts = {}){
    */
   else {
     processLog.start(srcName, 'Copying') // start log
-    copy(srcPath, destPath, opts, processLog.end)
+    copy(srcPath, destPath, processLog.end)
   }
 }
 
@@ -187,12 +187,18 @@ function processFiles(event, type, opts = {}){
  * @param {object} opts Options (optional)
  * @param {function} cb The processLog callback function
  */
-function copy(files, dest, opts, cb){
-  if (typeof opts === 'function' ){
-    cb = opts
-  }
-
-  console.log(`Source: ${files}, Destination: ${dest}`)
+function copy(files, dest, cb){
+  /**
+   * Debug helper
+   */
+  //console.log(`Source: ${files}, Destination: ${dest}`)
+  
+  /** 
+   * Flatten all paths, only affects assets because
+   * the `files` param in this scope is the full path of 
+   * the changed files, i.e. assets/images/image.jpg instead
+   * of assets/image.jpg like we want.
+   */
   gulp.src(files).pipe(flatten()).pipe(gulp.dest(dest))
 
   cb()

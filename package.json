@@ -18,7 +18,7 @@
     "jshint": "jshint src/assets/js/**/*.js src/assets/js/*.js > jshint.js || true",
     "css:build": "node-sass src/assets/scss/main.scss | postcss -u autoprefixer > dist/assets/main.css",
     "css:dev": "onchange './src/assets/scss/**/*.scss' -- npm run css:build",
-    "setup": "node setup.js"
+    "setup": "npm i && node setup.js"
   },
   "repository": {
     "type": "git",

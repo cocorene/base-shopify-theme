@@ -4,45 +4,23 @@
 1. [Getting Started](#getting-started)
 2. [Developing](#developing)
 2. [Build Scripts](#using-build-scripts)
-3. [Liquid in CSS/JS](#using-liquid-in-css-and-js)
+3. [Pre-requisites](#pre-requisites)
+4. [Liquid in CSS/JS](#using-liquid-in-css-and-js)
 
 ## Getting Started
 
-#### Update Environment
-Make sure your node environment is updated. You're using Homebrew for this, right? You should be.
-
-```bash
-# check kegs and brew version
-brew update 
-
-# update node
-brew upgrade node
+#### Run Setup Script
+This simply installs dependencies and creates a `dist/` directory with a `config.yml` file in it.
 ```
-
-#### Install dependencies:
-
-```
-npm i
-```
-
-#### Install ThemeKit
-Install [Theme Kit](http://themekit.cat/) utility globally.
-
-```
-curl https://raw.githubusercontent.com/Shopify/themekit/installers/install | python 
+npm run setup
 ```
 
 #### Get API Key and Password
 Create a private app on the Shopify store you're working on to access your API key and password. See the [Shopify Theme README](https://github.com/Shopify/shopify_theme) above for more info.
 
-#### Run Setup Script
-
-```
-npm run setup
-```
-
 #### Edit Config File
-Open `dist/config.yml` and replace the `api_key` `password` `store` and `theme_id` values with the data from the private app you created in #4.
+Open `dist/config.yml` and replace the `api_key` `password` `store` and `theme_id` values with the data from the private app you created in #4. [Example here.](http://themekit.cat/docs/#config-example)
+
 
 ## Developing
 After the steps above, you're ready to go. With this setup, you'll need to run two commands in two separate terminal tabs.
@@ -59,7 +37,7 @@ In a separate terminal tab, run the provided build scripts. See [Build Scripts](
   npm start
   ```
 
-**Note:** the CSS and javscript will build immediately, so if you're running `theme watch` concurrently, they will be uploaded. *So make sure you have the right theme setup*, or you may overwrite something you don't want to. 
+**Note:** the javscript will build immediately, so if you're running `theme watch` concurrently, compiled JS will be uploaded. *So make sure you have the right theme configured in `dist/config.yml`*, or you may overwrite something you don't want to. 
 
 ## Using Build Scripts
 There are a variety of build scripts provided in the `package.json` that can be run directly in your terminal window. All scripts can be run via `npm run <scriptName>`, with the exception of `npm start`.
@@ -105,6 +83,27 @@ Analyze your javascript partials and writes a `jshint.js` file in the root of th
 
 ### `npm run jshint:watch`
 Runs a watch task on your javascripts. On change events, runs `[jshint]`.
+
+
+## Pre-requisites
+These are things that you'll need to have for all Shopify builds, and all builds at Barrel in general.
+
+#### Update Environment
+Make sure your node environment is updated. You're using Homebrew for this, right?
+
+```bash
+# check kegs and brew version
+brew update 
+
+# update node
+brew upgrade node
+```
+
+#### Install ThemeKit
+Install [Theme Kit](http://themekit.cat/) utility globally. This library replaces Shopify's previous CLI, `shopify_theme` gem, which was written in Ruby.
+```
+curl https://raw.githubusercontent.com/Shopify/themekit/installers/install | python 
+```
 
 
 ## Using Liquid in CSS and JS

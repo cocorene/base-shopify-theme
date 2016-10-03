@@ -46,14 +46,13 @@ mkdirp.sync('dist/assets', function(err){
 var b = browserify({
   entries: ['./src/assets/js/main.js'],
   transform: [ 
-    [shim, 
-      { global: true }
-    ], 
+    // [shim, 
+    //   { global: true }
+    // ], 
     [babelify,
       {
         "presets": [
-          "es2015",
-          "react"
+          "es2015"
         ]
       }
     ]

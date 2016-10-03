@@ -1,5 +1,3 @@
-import config from '../../../../package.json'
-
 window.app = {};
 
 /**
@@ -152,7 +150,8 @@ export default function(context = null){
    * Find all specified elements
    * in the DOM and init their javascripts
    */
-  config.barrel.types.forEach(function(type){
+  ;['module', 'component', 'page'].forEach(function(type){
+    console.log(type)
     const nodes = [].slice.call(context.querySelectorAll(`[data-${type}]`))
 
     for (var i = 0; i < nodes.length; i++){

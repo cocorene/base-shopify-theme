@@ -3,13 +3,6 @@
   "version": "0.0.1",
   "description": "",
   "main": "gulpfile.js",
-  "barrel": {
-    "types": [
-      "page",
-      "module",
-      "component"
-    ]
-  },
   "scripts": {
     "start": "parallelshell 'npm run assets:watch' 'gulp files:watch'",
     "build": "npm run assets:build && gulp files:copy",
@@ -73,7 +66,6 @@
     "watchify": "^3.7.0"
   },
   "dependencies": {
-    "closest": "0.0.1",
     "conform.js": "^0.3.3",
     "feature.js": "^1.0.0",
     "micro-jsonp": "^1.0.1",

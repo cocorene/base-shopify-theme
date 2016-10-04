@@ -5,8 +5,9 @@
 2. [Developing](#developing)
 2. [Build Scripts](#using-build-scripts)
 3. [Pre-requisites](#pre-requisites)
-4. [Versioning](#versioning)
-5. [Misc](#misc)
+4. [Misc](#misc)
+
+For contributing process and guidelines, check [CONTRIBUTING.md](https://gitlab.com/barrel/barrel-shopify-base/blob/master/CONTRIBUTING.md).
 
 ## Getting Started
 
@@ -109,40 +110,6 @@ brew upgrade node
 Install [Theme Kit](http://themekit.cat/) utility globally. This library replaces Shopify's previous CLI, `shopify_theme` gem, which was written in Ruby.
 ```
 curl https://raw.githubusercontent.com/Shopify/themekit/installers/install | python 
-```
-
-## Versioning
-Follow SemVer versioning guidelines for `patch` `minor` and `major`. To version this theme, use the following commands.
-
-#### patch
-For small fixes and additions:
-```bash
-npm version patch -m "{version} - released {mm/dd/yyyy} @ {mm:hh}am/pm
->
-> Add notes for release here."
-```
-
-#### minor 
-For new features, removals, or changes in API:
-```bash
-npm version minor -m "{version} - released {mm/dd/yyyy} @ {mm:hh}am/pm
->
-> Add notes for release here."
-```
-
-#### major 
-This will be used rarely. **Check with the lead before using this!** 
-
-For large features, refactors, or removals:
-```bash
-npm version major -m "{version} - released {mm/dd/yyyy} @ {mm:hh}am/pm
->
-> Add notes for release here."
-```
-
-**Important:** in all versioning cases, you must use the `--tags` flag to push them up to Gitlab.
-```bash
-git push origin master --tags
 ```
 
 ## Misc

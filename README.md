@@ -5,7 +5,8 @@
 2. [Developing](#developing)
 2. [Build Scripts](#using-build-scripts)
 3. [Pre-requisites](#pre-requisites)
-4. [Liquid in CSS/JS](#using-liquid-in-css-and-js)
+4. [Versioning](#versioning)
+5. [Misc](#misc)
 
 ## Getting Started
 
@@ -27,7 +28,6 @@ IF this is your first time starting up the theme, you'll need to run the followi
 npm run files:copy
 ```
 
-
 ## Developing
 After the steps above, you're ready to go. With this setup, you'll need to run two commands in two separate terminal tabs.
 
@@ -48,46 +48,46 @@ npm start
 ## Using Build Scripts
 There are a variety of build scripts provided in the `package.json` that can be run directly in your terminal window. All scripts can be run via `npm run <scriptName>`, with the exception of `npm start`.
 
-### `npm start`
+#### `npm start`
 Runs a watch script on you CSS and JS paths, as well as all theme files. Does not copy any files, but does build CSS and JS once before starting the watch script. 
 
-### `npm run build`
+#### `npm run build`
 Build assets and copy all files.
 
-### `npm run files:copy`
+#### `npm run files:copy`
 Copies all theme files, aside from CSS and JS, from `src/` to `dist/`.
 
-### `npm run files:watch`
+#### `npm run files:watch`
 Watches all theme files, aside from CSS and JS, for changes and copies changed files from `src/` to `dist/`.
 
-### `npm run assets:watch`
+#### `npm run assets:watch`
 Runs a watch task on your javascripts and CSS sheets.
 
-### `npm run assets:build`
+#### `npm run assets:build`
 Builds your javascript bundle and CSS sheet once.
 
-### `npm run js:build`
+#### `npm run js:build`
 Builds your javascript bundle once using production variables if available.
 
-### `npm run js:dev`
+#### `npm run js:dev`
 Runs a watch task on your javascripts. On change events, runs `[js:build]`.
 
-### `npm run css:build`
+#### `npm run css:build`
 Compiles and prefixes your CSS using Libass, POSTCSS and Autoprefixer.
 
-## `npm run css:dev`
+#### `npm run css:dev`
 Runs a watch task on your CSS. On change events, runs `[css:build]`.
 
-### `npm run jscs`
+#### `npm run jscs`
 Lints your javascript partials and writes a `jscs.js` file in the root of the project.
 
-### `npm run jscs:watch`
+#### `npm run jscs:watch`
 Runs a watch task on your javascripts. On change events, runs `[jscs]`.
 
-### `npm run jshint`
+#### `npm run jshint`
 Analyze your javascript partials and writes a `jshint.js` file in the root of the project.
 
-### `npm run jshint:watch`
+#### `npm run jshint:watch`
 Runs a watch task on your javascripts. On change events, runs `[jshint]`.
 
 
@@ -111,8 +111,43 @@ Install [Theme Kit](http://themekit.cat/) utility globally. This library replace
 curl https://raw.githubusercontent.com/Shopify/themekit/installers/install | python 
 ```
 
+## Versioning
+Follow SemVer versioning guidelines for `patch` `minor` and `major`. To version this theme, use the following commands.
 
-## Using Liquid in CSS and JS
+#### patch
+For small fixes and additions:
+```bash
+npm version patch -m "{version} - released {mm/dd/yyyy} @ {mm:hh}am/pm
+>
+> Add notes for release here."
+```
+
+#### minor 
+For new features, removals, or changes in API:
+```bash
+npm version minor -m "{version} - released {mm/dd/yyyy} @ {mm:hh}am/pm
+>
+> Add notes for release here."
+```
+
+#### major 
+This will be used rarely. **Check with the lead before using this!** 
+
+For large features, refactors, or removals:
+```bash
+npm version major -m "{version} - released {mm/dd/yyyy} @ {mm:hh}am/pm
+>
+> Add notes for release here."
+```
+
+**Important:** in all versioning cases, you must use the `--tags` flag to push them up to Gitlab.
+```bash
+git push origin master --tags
+```
+
+## Misc
+
+#### Using Liquid in CSS and JS
 It is possible to use Shopify's Liquid templating language in your CSS and Javascript. However, for most custom builds we do, we don't generally need this functionality outside of our markup.
 
 If you choose to use Liquid in your asset files, be aware that some features of this base theme may be unusable to you. For example, Autoprefixer will throw compile errors.
@@ -132,5 +167,3 @@ To fix this in SASS, you can use string interpolation. However, this requires th
 
 // but which will subsequently fail in Autoprefixer
 ```
-
-TODO: Potential solutions would be to use a mixin to wrap our interpolated Liquid, and upload a SCSS raw file to Shopify to force Shopify to compile SASS again and parse the Liquid correctly.

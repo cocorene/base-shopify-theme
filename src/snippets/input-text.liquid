@@ -27,9 +27,12 @@
 {% unless field_autocapitalize %}
   {% assign field_autocapitalize = false %}
 {% endunless %}
+{% unless field_classes %}
+  {% assign field_classes = false %}
+{% endunless %}
 
 {% if field_label and field_name %}
-  <p>
+  <p {% if field_classes %}class="{{field_classes}}"{% endif %}>
     <span class="block{% if form.errors %} has-error{% endif %}">
       <label for="{{field_name}}" class="block">{{field_label}}:</label>
       <input class="block w1" type="{{field_type}}" name="customer[{{field_name}}]" autocorrect="{{field_autocorrect}}" autocapitalize="{{field_autocapitalize}}" value="{{field_value}}">

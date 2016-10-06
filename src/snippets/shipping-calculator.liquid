@@ -1,0 +1,32 @@
+{{ '/services/javascripts/countries.js' | script_tag }}
+<div class="container--xs align-c mha" data-component="shipping-calculator">
+  <div class="shipping inline-block mha mb1">
+
+    <form autocomplete="off">
+      <p class="shipping__country">
+        <label for="country" class="block">Country:</label>
+        <span class="select-wrapper w1">
+          <select id="country" class="block w1" name="country"></select>
+        </span>
+      </p>
+
+      <p id="shippingProvince" class="shipping__country">
+        <label for="province" class="block">Province:</label>
+        <span class="select-wrapper w1">
+          <select id="province" class="block w1" name="province"></select>
+        </span>
+      </p>
+
+      <p id="shippingZip">
+        <span class="block">
+          <label for="zip" class="block">Zip:</label>
+          <input class="block w1" type="text" name="zip">
+        </span>
+      </p>
+
+      <button class="button" type="submit">Show Shipping Rates</button>
+    </form>
+
+    <div id="shippingResults" class="shipping__results"></div>
+  </div>
+</div>

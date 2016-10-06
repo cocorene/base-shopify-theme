@@ -1,57 +1,55 @@
 import shipper from 'shopify-shipping-calculator'
 
 export default (el) => {
-  const calculator = document.getElementById('shippingCalculator')
-  const calculatorResults = document.getElementById('shippingCalculatorResults')
-  const calculatorToggle = document.getElementById('shippingCalculatorToggle')
-  const calculatorProvince = document.getElementById('shippingProvince')
+  const outer = el
+  const results = document.getElementById('shippingResults')
+  const province = document.getElementById('shippingProvince')
+  const zip = document.getElementById('shippingZip')
+  const provinceLabel = province.getElementsByTagName('label')[0]
+  const zipLabel = zip.getElementsByTagName('label')[0]
 
-  const ship = shipper(el, {
+  const ship = shipper(outer, {
     defaultCountry: 'United States'
   })
 
   window.shipper = ship
 
-  const render = rates => {
-    calculatorResults.innerHTML = ''
-
-    calculatorResults.innerHTML = `
-      <div>
-        <p class="italic">There ${ rates.length > 1 ? `are ${rates.length} rates` : `is ${rates.length} rate`} available:</p>
-        <p class="p0">
-        ${ 
-          (() => {
-            let res = ''
-            rates.map(r => res +=`<span class="bold">${r.type}:</span><span>$${r.price}</span><br>`) 
-            return res
-          })()
-        }
-        </p>
-      </div>
-    `
-  }
+  const render = rates => results.innerHTML = `
+    <div>
+      <p class="italic">There ${ rates.length > 1 ? `are ${rates.length} rates` : `is ${rates.length} rate`} available:</p>
+      <p class="p0">
+      ${ 
+        (() => {
+          let res = ''
+          rates.map(r => res +=`<span class="bold">${r.type}:</span><span>$${r.price}</span><br>`) 
+          return res
+        })()
+      }
+      </p>
+    </div>
+  `
 
   ship.on('success', render)
   ship.on('error', res => console.warn(res))
   ship.on('change', model => {
+    let meta = model.meta
+
+    // Clear results for next call
+    results.innerHTML = ''
+
     !!model.province ? (
-      calculatorProvince.style.display = 'block'
+      province.style.display = 'block'
     ) : (
-      calculatorProvince.style.display = 'none'
+      province.style.display = 'none'
     )
-  })
 
-  calculatorToggle && calculatorToggle.addEventListener('click', e => {
-    e.preventDefault()
+    !!meta.zip_required ? (
+      zip.style.display = 'block'
+    ) : (
+      zip.style.display = 'none'
+    )
 
-    let enabled = calculator.classList.contains('is-enabled')
-
-    if (enabled){
-      e.target.innerHTML = 'Show shipping calculator.'
-      calculator.classList.remove('is-enabled')
-    } else {
-      e.target.innerHTML = 'Hide shipping calculator.'
-      calculator.classList.add('is-enabled')
-    }
+    zipLabel.innerHTML = `${meta.zip_label}:`
+    provinceLabel.innerHTML = `${meta.province_label}:`
   })
 }

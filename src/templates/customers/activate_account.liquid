@@ -1,19 +1,19 @@
 <div class="outer mt2">
 
   <div id="login_form" class="account-entry-form mha">
-    <h1 class="h3 mb05">Activate Your Account</h1>
+    <h1 class="h2 mb05">Activate Your Account</h1>
 
     {% form 'activate_customer_password', class: 'mha' %}
 
       {{ form.errors | default_errors }}
 
       {% assign field_label = 'Password' %}
-      {% assign field_name = 'password' %}
+      {% assign field_name = 'customer[password]' %}
       {% assign field_type = 'password' %}
       {% include 'input-text' %}
 
       {% assign field_label = 'Confirm' %}
-      {% assign field_name = 'password_confirmation' %}
+      {% assign field_name = 'customer[password_confirmation]' %}
       {% assign field_type = 'password' %}
       {% include 'input-text' %}
 

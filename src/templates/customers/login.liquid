@@ -5,12 +5,12 @@
 
     {% form 'customer_login', class: 'mha' %}
       {% assign field_label = 'Email' %}
-      {% assign field_name = 'email' %}
+      {% assign field_name = 'customer[email]' %}
       {% assign field_type = 'email' %}
       {% include 'input-text' %}
 
       {% assign field_label = 'Password' %}
-      {% assign field_name = 'password' %}
+      {% assign field_name = 'customer[password]' %}
       {% assign field_type = 'password' %}
       {% include 'input-text' %}
 
@@ -50,7 +50,7 @@
           <span class="mb1 recovery-success">Success! Check your email for a link to reset your password.</span>
         {% else %}
           {% assign field_label = 'Email' %}
-          {% assign field_name = 'email' %}
+          {% assign field_name = 'customer[email]' %}
           {% assign field_type = 'email' %}
           {% include 'input-text' %}
 

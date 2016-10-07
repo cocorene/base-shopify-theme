@@ -12,42 +12,39 @@
   field_autocapitalize default false
 {% endcomment %}
 
-{% comment %}
-  Assign defaults if now values are given
-{% endcomment %}
-{% unless field_type %}
-  {% assign field_type = 'text' %}
-{% endunless %}
-{% unless field_value %}
-  {% assign field_value = '' %}
-{% endunless %}
-{% unless field_autocorrect %}
-  {% assign field_autocorrect = false %}
-{% endunless %}
-{% unless field_autocapitalize %}
-  {% assign field_autocapitalize = false %}
-{% endunless %}
-{% unless field_classes %}
-  {% assign field_classes = false %}
-{% endunless %}
+{% comment %} Set default values to false {% endcomment %}
+{% assign field_name = field_name | default: false %}
+{% assign field_label = field_label | default: false %}
+{% assign field_type = field_type | default: 'text' %}
+{% assign field_value = field_value | default: '' %}
+{% assign field_autocorrect = field_autocorrect | default: false %}
+{% assign field_autocapitalize = field_autocapitalize | default: false %}
+{% assign field_placeholder = field_placeholder | default: '' %}
 
 {% if field_label and field_name %}
-  <p {% if field_classes %}class="{{field_classes}}"{% endif %}>
-    <span class="block{% if form.errors %} has-error{% endif %}">
-      <label for="{{field_name}}" class="block">{{field_label}}:</label>
-      <input class="block w1" type="{{field_type}}" name="customer[{{field_name}}]" autocorrect="{{field_autocorrect}}" autocapitalize="{{field_autocapitalize}}" value="{{field_value}}">
+  <p class="{{field_classes}}">
+    <span class="block">
+      <label for="{{field_name}}" class="block">{{field_label}}</label>
+      <input class="block w1" 
+        type="{{field_type}}" 
+        name="{{field_name}}" 
+        placeholder="{{field_placeholder}}"
+        autocorrect="{{field_autocorrect}}" 
+        autocapitalize="{{field_autocapitalize}}" 
+        value="{{field_value}}"/>
     </span>
   </p>
 {% else %}
   <p class="italic bold">Whoops! Looks like you missed a value for this field :)</p>
 {% endif %}
 
-{% comment %}
-  Reset values to false 
-{% endcomment %}
+{% comment %} Reset values to false {% endcomment %}
 {% assign field_label = false %}
 {% assign field_name = false %}
 {% assign field_type = false %}
 {% assign field_value = false %}
 {% assign field_autocorrect = false %}
 {% assign field_autocapitalize = false %}
+{% assign field_placeholder = false %}
+{% assign has_errors = false %}
+{% assign error_message = false %}

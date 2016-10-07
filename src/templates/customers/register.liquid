@@ -17,17 +17,17 @@
       {% endif %}
 
       {% assign field_label = 'First Name' %}
-      {% assign field_name = 'first_name' %}
+      {% assign field_name = 'customer[first_name]' %}
       {% assign field_type = 'text' %}
       {% include 'input-text' %}
 
       {% assign field_label = 'Last Name' %}
-      {% assign field_name = 'last_name' %}
+      {% assign field_name = 'customer[last_name]' %}
       {% assign field_type = 'text' %}
       {% include 'input-text' %}
 
       {% assign field_label = 'Email' %}
-      {% assign field_name = 'email' %}
+      {% assign field_name = 'customer[email]' %}
       {% assign field_type = 'email' %}
       {% if form.email %}
         {% assign field_value = form.email %}
@@ -35,7 +35,7 @@
       {% include 'input-text' %}
 
       {% assign field_label = 'Password' %}
-      {% assign field_name = 'password' %}
+      {% assign field_name = 'customer[password]' %}
       {% assign field_type = 'password' %}
       {% include 'input-text' %}
 

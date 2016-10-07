@@ -14,43 +14,60 @@
     <h4>{{form_title}}</h4>
 
     <div class="address__form__group flex flex-wrap flex-justify">
-      <p class="address__form__field">
-        <label for="AddressFirstNameNew{{form_suffix}}" class="block">First Name:</label>
-        <input id="AddressFirstNameNew{{form_suffix}}" class="block w1" type="text" name="address[first_name]" value="{{form.first_name}}" autocapitalize="words">
-      </p>
-      <p class="address__form__field">
-        <label for="AddressLastNameNew{{form_suffix}}" class="block">Last Name:</label>
-        <input id="AddressLastNameNew{{form_suffix}}" class="block w1" type="text" name="address[last_name]" value="{{form.last_name}}" autocapitalize="words">
-      </p>
+      {% assign field_classes = 'address__form__field' %}
+      {% assign field_label = 'First Name:' %}
+      {% assign field_name = 'address[first_name]' %}
+      {% assign field_value = form.first_name %}
+      {% assign field_autocapitalize = 'words' %}
+      {% include 'input-text' %}
+
+      {% assign field_classes = 'address__form__field' %}
+      {% assign field_label = 'Last Name:' %}
+      {% assign field_name = 'address[last_name]' %}
+      {% assign field_value = form.last_name %}
+      {% assign field_autocapitalize = 'words' %}
+      {% include 'input-text' %}
     </div>
 
     <div class="address__form__group flex flex-wrap flex-justify">
-      <p class="address__form__field">
-        <label for="AddressCompanyNew{{form_suffix}}" class="block">Company:</label>
-        <input id="AddressCompanyNew{{form_suffix}}" class="block w1" type="text" name="address[company]" value="{{form.company}}" autocapitalize="words">
-      </p>
-      <p class="address__form__field">
-        <label for="AddressPhoneNew{{form_suffix}}" class="block">Phone:</label>
-        <input id="AddressPhoneNew{{form_suffix}}" class="block w1" type="tel" name="address[phone]" value="{{form.phone}}">
-      </p>
+      {% assign field_classes = 'address__form__field' %}
+      {% assign field_label = 'Company:' %}
+      {% assign field_name = 'address[company]' %}
+      {% assign field_value = form.company %}
+      {% include 'input-text' %}
+
+      {% assign field_classes = 'address__form__field' %}
+      {% assign field_label = 'Phone:' %}
+      {% assign field_name = 'address[phone]' %}
+      {% assign field_value = form.phone %}
+      {% assign field_type = 'tel' %}
+      {% include 'input-text' %}
     </div>
 
     <div class="address__form__group flex flex-wrap flex-justify">
-      <p class="address__form__field">
-        <label for="AddressAddress1New{{form_suffix}}" class="block">Address1:</label>
-        <input id="AddressAddress1New{{form_suffix}}" class="block w1" type="text" name="address[address1]" value="{{form.address1}}" autocapitalize="words">
-      </p>
-      <p class="address__form__field">
-        <label for="AddressAddress2New{{form_suffix}}" class="block">Address2:</label>
-        <input id="AddressAddress2New{{form_suffix}}" class="block w1" type="text" name="address[address2]" value="{{form.address2}}" autocapitalize="words">
-      </p>
+      {% assign field_classes = 'address__form__field' %}
+      {% assign field_label = 'Address:' %}
+      {% assign field_name = 'address[address1]' %}
+      {% assign field_value = form.address1 %}
+      {% assign field_autocapitalize = 'words' %}
+      {% include 'input-text' %}
+
+      {% assign field_classes = 'address__form__field' %}
+      {% assign field_label = 'Address (contd):' %}
+      {% assign field_name = 'address[address2]' %}
+      {% assign field_value = form.address2 %}
+      {% assign field_autocapitalize = 'words' %}
+      {% include 'input-text' %}
     </div>
 
     <div class="address__form__group flex flex-wrap flex-justify">
-      <p class="address__form__field">
-        <label for="{{form_city_id}}{{form_suffix}}" class="block">City:</label>
-        <input id="{{form_city_id}}{{form_suffix}}" class="block w1" type="text" name="address[city]" value="{{form.city}}" autocapitalize="words">
-      </p>
+      {% assign field_classes = 'address__form__field' %}
+      {% assign field_label = 'City:' %}
+      {% assign field_name = 'address[city]' %}
+      {% assign field_value = form.city %}
+      {% assign field_autocapitalize = 'words' %}
+      {% include 'input-text' %}
+
       <p class="address__form__field">
         <label for="{{form_country_id}}{{form_suffix}}" class="block">Country:</label>
         <span class="select-wrapper w1">
@@ -68,10 +85,12 @@
           </span>
         </span>
       </p>
-      <p class="address__form__field">
-        <label for="AddressZipNew{{form_suffix}}" class="block">Zip:</label>
-        <input id="AddressZipNew{{form_suffix}}" class="block w1" type="text" name="address[zip]" value="{{form.zip}}" autocapitalize="words">
-      </p>
+
+      {% assign field_classes = 'address__form__field' %}
+      {% assign field_label = 'Zip:' %}
+      {% assign field_name = 'address[zip]' %}
+      {% assign field_value = form.zip %}
+      {% include 'input-text' %}
     </div>
 
     <p>
@@ -85,7 +104,6 @@
       <button type="submit" class="button">{{form_cta}}</button> 
       <a href="#0" class="ml1 underline" onclick="{{form_script}}">Cancel</a>
     </p>
-
   {% endform %}
 
 </div>
@@ -157,12 +175,28 @@
   }
 
   /**
-   * Setup onchange listener for countries
+   * If we have an active default country,
+   * select it and select it's default province
+   *
+   * (this is for the edit form)
    */
-  countrySelector.onchange = function(e){
-    var selectedOption = countrySelector.options[countrySelector.selectedIndex]
-    var options = JSON.parse(selectedOption.getAttribute('data-provinces')) || []
+  function selectDefaults(){
+    if (countryDefault.length < 1) return
 
+    var selectedCountry = selectOption(countryDefault, countrySelector)
+    var options = JSON.parse(selectedCountry.getAttribute('data-provinces'))
+
+    showProvinces(options)
+  }
+
+  /**
+   * Get selected country, read it's 
+   * provinces, and toss them into the 
+   * provinces selector
+   */
+  countrySelector.onchange = function(){
+    var selectedCountry = countrySelector.options[countrySelector.selectedIndex]
+    var options = JSON.parse(selectedCountry.getAttribute('data-provinces')) || []
     options.length > 0 ? showProvinces(options) : hideProvinces()
   }
 

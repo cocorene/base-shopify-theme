@@ -14,6 +14,7 @@ select {
 }
 input[type="text"],
 input[type="email"],
+input[type="number"],
 input[type="search"],
 input[type="tel"],
 input[type="password"],
@@ -21,6 +22,7 @@ select, {
   border: 1px solid $cb;
   padding: .35em .65em;
   outline: 0;
+  -webkit-appearance: none;
 
   &.has-error {
     outline: red; // customize this!

@@ -1,6 +1,6 @@
 {
   "name": "barrel-shopify-base",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A base scaffold for building Shopify sites.",
   "main": "gulpfile.js",
   "scripts": {

@@ -7,13 +7,8 @@
 
 {% if type == 'product' %}
   {% assign title = item.title %}
-  {% assign caption = item.metafields.details.lede %}
-  {% for i in item.images %}
-    {% if forloop.index == 2 %}
-      {% assign image = i | img_url: '400x' %}
-      {% break %}
-    {% endif %}
-  {% endfor %}
+  {% assign caption = item.content | strip_html | truncatewords: 30 %}
+  {% assign image = item.featured_image | img_url: '400x' %}
 {% elsif type == 'article' %}
   {% assign title = item.title %}
   {% assign caption = item.excerpt_or_content | strip_html | truncatewords: 30 %}
@@ -31,9 +26,7 @@
   </div>
   {% if image %}
     <a href={{url}} class="search__result__image w1 object-fit-wrap relative">
-      <img class="w1 block" 
-        src="{{ 'image-placeholder.png' | asset_url }}"
-        data-normal="{{image}}"/>
+      <img class="w1 block absolute fit-x mxa" src="{{image}}"/>
     </a>
   {% endif %}
 </article>

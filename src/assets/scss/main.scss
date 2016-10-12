@@ -29,6 +29,7 @@ $borderLight: 1px solid $cg1;
 // Components
 @import "components/counter";
 @import "components/promobar";
+@import "components/search-result";
 
 // PAGES
 @import "pages/account";
@@ -40,8 +41,8 @@ $borderLight: 1px solid $cg1;
 
 // GENERAL STYLES
 .outer {
-  padding-left: 2em;
-  padding-right: 2em;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 // Text links

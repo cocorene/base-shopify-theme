@@ -1,4 +1,7 @@
 # Shopify Base Theme
+See package.json for theme version.
+
+**Styles:** [svbstrate v2.3.1](https://github.com/estrattonbailey/svbstrate)
 
 ## Table of Contents
 1. [Getting Started](#getting-started)
@@ -7,7 +10,7 @@
 3. [Pre-requisites](#pre-requisites)
 4. [Misc](#misc)
 
-For contributing process and guidelines, check [CONTRIBUTING.md](https://gitlab.com/barrel/barrel-shopify-base/blob/master/CONTRIBUTING.md).
+For contributing process and guidelines, check CONTRIBUTING.md.
 
 ## Getting Started
 

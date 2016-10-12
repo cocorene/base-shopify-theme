@@ -1,15 +1,6 @@
-//VARIABLES
+@import "lib/reset";
+@import "lib/variables";
 @import "lib/colors";
-
-// Transitions
-$speed: 200ms;
-$ease: ease-in-out;
-
-$border: 1px solid $cb;
-$borderLight: 1px solid $cg1;
-
-// BASE
-@import "lib/normalize";
 @import "lib/breakpoints";
 @import "lib/display";
 @import "lib/widths";

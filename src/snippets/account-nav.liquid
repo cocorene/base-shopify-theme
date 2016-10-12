@@ -1,10 +1,18 @@
 <nav class="account__nav p">
   <ul class="list--reset align-c">
     <li class="account__nav__link inline-block">
-      <a class="ph1 {% if template contains 'account' %}underline c1{% endif %}" href="/account">Account Home</a>
+      {% if template contains 'account' %}
+        <span class="ph1">Account Home</span>
+      {% else %}
+        <a class="ph1 underline c1" href="/account">Account Home</a>
+      {% endif %}
     </li>
     <li class="account__nav__link inline-block">
-      <a class="ph1 {% if template contains 'addresses' %}underline c1{% endif %}" href="/account/addresses">Manage Addresses</a>
+      {% if template contains 'address' %}
+        <span class="ph1">Manage Addresses</span>
+      {% else %}
+        <a class="ph1 underline c1" href="account/addresses">Manage Addresses</a>
+      {% endif %}
     </li>
   </ul>
 </nav>

@@ -10,11 +10,11 @@
       {% if customer.orders.size != 0 %}
         <div class="orders-table relative w1">
           <div class="orders-table__header table__row w1">
-            <div class="__prop table__cell pv1">{{ 'customer.orders.order_number' | t }}</div>
-            <div class="__prop table__cell pv1 align-c">{{ 'customer.orders.date' | t }}</div>
-            <div class="__prop table__cell pv1 align-c">{{ 'customer.orders.payment_status' | t }}</div>
-            <div class="__prop table__cell pv1 align-c">{{ 'customer.orders.shipping_status' | t }}</div>
-            <div class="__prop table__cell pv1 align-c">{{ 'customer.orders.total' | t }}</div>
+            <div class="__prop table__cell pv1">Order No.</div>
+            <div class="__prop table__cell pv1 align-c">Date</div>
+            <div class="__prop table__cell pv1 align-c">Payment</div>
+            <div class="__prop table__cell pv1 align-c">Shipping</div>
+            <div class="__prop table__cell pv1 align-c">Total</div>
           </div>
           {% for order in customer.orders %}
             <div class="orders-table__order relative pv1">
@@ -44,7 +44,7 @@
 
       {% else %}
         
-        <p class="align-c pv4 bg-cg1">You don't have any orders yet!</p>
+        <p class="align-c px2 bg-cg1">You don't have any orders yet!</p>
 
       {% endif %}
 

@@ -1,0 +1,16 @@
+.o-caret {
+  display: inline-block;
+  position: relative;
+  width: 0.6em;
+  height: 0.6em;
+  border-right: 2px solid currentColor;
+  border-top: 2px solid currentColor;
+  transform: rotate(45deg);
+  margin-top: -0.2em;
+}
+.o-caret--left {
+  border-right: 0px solid currentColor;
+  border-top: 0px solid currentColor;
+  border-left: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+}

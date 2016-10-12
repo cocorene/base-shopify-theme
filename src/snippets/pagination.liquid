@@ -1,13 +1,35 @@
-{% if paginate.pages > 1 %}
-  <div class="pagination align-c mt2">
-    <a class="pagination__arrow inline-block decoration--none{% unless paginate.previous %} cg2{% endunless %}" {% if paginate.previous %}href="{{ paginate.previous.url }}"{% endif %}>&larr;</a>
-    <ul class="list--reset inline-block mh1">
-      {% for part in paginate.parts %}
-        <li class="pagination__page inline-block mh05 align-c bg-cg1">
-          <a class="inline-block pv05 ph05{% if part.is_link %} c1{% endif %}" {% if part.is_link %}href="{{ part.url }}"{% endif %}>{{ part.title }}</a>
+<ul class="pagination relative h5 align-c pv2">
+  {% if paginate.previous %}
+    <li class="pagination__arrow mr05 inline-block">
+      <a href="{{ paginate.previous.url }}" class="inline-block" title="{{ paginate.previous.title }}">
+        <i class="o-caret o-caret--left"></i>
+      </a>
+    </li>
+  {% endif %}
+
+  {% for part in paginate.parts %}
+    {% if part.is_link %}
+      <li class="pagination__page mh05 inline-block">
+        <a href="{{ part.url }}" class="inline-block" title="">{{ part.title }}</a>
+      </li>
+    {% else %}
+      {% if part.title == paginate.current_page %}
+        <li class="pagination__page mh05 is-acitve inline-block">
+          <span class="inline-block">{{ part.title }}</span>
         </li>
-      {% endfor %}
-    </ul>
-    <a class="pagination__arrow inline-block decoration--none{% unless paginate.next %} cg2{% endunless %}" {% if paginate.next %}href="{{ paginate.next.url }}"{% endif %}>&rarr;</a>
-  </div>
-{% endif %}
+      {% else %}
+        <li class="pagination__page mh05 is-disabled inline-block">
+          <span class="inline-block">{{ part.title }}</span>
+        </li>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  {% if paginate.next %}
+    <li class="pagination__arrow mr05 inline-block">
+      <a href="{{ paginate.next.url }}" class="inline-block" title="{{ paginate.next.title }}">
+        <i class="o-caret"></i>
+      </a>
+    </li>
+  {% endif %}
+</ul>

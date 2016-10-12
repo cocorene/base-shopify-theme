@@ -1,0 +1,27 @@
+.pagination {}
+
+/**
+ * Page number
+ */
+.pagination__page {
+  a, span {
+    width: 2em;
+    height: 2em;
+    border-radius: 100%;
+    line-height: 2em;
+    border: 2px solid currentColor;
+    color: $c1;
+    text-decoration: none;
+  }
+  span {
+    color: $cb;
+  }
+}
+
+/**
+ * Prev/next arrow
+ */
+.pagination__arrow {
+  color: $c1;
+  text-decoration: none;
+}

@@ -5,7 +5,7 @@
   </form>
 {% endcapture %}
 
-{% paginate search.results by 10 %}
+{% paginate search.results by 4 %}
 
 <section class="outer pt1 pb2 ts2">
   <div class="container--xs mha tsx">
@@ -23,13 +23,12 @@
         <hr class="gray"/>
       {% endif %}
 
-
       {% for item in search.results %}
         {% include 'search-result' %}
         <hr class="gray"/>
       {% endfor %}
 
-      {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+      {% include 'pagination' %}
 
     {% else %}
 

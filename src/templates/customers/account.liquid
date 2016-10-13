@@ -19,15 +19,15 @@
 
               <p class="block mt0 mb05">{{order.created_at | date: '%b %d, %Y'}}</p>
 
-              <span class="order__meta inline-block bg-c1 cw">
-                <strong>Total:</strong> {{order.total_price | money}}
-              </span>
-              <span class="order__meta inline-block">
-                <strong>Payment:</strong> {{order.financial_status_label}}
-              </span>
-              <span class="order__meta inline-block">
-                <strong>Shipping:</strong> {{order.fulfillment_status_label}}
-              </span>
+              <div class="order__meta order__meta--total inline-block">
+                <span>Total:</span><span>{{order.total_price | money}}</span>
+              </div>
+              <div class="order__meta inline-block">
+                <span>Payment:</span><span>{{order.financial_status_label}}</span>
+              </div>
+              <div class="order__meta inline-block">
+                <span>Shipping:</span><span>{{order.fulfillment_status_label}}</span>
+              </div>
             </li>
           {% endfor %}
         </ul>

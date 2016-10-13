@@ -1,30 +1,30 @@
-<div class="clear">
-  <div class="account__logout pv05 ph1 bg-cw"><a href="/account/logout">Log Out</a></div>
-</div>
+{% include 'account-titles' %}
 
 <section class="outer mt2">
-  <div class="container--m mha pt1 align-c">
-    <h1 class="h2">Order No: {{order.name}}</h1>
-    <h4 class="mt025 bold">{{ order.created_at | date: "%B %d, %Y %I:%M%p" }}</h4>
+  <div class="container--s mha pt1">
+    <h1 class="h2 mv0">Order {{order.name}}</h1>
+    <p class="block mt0 mb05">{{order.created_at | date: '%b %d, %Y'}}</p>
 
-    <a href="/account" class="link mt1 pt05 inline-block">Return to Account Home</a>
+    <div class="order__meta order__meta--total inline-block h5">
+      <span>Total:</span><span>{{order.total_price | money}}</span>
+    </div>
+    <div class="order__meta inline-block h5">
+      <span>Payment:</span><span>{{order.financial_status_label}}</span>
+    </div>
+    <div class="order__meta inline-block h5">
+      <span>Shipping:</span><span>{{order.fulfillment_status_label}}</span>
+    </div>
   </div>
 </section>
 
 <section class="outer mt2">
-  <div class="container--m mha pv1">
-
-    <div class="order__status mb2 px1 bg-cg1 flex flex-items-center flex-justify-between flex-wrap">
-      <div class="order__status__item pv05 w1 w12_m w14_l">Payment: {{ order.financial_status_label }}</div>
-      <div class="order__status__item pv05 w1 w12_m w14_l">Shipping: {{ order.fulfillment_status_label }}</div>
-      <div class="order__status__item pv05 w1 w12_m w14_l">Total: {{ order.total_price | money }} {{ order.currency }}</div>
-    </div>
+  <div class="container--s mha pv1">
 
     {% if order.cancelled %}
-      <div class="alert bg-c5 px1 flex items-center justify-center w1">
+      <div class="px1 flex items-center justify-center w1">
         <div class="alert__icon mr1 flex">
           <svg viewBox='0 0 18 18'>
-            <use xlink:Href="#alert-icon" x='0' y='0'></use>
+            <use xlink:href="#alert-icon" x='0' y='0'></use>
           </svg>
         </div>
 
@@ -34,68 +34,58 @@
       </div>
     {% endif %}
 
-    <h2 class="h3 uppercase mb1">Order Details</h2>
+    <h2 class="h4 mb05 mt0 uppercase">Details</h2>
 
-    <div class="order__details w1">
-      <div class="order__details__header table__row">
-        <div class="table__cell pv1">Item</div>
-        <div class="table__cell pv1 align-c">SKU</div>
-        <div class="table__cell pv1 align-c">Price</div>
-        <div class="table__cell pv1 align-c">Quantity</div>
-        <div class="table__cell pv1 align-c">Total</div>
-      </div>
+    <ul class="order__details block relative w1">
+      {% for item in order.line_items %}
+        {% assign url = item.product.url %}
+        {% assign image = item.image | img_url: '100x' %}
+        {% assign title = item.product.title %}
+        {% assign variant = item.variant %}
+        {% assign price = item.price %}
+        {% assign props = item.properties %}
+        {% assign sku = item.sku %}
+        {% assign quantity = item.quantity %}
+        {% assign created_at = item.fulfillment.created_at | date: '%b %d, %Y' %}
+        {% assign tracking_url = line_item.fulfillment.tracking_url %}
+        {% assign tracking_number = line_item.fulfillment.tracking_number %}
 
-      {% for line_item in order.line_items %}
-        <div class="order__details__item relative pv2" id="{{ line_item.id }}">
-
-          <div class="item__prop align-t">
-            <div class="item__info flex">
-              <div class="item__info__image">
-                <a href="{{line_item.product.url}}"><img src="{{line_item.image | img_url: '100x'}}" class="w1"/></a>
-              </div>
-              <div class="item__info__text">
-                <a href="{{line_item.product.url}}">{{line_item.product.title}}</a>
-
-                {% assign variant = line_item.variant.title %}
-                {% if variant contains 'Monogram' %}
-                  <div class="p0">{{variant}}</div>
-                {% else %}
-                  <div class="p0">Size: {{variant}}</div>
-                {% endif %}
-
-                {% unless line_item.properties == 'empty '%}
-                  <ul class="p00 mt05 list--reset">
-                    {% for prop in line_item.properties %}
-                      <li>{{prop.first}}: {{prop.last}}</li>
-                    {% endfor %}
-                  </ul>
-                {% endunless %}
-
-                <div class="hide_m p00 mt05">
-                  SKU: {{line_item.sku}}<br>
-                  Quantity: {{line_item.quantity}}
-                </div>
-
-                {% if line_item.fulfillment %}
-                  <div class="p00 mt05">
-                    {% assign created_at = line_item.fulfillment.created_at | date: format: 'month_day_year' %}
-                    Shipped: {{created_at}}<br>
-                    {% if line_item.fulfillment.tracking_number %}
-                      Track: <a href="{{ line_item.fulfillment.tracking_url }}" class="link">{{ line_item.fulfillment.tracking_number}}</a>
-                    {% endif %}
-                  </div>
-                {% endif %}
-              </div>
-            </div>
+        <li class="order__details__row flex flex-wrap flex-items-start px1">
+          <div class="__image">
+            <a href="{{url}}"><img src="{{image}}" class="w1"/></a>
           </div>
 
-          <div class="item__prop hide align-t">{{ line_item.sku }}</div>
-          <div class="item__prop hide align-t">{{ line_item.price | money }}</div>
-          <div class="item__prop hide align-t">{{ line_item.quantity }}</div>
-          <div class="item__total item__prop align-t">{{ line_item.quantity | times: line_item.price | money }}</div>
-        </div>
+          <div class="__info">
+            <a href="{{url}}"><h4 class="inline-block mv0">{{title}}</h4></a>
+            <p class="mv0">
+              {% if variant.title != 'Default title'%}{{variant.title}}<br/>{% endif %}
+              {% if quantity > 1 %}<strong>Quantity:</strong> {{quantity}}<br/>{% endif %}
+              {% if sku != blank %}<strong>SKU:</strong> {{sku}}<br/>{% endif %}
+
+              {% unless props == 'empty '%}
+                {% for p in props %}
+                  <strong>{{p.first}}:</strong> {{p.last}}<br/>
+                {% endfor %}
+              {% endunless %}
+            </p>
+
+
+            {% if item.fulfillment and tracking_number %}
+              <div class="mt05">
+                <a href="{{tracking_url}}" class="order__meta inline-block h5">
+                  <span>Track:</span><span>{{tracking_number}}</span>
+                </a>
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="__total flex-auto">
+            <h4 class="mv0 c1">{{quantity | times: price | money}}</h4>
+          </div>
+        </li>
       {% endfor %}
-    </div>
+    </ul>
+
 
     <div class="clear">
       <div class="order__totals w1 mv2">

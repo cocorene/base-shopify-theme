@@ -1,53 +1,43 @@
-{% assign account_page_title = 'My Account' %}
+{% assign account_page_title = 'Account' %}
 {% include 'account-titles' %}
 
 <section class="outer mt2">
-  <div class="container--m pv2 mha">
-    <h2 class="h3 mb1 uppercase">Your Order History</h2>
+  <div class="container--s pv2 mha">
 
-    {% paginate customer.orders by 4 %}
+    <h2 class="h4 mb05 mt0 uppercase">Order History</h2>
+
+    {% paginate customer.orders by 99 %}
 
       {% if customer.orders.size != 0 %}
-        <div class="orders-table relative w1">
-          <div class="orders-table__header table__row w1">
-            <div class="__prop table__cell pv1">Order No.</div>
-            <div class="__prop table__cell pv1 align-c">Date</div>
-            <div class="__prop table__cell pv1 align-c">Payment</div>
-            <div class="__prop table__cell pv1 align-c">Shipping</div>
-            <div class="__prop table__cell pv1 align-c">Total</div>
-          </div>
+
+        <ul class="orders">
           {% for order in customer.orders %}
-            <div class="orders-table__order relative pv1">
-              <div class="__prop __title">
-                <span class="__label inline-block">Order No:</span>
-                <a class="link" href="{{ order.customer_url }}">{{ order.name  }}</a>
-              </div>
-              <div class="__prop">
-                <span class="__label inline-block">Date:</span>
-                {{ order.created_at | date: format: 'month_day_year' }}
-              </div>
-              <div class="__prop">
-                <span class="__label inline-block">Payment:</span>
-                {{ order.financial_status_label }}
-              </div>
-              <div class="__prop">
-                <span class="__label inline-block">Shipping:</span>
-                {{ order.fulfillment_status_label }}
-              </div>
-              <div class="__prop">
-                <span class="__label inline-block">Total:</span>
-                {{ order.total_price | money }}
-              </div>
-            </div>
+            <li class="orders__order">
+              <a href="{{order.customer_url}}" class="decoration--none">
+                <h4 class="inline-block mv0 c1">{{order.name}}</h4>
+              </a>
+
+              <p class="block mt0 mb05">{{order.created_at | date: '%b %d, %Y'}}</p>
+
+              <span class="order__meta inline-block bg-c1 cw">
+                <strong>Total:</strong> {{order.total_price | money}}
+              </span>
+              <span class="order__meta inline-block">
+                <strong>Payment:</strong> {{order.financial_status_label}}
+              </span>
+              <span class="order__meta inline-block">
+                <strong>Shipping:</strong> {{order.fulfillment_status_label}}
+              </span>
+            </li>
           {% endfor %}
-        </div>
+        </ul>
 
       {% else %}
         
         <p class="align-c px2 bg-cg1">You don't have any orders yet!</p>
 
       {% endif %}
-
+      
       {% include 'pagination' %}
 
     {% endpaginate %}

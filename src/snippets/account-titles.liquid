@@ -1,10 +1,26 @@
-<div class="clear mt2">
-  <div class="account__logout link decoration--none pv05 ph1 bg-cw"><a href="/account/logout">Log Out</a></div>
-</div>
+<section class="outer mt2">
+  <div class="container--s mha">
+    <h1 class="h2 mb0">{{ account_page_title }}</h1>
 
-<section class="page__title outer mt2">
-  <div class="container--m mha">
-    <h1 class="h2 mb025 align-c">{{ account_page_title }}</h1>
-    {% include 'account-nav' %}
+    <nav class="account__nav h6 mb2">
+      <ul>
+        {% unless template contains 'account' %}
+          <li class="account__nav__link inline-block mr1">
+            <a class="underline c1" href="/account">Account Home</a>
+          </li>
+        {% endunless %}
+        {% unless template contains 'address' %}
+          <li class="account__nav__link inline-block mr1">
+            <a class="underline c1" href="account/addresses">Manage Addresses</a>
+          </li>
+        {% endunless %}
+
+        <li class="account__nav__link inline-block mr1">
+          <a class="underline c1" href="account/logout">Logout</a>
+        </li>
+      </ul>
+    </nav>
+  
+    <hr/>
   </div>
 </section>

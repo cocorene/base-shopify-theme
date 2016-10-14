@@ -1,8 +1,10 @@
 <section class="outer mt2 pt2">
   <div class="container--s mha">
-    {% if account_page_title %}<h1 class="h2 mb0">{{ account_page_title }}</h1>{% endif %}
+    <h1 class="h2 mb0">
+      Account{% if account_page_title %} / <span class="c1">{{account_page_title}}</span>{%endif%}
+    </h1>
 
-    <nav class="account__nav h6 mb2">
+    <nav class="account__nav h6 mb2 mt05">
       <ul>
         {% unless template contains 'account' %}
           <li class="account__nav__link inline-block mr1">
@@ -11,12 +13,12 @@
         {% endunless %}
         {% unless template contains 'address' %}
           <li class="account__nav__link inline-block mr1">
-            <a class="underline c1" href="account/addresses">Manage Addresses</a>
+            <a class="underline c1" href="/account/addresses">Addresses</a>
           </li>
         {% endunless %}
 
         <li class="account__nav__link inline-block mr1">
-          <a class="underline c1" href="account/logout">Logout</a>
+          <a class="underline c1" href="/account/logout">Logout</a>
         </li>
       </ul>
     </nav>

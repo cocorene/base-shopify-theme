@@ -35,8 +35,12 @@
 
 // GENERAL STYLES
 .outer {
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  @media (min-width: break(s)){
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
 
 // Text links

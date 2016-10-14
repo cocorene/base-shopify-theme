@@ -17,26 +17,33 @@
   </div>
 </section>
 
+<section class="outer">
+  <div class="container--s mha">
+    {% if order.cancelled %}
+      {% assign cancelled_at = order.cancelled_at | date: "%b %d, %Y @ %I:%M %p" %}
+      <div class="o-alert px1 mv1 flex flex-items-center w1">
+        <p class="mv0 pr1">
+          <strong>Order canceled:</strong> {{ cancelled_at }}<br/>
+          <strong>Reason:</strong> {{ order.cancel_reason | capitalize }}
+        </p>
+        <div class="mr1 flex-auto align-r">
+          <svg viewBox='0 0 12 11' class="inline-block">
+            <use xlink:href="#icon-alert" x='0' y='0'></use>
+          </svg>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
 <section class="outer mt2">
   <div class="container--s mha pv1">
 
-    {% if order.cancelled %}
-      <div class="px1 flex items-center justify-center w1">
-        <div class="alert__icon mr1 flex">
-          <svg viewBox='0 0 18 18'>
-            <use xlink:href="#alert-icon" x='0' y='0'></use>
-          </svg>
-        </div>
+    <h2 class="h4 mb05 mt0">Details</h2>
 
-        {% assign cancelled_at = order.cancelled_at | date: "%B %d, %Y %I:%M%p" %}
-        <p class="h5">Order canceled: {{ cancelled_at }}</p>
-        <p>Reason: {{ order.cancel_reason }}</p>
-      </div>
-    {% endif %}
+    <hr/>
 
-    <h2 class="h4 mb05 mt0 uppercase">Details</h2>
-
-    <ul class="order__details block relative w1">
+    <ul class="order__details block relative w1 mt1">
       {% for item in order.line_items %}
         {% assign url = item.product.url %}
         {% assign image = item.image | img_url: '100x' %}
@@ -85,81 +92,98 @@
         </li>
       {% endfor %}
     </ul>
+  </div>
+</section>
 
+<section class="outer mt2">
+  <div class="container--s mha pv1">
 
-    <div class="clear">
-      <div class="order__totals w1 mv2">
-        <div class="table w1">
-          <div class="table__row">
-            <div class="table__cell pv05">
-              Subtotal 
-            </div>
-            <div class="table__cell pv05 align-r">
-              {{ order.subtotal_price | money }}
-            </div>
+    <h2 class="h4 mb05 mt0">Totals</h2>
+
+    <hr/>
+
+    {% assign subtotal = order.subtotal_price | money %}
+    {% assign total = order.total_price | money %}
+
+    {% if order.discounts.size > 0 %}
+      <div class="order__total mv1">
+        <h5 class="inline-block mt0">Discounts</h5>
+        {% for discount in order.discounts %}
+          <div class="flex flex-wrap flex-items-center">
+            <h6 class="mv0">{{discount.code}}</h6> 
+            <p class="flex-auto mv0 align-r">{{discount.savings | money}}</p>
           </div>
-
-          {% for discount in order.discounts %}
-            <div class="table__row pv1 order_summary discount">
-              <div class="table__cell pv05">Discount: {{ discount.code }}</div>
-              <div class="table__cell pv05 align-r">{{ discount.savings | money }}</div>
-            </div>
-          {% endfor %}
-
-          {% for shipping_method in order.shipping_methods %}
-            <div class="table__row">
-              <div class="table__cell pv05">
-                Shipping:<br>
-                <span class="p00">({{ shipping_method.title }})</span>
-              </div>
-              <div class="table__cell pv05 align-r">{{ shipping_method.price | money }}</div>
-            </div>
-          {% endfor %}
-
-          {% for tax_line in order.tax_lines %}
-            <div class="table__row">
-              <div class="table__cell pv05">
-                Tax:<br>
-                <span class="p00">({{ tax_line.title }} @ {{ tax_line.rate | times: 100 }}%)</span>
-              </div>
-              <div class="table__cell pv05 align-r">{{ tax_line.price | money }}</div>
-            </div>
-          {% endfor %}
-        </div>
-
-        <div class="order__total align-r pt1 mt1">
-          <p class="h3">Total: <span class="c1">{{order.total_price | money}} {{order.currency}}<span></p>
-        </div>
+        {% endfor %}
       </div>
+
+      <hr/>
+    {% endif %}
+
+    {% if order.shipping_methods.size > 0 %}
+      <div class="order__total mv1">
+        <h5 class="inline-block mt0">Shipping</h5>
+        {% for ship in order.shipping_methods %}
+          <div class="flex flex-wrap flex-items-center">
+            <h6 class="mv0">{{ship.title | replace: 'Shipping', ''}}</h6> 
+            <p class="flex-auto mv0 align-r">{{ship.price | money}}</p>
+          </div>
+        {% endfor %}
+      </div>
+
+      <hr/>
+    {% endif %}
+
+    <div class="order__total mv1">
+      <h5 class="inline-block mt0">Tax</h5>
+      {% for tax in order.tax_lines %}
+        <div class="flex flex-wrap flex-items-center">
+          <h6 class="mv0">{{tax.title | replace: 'Tax', ''}} ({{tax.rate | times: 100}}%)</h6> 
+          <p class="flex-auto mv0 align-r">{{tax.price | money}}</p>
+        </div>
+      {% endfor %}
     </div>
 
-    <div class="flex flex-wrap flex-justify mhn1 mt2">
-      <div class="address w1 w12_m ph1 mb1 auto-height">
-        <h4 class="uppercase mb1">Billing</h4>
-        <div class="address__inner pv2 ph2 bg-cg1 relative">
-          <div class="address__info p">
-            {{ order.billing_address.name | capitalize }}<br>
-            {% if address.company != '' %}{{ order.billing_address.company }}<br>{% endif %}
-            {{ order.billing_address.street }}<br>
-            {{ order.billing_address.city | capitalize }}{% if order.billing_address.province %}, {{ order.billing_address.province | upcase }} {% endif %} {{ order.billing_address.zip | upcase }}<br>
-            {{ order.billing_address.country }}<br>
-            {{ order.billing_address.phone }}
-          </div>
-        </div>
+    <hr/>
+
+    <h3>Total: <span class="c1">{{total}}</span></h3>
+
+  </div>
+</section>
+
+<section class="outer mt2">
+  <div class="container--s mha pv1">
+    <div class="flex flex-wrap mhn1">
+      
+      <div class="w1 w12_m ph1 mb1 auto-height">
+        <h4>Billing</h4>
+
+        {% assign billing = order.billing_address %}
+        {% assign name = billing.name %}
+        {% assign company = billing.company %}
+        {% assign address = billing.street %}
+        {% assign city = billing.city %}
+        {% assign province = billing.province %}
+        {% assign zip = billing.zip %}
+        {% assign country = billing.country %}
+        {% assign phone = billing.phone %}
+        {% include 'account-address' %}
+
       </div>
 
-      <div class="address w1 w12_m ph1 mb1 auto-height">
-        <h4 class="mb1 uppercase">Shipping</h4>
-        <div class="address__inner pv2 ph2 bg-cg1 relative">
-          <div class="address__info p">
-            {{ order.shipping_address.name | capitalize }}<br>
-            {% if address.company != '' %}{{ order.shipping_address.company }}<br>{% endif %}
-            {{ order.shipping_address.street }}<br>
-            {{ order.shipping_address.city | capitalize }}{% if order.shipping_address.province %}, {{ order.shipping_address.province | upcase }} {% endif %} {{ order.shipping_address.zip | upcase }}<br>
-            {{ order.shipping_address.country }}<br>
-            {{ order.shipping_address.phone }}
-          </div>
-        </div>
+      <div class="w1 w12_m ph1 mb1 auto-height">
+        <h4>Shipping</h4>
+
+        {% assign shipping = order.shipping_address %}
+        {% assign name = shipping.name %}
+        {% assign company = shipping.company %}
+        {% assign address = shipping.street %}
+        {% assign city = shipping.city %}
+        {% assign province = shipping.province %}
+        {% assign zip = shipping.zip %}
+        {% assign country = shipping.country %}
+        {% assign phone = shipping.phone %}
+        {% include 'account-address' %}
+
       </div>
     </div>
 

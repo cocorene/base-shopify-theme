@@ -1,0 +1,28 @@
+{% assign name = name | default: false %}
+{% assign company = company | default: false %}
+{% assign address = address | default: false %}
+{% assign city = city | default: false %}
+{% assign province = province | default: false %}
+{% assign zip = zip | default: false %}
+{% assign country = country | default: false %}
+{% assign phone = phone | default: false %}
+
+<div class="address pv2 ph2 bg-cg1 relative">
+  <p class="mv0">
+    {{name | capitalize}}<br>
+    {%if company%}{{company}}<br>{%endif%}
+    {{ address }}<br>
+    {{city | capitalize}}{%if province%}, {{province | upcase}} {%endif%} {{zip | upcase}}<br>
+    {{country}}<br>
+    {%if phone%}{{phone}}{%endif%}
+  </p>
+</div>
+
+{% assign name = false %}
+{% assign company = false %}
+{% assign address = false %}
+{% assign city = false %}
+{% assign province = false %}
+{% assign zip = false %}
+{% assign country = false %}
+{% assign phone = false %}

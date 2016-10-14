@@ -104,25 +104,6 @@
 }
 
 /**
- * Individual address block
- */
-.address {
-}
-.address__inner {
-  min-height: 300px;
-
-  .auto-height & {
-    min-height: 0;
-  }
-}
-.address__default {
-}
-.address__footer {
-  left: 2em;
-  bottom: 2em;
-}
-
-/**
  * Address form
  */
 .address__form {
@@ -232,7 +213,6 @@
   }
 }
 .order__total {
-  border-top: $borderLight;
 }
 
 
@@ -260,9 +240,13 @@ li.account__nav__link {}
   span {
     display: inline-block;
     padding: 0.25em 0.75em;
+    background-color: #fff;
 
     &:first-child {
       background-color: #f5f5f5;
+    }
+    &:first-child {
+      padding-top: 0.32em;
     }
   }
 }
@@ -300,4 +284,16 @@ li.account__nav__link {}
       text-align: right;
     }
   }
+}
+
+.order-total {}
+
+.address {
+  background-color: #f5f5f5;
+}
+.address__default {
+}
+.address__footer {
+  left: 2em;
+  bottom: 2em;
 }

@@ -14,3 +14,14 @@
   border-left: 2px solid currentColor;
   border-bottom: 2px solid currentColor;
 }
+
+.o-alert {
+  background-color: rgba($c1, 0.2);
+  border-radius: 4px;
+
+  svg {
+    height: 1.5em;
+    width: 1.5em;
+    color: $c1;
+  }
+}

@@ -1,5 +1,12 @@
 # Base Shopify Changelog
 
+### v1.3.0
+- NEW account pages :D
+- created new snippets
+  - `account-titles.liquid` - the page titles and nav for account pages
+  - `account-address.liquid` - an address block, for use on Addresses and Orders pages
+- updated `account-address-form.liquid` with simplified logic, easier to understand
+
 ### v1.2.0
 - search results page
 - update styles to Svbstrate v2.3.1 (included in commits)

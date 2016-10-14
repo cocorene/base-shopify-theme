@@ -1,5 +1,9 @@
 form {
   margin: 0;
+
+  p {
+    margin: 0.5em 0;
+  }
 }
 input,
 select,
@@ -22,7 +26,7 @@ input[type="tel"],
 input[type="password"],
 select, {
   border: 1px solid $cb;
-  padding: .35em .65em;
+  padding: .75em 1em;
   outline: 0;
   border-radius: 0;
   -webkit-appearance: none;
@@ -36,7 +40,6 @@ select, {
   }
 }
 label {
-  color: $cg6;
   margin-bottom: .25em;
 }
 .select-wrapper {
@@ -53,7 +56,7 @@ label {
     pointer-events: none;
   }
   select {
-    padding: .35em 2.5em .35em .55em;
+    padding: .75em 1em;
     appearance: none;
     -webkit-appearance: none;
   }
@@ -65,7 +68,7 @@ select {
 textarea {
   background-color: transparent;
   border: 1px solid $cb;
-  padding: .65em;
+  padding: .75em 1em;
   max-width: 100%;
   overflow: auto;
 }

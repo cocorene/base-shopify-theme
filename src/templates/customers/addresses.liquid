@@ -6,16 +6,16 @@
 <section class="outer mv2 pt1">
   <div class="container--s mha">
 
-    {% assign form_outer_id = 'newAddress' %}
+    <div class="relative mv1 mb2">
+      <button class="new-address button" onclick="barrel.toggleNewForm()">New Address +</button>
+    </div>
+
+    {% assign form_id = 'new' %}
     {% assign form_action = customer.new_address %}
     {% assign form_title = 'Add New Address' %}
     {% assign form_cta = 'Add Address' %}
     {% assign form_classes = 'mb2 pb1' %}
     {% include 'account-address-form' %}
-
-    <div class="relative mv1 mb2">
-      <button class="new-address button" onclick="barrel.toggleNewForm()">+ Add Address</a>
-    </div>
 
     {% comment %}
       List all customer addresses with a unique edit form.
@@ -38,11 +38,11 @@
         {% include 'account-address' %}
       </div>
 
-      {% assign form_outer_id = 'editAddress' | append: '_' | append: address.id %}
+      {% assign form_id = address.id %}
       {% assign form_action = address %}
       {% assign form_title = 'Edit Address' %}
       {% assign form_cta = 'Update Address' %}
-      {% assign form_classes = 'mb2 active-top' %}
+      {% assign form_classes = 'mb2' %}
 
       {% include 'account-address-form' %}
     {% endfor %}
@@ -58,11 +58,11 @@
 <script>
   window.barrel = {
     toggleForm: function(id) {
-      var el = document.getElementById('editAddress_'+id)
+      var el = document.getElementById('form_'+id)
       el.style.display = el.style.display == 'none' ? '' : 'none'
     },
     toggleNewForm: function() {
-      var el = document.getElementById('newAddress')
+      var el = document.getElementById('form_new')
       el.style.display = el.style.display == 'none' ? '' : 'none'
     },
     removeAddress: function removeAddress(id){

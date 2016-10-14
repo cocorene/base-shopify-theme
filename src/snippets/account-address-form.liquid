@@ -1,19 +1,24 @@
-<div id="{{form_outer_id}}" class="address__form relative w1 {{form_classes}}" style="display: none;">
+<div id="form_{{form_id}}" class="address__form relative w1 {{form_classes}}" style="display: none">
 
   {% form 'customer_address', form_action %}
 
-    {% assign form_id = form.id %}
-    {% capture form_script %}{% if form_id == 'new' %}barrel.toggleNewForm(){% else %}barrel.toggleForm({{form_id}}){% endif %}{% endcapture %}
-    {% capture form_suffix %}{% if form_id and form_id != 'new' %}_{{form_id}}{% endif %}{% endcapture %}
+    {% comment %}
+      form_id = address.id || 'new
+    {% endcomment %}
+    {% assign form_suffix = '_' | append: form_id %}
+    {% assign form_country_id = 'country' | append: form_suffix %}
+    {% assign form_province_container_id = 'provinceContainer' | append: form_suffix %}
+    {% assign form_province_id = 'province' | append: form_suffix %}
 
-    {% capture form_city_id %}{% if form_id == 'new' %}AddressCityNew{% else %}AddressCity{% endif %}{% endcapture%}
-    {% capture form_country_id %}{% if form_id == 'new' %}AddressCountryNew{% else %}AddressCountry{% endif %}{% endcapture%}
-    {% capture form_province_container_id %}{% if form_id == 'new' %}AddressProvinceContainerNew{% else %}AddressProvinceContainer{% endif %}{% endcapture%}
-    {% capture form_province_id %}{% if form_id == 'new' %}AddressProvinceNew{% else %}AddressProvince{% endif %}{% endcapture%}
+    {% if form_id == 'new' %}
+      {% assign form_script = 'barrel.toggleNewForm()' %}
+    {% else %}
+      {% assign form_script = 'barrel.toggleForm({{form_id}})' %}
+    {% endif %}
 
     <h4>{{form_title}}</h4>
 
-    <div class="address__form__group flex flex-wrap flex-justify">
+    <div class="address__form__group flex flex-wrap flex-justify-between">
       {% assign field_classes = 'address__form__field' %}
       {% assign field_label = 'First Name:' %}
       {% assign field_name = 'address[first_name]' %}
@@ -29,7 +34,7 @@
       {% include 'input-text' %}
     </div>
 
-    <div class="address__form__group flex flex-wrap flex-justify">
+    <div class="address__form__group flex flex-wrap flex-justify-between">
       {% assign field_classes = 'address__form__field' %}
       {% assign field_label = 'Company:' %}
       {% assign field_name = 'address[company]' %}
@@ -44,7 +49,7 @@
       {% include 'input-text' %}
     </div>
 
-    <div class="address__form__group flex flex-wrap flex-justify">
+    <div class="address__form__group flex flex-wrap flex-justify-between">
       {% assign field_classes = 'address__form__field' %}
       {% assign field_label = 'Address:' %}
       {% assign field_name = 'address[address1]' %}
@@ -60,7 +65,7 @@
       {% include 'input-text' %}
     </div>
 
-    <div class="address__form__group flex flex-wrap flex-justify">
+    <div class="address__form__group flex flex-wrap flex-justify-between">
       {% assign field_classes = 'address__form__field' %}
       {% assign field_label = 'City:' %}
       {% assign field_name = 'address[city]' %}
@@ -69,19 +74,19 @@
       {% include 'input-text' %}
 
       <p class="address__form__field">
-        <label for="{{form_country_id}}{{form_suffix}}" class="block">Country:</label>
+        <label for="{{form_country_id}}" class="block">Country:</label>
         <span class="select-wrapper w1">
-          <select id="{{form_country_id}}{{form_suffix}}" class="block w1" name="address[country]" data-default="{{ form.country }}">{{ country_option_tags }}</select>
+          <select id="{{form_country_id}}" class="block w1" name="address[country]" data-default="{{ form.country }}">{{ country_option_tags }}</select>
         </span>
       </p>
     </div>
 
-    <div class="address__form__group flex flex-wrap flex-justify">
+    <div class="address__form__group flex flex-wrap flex-justify-between">
       <p class="address__form__field">
-        <span id="{{form_province_container_id}}{{form_suffix}}" style="display:none">
-          <label for="{{form_province_id}}{{form_suffix}}" class="block">Province:</label>
+        <span id="{{form_province_container_id}}" style="display:none">
+          <label for="{{form_province_id}}" class="block">Province:</label>
           <span class="select-wrapper w1">
-            <select id="{{form_province_id}}{{form_suffix}}" class="w1" name="address[province]" data-default="{{ form.province }}"></select>
+            <select id="{{form_province_id}}" class="w1" name="address[province]" data-default="{{ form.province }}"></select>
           </span>
         </span>
       </p>
@@ -114,9 +119,9 @@
 <script>
 (function(){
   var form = document.getElementById({{form_outer_id | json}})
-  var countrySelector = document.getElementById({{form_country_id | json}}+{{form_suffix | json}})
-  var provinceContainer = document.getElementById({{form_province_container_id | json}}+{{form_suffix | json}})
-  var provinceSelector = document.getElementById({{form_province_id | json}}+{{form_suffix | json}})
+  var countrySelector = document.getElementById({{form_country_id | json}})
+  var provinceContainer = document.getElementById({{form_province_container_id | json}})
+  var provinceSelector = document.getElementById({{form_province_id | json}})
   var countryDefault = countrySelector.getAttribute('data-default') ? countrySelector.getAttribute('data-default') : countrySelector.options[0].value
   var provinceDefault = provinceSelector.getAttribute('data-default')
 

@@ -3,7 +3,7 @@
   {% form 'customer_address', form_action %}
 
     {% assign form_id = form.id %}
-    {% capture form_script %}{% if form_id == 'new' %}barrel.toggleNewForm(event){% else %}barrel.toggleForm(event, {{form_id}}){% endif %}{% endcapture %}
+    {% capture form_script %}{% if form_id == 'new' %}barrel.toggleNewForm(){% else %}barrel.toggleForm({{form_id}}){% endif %}{% endcapture %}
     {% capture form_suffix %}{% if form_id and form_id != 'new' %}_{{form_id}}{% endif %}{% endcapture %}
 
     {% capture form_city_id %}{% if form_id == 'new' %}AddressCityNew{% else %}AddressCity{% endif %}{% endcapture%}

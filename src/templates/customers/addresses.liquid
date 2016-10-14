@@ -4,59 +4,48 @@
 {% paginate customer.addresses by 10 %}
 
 <section class="outer mv2 pt1">
-  <div class="container--m mha">
+  <div class="container--s mha">
 
     {% assign form_outer_id = 'newAddress' %}
     {% assign form_action = customer.new_address %}
     {% assign form_title = 'Add New Address' %}
     {% assign form_cta = 'Add Address' %}
     {% assign form_classes = 'mb2 pb1' %}
-
     {% include 'account-address-form' %}
 
-    <div class="relative mb1">
-      <h2 class="h3 uppercase">{{ 'customer.addresses.title' | t }}</h2>
-      <a href="#0" class="new-address link absolute fit-r fit-t" onclick="barrel.toggleNewForm(event)">+ Add Address</a>
+    <div class="relative mv1 mb2">
+      <button class="new-address button" onclick="barrel.toggleNewForm()">+ Add Address</a>
     </div>
 
     {% comment %}
       List all customer addresses with a unique edit form.
       Also add pagination in case they have a large number of addresses
     {% endcomment %}
-    <div class="mha">
-      
-      {% for address in customer.addresses %}
-        <div class="address w1 mb2">
-          <div class="address__inner pv2 ph2 bg-cg1 relative">
-            {% if address == customer.default_address %}
-              <div class="address__default absolute fit-r bg-c1 cw pv025 ph075 p0">Default</div>
-            {% endif %}
-            <div class="address__info p">
-              {{ address.first_name | capitalize }} {{ address.last_name | capitalize }}<br>
-              {% if address.company != '' %}{{ address.company }}<br>{% endif %}
-              {{ address.street }}<br>
-              {{ address.city | capitalize }}{% if address.province_code %}, {{ address.province_code | upcase }} {% endif %} {{ address.zip | upcase }}<br>
-              {{ address.country }}<br>
-              {{ address.phone }}
-            </div>
-            <div class="address__footer mt2 rte cg6 absolute">
-              <a href="#0" onclick="barrel.toggleForm(event, {{address.id}})">Edit</a>
-              <a href="#0" onclick="barrel.removeAddress(event, {{address.id}})">Delete</a>
-            </div>
-          </div>
-        </div>
+    {% for address in customer.addresses %}
+      <div class="address w1 mb2">
+        {% assign name = address.name %}
+        {% assign company = address.company %}
+        {% assign street = address.street %}
+        {% assign city = address.city %}
+        {% assign province = address.province %}
+        {% assign zip = address.zip %}
+        {% assign country = address.country %}
+        {% assign phone = address.phone %}
+        {% if address == customer.default_address %}
+          {% assign default = true %}
+        {% endif %}
+        {% assign edit = true %}
+        {% include 'account-address' %}
+      </div>
 
-        {% assign form_outer_id = 'editAddress' | append: '_' | append: address.id %}
-        {% assign form_action = address %}
-        {% assign form_title = 'Edit Address' %}
-        {% assign form_cta = 'Update Address' %}
-        {% assign form_classes = 'mb2 active-top' %}
+      {% assign form_outer_id = 'editAddress' | append: '_' | append: address.id %}
+      {% assign form_action = address %}
+      {% assign form_title = 'Edit Address' %}
+      {% assign form_cta = 'Update Address' %}
+      {% assign form_classes = 'mb2 active-top' %}
 
-        {% include 'account-address-form' %}
-
-      {% endfor %}
-
-    </div>
+      {% include 'account-address-form' %}
+    {% endfor %}
 
     {% if customer.addresses == empty %}
       <div class="bg-cg1 pv2 ph2 align-c">You have no saved address.</div>
@@ -68,19 +57,15 @@
 
 <script>
   window.barrel = {
-    toggleForm: function(e, id) {
-      e.preventDefault()
+    toggleForm: function(id) {
       var el = document.getElementById('editAddress_'+id)
       el.style.display = el.style.display == 'none' ? '' : 'none'
     },
-    toggleNewForm: function(e) {
-      e.preventDefault()
+    toggleNewForm: function() {
       var el = document.getElementById('newAddress')
       el.style.display = el.style.display == 'none' ? '' : 'none'
     },
-    removeAddress: function removeAddress(e, id){
-      e.preventDefault()
-
+    removeAddress: function removeAddress(id){
       if (!confirm("Are you sure you wish to delete this address?")) return
 
       var form = document.createElement("form")

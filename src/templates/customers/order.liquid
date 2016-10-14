@@ -65,7 +65,7 @@
           <div class="__info">
             <a href="{{url}}"><h4 class="inline-block mv0">{{title}}</h4></a>
             <p class="mv0">
-              {% if variant.title != 'Default title'%}{{variant.title}}<br/>{% endif %}
+              {% if variant and variant.title != 'Default title'%}{{variant.title}}<br/>{% endif %}
               {% if quantity > 1 %}<strong>Quantity:</strong> {{quantity}}<br/>{% endif %}
               {% if sku != blank %}<strong>SKU:</strong> {{sku}}<br/>{% endif %}
 
@@ -133,19 +133,21 @@
       <hr/>
     {% endif %}
 
-    <div class="order__total mv1">
-      <h5 class="inline-block mt0">Tax</h5>
-      {% for tax in order.tax_lines %}
-        <div class="flex flex-wrap flex-items-center">
-          <h6 class="mv0">{{tax.title | replace: 'Tax', ''}} ({{tax.rate | times: 100}}%)</h6> 
-          <p class="flex-auto mv0 align-r">{{tax.price | money}}</p>
-        </div>
-      {% endfor %}
-    </div>
+    {% if order.tax_lines.size > 0 %}
+      <div class="order__total mv1">
+        <h5 class="inline-block mt0">Tax</h5>
+        {% for tax in order.tax_lines %}
+          <div class="flex flex-wrap flex-items-center">
+            <h6 class="mv0">{{tax.title | replace: 'Tax', ''}} ({{tax.rate | times: 100}}%)</h6> 
+            <p class="flex-auto mv0 align-r">{{tax.price | money}}</p>
+          </div>
+        {% endfor %}
+      </div>
 
-    <hr/>
+      <hr/>
+    {% endif %}
 
-    <h3>Total: <span class="c1">{{total}}</span></h3>
+    <h3 class="align-r">Total: <span class="c1">{{total}}</span></h3>
 
   </div>
 </section>

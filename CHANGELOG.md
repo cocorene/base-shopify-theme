@@ -1,5 +1,10 @@
 # Base Shopify Changelog
 
+### v1.4.0
+- Flesh out `alert.liquid` component
+  - see `contact.liquid` for example usage
+- Add contact page template + form handling
+
 ### v1.3.0
 - NEW account pages :D
 - created new snippets

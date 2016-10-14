@@ -21,17 +21,14 @@
   <div class="container--s mha">
     {% if order.cancelled %}
       {% assign cancelled_at = order.cancelled_at | date: "%b %d, %Y @ %I:%M %p" %}
-      <div class="o-alert px1 mv1 flex flex-items-center w1">
+      {% capture alert_message %}
         <p class="mv0 pr1">
           <strong>Order canceled:</strong> {{ cancelled_at }}<br/>
           <strong>Reason:</strong> {{ order.cancel_reason | capitalize }}
         </p>
-        <div class="mr1 flex-auto align-r">
-          <svg viewBox='0 0 12 11' class="inline-block">
-            <use xlink:href="#icon-alert" x='0' y='0'></use>
-          </svg>
-        </div>
-      </div>
+      {% endcapture %}
+      {% assign alert_type = 'error' %}
+      {% include 'alert' %}
     {% endif %}
   </div>
 </section>

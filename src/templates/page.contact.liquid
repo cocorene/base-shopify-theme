@@ -1,63 +1,94 @@
-<!-- /templates/page.contact.liquid -->
-{% comment %}
+{% capture success_message %}
+  {% assign alert_message = "Thanks for your message! We'll get back to you as soon as we can." %}
+  {% assign alert_type = 'success' %}
+  {% assign alert_classes = 'mb2' %}
+  {% include 'alert' %}
+{% endcapture %}
 
-  This page template is a requirement if you are submitting your theme to the Shopify Theme Store.
-  Be sure to select page.contact as the template from the admin page to have this template take effect.
+<section class="outer mt2 pt2">
+  <div class="container--s mha">
+    <h1 class="h2 mb0">Contact</h1>
+  </div>
+</section>
 
-  For information on adding more fields, visit:
-    - http://docs.shopify.com/support/configuration/store-customization/adding-fields-to-the-liquid-contact-form
-
-{% endcomment %}
-
-<div class="grid">
-
-  <div class="grid__item large--two-thirds push--large--one-sixth">
-
-    <h1>{{ page.title }}</h1>
-
-    {% comment %}
-      Regular page content goes here.
-    {% endcomment %}
-    <div class="rte">
+<div class="outer pv2">
+  <div class="container--s mha mb2">
+    <div class="p wysiwyg">
       {{ page.content }}
     </div>
-
-    {% comment %}
-      Contact form starts here
-    {% endcomment %}
-    <div class="form-vertical">
-      {% form 'contact' %}
-
-        {% comment %}
-          Successful message
-        {% endcomment %}
-        {% if form.posted_successfully? %}
-          <p class="note form-success">
-            {{ 'contact.form.post_success' | t }}
-          </p>
-        {% endif %}
-
-        {{ form.errors | default_errors }}
-
-        {% assign name_attr = 'contact.form.name' | t | handle %}
-        <label for="ContactFormName" class="hidden-label">{{ 'contact.form.name' | t }}</label>
-        <input type="text" id="ContactFormName" class="input-full" name="contact[{{ name_attr }}]" placeholder="{{ 'contact.form.name' | t }}" autocapitalize="words" value="{% if form[name_attr] %}{{ form[name_attr] }}{% elsif customer %}{{ customer.name }}{% endif %}">
-
-        <label for="ContactFormEmail" class="hidden-label">{{ 'contact.form.email' | t }}</label>
-        <input type="email" id="ContactFormEmail" class="input-full" name="contact[email]" placeholder="{{ 'contact.form.email' | t }}" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}">
-
-        {% assign name_attr = 'contact.form.phone' | t | handle %}
-        <label for="ContactFormPhone" class="hidden-label">{{ 'contact.form.phone' | t }}</label>
-        <input type="tel" id="ContactFormPhone" class="input-full" name="contact[{{ name_attr }}]" placeholder="{{ 'contact.form.phone' | t }}" pattern="[0-9\-]*" value="{% if form[name_attr] %}{{ form[name_attr] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
-
-        <label for="ContactFormMessage" class="hidden-label">{{ 'contact.form.message' | t }}</label>
-        <textarea rows="10" id="ContactFormMessage" class="input-full" name="contact[body]" placeholder="{{ 'contact.form.message' | t }}">{% if form.body %}{{ form.body }}{% endif %}</textarea>
-
-        <input type="submit" class="btn right" value="{{ 'contact.form.send' | t }}">
-
-      {% endform %}
-    </div>
-
   </div>
 
+  <div class="container--s mha mv1 pb2" data-component="contact-form">
+    {% form 'contact' %}
+      {% if form.posted_successfully? %}
+        {{success_message}}
+      {% endif %}
+
+      <div id="contactFormSuccess" style="display: none">{{success_message}}</div>
+
+      {% assign field_label = 'Full Name' %}
+      {% assign field_name = 'contact[name]' %}
+      {% assign field_type = 'text' %}
+      {% assign field_placeholder = 'Full Name' %}
+      {% assign field_autocapitalize = 'words' %}
+      {% if form['name'] %}
+        {% assign field_value = form['name'] %}
+      {% elsif customer %}
+        {% assign field_value = customer.name %}
+      {% endif %}
+      {% include 'input-text' %}
+
+      {% assign field_label = 'Email' %}
+      {% assign field_name = 'contact[email]' %}
+      {% assign field_type = 'email' %}
+      {% assign field_placeholder = 'Email' %}
+      {% assign field_autocomplete = false %}
+      {% if form['email'] %}
+        {% assign field_value = form['email'] %}
+      {% elsif customer %}
+        {% assign field_value = customer.email %}
+      {% endif %}
+      {% include 'input-text' %}
+
+      {% assign field_label = 'Phone Number' %}
+      {% assign field_name = 'contact[phone]' %}
+      {% assign field_type = 'tel' %}
+      {% assign field_placeholder = 'Phone Number' %}
+      {% if form['phone'] %}
+        {% assign field_value = form['phone'] %}
+      {% elsif customer %}
+        {% assign field_value = customer.phone %}
+      {% endif %}
+      {% include 'input-text' %}
+
+      <p>
+        <label for="subject" class="block">Subject:</label>
+        <span class="select-wrapper w1">
+          <select id="subject" class="block w1" name="contact[subject]"
+            value="{{form['subject']}}"
+            >
+            <option value="General Information">General Information</option>
+            <option value="Catalog Request">Catalog Request</option>
+            <option value="Sales Inquiry (International)">Sales Inquiry (International)</option>
+            <option value="Sales Inquiry (USA)">Sales Inquiry (USA)</option>
+            <option value="Product Information">Product Information</option>
+            <option value="Technical Information">Technical Information</option>
+            <option value="Product Feedback">Product Feedback</option>
+            <option value="Press/Media">Press/Media</option>
+            <option value="Other">Other</option>
+          </select>
+        </span>
+      </p>
+
+      <p>
+        <label for="message" class="block w1">Message:</label>
+        <textarea required rows="5" id="message" class="block w1 mt05 mb1" name="contact[body]" placeholder="Message">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+      </p>
+
+      <div class="mt2 mb1 align-c">
+        <button type="submit" class="button">Submit</button>
+      </div>
+
+    {% endform %}
+  </div>
 </div>

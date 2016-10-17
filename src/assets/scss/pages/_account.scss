@@ -49,24 +49,15 @@ li.account__nav__link {}
 
     &:first-child {
       background-color: #f5f5f5;
-    }
-    &:first-child {
       padding-top: 0.32em;
     }
   }
 }
 .order__meta--total {
   border-color: $c1;
-
-  span:first-child {
-    background-color: $c1;
-    color: white;
-  }
 }
 
-.order__details {
-
-}
+.order__details {}
 .order__details__row {
   padding: 1.2em;
   border-radius: 4px;

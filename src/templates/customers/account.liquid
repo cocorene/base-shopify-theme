@@ -12,8 +12,8 @@
         <ul class="orders">
           {% for order in customer.orders %}
             <li class="orders__order">
-              <a href="{{order.customer_url}}" class="decoration--none">
-                <h4 class="inline-block mv0 c1">{{order.name}}</h4>
+              <a href="{{order.customer_url}}" class="link">
+                <h5 class="inline-block mv0 uppercase">Order {{order.name}}</h5>
               </a>
 
               <p class="block mt0 mb05">{{order.created_at | date: '%b %d, %Y'}}</p>

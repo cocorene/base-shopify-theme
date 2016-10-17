@@ -25,8 +25,8 @@
 
   {% if edit %}
     <div class="address__footer mt2">
-      <a href="#0" class="link mr05" onclick="barrel.toggleForm({{address.id}})">Edit</a>
-      <a href="#0" class="link" onclick="barrel.removeAddress({{address.id}})">Delete</a>
+      <button class="link mr05" onclick="barrel.toggleForm({{address.id}})">Edit</button>
+      <button class="link" onclick="barrel.removeAddress({{address.id}})">Delete</button>
     </div>
   {% endif %}
 </div>

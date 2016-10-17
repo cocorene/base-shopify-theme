@@ -1,5 +1,11 @@
 # Base Shopify Changelog
 
+### v1.4.1
+- account page tweaks after Jamie and Yvonne feedback
+- fix broken cancel button on edit address form
+- fix button style on 404 page, ready to go
+- add link styles to address partial
+
 ### v1.4.0
 - Flesh out `alert.liquid` component
   - see `contact.liquid` for example usage

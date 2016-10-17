@@ -151,7 +151,6 @@ export default function(context = null){
    * in the DOM and init their javascripts
    */
   ;['module', 'component', 'page'].forEach(function(type){
-    console.log(type)
     const nodes = [].slice.call(context.querySelectorAll(`[data-${type}]`))
 
     for (var i = 0; i < nodes.length; i++){

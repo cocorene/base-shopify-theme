@@ -1,5 +1,8 @@
 # Base Shopify Changelog
 
+### v1.4.3
+- switch address form toggles to `button` elements for semantics
+
 ### v1.4.1
 - account page tweaks after Jamie and Yvonne feedback
 - fix broken cancel button on edit address form

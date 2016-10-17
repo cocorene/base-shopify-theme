@@ -13,7 +13,7 @@
     {% if form_id == 'new' %}
       {% assign form_script = 'barrel.toggleNewForm()' %}
     {% else %}
-      {% assign form_script = 'barrel.toggleForm({{form_id}})' %}
+      {% assign form_script = 'barrel.toggleForm(' | append: form_id | append: ')' %}
     {% endif %}
 
     <h4>{{form_title}}</h4>

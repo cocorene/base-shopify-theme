@@ -1,5 +1,8 @@
 # Base Shopify Changelog
 
+### v1.4.4
+- Adds sections to file task
+
 ### v1.4.3
 - switch address form toggles to `button` elements for semantics
 

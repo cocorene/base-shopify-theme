@@ -47,6 +47,11 @@ const files = {
     glob: ['src/snippets/**/*.liquid'],
     dest: 'dist/snippets'
   },
+  sections: {
+    src: 'src/sections',
+    glob: ['src/sections/**/*.liquid'],
+    dest: 'dist/sections'
+  },
   assets: {
     src: 'src/assets',
     glob: [
@@ -95,6 +100,7 @@ gulp.task('files:copy', ['config:concat'], function(){
   copy(getPath(files.layout.glob), getPath(files.layout.dest), processLog.end.bind(null, 'layout'))
   copy(getPath(files.templates.glob), getPath(files.templates.dest), processLog.end.bind(null, 'templates'))
   copy(getPath(files.snippets.glob), getPath(files.snippets.dest), processLog.end.bind(null, 'snippets'))
+  copy(getPath(files.sections.glob), getPath(files.sections.dest), processLog.end.bind(null, 'sections'))
   copy(getPath(files.assets.glob), getPath(files.assets.dest), processLog.end.bind(null, 'assets'))
   copy(getPath(files.locales.glob), getPath(files.locales.dest), processLog.end.bind(null, 'locales'))
 })
@@ -113,6 +119,9 @@ gulp.task('files:watch', function(){
   });
   gulp.watch(getPath(files.snippets.glob), function(event){
     processFiles(event, 'snippets', {flatten: true})
+  });
+   gulp.watch(getPath(files.snippets.glob), function(event){
+    processFiles(event, 'sections', {flatten: true})
   });
   gulp.watch(getPath(files.assets.glob), function(event){
     processFiles(event, 'assets', {flatten: true})

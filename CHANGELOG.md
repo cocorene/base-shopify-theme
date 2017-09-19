@@ -1,5 +1,8 @@
 # Base Shopify Changelog
 
+### v1.4.5
+- Adds in current CI deployment scripts
+
 ### v1.4.4
 - Adds sections to file task
 

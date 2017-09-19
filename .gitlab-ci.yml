@@ -1,0 +1,31 @@
+stages:
+  - deploy
+
+deploy:staging:
+  stage: deploy
+  image: node:6
+  variables:
+    THEME_ID: ""
+  before_script:
+    - git log --oneline -1 > commit.txt
+  script:
+    - bash ./ci/build -e staging
+  environment:
+    name: test
+  when: manual
+  only:
+    - barrel-dev
+deploy:live:
+  stage: deploy
+  image: node:6
+  variables:
+    THEME_ID: ""
+  before_script:
+    - git log --oneline -1 > commit.txt
+  script:
+    - bash ./ci/build -e production
+  environment:
+    name: live
+  when: manual
+  only:
+    - master

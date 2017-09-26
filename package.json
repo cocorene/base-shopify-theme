@@ -20,7 +20,8 @@
     "css:dev": "onchange './src/assets/scss/**/*.scss' -- npm run css:build",
     "setup:assets": "mkdir -p dist && mkdir -p dist/assets",
     "setup:config": "mkdir -p dist && cp src/config-sample.yml dist/config.yml",
-    "setup": "npm i && npm run setup:config && npm run setup:assets"
+    "setup": "npm i && npm run setup:config && npm run setup:assets",
+    "staging": "bash ./ci/build -e staging"
   },
   "repository": {
     "type": "git",

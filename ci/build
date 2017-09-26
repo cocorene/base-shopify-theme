@@ -108,13 +108,14 @@ echo "Configuring Shopify yaml file.."
 if [ ! -f "${ROOT_DIR}/dist/config.yml" ]; then
   cd "${ROOT_DIR}/dist" && \
     theme-no-c configure \
+    --env="${ENV}" \
     --password="${SHOPIFY_PASSWORD}" \
     --store="${STORE}" \
     --themeid="${THEME_ID}"
 fi
 
 echo "Uploading theme assets [store ${STORE}].."
-cd "${ROOT_DIR}/dist" && theme-no-c upload
+cd "${ROOT_DIR}/dist" && theme-no-c upload --env="${ENV}"
 
 echo "Saving commit message as theme name.."
 if [ ! -f "commit.txt" ]; then

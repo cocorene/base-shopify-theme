@@ -1,5 +1,8 @@
 # Base Shopify Changelog
 
+### v1.4.6
+- Adds in multi ENV support to ci scripts
+
 ### v1.4.5
 - Adds in current CI deployment scripts
 

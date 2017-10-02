@@ -1,0 +1,63 @@
+.black {
+  color: var(--black);
+}
+.white {
+  color: var(--white);
+}
+.red {
+  color: var(--red);
+}
+.charcoal {
+  color: var(--charcoal);
+}
+.grey1 {
+  color: var(--grey1);
+}
+.grey2 {
+  color: var(--grey2);
+}
+.grey3 {
+  color: var(--grey3);
+}
+
+/* Background Colors */
+.bg-black {
+  background-color: var(--black);
+}
+.bg-white {
+  background-color: var(--white);
+}
+.bg-red {
+  background-color: var(--red);
+}
+.bg-charcoal {
+  background-color: var(--charcoal);
+}
+.bg-grey1 {
+  background-color: var(--grey1);
+}
+.bg-grey2 {
+  background-color: var(--grey2);
+}
+.bg-grey3 {
+  background-color: var(--grey3);
+}
+.bg-grey4 {
+  background-color: var(--grey4);
+}
+
+/* Product Colors */
+.c-red {
+  color: var(--red);
+  background-color: var(--red);
+}
+
+.c-blue {
+  color: #0000FF;
+  background-color: #0000FF;
+}
+
+.c-green {
+  color: #00FF00;
+  background-color: #00FF00;
+}

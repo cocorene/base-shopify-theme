@@ -4,11 +4,11 @@ export default (el) => {
   let recoverLink = document.getElementById('recovery_link')
   let cancelRecoverLink = document.getElementById('cancel_recover')
 
-  let recoverIsTarget = document.location.hash.match(/\#recover/) ? true : false
+  let recoverIsTarget = !!document.location.hash.match(/#recover/)
 
   let successMessage = el.querySelector('.recovery-success') !== null
 
-  if (recoverIsTarget || successMessage){
+  if (recoverIsTarget || successMessage) {
     loginForm.style.display = 'none'
     recoveryForm.style.display = 'block'
   } else {

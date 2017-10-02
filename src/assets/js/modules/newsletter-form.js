@@ -8,7 +8,7 @@ export default (el) => {
     tests: [
       {
         name: /EMAIL|contact\[email\]/,
-        validate: ({ value }) => /.+\@.+\..+/.test(value), // basic email check
+        validate: ({ value }) => /.+@.+\..+/.test(value), // basic email check
         success: ({node}) => node.classList.remove('has-error'),
         error: ({node}) => node.classList.add('has-error')
       }
@@ -21,7 +21,7 @@ export default (el) => {
    *
    * Enable JSONp flag on Conform instance
    */
-  if (/post\?u=/.test(newsletter.action)){
+  if (/post\?u=/.test(newsletter.action)) {
     newsletter.jsonp = 'c'
     newsletter.action = newsletter.action.replace(/post\?u=/, 'post-json?u=')
   }
@@ -43,7 +43,7 @@ export default (el) => {
   newsletter.on('success', data => {
     let msg = data.res.msg
     form.style.display = 'none'
-    if (msg){ success.innerHTML = msg }
+    if (msg) { success.innerHTML = msg }
     success.style.display = 'block'
   })
 }

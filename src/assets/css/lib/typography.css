@@ -8,12 +8,12 @@
 .ts6 { font-size: 0.875rem }
 
 body {
-	color: $cb;
+	color: var(--black);
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 100%;
   line-height: 1.7;
   font-weight: 400;
-  -webkit-font-smoothing: antialiased; 
+  -webkit-font-smoothing: antialiased;
 }
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -22,36 +22,29 @@ h1, h2, h3, h4, h5, h6,
 h1, h2, h3, h4, h5, h6 {
   margin: 2ex 0 .6ex;
 }
-h1, .h1 { 
-  @extend .ts1;
+h1, .h1 {
   line-height: 1.1;
 }
-h2, .h2 { 
-  @extend .ts2;
+h2, .h2 {
   line-height: 1.3;
 }
-h3, .h3 { 
-  @extend .ts3;
+h3, .h3 {
   line-height: 1.5;
 }
-h4, .h4 { 
-  @extend .ts4;
+h4, .h4 {
   line-height: 1.5;
 }
-h5, .h5 { 
-  @extend .ts5;
+h5, .h5 {
   line-height: 1.6;
 }
-h6, .h6 { 
-  @extend .ts6;
+h6, .h6 {
   line-height: 1.6;
 }
-p, .p { 
-  @extend .tsx;
+p, .p {
   line-height: 1.7;
 }
-p { 
-  margin: 2ex 0 
+p {
+  margin: 2ex 0
 }
 a {
   color: inherit;

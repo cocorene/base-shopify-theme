@@ -13,7 +13,7 @@ export const showMobileNav = e => {
 export const toggleMobileNav = e => document.body.classList.contains('mobile-nav-is-active') ? hideMobileNav() : showMobileNav()
 
 export default el => {
-  const mobileToggle = document.getElementById('mobileToggle') 
+  const mobileToggle = document.getElementById('mobileToggle')
 
   mobileToggle.addEventListener('click', toggleMobileNav)
 }

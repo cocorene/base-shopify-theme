@@ -1,7 +1,12 @@
-import config from '../../../package.json'
-import init from './lib/init'
+// import init from './lib/init'
+import 'Modules/cart-item-counter'
+import 'Modules/contact-form'
+import 'Modules/nav'
+import 'Modules/newsletter-form'
+import 'Modules/promo'
+import 'Modules/search-bar'
+// import 'Modules/shipping-calculator'
 
-document.addEventListener('DOMContentLoaded', function(){
-  init()
-});
+import 'Pages/login'
 
+document.addEventListener('DOMContentLoaded', () => {})

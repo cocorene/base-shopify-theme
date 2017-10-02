@@ -13,9 +13,17 @@
   {% comment %} <link rel="mask-icon" href="{{'safari-pinned-tab.svg' | asset_url }}" color="#5bbad5"> {% endcomment %}
   {% comment %} <meta name="theme-color" content="#ffffff"> {% endcomment %}
 
+  <script type="text/javascript">var SHOPIFY_CDN = "{{ 'test.jpg' | asset_url }}".replace(/test.jpg\?\d*/,'')</script>
+
   {% include 'social-meta' %}
 
   {{ content_for_header }}
+
+  {% if settings.is_dev_mode %}
+    {{ '/dev/main.js' | script_tag }}
+  {% else %}
+    {{ 'style.css' | asset_url | stylesheet_tag }}
+  {% endif %}
 
   <script>
     /*
@@ -40,7 +48,7 @@
 
   <script>
     /** Used in the account pages! */
-    window.barrel = window.barrel || {} 
+    window.barrel = window.barrel || {}
   </script>
 
   <title> {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %} </title>
@@ -59,7 +67,9 @@
 
   {% include 'footer' %}
 
-  {{ 'main.js' | asset_url | script_tag }}
+  {% unless settings.is_dev_mode %}
+    {{ 'scripts.js' | asset_url | script_tag }}
+  {% endunless %}
 
   {% include 'icons' %}
 </body>

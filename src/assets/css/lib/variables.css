@@ -1,0 +1,47 @@
+:root {
+  /* Padding */
+  --padding: 20px;
+  --paddingXS: 30px;
+  --paddingM: 50px;
+
+  /* Breakpoints */
+  --xxs: 445px;
+  --xs: 625px;
+  --s: 768px;
+  --ms: 840px;
+  --m: 960px;
+  --ml: 1160px;
+  --l: 1290px;
+  --xl: 1440px;
+  --xxl: 1800px;
+
+  /* Colors */
+  --black: #000000;
+  --white: #ffffff;
+  --charcoal: #343538;
+  --grey1: #8D8D8D;
+  --grey2: #e3e3e3;
+  --grey3: #CDCDCD;
+  --grey4: #F5F5F5;
+  --red: #CA0526;
+
+  /* Borders */
+  --border: 1px solid var(--black);
+  --borderGrey1: 1px solid var(--grey1);
+  --borderGrey2: 1px solid var(--grey2);
+  --borderGrey3: 1px solid var(--grey3);
+  --borderGrey4: 1px solid var(--grey4);
+  --borderCharcoal: 1px solid var(--charcoal);
+  --borderWhite: 1px solid var(--white);
+  --borderHeavy: 4px solid var(--grey2);
+  --borderHeavyGrey: 4px solid var(--grey1);
+  --borderHeavyCharcoal: 4px solid var(--charcoal);
+  --borderMediumBlack: 2px solid var(--black);
+  --borderMediumGrey: 2px solid var(--grey2);
+
+  /* Transitions */
+  --duration: 0.25s;
+  --speed: 200ms;
+  --ease: ease-in-out;
+  --ease-out: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}

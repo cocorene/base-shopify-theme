@@ -18,7 +18,7 @@
     <strong>{{name}}</strong><br>
     {%if company%}{{company}}<br>{%endif%}
     {{ street }}<br>
-    {{city | capitalize}}{%if province%}, {{province | upcase}} {%endif%} {{zip | upcase}}<br>
+    {{city}}{%if province%}, {{province | upcase}} {%endif%} {{zip | upcase}}<br>
     {{country}}<br>
     {%if phone%}{{phone}}{%endif%}
   </p>

@@ -22,7 +22,7 @@
   {% if settings.is_dev_mode %}
     {{ '/dev/main.js' | script_tag }}
   {% else %}
-    {{ 'style.css' | asset_url | stylesheet_tag }}
+    {{ 'main.css' | asset_url | stylesheet_tag }}
   {% endif %}
 
   <script>
@@ -60,15 +60,16 @@
 
   <main id="page" class="relative z0" role="main">
     {{ content_for_layout }}
-
   </main>
+
+  <div data-module="promo"></div>
 
   {% include 'newsletter' %}
 
   {% include 'footer' %}
 
   {% unless settings.is_dev_mode %}
-    {{ 'scripts.js' | asset_url | script_tag }}
+    {{ 'main.js' | asset_url | script_tag }}
   {% endunless %}
 
   {% include 'icons' %}

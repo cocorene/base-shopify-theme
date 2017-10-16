@@ -1,12 +1,12 @@
-// import init from './lib/init'
-import 'Modules/cart-item-counter'
-import 'Modules/contact-form'
-import 'Modules/nav'
-import 'Modules/newsletter-form'
-import 'Modules/promo'
-import 'Modules/search-bar'
-// import 'Modules/shipping-calculator'
+__webpack_public_path__ = BRRL_PATH(BRRL_PUBLIC_PATH) // eslint-disable-line camelcase
 
-import 'Pages/login'
+import init from 'lib/init'
 
-document.addEventListener('DOMContentLoaded', () => {})
+document.addEventListener('DOMContentLoaded', () => {
+  init({
+    component: 'components/',
+    page: 'pages/',
+    module: 'modules',
+    util: 'util/'
+  }).mount()
+})

@@ -1,10 +1,9 @@
 const path = require('path')
-const webpack = require('webpack')
 
 module.exports = {
   devtool: 'cheap-module-source-map',
   entry: {
-    scripts: ['./src/assets/css/main.css','./src/assets/js/main'],
+    main: ['./src/assets/css/main.css','./src/assets/js/main'],
   },
   output: {
     path: path.join(__dirname, 'dist/assets'),
@@ -38,9 +37,10 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'Lib': path.resolve(__dirname, 'src/assets/js/lib'),
-      'Pages': path.resolve(__dirname, 'src/assets/js/pages'),
-      'Modules': path.resolve(__dirname, 'src/assets/js/modules')
+      'lib': path.resolve(__dirname, 'src/assets/js/lib'),
+      'pages': path.resolve(__dirname, 'src/assets/js/pages'),
+      'modules': path.resolve(__dirname, 'src/assets/js/modules'),
+      'root': path.resolve(__dirname, 'src/assets/js')
     },
   },
   plugins: [],

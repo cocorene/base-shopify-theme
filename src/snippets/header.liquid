@@ -1,4 +1,4 @@
-<header id="nav" class="nav relative flex flex-items-center fit-t fit-l w1 bg-cw z10" data-component="nav">
+<header id="nav" class="nav relative flex flex-items-center fit-t fit-l w1 bg-cw z10" data-module="nav">
 
   {% comment %}
     Mobile Nav
@@ -39,10 +39,10 @@
   </div>
 
   {% comment %}
-    Search Bar 
+    Search Bar
     - appears below header. Slides down. Controlled by classes on the nav__search element.
   {% endcomment %}
-  <div id="searchBar" class="nav__search outer bg-c1 absolute fit-l fit-b w1 z0" data-component="search-bar">
+  <div id="searchBar" class="nav__search outer bg-c1 absolute fit-l fit-b w1 z0" data-module="search-bar">
     <form class="nav__search__form block relative w1" action="/search">
       <input class="nav__search__input ts3 block relative w1 mv0" name="q" type="text" placeholder="Search" value="{{search.terms | escape}}"/>
       <button class="hide" type="submit">Search</button>
@@ -50,7 +50,7 @@
   </div>
 
   {% comment %}
-    Nav Inner 
+    Nav Inner
     - holds desktop menu links, icons (which are present on mobile as well), and logo
     - vertically centered
   {% endcomment %}

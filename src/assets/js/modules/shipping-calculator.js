@@ -14,20 +14,14 @@ export default (el) => {
 
   window.shipper = ship
 
-  const render = rates => results.innerHTML = `
+  const render = rates => (results.innerHTML = `
     <div>
-      <p class="italic">There ${ rates.length > 1 ? `are ${rates.length} rates` : `is ${rates.length} rate`} available:</p>
+      <p class="italic">There ${rates.length > 1 ? `are ${rates.length} rates` : `is ${rates.length} rate`} available:</p>
       <p class="p0">
-      ${ 
-        (() => {
-          let res = ''
-          rates.map(r => res +=`<span class="bold">${r.type}:</span><span>$${r.price}</span><br>`) 
-          return res
-        })()
-      }
+      ${(rates.map(r => `<span class="bold">${r.type}:</span><span>$${r.price}</span><br>`).join(''))}
       </p>
     </div>
-  `
+  `)
 
   ship.on('success', render)
   ship.on('error', res => console.warn(res))

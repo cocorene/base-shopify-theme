@@ -19,7 +19,7 @@
   },
   "homepage": "https://gitlab.com/barrel/barrel-shopify-base#README",
   "devDependencies": {
-    "barrel-cli": "maxrolon/barrel-cli"
+    "@barrelny/cli": "latest"
   },
   "dependencies": {
     "conform.js": "^0.3.3",

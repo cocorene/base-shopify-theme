@@ -66,9 +66,11 @@ else
 
 fi
 
-echo "Creating directories.."
 dir=dist
+echo "Remove dist directory"
+rm -rf "${dir}"
 
+echo "Creating directories.."
 sub_dirs=(
   assets
   config

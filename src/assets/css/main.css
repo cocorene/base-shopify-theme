@@ -1,30 +1,5 @@
-@import "lib/reset.css";
-@import "lib/variables.css";
-@import "lib/colors.css";
-@import "lib/breakpoints.css";
-@import "lib/display.css";
-@import "lib/containers.css";
-@import "lib/positioning.css";
-@import "lib/flexbox.css";
-@import "lib/align.css";
-@import "lib/floats.css";
-@import "lib/z-index.css";
-@import "lib/typography.css";
-@import "lib/buttons.css";
-@import "lib/forms.css";
-@import "lib/lists.css";
-@import "lib/tables.css";
-@import "lib/spacing.css";
-
-@import "components/counter.css";
-@import "components/promobar.css";
-@import "components/search-result.css";
-@import "components/pagination.css";
-@import "components/nav.css";
-@import "components/alert.css";
-
-@import "pages/account.css";
-@import "pages/cart.css";
+@import "lib/**/*.css";
+@import "modules/**/*.css";
 
 #page {
   min-height: 100vh;

@@ -25,25 +25,6 @@
     {{ 'main.css' | asset_url | stylesheet_tag }}
   {% endif %}
 
-  <script>
-    /*
-    (function(d) {
-      var config = {
-        kitId: 'zzf3uyu',
-        scriptTimeout: 40000,
-        async: true
-      },
-      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-    })(document);
-
-    // Show fonts regardless of if they've loaded, after 10s
-    setTimeout(function(){
-      var doc = document.documentElement
-      if (!doc.classList.contains('wf-active')) doc.classList.add('wf-active')
-    }, 10000)
-    */
-  </script>
-
   {{ 'main.css' | asset_url | stylesheet_tag }}
 
   <script>
@@ -62,7 +43,7 @@
     {{ content_for_layout }}
   </main>
 
-  <div data-module="promo"></div>
+  {% include 'promobar' %}
 
   {% include 'newsletter' %}
 

@@ -2,7 +2,10 @@ const path = require('path')
 
 module.exports = {
   plugins: [
-    require('postcss-import')({ addModulesDirectories: ['node_modules' ], } ),
+    require('postcss-easy-import')({
+      addModulesDirectories: ['node_modules'],
+      path: ['src']
+    } ),
     require('postcss-inline-svg'),
     require("postcss-color-function"),
     require('autoprefixer')({

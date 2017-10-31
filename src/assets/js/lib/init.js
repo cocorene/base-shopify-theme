@@ -54,9 +54,9 @@ function init (types, ctx = document) {
           const name = nodes[i].getAttribute(attr)
 
           try {
-            const instance = require(
-              'root' + '/' + path + '/' + name + '.js'
-            ).default(nodes[i])
+            const instance = type === 'module'
+              ? require(`root/${path}/${name}/${name}.js`).default(nodes[i])
+              : require(`root/${path}/${name}.js`).default(nodes[i])
 
             nodes[i].removeAttribute(attr)
 

@@ -8,7 +8,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist/assets'),
     filename: 'main.js',
-    chunkFilename: "[name]-[id].js"
+    chunkFilename: `[name]-[id].js?version=${Date.now()}`
   },
   module: {
     rules: [
@@ -38,9 +38,8 @@ module.exports = {
   resolve: {
     alias: {
       'lib': path.resolve(__dirname, 'src/assets/js/lib'),
-      'pages': path.resolve(__dirname, 'src/assets/js/pages'),
-      'modules': path.resolve(__dirname, 'src/assets/js/modules'),
-      'root': path.resolve(__dirname, 'src/assets/js')
+      'modules': path.resolve(__dirname, 'src/modules'),
+      'root': path.resolve(__dirname, 'src'),
     },
   },
   plugins: [],

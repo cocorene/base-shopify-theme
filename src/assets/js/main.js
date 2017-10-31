@@ -4,9 +4,6 @@ import init from 'lib/init'
 
 document.addEventListener('DOMContentLoaded', () => {
   init({
-    component: 'components/',
-    page: 'pages/',
-    module: 'modules',
-    util: 'util/'
+    module: 'modules'
   }).mount()
 })

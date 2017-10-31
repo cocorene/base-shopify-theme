@@ -6,7 +6,9 @@
   "scripts": {
     "start": "brrl -w",
     "build": "brrl -b",
-    "staging": "bash ./ci/build -e staging"
+    "dev": "brrl -d -e development",
+    "staging": "brrl -d -e staging",
+    "production": "brrl -d -e production"
   },
   "repository": {
     "type": "git",

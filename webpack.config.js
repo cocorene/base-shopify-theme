@@ -40,6 +40,8 @@ module.exports = {
       'lib': path.resolve(__dirname, 'src/assets/js/lib'),
       'modules': path.resolve(__dirname, 'src/modules'),
       'root': path.resolve(__dirname, 'src'),
+      'react': 'preact-compat',
+      'react-dom': 'preact-compat'
     },
   },
   plugins: [],

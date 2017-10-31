@@ -1,0 +1,15 @@
+.PLP__app-wrap.is-loading{
+  opacity: 0;
+  min-height: 5000px;
+}
+.plp__main{
+  width: 100%;
+  position: relative;
+
+  @media(--xs) {
+    width:calc(100% - 250px);
+    float:left;
+    padding: 300px 40px 40px;
+    border-left: 1px solid var(--grey2);
+  }
+}

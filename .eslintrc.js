@@ -2,7 +2,7 @@ const OFF = 0
 const ERROR = 2
 
 module.exports = {
-  "extends": ["standard"],
+  "extends": ["standard", "standard-preact"],
   'rules': {
     'no-unused-vars': OFF,
     'no-undef': OFF,

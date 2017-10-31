@@ -43,5 +43,19 @@
   --duration: 0.25s;
   --speed: 200ms;
   --ease: ease-in-out;
-  --ease-out: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+
+  -/* Grids */
+  --gutter-sm: 10px;
+  --gutter-lg: 20px;-ease-out: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
+
+/* Breakpoint Queries */
+@custom-media --xxs (min-width: 445px);
+@custom-media --xs (min-width: 625px);
+@custom-media --s (min-width: 768px);
+@custom-media --ms (min-width: 840px);
+@custom-media --bp-m (min-width: 960px);
+@custom-media --ml (min-width: 1160px);
+@custom-media --l (min-width: 1290px);
+@custom-media --xl (min-width: 1440px);
+@custom-media --xxl (min-width: 800px);

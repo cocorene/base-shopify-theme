@@ -7,9 +7,9 @@ button {
   font-size: inherit;
   -webkit-appearance: none;
 }
-button[disabled], 
-input[disabled] { 
-  cursor: default 
+button[disabled],
+input[disabled] {
+  cursor: default
 }
 
 /**
@@ -27,3 +27,12 @@ input.button[type="submit"] {
   text-decoration: none;
   text-align: center;
 }
+
+.link {
+  color: $c1;
+}
+
+.pointer {
+  cursor: pointer;
+}
+

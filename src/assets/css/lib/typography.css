@@ -96,3 +96,39 @@ b, strong {
   text-decoration: none;
 }
 
+/**
+ * Wrap WYSIWYG content with this class,
+ * and override global styles here
+ */
+.wysiwyg {
+  h1, h2 {
+    @extend .ts3;
+    line-height: (46/36);
+  }
+  h3 {
+    @extend .ts4;
+    line-height: (30/20);
+  }
+  h4, h6 {
+    @extend .ts5;
+    line-height: (23/17);
+  }
+
+  ol ul {
+    @extend .list;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    margin: 2em 0;
+  }
+
+  hr {
+    margin: 3em 0;
+  }
+
+  a {
+    @extend .link;
+  }
+}

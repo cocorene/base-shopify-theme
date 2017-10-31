@@ -54,7 +54,7 @@
         {% assign tracking_url = line_item.fulfillment.tracking_url %}
         {% assign tracking_number = line_item.fulfillment.tracking_number %}
 
-        <li class="order__details__row flex flex-wrap flex-items-start px1">
+        <li class="order__details__row f fw ais px1">
           <div class="__image">
             <a href="{{url}}"><img src="{{image}}" class="w1"/></a>
           </div>
@@ -83,7 +83,7 @@
             {% endif %}
           </div>
 
-          <div class="__total flex-auto">
+          <div class="__total fa">
             <h4 class="mv0 c1">{{quantity | times: price | money}}</h4>
           </div>
         </li>
@@ -106,9 +106,9 @@
       <div class="order__total mv1">
         <h5 class="inline-block mt0">Discounts</h5>
         {% for discount in order.discounts %}
-          <div class="flex flex-wrap flex-items-center">
-            <h6 class="mv0">{{discount.code}}</h6> 
-            <p class="flex-auto mv0 align-r">{{discount.savings | money}}</p>
+          <div class="f fw aic">
+            <h6 class="mv0">{{discount.code}}</h6>
+            <p class="fa mv0 align-r">{{discount.savings | money}}</p>
           </div>
         {% endfor %}
       </div>
@@ -120,9 +120,9 @@
       <div class="order__total mv1">
         <h5 class="inline-block mt0">Shipping</h5>
         {% for ship in order.shipping_methods %}
-          <div class="flex flex-wrap flex-items-center">
-            <h6 class="mv0">{{ship.title | replace: 'Shipping', ''}}</h6> 
-            <p class="flex-auto mv0 align-r">{{ship.price | money}}</p>
+          <div class="f fw aic">
+            <h6 class="mv0">{{ship.title | replace: 'Shipping', ''}}</h6>
+            <p class="fa mv0 align-r">{{ship.price | money}}</p>
           </div>
         {% endfor %}
       </div>
@@ -134,9 +134,9 @@
       <div class="order__total mv1">
         <h5 class="inline-block mt0">Tax</h5>
         {% for tax in order.tax_lines %}
-          <div class="flex flex-wrap flex-items-center">
-            <h6 class="mv0">{{tax.title | replace: 'Tax', ''}} ({{tax.rate | times: 100}}%)</h6> 
-            <p class="flex-auto mv0 align-r">{{tax.price | money}}</p>
+          <div class="f fw aic">
+            <h6 class="mv0">{{tax.title | replace: 'Tax', ''}} ({{tax.rate | times: 100}}%)</h6>
+            <p class="fa mv0 align-r">{{tax.price | money}}</p>
           </div>
         {% endfor %}
       </div>
@@ -151,8 +151,8 @@
 
 <section class="outer mt2">
   <div class="container--s mha pv1">
-    <div class="flex flex-wrap mhn1">
-      
+    <div class="f fw mhn1">
+
       <div class="w1 w12_m ph1 mb1 auto-height">
         <h4>Billing</h4>
 

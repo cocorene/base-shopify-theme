@@ -18,7 +18,7 @@
 
     <h4>{{form_title}}</h4>
 
-    <div class="address__form__group flex flex-wrap flex-justify-between">
+    <div class="address__form__group f fw jcb">
       {% assign field_classes = 'address__form__field' %}
       {% assign field_label = 'First Name:' %}
       {% assign field_name = 'address[first_name]' %}
@@ -34,7 +34,7 @@
       {% include 'input-text' %}
     </div>
 
-    <div class="address__form__group flex flex-wrap flex-justify-between">
+    <div class="address__form__group f fw jcb">
       {% assign field_classes = 'address__form__field' %}
       {% assign field_label = 'Company:' %}
       {% assign field_name = 'address[company]' %}
@@ -49,7 +49,7 @@
       {% include 'input-text' %}
     </div>
 
-    <div class="address__form__group flex flex-wrap flex-justify-between">
+    <div class="address__form__group f fw jcb">
       {% assign field_classes = 'address__form__field' %}
       {% assign field_label = 'Address:' %}
       {% assign field_name = 'address[address1]' %}
@@ -65,7 +65,7 @@
       {% include 'input-text' %}
     </div>
 
-    <div class="address__form__group flex flex-wrap flex-justify-between">
+    <div class="address__form__group f fw jcb">
       {% assign field_classes = 'address__form__field' %}
       {% assign field_label = 'City:' %}
       {% assign field_name = 'address[city]' %}
@@ -81,7 +81,7 @@
       </p>
     </div>
 
-    <div class="address__form__group flex flex-wrap flex-justify-between">
+    <div class="address__form__group f fw jcb">
       <p class="address__form__field">
         <span id="{{form_province_container_id}}" style="display:none">
           <label for="{{form_province_id}}" class="block">Province:</label>
@@ -106,7 +106,7 @@
     </p>
 
     <p class="pt1">
-      <button type="submit" class="button">{{form_cta}}</button> 
+      <button type="submit" class="button">{{form_cta}}</button>
       <button class="ml1 underline" type="button" onclick="{{form_script}}">Cancel</button>
     </p>
   {% endform %}
@@ -147,9 +147,9 @@
    * Generate province options and show select element
    *
    * @param {array} options Array of arrays from selected country
-   */ 
+   */
   function showProvinces(options){
-    var previousValue = provinceSelector.options[0] ? provinceSelector.options[0].value : false 
+    var previousValue = provinceSelector.options[0] ? provinceSelector.options[0].value : false
     var isNewValue = !previousValue || options[0][0] !== previousValue ? true : false
 
     if (isNewValue){
@@ -161,7 +161,7 @@
         var option = document.createElement('option')
         option.value = options[i][0]
         option.innerHTML = options[i][1]
-        provinceSelector.appendChild(option) 
+        provinceSelector.appendChild(option)
       }
     }
 
@@ -195,8 +195,8 @@
   }
 
   /**
-   * Get selected country, read it's 
-   * provinces, and toss them into the 
+   * Get selected country, read it's
+   * provinces, and toss them into the
    * provinces selector
    */
   countrySelector.onchange = function(){

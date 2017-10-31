@@ -19,7 +19,7 @@
   {% assign image = false %}
 {% endif %}
 
-<article class="search__result relative pv2 flex flex-items-center flex-wrap{% if type == 'product'%} search__result--product{% endif %}">
+<article class="search__result relative pv2 f aic fw{% if type == 'product'%} search__result--product{% endif %}">
   <div class="search__result__info w1">
     <a href="{{url}}"><h4 class="c2 mv0">{{title | highlight: search.terms}}</h4></a>
     <p class="mb0">{{caption | highlight: search.terms}}</p>

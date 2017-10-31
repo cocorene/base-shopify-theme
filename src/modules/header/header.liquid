@@ -1,4 +1,4 @@
-<header id="nav" class="nav relative flex flex-items-center fit-t fit-l w1 bg-cw z10" data-module="nav">
+<header id="nav" class="nav relative f aic fit-t fit-l w1 bg-cw z10" data-module="nav">
 
   {% comment %}
     Mobile Nav
@@ -54,14 +54,14 @@
     - holds desktop menu links, icons (which are present on mobile as well), and logo
     - vertically centered
   {% endcomment %}
-  <div class="nav__inner flex flex-items-center flex-justify-between w1 z1 bg-cw outer">
+  <div class="nav__inner f aic jcb w1 z1 bg-cw outer">
 
     <a class="nav__logo inline-block" href="{{ shop.url }}">
       <img class="block w1" src="{{"logo.png" | asset_url}}" alt="Logo"/>
     </a>
 
-    <nav class="nav__desktop inline-block mb025 flex flex-items-center flex-auto flex-justify-end">
-      <ul class="list--reset inline-block flex flex-items-center">
+    <nav class="nav__desktop inline-block mb025 f aic fa jce">
+      <ul class="list--reset inline-block f aic">
 
         {% for link in linklists.main-menu.links %}
           <li class="nav__item inline-block mr1">
@@ -78,7 +78,7 @@
       </ul>
     </nav>
 
-    <div class="flex flex-items-center">
+    <div class="f aic">
       <div class="nav__icon relative inline-block c1 ml1">
         <a id="searchToggle" href="/search" class="block absolute fit-x mha mva no-ajax">
           <svg class="w1" viewBox="0 0 16 16">

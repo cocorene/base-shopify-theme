@@ -17,7 +17,7 @@ module.exports = {
       ]
     }),
     require('postcss-extend'),
-    require('./plugins/postcss-shopify-fonts')('//cdn.shopify.com/s/files/1/2141/0785/t/9/assets/'),
+    require('./plugins/postcss-shopify-fonts')('//cdn.shopify.com/s/files/1/2440/7567/t/3/assets/'),
     require('postcss-fontpath'),
     require('precss'),
   ]

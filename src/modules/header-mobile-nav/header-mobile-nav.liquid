@@ -1,0 +1,37 @@
+{% comment %}
+  Mobile Nav
+  - appears below header. Fades in. Controlled by body classes.
+{% endcomment %}
+<div id="mobileNav" class="nav__mobile outer absolute pv1 bg-white fit-l w1" data-module="header-mobile-nav">
+  <ul class="relative">
+
+    {% for link in linklists.main-menu.links %}
+      {% assign child_list_handle = link.title | handleize %}
+
+      {% if linklists[child_list_handle].links != blank %}
+
+        <li class="nav__mobile__item block pv075 mr1 has-submenu">
+          <span class="nav__item__link block grey1 h6 pb075 decoration--none">{{ link.title }}</span>
+          <ul class="nav__mobile__submenu">
+            {% for sublink in linklists[child_list_handle].links %}
+              <li><a href="{{sublink.url}}" class="block h6 pv05 decoration--none">{{sublink.title}}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+
+      {% else %}
+
+        <li class="nav__mobile__item block pv075 mr1">
+          <a href="{{ link.url }}" class="nav__item__link h6 decoration--none">{{ link.title }}</a>
+        </li>
+
+      {% endif %}
+    {% endfor %}
+
+    {% if shop.customer_accounts_enabled %}
+      <li class="nav__mobile__item block pv075 mr1">
+        <a href="/account" class="nav__item__link h6 decoration--none">Account</a>
+      </li>
+    {% endif %}
+  </ul>
+</div>

@@ -1,12 +1,4 @@
 /**
- * Set height of header using these
- */
-:root{
-  --h-height: 57px;
-  --h-height-lg: 83px;
-}
-
-/**
  * Root element
  */
 .nav {
@@ -60,7 +52,6 @@
   height: 2em;
   width: 2em;
 
-  // dictates icons size
   a {
     width: 20px;
     height: 20px;
@@ -104,7 +95,6 @@
       width: 1.5em;
       transition: transform var(--speed) var(--ease);
 
-      // create X
       .mobile-nav-is-active & {
         opacity: 0;
       }
@@ -129,99 +119,5 @@
         }
       }
     }
-  }
-}
-
-/**
- * Mobile nav wrapper
- */
-.nav__mobile {
-  opacity: 0;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  transform: translateY(-200%); // push out of the way
-  transition: opacity var(--speed) var(--ease);
-
-  /**
-   * shows below the header,
-   * and ensures it's never taller
-   * than the viewport (for mobile landscape)
-   */
-  top: var(--h-height);
-  max-height: calc(100vh - var(--h-height));
-
-  /**
-   * If you're not changing header
-   * height, you can remove this
-   */
-  @media (--m){
-    top:var(--h-height-lg);
-    max-height: calc(100vh - var(--h-height-lg));
-  }
-
-  // hide on desktop
-  @media (--s){
-    display: none
-  }
-
-  /**
-   * Classes added to body
-   */
-  .mobile-nav-is-active & {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  .mobile-nav-is-hiding & {
-    opacity: 0;
-  }
-}
-
-/**
- * <li> menu
- */
-.nav__mobile__item {
-  border-bottom: 1px solid var(--black);
-  &:last-child {
-    border: 0;
-  }
-}
-
-.nav__mobile__submenu {
-  padding-left: 1em;
-}
-
-/**
- * Search bar
- */
-.nav__search {
-  transition: transform var(--speed) var(--ease);
-
-  &.is-active {
-    transform: translateY(100%);
-  }
-}
-
-form.nav__search__form {
-  padding: 1em 0;
-  @media (--m){
-    padding: 2em 0;
-  }
-}
-
-input.nav__search__input {
-  background-color: transparent;
-  border: 0;
-  border-bottom: 1px solid rgba(#FFF, 0.3);
-  padding: 0 0 0.1em;
-  color: white;
-
-  &::placeholder {
-    color: rgba(#FFF, 0.3);
-  }
-
-  &:focus {
-    outline: 0;
-    border: 0;
-    border-bottom: 1px solid rgba(#FFF, 0.3);
   }
 }

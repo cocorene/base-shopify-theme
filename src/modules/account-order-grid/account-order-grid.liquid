@@ -1,0 +1,43 @@
+<section class="outer mt2">
+  <div class="container--s pv2 mha">
+
+    <h2 class="h4 mb05 mt0 uppercase">Order History</h2>
+
+    {% paginate customer.orders by 99 %}
+
+      {% if customer.orders.size != 0 %}
+
+        <ul class="orders">
+          {% for order in customer.orders %}
+            <li class="orders__order">
+              <a href="{{order.customer_url}}" class="link">
+                <h5 class="inline-block mv0 uppercase">Order {{order.name}}</h5>
+              </a>
+
+              <p class="block mt0 mb05">{{order.created_at | date: '%b %d, %Y'}}</p>
+
+              <div class="order__meta order__meta--total inline-block">
+                <span>Total:</span><span>{{order.total_price | money}}</span>
+              </div>
+              <div class="order__meta inline-block">
+                <span>Payment:</span><span>{{order.financial_status_label}}</span>
+              </div>
+              <div class="order__meta inline-block">
+                <span>Shipping:</span><span>{{order.fulfillment_status_label}}</span>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+
+      {% else %}
+
+        <p class="align-c px2 bg-cg1">You don't have any orders yet!</p>
+
+      {% endif %}
+
+      {% include 'pagination' %}
+
+    {% endpaginate %}
+
+  </div>
+</section>

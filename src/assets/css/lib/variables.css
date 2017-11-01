@@ -44,9 +44,13 @@
   --speed: 200ms;
   --ease: ease-in-out;
 
-  -/* Grids */
+  /* Grids */
   --gutter-sm: 10px;
   --gutter-lg: 20px;-ease-out: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+
+  /* Header */
+  --h-height: 57px;
+  --h-height-lg: 83px;
 }
 
 /* Breakpoint Queries */

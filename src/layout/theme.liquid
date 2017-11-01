@@ -34,7 +34,7 @@
 </head>
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
 
-  {% include 'promo' %}
+  {% include 'promobar' %}
   {% include 'header' %}
 
   <main id="page" class="relative z0" role="main">
@@ -42,7 +42,6 @@
   </main>
 
   {% include 'newsletter' %}
-
   {% include 'footer' %}
 
   {% unless settings.is_dev_mode %}

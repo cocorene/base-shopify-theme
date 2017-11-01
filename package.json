@@ -5,7 +5,7 @@
   "main": "gulpfile.js",
   "scripts": {
     "start": "brrl -w",
-    "build": "brrl -b",
+    "build": "brrl -b -e production",
     "development": "brrl -d -e development",
     "staging": "brrl -d -e staging",
     "production": "brrl -d -e production"

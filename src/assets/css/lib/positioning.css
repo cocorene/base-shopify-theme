@@ -8,7 +8,7 @@
 .fill, .fill-w { width: 100% }
 .fill, .fill-h { height: 100% }
 .fill-w2_m {
-  @media (--bp-m) {
+  @media (--m) {
     width: 50%;
   }
 }

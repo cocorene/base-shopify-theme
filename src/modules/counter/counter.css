@@ -1,7 +1,7 @@
 .counter {
   position: relative;
   white-space: nowrap;
-  border: $border;
+  border: var(--borderGrey1);
   width: 90px;
   height: 40px;
   background-color: inherit;
@@ -30,7 +30,7 @@
     margin: auto;
     height: 30px;
     cursor: pointer;
-    transition: opacity $speed $ease;
+    transition: opacity var(--speed) var(--ease);
     outline: 0;
 
     &[disabled]{
@@ -66,9 +66,9 @@
       height: 18px;
       margin: auto;
       border-radius: 100px;
-      background: $cg1;
+      background: var(--grey1);
       opacity: 0;
-      transition: opacity $speed $ease;
+      transition: opacity var(--speed) var(--ease);
     }
 
     span {

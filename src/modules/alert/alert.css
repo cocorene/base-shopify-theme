@@ -1,5 +1,5 @@
 .alert {
-  background-color: rgba($c1, 0.2);
+  background-color: var(--grey1);
   border-radius: 4px;
 }
 .alert__message {}

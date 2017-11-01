@@ -8,13 +8,13 @@
 .address__form {}
 .address__form__group {
   width: 100%;
-  @media (min-width: break(s)){
+  @media (--s){
     flex-wrap: nowrap;
   }
 }
 .address__form__field {
   width: 100%;
-  @media (min-width: break(s)){
+  @media (--s){
     width: 50%;
     &:first-child {
       margin-right: 1em;
@@ -54,7 +54,7 @@ li.account__nav__link {}
   }
 }
 .order__meta--total {
-  border-color: $c1;
+  border-color: var(--grey1);
 }
 
 .order__details {}
@@ -69,7 +69,7 @@ li.account__nav__link {}
     width: 100px;
     padding-bottom: 1em;
 
-    @media (min-width: break(m)){
+    @media (--m){
       padding-right: 1em;
       padding-bottom: 0;
     }
@@ -81,12 +81,12 @@ li.account__nav__link {}
   }
   .__info {
     min-width: 100%;
-    @media (min-width: break(m)){
+    @media (--m){
       min-width: 0;
     }
   }
   .__total {
-    @media (min-width: break(m)){
+    @media (--m){
       text-align: right;
     }
   }

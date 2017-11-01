@@ -1,23 +1,20 @@
 /**
  * Set height of header using these
  */
-$headerHeight: 57px;
-$headerHeightMedium: 83px;
-
-/**
- * When to break to mobile layout (px)
- */
-$headerBreakpoint: 700;
+:root{
+  --h-height: 57px;
+  --h-height-lg: 83px;
+}
 
 /**
  * Root element
  */
 .nav {
-  height: $headerHeight;
+  height: var(--h-height);
   border-bottom: 1px solid #000;
 
-  @media (min-width: break(m)){
-    height: $headerHeightMedium;
+  @media (--s){
+    height: var(--h-height-lg);
   }
 }
 
@@ -25,17 +22,16 @@ $headerBreakpoint: 700;
   height: 100%;
 }
 
-// hide on mobile
 .nav__desktop {
-  @media (max-width: break($headerBreakpoint, false)){
-    display: none;
+  display:none;
+  @media (--s){
+    display: block;
   }
 }
 
-// adjust this for your logo
 .nav__logo {
   width: 60px;
-  @media (min-width: break(m)){
+  @media (--s){
     width: 100px;
   }
 }
@@ -47,7 +43,7 @@ $headerBreakpoint: 700;
   &:last-child {
     margin-right: 0;
   }
-  @media (min-width: break(l)){
+  @media (--l){
     margin-right: 2em;
   }
 }
@@ -75,7 +71,7 @@ $headerBreakpoint: 700;
  * Hamburger
  */
 .nav__mobile__toggle {
-  @media (min-width: break($headerBreakpoint)){
+  @media (--s){
     display: none;
   }
 
@@ -106,7 +102,7 @@ $headerBreakpoint: 700;
       height: 2px;
       border-radius: 10px;
       width: 1.5em;
-      transition: transform $speed $ease;
+      transition: transform var(--speed) var(--ease);
 
       // create X
       .mobile-nav-is-active & {
@@ -144,28 +140,28 @@ $headerBreakpoint: 700;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   transform: translateY(-200%); // push out of the way
-  transition: opacity $speed $ease;
+  transition: opacity var(--speed) var(--ease);
 
   /**
    * shows below the header,
    * and ensures it's never taller
    * than the viewport (for mobile landscape)
    */
-  top: $headerHeight;
-  max-height: calc(100vh - #{$headerHeight});
+  top: var(--h-height);
+  max-height: calc(100vh - var(--h-height));
 
   /**
    * If you're not changing header
    * height, you can remove this
    */
-  @media (min-width: break(m)){
-    top: $headerHeightMedium;
-    max-height: calc(100vh - #{$headerHeightMedium});
+  @media (--m){
+    top:var(--h-height-lg);
+    max-height: calc(100vh - var(--h-height-lg));
   }
 
   // hide on desktop
-  @media (min-width: break($headerBreakpoint)){
-    display: none;
+  @media (--s){
+    display: none
   }
 
   /**
@@ -184,7 +180,7 @@ $headerBreakpoint: 700;
  * <li> menu
  */
 .nav__mobile__item {
-  border-bottom: 1px solid $cb;
+  border-bottom: 1px solid var(--black);
   &:last-child {
     border: 0;
   }
@@ -198,7 +194,7 @@ $headerBreakpoint: 700;
  * Search bar
  */
 .nav__search {
-  transition: transform $speed $ease;
+  transition: transform var(--speed) var(--ease);
 
   &.is-active {
     transform: translateY(100%);
@@ -207,7 +203,7 @@ $headerBreakpoint: 700;
 
 form.nav__search__form {
   padding: 1em 0;
-  @media (min-width: break(m)){
+  @media (--m){
     padding: 2em 0;
   }
 }

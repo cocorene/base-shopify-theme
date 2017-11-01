@@ -3,7 +3,6 @@
 }
 
 .outer {
-  padding: 4em;
   padding-left: 1rem;
   padding-right: 1rem;
   @media (--s) {

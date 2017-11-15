@@ -1,0 +1,31 @@
+<section class="outer mt2 pt2">
+  <div class="container--s mha">
+    <h1 class="h2 mb0">Style Guide</h1>
+  </div>
+</section>
+
+<div class="outer pv2">
+  <div class="container--s mha mb2">
+    <p class="b">Forms</p>
+    <form>
+      <div>
+        {% include 'checkbox', name: 'checkbox', label: 'Checkbox' %}
+      </div>
+      <div>
+        {% include 'text-input', name: 'text-input', label: 'Text Input', placeholder: 'Write..' %}
+      </div>
+      <div>
+        {% assign selectOptions = 'Select Option 1,Select Option 2,Select Option 3,Select Option 4' | split: ',' %}
+        {% assign selectValues = '1,2,3,4' | split: ',' %}
+        {% include 'select',
+            name: 'select',
+            class: 'styleguide-select',
+            label: 'Select Input',
+            placeholder: '-- Choose an option --',
+            options: selectOptions,
+            values: selectValues,
+            value: false
+        %}
+      </div>
+  </div>
+</div>

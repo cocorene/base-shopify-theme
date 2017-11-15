@@ -1,0 +1,50 @@
+{% comment %}
+  Reusable text field snippet.
+
+  Requires:
+  name typeof string
+  label typeof string
+
+  Defaults:
+  type default 'text'
+  value default ''
+  autocorrect default false
+  autocapitalize default false
+{% endcomment %}
+
+{% comment %} Set default values to false {% endcomment %}
+{% assign name = name | default: false %}
+{% assign label = label | default: false %}
+{% assign type = type | default: 'text' %}
+{% assign value = value | default: '' %}
+{% assign autocorrect = autocorrect | default: false %}
+{% assign autocapitalize = autocapitalize | default: false %}
+{% assign placeholder = placeholder | default: '' %}
+
+{% if label and name %}
+  <p class="{{classes}}">
+    <span class="block">
+      <label for="{{name}}" class="block">{{label}}</label>
+      <input class="block w1"
+        type="{{type}}"
+        name="{{name}}"
+        placeholder="{{placeholder}}"
+        autocorrect="{{autocorrect}}"
+        autocapitalize="{{autocapitalize}}"
+        value="{{value}}"/>
+    </span>
+  </p>
+{% else %}
+  <p class="italic bold">Whoops! Looks like you missed a value for this field :)</p>
+{% endif %}
+
+{% comment %} Reset values to false {% endcomment %}
+{% assign label = false %}
+{% assign name = false %}
+{% assign type = false %}
+{% assign value = false %}
+{% assign autocorrect = false %}
+{% assign autocapitalize = false %}
+{% assign placeholder = false %}
+{% assign has_errors = false %}
+{% assign error_message = false %}

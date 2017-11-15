@@ -1,0 +1,54 @@
+{% comment %}
+   Select Form Module
+   options: Array of options, either strings or objects with title and id properties
+   values: Optional array of values matching order of options
+   value: Optional preselected value
+{% endcomment %}
+{% assign class = class | default: '' %}
+{% assign id = id | default: false %}
+{% assign name = name | default: false %}
+{% assign label = label | default: false %}
+{% assign placeholder = placeholder | default: false %}
+{% assign options = options | default: false %}
+{% assign values = values | default: false %}
+{% assign value = value | default: false %}
+
+{% if options and values %}
+  <div class="select {{class}}">
+    {% if label %}
+      <label class="select__label p block" {% if id %}for="{{ id }}"{% endif %}>{{ label }}</label>
+    {% endif %}
+    <select
+       class="select__el"
+       type="select"
+       {% if id %}id="{{ id | escape }}"{% endif %}
+       {% if name %}name="{{ name | escape }}"{% endif %}
+       {% if value %}value="{{ value }}"{% endif %}>
+
+      {% if placeholder %}
+        {% unless value %}
+          <option value="" disabled selected>{{ placeholder | strip_html }}</option>
+        {% endunless %}
+      {% endif %}
+
+    {% for option in options %}
+      {% assign title = option.title | default: option %}
+      <option
+        {% if value and values[forloop.index0] == value %} selected="selected" {% endif %}
+        {% if values %} value="{{ values[forloop.index0] | strip_html | escape }}" {% else %}
+        {% if option.id %} value="{{ option.id | escape }}" {% endif %}{% endif %}
+        >{{ title | strip_html }}</option>
+      {% assign title = blank %}
+    {% endfor %}
+    </select>
+  </div>
+{% endif %}
+
+{% assign class = false %}
+{% assign id = false %}
+{% assign name = false %}
+{% assign label = false %}
+{% assign placeholder = false %}
+{% assign value = false %}
+{% assign options = false %}
+{% assign values = false %}

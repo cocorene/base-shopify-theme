@@ -14,5 +14,18 @@
       <div>
         {% include 'text-input', name: 'text-input', label: 'Text Input', placeholder: 'Write..' %}
       </div>
+      <div>
+        {% assign selectOptions = 'Select Option 1,Select Option 2,Select Option 3,Select Option 4' | split: ',' %}
+        {% assign selectValues = '1,2,3,4' | split: ',' %}
+        {% include 'select',
+            name: 'select',
+            class: 'styleguide-select',
+            label: 'Select Input',
+            placeholder: '-- Choose an option --',
+            options: selectOptions,
+            values: selectValues,
+            value: false
+        %}
+      </div>
   </div>
 </div>

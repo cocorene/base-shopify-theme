@@ -7,7 +7,7 @@
 {% assign disabled = disabled | default: false %}
 
 {% capture css %}
-    quantity-selector {{ class }}
+  quantity-selector {{ class }}
 {% endcapture %}
 
 {% capture attributes %}
@@ -15,9 +15,9 @@
 {% endcapture %}
 
 <div class="{{ css | strip }}" data-module="quantity-selector" {% if disabled %}disabled{% endif %}>
-    <button class="quantity-selector__action js-minus" type="button">-</button>
-    <input class="quantity-selector__field js-field" type="number" {{ attributes | strip }}>
-    <button class="quantity-selector__action js-plus" type="button">+</button>
+  <button class="quantity-selector__action js-minus" type="button">-</button>
+  <input class="quantity-selector__field js-field" type="number" {{ attributes | strip }}>
+  <button class="quantity-selector__action js-plus" type="button">+</button>
 </div>
 
 {% assign class = false %}

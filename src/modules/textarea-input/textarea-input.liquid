@@ -1,0 +1,47 @@
+{% comment %}
+  Reusable text area field snippet.
+
+  Requires:
+  name typeof string
+  label typeof string
+
+  Defaults:
+  value default ''
+  autocorrect default false
+  autocapitalize default false
+{% endcomment %}
+
+{% comment %} Set default values to false {% endcomment %}
+{% assign name = name | default: false %}
+{% assign label = label | default: false %}
+{% assign value = value | default: '' %}
+{% assign autocorrect = autocorrect | default: false %}
+{% assign autocapitalize = autocapitalize | default: false %}
+{% assign placeholder = placeholder | default: '' %}
+
+{% if label and name %}
+  <p class="textarea">
+    <span class="textarea__inner">
+      <label for="{{name}}" class="block">{{label}}</label>
+      <textarea class="block w1 textarea__input"
+        name="{{name}}"
+        placeholder="{{placeholder}}"
+        autocorrect="{{autocorrect}}"
+        autocapitalize="{{autocapitalize}}">
+        {{value}}
+      </textarea>
+    </span>
+  </p>
+{% else %}
+  <p class="italic bold">Whoops! Looks like you missed a value for this field :)</p>
+{% endif %}
+
+{% comment %} Reset values to false {% endcomment %}
+{% assign label = false %}
+{% assign name = false %}
+{% assign value = false %}
+{% assign autocorrect = false %}
+{% assign autocapitalize = false %}
+{% assign placeholder = false %}
+{% assign has_errors = false %}
+{% assign error_message = false %}

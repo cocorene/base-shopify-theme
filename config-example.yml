@@ -1,0 +1,15 @@
+production:
+  theme_id: 6651936796
+  api_key: 5fc8a57c36ba8e5a9cc4f31ff00ff7bb
+  password: bc2c539c4eeedc411ed8aae5f048ed64
+  store: base-dev.myshopify.com
+staging:
+  theme_id: 6651936796
+  api_key: 5fc8a57c36ba8e5a9cc4f31ff00ff7bb
+  password: bc2c539c4eeedc411ed8aae5f048ed64
+  store: base-dev.myshopify.com
+development:
+  theme_id: 4815257628
+  api_key: 5fc8a57c36ba8e5a9cc4f31ff00ff7bb
+  password: bc2c539c4eeedc411ed8aae5f048ed64
+  store: base-dev.myshopify.com

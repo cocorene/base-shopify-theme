@@ -36,17 +36,13 @@
     <div class="f aic">
       <div class="nav__icon relative inline-block c1 ml1">
         <a id="searchToggle" href="/search" class="block absolute fit-x mha mva no-ajax">
-          <svg class="w1" viewBox="0 0 16 16">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-search" x="0" y="0"></use>
-          </svg>
+          {% include 'icon' with 'icon-search' %}
         </a>
       </div>
 
       <div class="nav__icon relative inline-block c1 ml1">
         <a href="/cart" class="block absolute fit-x mha mva">
-          <svg class="w1" viewBox="0 0 50 42.2">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-cart" x="0" y="0"></use>
-          </svg>
+          {% include 'icon' with 'icon-cart' %}
         </a>
       </div>
 

@@ -4,13 +4,9 @@
 
     <div class="alert__icon fa align-r">
       {% if alert_type == 'error' %}
-        <svg viewBox='0 0 12 11' class="inline-block">
-          <use xlink:href="#icon-alert" x='0' y='0'></use>
-        </svg>
+        {% include 'icon' with 'icon-alert' %}
       {% else if alert_type == 'success' %}
-        <svg viewBox="-192.6 195 11.1 11.1" class="inline-block">
-          <use xlink:href="#icon-checkmark" x="0" y="0"></use>
-        </svg>
+        {% include 'icon' with 'icon-checkmark' %}
       {% endif %}
     </div>
   </div>

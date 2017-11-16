@@ -8,11 +8,9 @@
       {% if form.posted_successfully? %}
         <div class="alert_message bg-c2 px1 f aic mha align-l">
           <div class="alert__icon mr1 f">
-            <svg viewBox='0 0 18 18'>
-              <use xlink:Href="#checkmark" x='0' y='0'></use>
-            </svg>
+            {% include 'icon' with 'icon-checkmark' %}
           </div>
-          <span>We have sent an email to lucas.ballasy@barrelny.com. Please click the link in your email to verify your account.</span>
+          <span>We have sent an email to {{form.email}}. Please click the link in your email to verify your account.</span>
         </div>
       {% endif %}
 

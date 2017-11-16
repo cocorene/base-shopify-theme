@@ -1,6 +1,6 @@
 {% assign class = class | default: blank %}
-{% assign image = image | default: false %}
-{% assign image_mobile = image_mobile | default: false %}
+{% assign src = src | default: false %}
+{% assign src_mobile = src_mobile | default: false %}
 {% assign seo_title = seo_title | default: false %}
 {% assign alt = alt | default: false %}
 {% assign format = format | default: 'cover' %}
@@ -14,17 +14,17 @@
 {% endcapture %}
 
 <div class="{{ css | strip }}" data-module="image">
-  {% if image %}
-    <img class="image__desktop js-desktop" data-src="{{ image }}" {{ attributes | strip }}>
+  {% if src %}
+    <img class="image__desktop js-desktop" data-src="{{ src }}" {{ attributes | strip }}>
   {% endif %}
-  {% if image_mobile %}
-    <img class="image__mobile js-mobile" data-mobile-src="{{ image_mobile }}" {{ attributes | strip }}>
+  {% if src_mobile %}
+    <img class="image__mobile js-mobile" data-mobile-src="{{ src_mobile }}" {{ attributes | strip }}>
   {% endif %}
 </div>
 
 {% assign class = false %}
-{% assign image = false %}
-{% assign image_mobile = false %}
+{% assign src = false %}
+{% assign src_mobile = false %}
 {% assign seo_title = false %}
 {% assign alt = false %}
 {% assign format = false %}

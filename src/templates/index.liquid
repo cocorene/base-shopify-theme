@@ -1,3 +1,8 @@
 <!-- /templates/index.liquid -->
 
-<div class="index container"></div>
+<div class="index container">
+  {% include 'quantity-selector', min: '3' %}
+  <br>
+  {% include 'radio-button', name: 'barrel', label: 'This is my label for my 1rst radio button' %}
+  {% include 'radio-button', name: 'barrel', label: 'This is my label for my 2nd radio button' %}
+</div>

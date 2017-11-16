@@ -6,11 +6,12 @@
 }
 .radio-button__holder {
   border: var(--border);
-  cursor: pointer;
+  border-radius: 50%;
   display: block;
   flex: 0 0 auto;
   height: 20px;
   margin-right: 10px;
+  overflow: hidden;
   position: relative;
   width: 20px;
 }
@@ -23,6 +24,9 @@
   width: 100%;
 }
 .radio-button__el {
+  cursor: pointer;
+  margin: 0;
+  opacity: 0;
   z-index: 1;
 }
 .radio-button__checked {

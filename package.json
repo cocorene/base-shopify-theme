@@ -45,6 +45,7 @@
     "query-string": "^5.0.1",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
+    "select-dom": "^4.1.1",
     "shopify-shipping-calculator": "^0.1.0",
     "svbstrate": "^2.0.2",
     "up-down": "0.0.1"

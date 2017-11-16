@@ -3,7 +3,7 @@
 {% assign name = name | default: false %}
 {% assign min = min | default: false %}
 {% assign max = max | default: false %}
-{% assign value = value | default: '1' %}
+{% assign value = value | default: min | default: '0' %}
 {% assign disabled = disabled | default: false %}
 
 {% capture css %}

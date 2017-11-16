@@ -1,0 +1,20 @@
+{% assign value = value | Default: 'Submit' %}
+{% assign class = class | Default: blank %}
+{% assign type = type | Default: 'input' %}
+{% assign disabled = disabled | Default: false %}
+
+{% capture classes %}
+  submit-btn {% if class != blank %} {{ class }} {% endif %}
+{% endcapture %}
+
+{% if type == 'button' %}
+  <button type="submit" class="{{ classes }}" value="{{ value }}"{% if disabled %} disabled{% endif %}>{{ value }}</button>
+{% else %}
+  <input type="submit" class="{{ classes }}" value="{{ value }}" {% if disabled %} disabled{% endif %}>
+{% endif %}
+
+{% assign value = false %}
+{% assign class = false %}
+{% assign classes = false %}
+{% assign type = false %}
+{% assign disabled = false %}

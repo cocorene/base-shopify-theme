@@ -1,0 +1,32 @@
+{% assign class = class | default: blank %}
+{% assign image = image | default: false %}
+{% assign image_mobile = image_mobile | default: false %}
+{% assign seo_title = seo_title | default: false %}
+{% assign alt = alt | default: false %}
+{% assign format = format | default: 'cover' %}
+
+{% capture css %}
+  image is-{{ format }} {{ class }}
+{% endcapture %}
+
+{% capture attributes %}
+  {% if seo_title %}title="{{ seo_title }}"{% endif %} {% if alt %}alt="{{ alt }}"{% endif %}
+{% endcapture %}
+
+<div class="{{ css | strip }}" data-module="image">
+  {% if image %}
+    <img class="image__desktop js-desktop" data-src="{{ image }}" {{ attributes | strip }}>
+  {% endif %}
+  {% if image_mobile %}
+    <img class="image__mobile js-mobile" data-mobile-src="{{ image_mobile }}" {{ attributes | strip }}>
+  {% endif %}
+</div>
+
+{% assign class = false %}
+{% assign image = false %}
+{% assign image_mobile = false %}
+{% assign seo_title = false %}
+{% assign alt = false %}
+{% assign format = false %}
+{% assign css = false %}
+{% assign attributes = false %}

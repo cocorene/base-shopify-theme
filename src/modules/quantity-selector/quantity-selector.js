@@ -27,9 +27,9 @@ const count = (el, btn) => {
 }
 
 export default (el) => {
-  let field = select('.js-field', el)
-  let minus = select('.js-minus', el)
-  let plus = select('.js-plus', el)
+  let field = select('[type="number"]', el)
+  let minus = select('[data-count="-"]', el)
+  let plus = select('[data-count="+"]', el)
 
   let counter = {
     disabled: el.hasAttribute('disabled'),
@@ -41,10 +41,10 @@ export default (el) => {
   }
 
   on(counter.minus, 'click', (e) => {
-    count(counter, e.target)
+    count(counter, counter.minus)
   })
   on(counter.plus, 'click', (e) => {
-    count(counter, e.target)
+    count(counter, counter.plus)
   })
 
   update(counter)

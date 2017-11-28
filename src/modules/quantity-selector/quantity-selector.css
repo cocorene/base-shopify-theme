@@ -1,6 +1,5 @@
 .quantity-selector {
   align-items: center;
-  border: var(--border);
   display: inline-flex;
   position: relative;
   transition: opacity var(--duration) var(--ease);
@@ -28,7 +27,7 @@
   height: 50px;
   line-height: 50px;
   text-align: center;
-  width: 30px;
+  width: 5em;
   -moz-apperance: none;
   -webkit-appearance: none;
 }

@@ -35,9 +35,9 @@
       <p class="mb0">
         <small>
           {% if property_size > 0 %}
-            {{ line_item_properties }} 
+            {{ line_item_properties }}
           {% else %}
-            {{ variant_title }} 
+            {{ variant_title }}
           {% endif %}
         </small>
       </p>
@@ -47,11 +47,8 @@
     <p>{{price}}</p>
   </div>
   <div class="cart__item__quantity mt1 align-t align-c">
-    <div class="counter inline-block" data-component="cart-item-counter">
-      <button type="button" data-count="-"><span>–</span></button> 
-      <input type="number" name="updates[]" id="updates_{{item.id}}" value="{{item.quantity}}" min="0" max="10">
-      <button type="button" data-count="+"><span>+</span></button> 
-    </div>
+    {% assign quantity_selector_name = item.id | prepend: 'updates_' %}
+    {% include 'quantity-selector', id: quantity_selector_name, name: 'updates[]', min: '1', max: item.inventory_quantity, value: item.quantity %}
 
     <div class="mt075">
       <button type="submit" name="update" class="cart__item__update inline-block link js-update">Update</button>
@@ -67,6 +64,6 @@
 
     {% for discount in item.discounts %}
       <p><small>{{ discount.title }}</small></span>
-    {% endfor %}  
+    {% endfor %}
   </div>
 </div>

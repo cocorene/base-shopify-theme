@@ -1,0 +1,5 @@
+<div class="carousel" data-module="carousel">
+  {% for product in collection.products %}
+    {% include 'product-card', collection: collection, class: 'carousel__item' %}
+  {% endfor %}
+</div>

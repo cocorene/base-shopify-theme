@@ -1,87 +1,52 @@
 .wysiwyg__container {
 
-  p {
-    color: #A1A1A1;
-    font-size: 16px;
-    line-height: 24px;
-    margin-bottom: 20px;
-  }
+/**
+ * Scoped as many editors will not support adding
+ * class names to tags. All typographic styles
+ * should be maintained in the typography css lib.
+ */
 
   h1 {
-    font-weight: bold;
-    font-size: 40px;
-    line-height: 50px;
-    color: black;
-    margin-bottom: 20px;
+    @extend .h1;
   }
-
   h2 {
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 33px;
-    color: black;
-    margin-bottom: 20px;
-    text-transform: uppercase;
+    @extend .h2;
   }
-
   h3 {
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 25px;
-    color: black;
-    margin-bottom: 20px;
+    @extend .h3;
+  }
+  h4, h5, h6 {
+    @extend .h4;
   }
 
-  h4 {
-    font-weight: bold;
-    font-size: 13px;
-    line-height: 16px;
-    color: black;
-    margin-bottom: 20px;
-    text-transform: uppercase;
+  ol, ul {
+    @extend .list;
   }
-
-  ul {
-    list-style: disc;
-    margin-left: 20px;
-    margin-bottom: 15px;
-  }
-
-  ol {
-    list-style: decimal;
-    margin-left: 20px;
-    margin-bottom: 15px;
-  }
-
   li {
-    color: $gray--dark;
-    font-size: 16px;
-    line-height: 24px;
-    margin-bottom: 5px;
+
   }
 
+  blockquote {
+    @extend .blockquote;
+  }
   img {
-    max-width: 300px;
+    @extend .img;
   }
 
-  b, strong {
-    font-weight: bold;
-  }
-
-  i, em {
-    font-style: italic;
+  hr {
+    @extend .hr;
   }
 
   a {
-    color: pink;
-    border-bottom: 1px solid $pink;
-    text-decoration: none;
-    transition: 150ms ease-in-out;
+    @extend .link;
+  }
 
-    &:hover {
-      padding-bottom: 3px;
-    }
+  i, em {
+    @extend .italic;
+  }
 
+  b, strong {
+    @extend .bold;
   }
 
 }

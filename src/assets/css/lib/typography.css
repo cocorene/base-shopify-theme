@@ -1,12 +1,10 @@
 
-.tsx { font-size: 1rem }
-.ts1 { font-size: 4rem }
-.ts2 { font-size: 3rem }
-.ts3 { font-size: 2rem }
-.ts4 { font-size: 1.5rem }
-.ts5 { font-size: 1.2rem }
-.ts6 { font-size: 0.875rem }
-
+/**
+ * This is the definitive place for
+ * the site's typographic styles.
+ *
+ * i.e h1, h2, h3, p, li, a, etc
+ */
 body {
 	color: var(--black);
 	font-family: Helvetica, Arial, sans-serif;
@@ -15,46 +13,39 @@ body {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
 }
-h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   font-weight: 600;
 }
-h1, h2, h3, h4, h5, h6 {
-  margin: 2ex 0 .6ex;
+.h1 {
+  line-height: 1.1px;
 }
-h1, .h1 {
-  line-height: 1.1;
+.h2 {
+  line-height: 1.3px;
 }
-h2, .h2 {
-  line-height: 1.3;
+.h3 {
+  line-height: 1.5px;
 }
-h3, .h3 {
-  line-height: 1.5;
+.h4 {
+  line-height: 1.5px;
 }
-h4, .h4 {
-  line-height: 1.5;
+.h5 {
+  line-height: 1.6px;
 }
-h5, .h5 {
-  line-height: 1.6;
+.h6 {
+  line-height: 1.6px;
 }
-h6, .h6 {
-  line-height: 1.6;
+.p {
+  line-height: 1.4px;
 }
-p, .p {
-  line-height: 1.7;
-}
-p {
-  margin: 2ex 0
-}
-a {
+.link {
   color: inherit;
 }
-blockquote {
+.blockquote {
   margin: 3rem 0;
   padding-left: 2rem;
   border-left: 4px solid #148ECC;
 }
-hr {
+.hr {
   display: block;
   background-color: currentColor;
   color: inherit;
@@ -63,12 +54,8 @@ hr {
   width: 100%;
   margin: 0;
 }
-.small,
-small {
+.small {
   font-size: 0.8em;
-}
-b, strong {
-  font-weight: bold;
 }
 .type--reset {
   margin: 0;
@@ -94,41 +81,4 @@ b, strong {
 }
 .decoration--none {
   text-decoration: none;
-}
-
-/**
- * Wrap WYSIWYG content with this class,
- * and override global styles here
- */
-.wysiwyg {
-  h1, h2 {
-    @extend .ts3;
-    line-height: (46/36);
-  }
-  h3 {
-    @extend .ts4;
-    line-height: (30/20);
-  }
-  h4, h6 {
-    @extend .ts5;
-    line-height: (23/17);
-  }
-
-  ol ul {
-    @extend .list;
-  }
-
-  img {
-    display: block;
-    width: 100%;
-    margin: 2em 0;
-  }
-
-  hr {
-    margin: 3em 0;
-  }
-
-  a {
-    @extend .link;
-  }
 }

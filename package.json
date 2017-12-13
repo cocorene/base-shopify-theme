@@ -36,6 +36,7 @@
     "dom-select": "^1.1.1",
     "feature.js": "^1.0.0",
     "flickity": "^2.0.10",
+    "layzr.js": "^2.2.2",
     "micro-jsonp": "^1.0.1",
     "nanoajax": "^0.4.3",
     "preact": "^8.2.6",

@@ -8,6 +8,15 @@ const instance = Layzr({
   threshold: 0
 })
 
+instance
+  .on('src:before', image => {
+
+  })
+  .on('src:after', image => {
+    let wrapper = image.parentNode
+    wrapper.classList.add('is-loaded')
+  })
+
 export default (el) => {
   instance
     .update()

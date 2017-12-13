@@ -1,10 +1,12 @@
 {% assign class = class | default: blank %}
 {% assign src = src | default: false %}
+{% assign retina = retina | default: false %}
+{% assign srcset = srcset | default: false %}
 {% assign seo = seo | default: false %}
-{% assign objectFit = objectFit | default: 'cover' %}
+{% assign object_fit = objectFit | default: 'cover' %}
 
 {% capture css %}
-  img fit-{{ objectFit }} {{ class }}
+  img fit-{{ object_fit }} {{ class }}
 {% endcapture %}
 
 {% capture attributes %}
@@ -12,16 +14,18 @@
 {% endcapture %}
 
 <div class="{{ css | strip }}" data-module="image">
-  <i class="img__loader"></i>
-  <img class="img__el" data-srcset="{{ src }}" {{ attributes | strip }}>
   <noscript>
-    <img class="img__el" {{ attributes | strip }}>
+    <img class="img__el" src="{{ src }}" {{ attributes | strip }}>
   </noscript>
+  <i class="img__loader"></i>
+  <img class="img__el" data-normal="{{ src }}" {% if retina %}data-retina="{{ retina }}"{% endif %} {% if srcset %}data-srcset="{{ srcset }}"{% endif %} {{ attributes | strip }}>
 </div>
 
 {% assign class = false %}
 {% assign src = false %}
+{% assign retina = false %}
+{% assign srcset = false %}
 {% assign seo = false %}
-{% assign objectFit = false %}
+{% assign object_fit = false %}
 {% assign css = false %}
 {% assign attributes = false %}

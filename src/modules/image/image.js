@@ -10,11 +10,10 @@ const instance = Layzr({
 
 instance
   .on('src:before', image => {
-
-  })
-  .on('src:after', image => {
-    let wrapper = image.parentNode
-    wrapper.classList.add('is-loaded')
+    on(image, 'load', (event) => {
+      let wrapper = image.parentNode
+      wrapper.classList.add('is-loaded')
+    })
   })
 
 export default (el) => {

@@ -1,10 +1,16 @@
 .img {
-
+  position: relative;
 }
 .img.fit-cover .img__el {
   object-fit: cover;
 }
 .img.fit-contain .img__el {
   object-fit: contain;
+}
+.img__loader {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 

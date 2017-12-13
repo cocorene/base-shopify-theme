@@ -1,3 +1,10 @@
 .img {
 
 }
+.img.fit-cover .img__el {
+  object-fit: cover;
+}
+.img.fit-contain .img__el {
+  object-fit: contain;
+}
+

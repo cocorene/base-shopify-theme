@@ -1,18 +1,3 @@
-.image.is-cover img {
-  object-fit: cover;
-}
-.image.is-contain img {
-  object-fit: contain;
-}
-.image__desktop {
-  display: none;
-  @media (--s) {
-    display: block;
-  }
-}
-.image__mobile {
-  display: block;
-  @media (--s) {
-    display: none;
-  }
+.img {
+
 }

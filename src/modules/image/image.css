@@ -1,5 +1,26 @@
-.img {
+/* example img holder */
+.img-holder {
   position: relative;
+  width: 600px;
+}
+.img-holder::before {
+  content: '';
+  display: block;
+  padding-bottom: calc(287/510 * 100%);
+  width: 100%;
+}
+/* remove example */
+
+.img,
+.img.fit-cover .img__el,
+.img.fit-contain .img__el {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
 }
 .img.fit-cover .img__el {
   object-fit: cover;
@@ -7,10 +28,21 @@
 .img.fit-contain .img__el {
   object-fit: contain;
 }
+.img.is-loaded .img__el {
+  /* opacity: 1;
+  visibility: visible; */
+}
+.img__el {
+  opacity: 0;
+  transition: opacity var(--duration) var(--ease), opacity var(--duration) var(--ease);
+  visibility: hidden;
+  z-index: 2;
+}
 .img__loader {
   left: 50%;
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
+  z-index: 0;
 }
 

@@ -1,32 +1,35 @@
 {% assign class = class | default: blank %}
 {% assign src = src | default: false %}
-{% assign src_mobile = src_mobile | default: false %}
-{% assign seo_title = seo_title | default: false %}
-{% assign alt = alt | default: false %}
-{% assign format = format | default: 'cover' %}
+{% assign retina = retina | default: false %}
+{% assign srcset = srcset | default: false %}
+{% assign seo = seo | default: false %}
+{% assign object_fit = object_fit | default: 'cover' %}
+{% assign loader = loader | default: true %}
 
 {% capture css %}
-  image is-{{ format }} {{ class }}
+  img fit-{{ object_fit }} {{ class }}
 {% endcapture %}
 
 {% capture attributes %}
-  {% if seo_title %}title="{{ seo_title }}"{% endif %} {% if alt %}alt="{{ alt }}"{% endif %}
+  {% if seo %}title="{{ seo | strip }}" alt="{{ seo | strip }}"{% endif %}
 {% endcapture %}
 
 <div class="{{ css | strip }}" data-module="image">
-  {% if src %}
-    <img class="image__desktop js-desktop" data-src="{{ src }}" {{ attributes | strip }}>
+  <noscript>
+    <img class="img__el is-fallback" src="{{ src | strip }}" {{ attributes | strip }}>
+  </noscript>
+  {% if loader %}
+    <i class="img__loader"></i>
   {% endif %}
-  {% if src_mobile %}
-    <img class="image__mobile js-mobile" data-mobile-src="{{ src_mobile }}" {{ attributes | strip }}>
-  {% endif %}
+  <img class="img__el" data-normal="{{ src | strip }}" {% if retina %}data-retina="{{ retina | strip }}"{% endif %} {% if srcset %}data-srcset="{{ srcset | strip }}"{% endif %} {{ attributes | strip }}>
 </div>
 
 {% assign class = false %}
 {% assign src = false %}
-{% assign src_mobile = false %}
-{% assign seo_title = false %}
-{% assign alt = false %}
-{% assign format = false %}
+{% assign retina = false %}
+{% assign srcset = false %}
+{% assign seo = false %}
+{% assign object_fit = false %}
+{% assign loader = loader | default: true %}
 {% assign css = false %}
 {% assign attributes = false %}

@@ -1,18 +1,56 @@
-.image.is-cover img {
+/* example img holder */
+.img-holder {
+  position: relative;
+  width: 600px;
+}
+.img-holder::before {
+  content: '';
+  display: block;
+  padding-bottom: calc(287/510 * 100%);
+  width: 100%;
+}
+/* remove example */
+
+.img,
+.img.fit-cover .img__el,
+.img.fit-contain .img__el {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+.img.fit-cover .img__el {
   object-fit: cover;
 }
-.image.is-contain img {
+.img.fit-contain .img__el {
   object-fit: contain;
 }
-.image__desktop {
-  display: none;
-  @media (--s) {
-    display: block;
-  }
+.img.is-loaded .img__el,
+.img .img__el.is-fallback {
+  opacity: 1;
+  visibility: visible;
 }
-.image__mobile {
-  display: block;
-  @media (--s) {
-    display: none;
-  }
+.img.is-loaded .img__loader {
+  opacity: 0;
+  visibility: hidden;
+}
+.img__el {
+  opacity: 0;
+  transition: opacity var(--duration) var(--ease), opacity var(--duration) var(--ease);
+  visibility: hidden;
+  z-index: 2;
+}
+.img__loader {
+  animation: spin var(--duration) infinite;
+  background-color: var(--black);
+  height: 30px;
+  left: calc(50% - 15px);
+  position: absolute;
+  top: calc(50% - 15px);
+  transition: opacity var(--duration) var(--ease), opacity var(--duration) var(--ease);
+  width: 30px;
+  z-index: 0;
 }

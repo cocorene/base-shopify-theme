@@ -1,5 +1,7 @@
 export const isMobile = () => window.innerWidth < 768
 
+export const isTouch = () => 'ontouchstart' in document.documentElement
+
 export const isIE = () => {
   return navigator.userAgent.toLowerCase().indexOf('msie') > 0
 }

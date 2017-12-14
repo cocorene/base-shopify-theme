@@ -27,6 +27,10 @@
   min-height: 200px;
   position: relative;
 }
+.mini-cart__table {
+  position: relative;
+  z-index: 1;
+}
 .mini-cart__loader {
   animation: spin var(--duration) infinite;
   background-color: var(--black);

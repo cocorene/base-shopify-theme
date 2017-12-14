@@ -41,6 +41,10 @@
     {{ content_for_layout }}
   </main>
 
+  {% unless template contains 'cart' %}
+    {% include 'mini-cart' %}
+  {% endunless %}
+
   {% include 'newsletter' %}
   {% include 'footer' %}
 

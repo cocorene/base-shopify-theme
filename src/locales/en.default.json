@@ -72,6 +72,9 @@
       "price": "Price",
       "quantity": "Quantity",
       "total": "Total"
+    },
+    "mini": {
+      "submit": "{{ total_price }} - View Bag"
     }
   },
   "collections": {

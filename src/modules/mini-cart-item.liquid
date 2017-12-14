@@ -3,6 +3,7 @@
 {% assign image = item.image | img_url: '100x' %}
 {% assign title = item.product.title %}
 {% assign variant_title = item.variant.title %}
+{% assign quantity = item.quantity %}
 
 {% assign property_size = item.properties | size %}
 {% capture line_item_properties %}
@@ -24,14 +25,13 @@
 
 <div class="mini-cart__item relative pt1 mt05 mb1">
   <div class="mini-cart__item__info relative clear align-t">
-    <a href="{{url}}" class="mini-cart__item__image inline-block relative float-l pr1">
+    <a href="{{ url }}" class="mini-cart__item__image inline-block relative float-l pr1">
       <div class="relative">
-        <img class="w1" src="{{image}}" alt="{{title}}" />
+        <img class="w1" src="{{ image }}" alt="{{ title }}" />
       </div>
     </a>
     <div class="mini-cart__item__details inline-block float-l">
-      <a href="{{url}}" class="mini-cart__item__title p mt0">{{title}}</a>
-      <p class="mini-cart__item__price--mobile"><small>Price: {{price}}</small></p>
+      <a href="{{url}}" class="mini-cart__item__title p mt0">{{ title }}</a>
       <p class="mb0">
         <small>
           {% if property_size > 0 %}
@@ -43,27 +43,20 @@
       </p>
     </div>
   </div>
-  <div class="mini-cart__item__price hide align-t">
-    <p>{{price}}</p>
-  </div>
   <div class="mini-cart__item__quantity mt1 align-t align-c">
-    {% assign quantity_selector_name = item.id | prepend: 'updates_' %}
-    {% include 'quantity-selector', id: quantity_selector_name, name: 'updates[]', min: '1', max: item.inventory_quantity, value: item.quantity %}
-
-    <div class="mt075">
-      <button type="submit" name="update" class="mini-cart__item__update inline-block link js-update">Update</button>
-      <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="inline-block link ml05">Remove</a>
-    </div>
+    <p>{{ quantity }}</p>
   </div>
   <div class="mini-cart__item__total absolute mt1 fit-t fit-r align-t">
-    {% if item.original_line_price != item.line_price %}
-      <p class="mv0 cg5">{{ item.original_line_price | money }}</p>
-    {% endif %}
-
-    <p class="mv0">{{ item.line_price | money }}</p>
-
-    {% for discount in item.discounts %}
-      <p><small>{{ discount.title }}</small></span>
-    {% endfor %}
+    <p>{{ price }}</p>
   </div>
 </div>
+
+{% assign price = false %}
+{% assign url = false %}
+{% assign image = false %}
+{% assign title = false %}
+{% assign variant_title = false %}
+{% assign quantity = false %}
+
+{% assign property_size = false %}
+{% assign line_item_properties = false %}

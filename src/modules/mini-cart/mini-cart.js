@@ -5,14 +5,13 @@ import on from 'dom-event'
 const nav = select('#nav')
 const btn = select('.js-cart-btn', nav)
 
-const getMiniCart = (cart) => {
-  let table = select('.js-table', cart)
+const getMiniCart = (cart, wrapper) => {
   return new Promise((resolve, reject) => {
     nano.ajax(
       {url: `/cart?view=mini`},
       (code, res) => {
         cart.classList.add('is-loaded')
-        table.innerHTML = res.trim()
+        wrapper.innerHTML = res.trim()
       }
     )
   })
@@ -20,9 +19,10 @@ const getMiniCart = (cart) => {
 
 export default (el) => {
   let cart = el
+  let table = select('.js-table', cart)
   on(btn, 'mouseenter', () => {
     cart.classList.add('is-active')
-    getMiniCart(cart)
+    getMiniCart(cart, table)
   })
   on(cart, 'mouseleave', () => {
     cart.classList.remove('is-active')

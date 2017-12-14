@@ -1,0 +1,11 @@
+{% layout none %}
+
+{% for item in cart.items %}
+  {% include 'mini-cart-item' %}
+{% endfor %}
+
+<div class="align-c mt2">
+  {% assign total_price = cart.total_price | money %}
+  <a href="/cart" class="button">{{ 'cart.mini.submit' | t: total_price: total_price }}</a>
+  {% assign total_price = false %}
+</div>

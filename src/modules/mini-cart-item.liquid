@@ -1,0 +1,60 @@
+{% assign price = item.price | money %}
+{% assign url = item.url | within: collection %}
+{% assign image = item.image | img_url: '100x' %}
+{% assign title = item.product.title %}
+{% assign variant_title = item.variant.title %}
+{% assign quantity = item.quantity %}
+
+{% assign property_size = item.properties | size %}
+{% capture line_item_properties %}
+  <span>
+    Props:<br/>
+    {% for p in item.properties %}
+      {% unless p.last == blank %}
+        {{ p.first }}:
+        {% if p.last contains "/uploads/" %}
+          <a href="{{ p.last }}">{{ p.last | split: "/" | last }}</a>
+        {% else %}
+          {{ p.last }}
+        {% endif %}
+        <br>
+      {% endunless %}
+    {% endfor %}
+  </span>
+{% endcapture%}
+
+<div class="mini-cart__item relative pt1 mt05 mb1">
+  <div class="mini-cart__item__info f ais relative">
+    <a class="mini-cart__item__image blockrelative pr1 href="{{ url }}"">
+      <img class="block w1" src="{{ image }}" alt="{{ title }}" />
+    </a>
+    <a class="mini-cart__item__title fa pr1" href="{{ url }}">{{ title }}</a>
+    <div class="mini-cart__item__total">
+      <p class="mb0 mt0">{{ price }}</p>
+    </div>
+  </div>
+  <div class="mini-cart__item__details inline-block float-l">
+    <p class="mb0">
+      <small>
+        {% if property_size > 0 %}
+          {{ line_item_properties }}
+        {% else %}
+          {{ variant_title }}
+        {% endif %}
+      </small>
+    </p>
+  </div>
+  <div class="mini-cart__item__quantity mt1 align-t align-c">
+    <p>{{ 'cart.label.quantity' | t }}: {{ quantity }}</p>
+  </div>
+</div>
+
+{% assign price = false %}
+{% assign url = false %}
+{% assign image = false %}
+{% assign title = false %}
+{% assign variant_title = false %}
+{% assign quantity = false %}
+
+{% assign property_size = false %}
+{% assign line_item_properties = false %}

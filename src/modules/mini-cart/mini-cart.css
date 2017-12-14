@@ -1,0 +1,21 @@
+.mini-cart {
+  @media (--m) {
+    background-color: var(--white);
+    border-left: 1px solid var(--black);
+    display: block;
+    height: 100%;
+    padding: 25px 30px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transform: translateX(390px);
+    transition: transform 0.4s ease-in;
+    width: 390px;
+    z-index: 9999;
+  }
+}
+.mini-cart.is-active {
+  @media (--m) {
+    transform: translateX(0);
+  }
+}

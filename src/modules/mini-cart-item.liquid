@@ -24,30 +24,28 @@
 {% endcapture%}
 
 <div class="mini-cart__item relative pt1 mt05 mb1">
-  <div class="mini-cart__item__info relative clear align-t">
-    <a href="{{ url }}" class="mini-cart__item__image inline-block relative float-l pr1">
-      <div class="relative">
-        <img class="w1" src="{{ image }}" alt="{{ title }}" />
-      </div>
+  <div class="mini-cart__item__info f ais relative">
+    <a class="mini-cart__item__image blockrelative pr1 href="{{ url }}"">
+      <img class="block w1" src="{{ image }}" alt="{{ title }}" />
     </a>
-    <div class="mini-cart__item__details inline-block float-l">
-      <a href="{{url}}" class="mini-cart__item__title p mt0">{{ title }}</a>
-      <p class="mb0">
-        <small>
-          {% if property_size > 0 %}
-            {{ line_item_properties }}
-          {% else %}
-            {{ variant_title }}
-          {% endif %}
-        </small>
-      </p>
+    <a class="mini-cart__item__title fa pr1" href="{{ url }}">{{ title }}</a>
+    <div class="mini-cart__item__total">
+      <p class="mb0 mt0">{{ price }}</p>
     </div>
   </div>
-  <div class="mini-cart__item__quantity mt1 align-t align-c">
-    <p>{{ quantity }}</p>
+  <div class="mini-cart__item__details inline-block float-l">
+    <p class="mb0">
+      <small>
+        {% if property_size > 0 %}
+          {{ line_item_properties }}
+        {% else %}
+          {{ variant_title }}
+        {% endif %}
+      </small>
+    </p>
   </div>
-  <div class="mini-cart__item__total absolute mt1 fit-t fit-r align-t">
-    <p>{{ price }}</p>
+  <div class="mini-cart__item__quantity mt1 align-t align-c">
+    <p>{{ 'cart.label.quantity' | t }}: {{ quantity }}</p>
   </div>
 </div>
 

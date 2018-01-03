@@ -21,7 +21,7 @@
   {% if loader %}
     <i class="img__loader"></i>
   {% endif %}
-  <img class="img__el" data-normal="{{ src | strip }}" {% if retina %}data-retina="{{ retina | strip }}"{% endif %} {% if srcset %}data-srcset="{{ srcset | strip }}"{% endif %} {{ attributes | strip }}>
+  <img class="img__el" data-js-class="img__el" data-normal="{{ src | strip }}" {% if retina %}data-retina="{{ retina | strip }}"{% endif %} {% if srcset %}data-srcset="{{ srcset | strip }}"{% endif %} {{ attributes | strip }}>
 </div>
 
 {% assign class = false %}

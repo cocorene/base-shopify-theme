@@ -26,21 +26,18 @@ instance
     })
   })
 
-const objectFitShim = () => {
-
-  // Setup variables for object-fit
-  const fitClass = 'media-fit'
-  const fallbackClass = fitClass + '--fallback'
-  const mediaClass = el.getAttribute('data-item-class')
+const objectFitShim = (el) => {
+  // const mediaClass = el.getAttribute('data-item-class')
   const elAspect = el.clientHeight / el.clientWidth
-  const elMediaItems = el.getElementsByClassName(mediaClass) // querySelectorAll('img,video') to get rid of the data-item-class?
+  const elMediaItems = el.querySelectorAll('img,video')
 
   // Grab each media-item and adjust its class-names
   for (var i = 0; i < elMediaItems.length; i++) {
-    const mediaItem = elMediaItems[i]
-    const mediaAspect = mediaItem.clientHeight / mediaItem.clientWidth
-
-    mediaItem.className = mediaItem.className.replace(fitClass, fallbackClass)
+    let mediaItem = elMediaItems[i]
+    let mediaAspect = mediaItem.clientHeight / mediaItem.clientWidth
+    let mediaClass = mediaItem.getAttribute('data-js-class')
+    console.log(mediaClass)
+    mediaItem.className = mediaItem.className.replace(mediaClass, mediaClass + '--shim')
 
     setTimeout(() => { // TODO: how to handle transforms
       mediaItem.classList.add('animated')
@@ -54,7 +51,6 @@ const objectFitShim = () => {
       mediaItem.style.maxHeight = '100%'
     }
   }
-
 }
 export default (el) => {
   instance
@@ -63,17 +59,13 @@ export default (el) => {
     .handlers(true)
 
   if (objectFit) {
-    console.log('object fit works, don\'t shim!')
     return
   }
 
-  objectFitShim
+  objectFitShim(el)
 }
 
-
-  ///////////////
- // TEMPORARY //
-///////////////
+// TEMPORARY
 // Original function copied in from another project, for reference
 // Remove everything below this line, eventually
 
@@ -93,8 +85,8 @@ export default (el) => {
 //     return
 //   }
 
-//   const fitClass = 'media-fit'
-//   const fallbackClass = fitClass + '--fallback'
+//   const coverClass = 'media-fit'
+//   const fallbackClass = coverClass + '--fallback'
 //   const mediaClass = el.getAttribute('data-item-class')
 //   const elAspect = el.clientHeight / el.clientWidth
 //   const elMediaItems = el.getElementsByClassName(mediaClass)
@@ -103,7 +95,7 @@ export default (el) => {
 //     const mediaItem = elMediaItems[i]
 //     const mediaAspect = mediaItem.clientHeight / mediaItem.clientWidth
 
-//     mediaItem.className = mediaItem.className.replace(fitClass, fallbackClass)
+//     mediaItem.className = mediaItem.className.replace(coverClass, fallbackClass)
 
 //     setTimeout(() => { // TODO: how to handle transforms
 //       mediaItem.classList.add('animated')

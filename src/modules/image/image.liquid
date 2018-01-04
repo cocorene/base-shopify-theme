@@ -3,11 +3,17 @@
 {% assign retina = retina | default: false %}
 {% assign srcset = srcset | default: false %}
 {% assign seo = seo | default: false %}
-{% assign object_fit = object_fit | default: 'cover' %}
+{% assign object_fit = object_fit | default: 'cover' %}{% comment %}This makes the assumption that a video & image should always hold the same object-fit values{% endcomment %}
 {% assign loader = loader | default: true %}
+{% assign video_src = video_src | default: false %}
+{% assign autoplay = autoplay | default: true %}
+{% assign video_type = video_type | default: 'video/mp4' %}{% comment %}Is there a way for us to automatically determine this?{% endcomment %}
+{% assign mute = mute | default: true %}
+{% assign loop = loop  | default: true %}
 
 {% capture css %}
-  img fit-{{ object_fit }} {{ class }}
+{% comment %}ToDo: Replace .img classes with something like .media to remain intuitive{% endcomment %}
+  img fit-{{ object_fit }} {{ class }} {% if video %} video{% endif %}
 {% endcapture %}
 
 {% capture attributes %}
@@ -22,6 +28,10 @@
     <i class="img__loader"></i>
   {% endif %}
   <img class="img__el" data-js-class="img__el" data-normal="{{ src | strip }}" {% if retina %}data-retina="{{ retina | strip }}"{% endif %} {% if srcset %}data-srcset="{{ srcset | strip }}"{% endif %} {{ attributes | strip }}>
+  {% if video_src %}
+    <video class="img__el" data-js-class="img__el" autoplay="{{ autoplay }}" loop="{{ loop }}" muted="{{ mute }}" playsinline src="{{ video_src }}">{% comment %}ToDo: Add lazy-loading capabilities for video{% endcomment %}
+    </video>
+  {% endif %}
 </div>
 
 {% assign class = false %}
@@ -33,3 +43,7 @@
 {% assign loader = loader | default: true %}
 {% assign css = false %}
 {% assign attributes = false %}
+{% assign video_src = false %}
+{% assign autoplay = false %}
+{% assign video_type = false %}
+{% assign mute = false %}

@@ -64,7 +64,7 @@ export default (el) => {
     .check()
     .handlers(true)
 
-  if (objectFit) {
+  if (!objectFit) {
     return
   }
 

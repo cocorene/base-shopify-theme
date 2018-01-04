@@ -7,7 +7,7 @@
     {% capture srcset %}
       {{ 'test.jpg' | file_img_url: '480x' }} 320w, {{ 'test.jpg' | file_img_url: '1000x' }} 760w, {{ 'test.jpg' | file_img_url: '1500x' }} 1024w
     {% endcapture %}
-    {% include 'image', src: src, retina: retina, srcset: srcset, seo: 'This is my image' %}
+    {% include 'image', src: src, retina: retina, srcset: srcset, seo: 'This is my image', video_src: 'https://player.vimeo.com/external/240235047.hd.?s=fd5ac9ac13f0c01e347ac1d792671e6be2d5bee9&profile_id=175' %}
   </div>
 
   <div class="img-holder">

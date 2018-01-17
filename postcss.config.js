@@ -1,13 +1,9 @@
-const path = require('path')
-
-module.exports = {
+const config = {
   plugins: [
-    require('postcss-easy-import')({
-      addModulesDirectories: ['node_modules'],
-      path: ['src']
-    } ),
+    require('./postcss-tasks/postcss-module-import'),
     require('postcss-inline-svg'),
     require("postcss-color-function"),
+    require('precss')({ /* ...options */ }),
     require('autoprefixer')({
       browsers: [
         'last 3 versions',
@@ -17,8 +13,15 @@ module.exports = {
       ]
     }),
     require('postcss-extend'),
-    require('./plugins/postcss-shopify-cdn')('//cdn.shopify.com/s/files/1/2440/7567/t/3/assets/'),
-    require('postcss-fontpath'),
-    require('precss'),
   ]
 }
+
+if (process.env.ENV === 'development') {
+  config.plugins.push(
+    require('./postcss-tasks/postcss-shopify-fonts')('//cdn.shopify.com/s/files/1/2141/0785/t/10/assets/')
+  )
+}
+
+config.plugins.push(require('precss'))
+
+module.exports = config

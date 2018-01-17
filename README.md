@@ -21,7 +21,7 @@ Open `config-example.yml`, deplicate and rename it to `config.yml` and replace t
 ## Developing
 To start development, open up a terminal window, navigate to the theme root folder and run `npm start`. This will compile, watch and hot reload your javascript and css. It'll also lint your js using [standardjs](https://standardjs.com/) best practices. If you make a change to a file that needs to be uploaded to Shopify, the process will handle it and reload your browser once it's been uploaded. 
 
-**Note: In your Shopify Theme Settings, there is a setting called *Access site through BrowserSync?*, under the Dev, Logo, Favicon section. Make sure that this option is checked for your development themes, unchecked for you staging and production themes. 
+Note: In your Shopify Theme Settings, there is a setting called *Access site through BrowserSync?*, under the Dev, Logo, Favicon section. Make sure that this option is checked for your development themes, unchecked for your staging and production themes. 
 
 ## Deploying
 There are build scripts provided in the `package.json` that will build and deploy theme code directly to Shopify. All scripts can be run via `npm run <scriptName>`, with the exception of `npm start`. The build scripts are:

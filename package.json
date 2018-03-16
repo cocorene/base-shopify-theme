@@ -21,7 +21,7 @@
   },
   "homepage": "https://gitlab.com/barrel/barrel-shopify-base#README",
   "devDependencies": {
-    "@barrelny/cli": "latest",
+    "@barrelny/cli": "^0.0.18",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",

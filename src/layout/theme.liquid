@@ -22,7 +22,7 @@
   {% if settings.is_dev_mode %}
     {{ '/dev/main.js' | script_tag }}
   {% else %}
-    {{ 'main.css' | asset_url | stylesheet_tag }}
+    {{ 'main.min.css' | asset_url | stylesheet_tag }}
   {% endif %}
 
   <script>

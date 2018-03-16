@@ -13,8 +13,16 @@ const resolve = (id, base, options) => {
 
   return globby(modules)
     .then(files => {
-      const res = files.map(f => path.normalize(f))
-      return res
+      return files
+        .sort((a, b) => {
+          const aFileName = a.replace('.css', '').split('/').pop().toLowerCase()
+          const bFileName = b.replace('.css', '').split('/').pop().toLowerCase()
+
+          if(aFileName > bFileName) { return 1 }
+          if(aFileName < bFileName) { return -1 }
+          return 0
+        })
+        .map(f => path.normalize(f))
     })
 }
 

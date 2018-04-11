@@ -3,7 +3,6 @@ const config = {
     require('./postcss-tasks/postcss-module-import'),
     require('postcss-inline-svg'),
     require("postcss-color-function"),
-    require('precss')({ /* ...options */ }),
     require('autoprefixer')({
       browsers: [
         'last 3 versions',
@@ -17,8 +16,9 @@ const config = {
 }
 
 if (process.env.ENV === 'development') {
-  config.plugins.push(
-    require('./postcss-tasks/postcss-shopify-fonts')('//cdn.shopify.com/s/files/1/2141/0785/t/10/assets/')
+  // Chuck in directly after importing files
+  config.plugins.splice(1, 0,
+    require('./postcss-tasks/postcss-shopify-fonts')('//cdn.shopify.com/s/files/<add-cdn-uri-here>/assets/')
   )
 }
 

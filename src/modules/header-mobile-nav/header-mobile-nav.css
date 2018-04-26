@@ -1,0 +1,56 @@
+/**
+ * Mobile nav wrapper
+ */
+.nav__mobile {
+  opacity: 0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  transform: translateY(-200%); // push out of the way
+  transition: opacity var(--speed) var(--ease);
+
+  /**
+   * shows below the header,
+   * and ensures it's never taller
+   * than the viewport (for mobile landscape)
+   */
+  top: var(--h-height);
+  max-height: calc(100vh - var(--h-height));
+
+  /**
+   * If you're not changing header
+   * height, you can remove this
+   */
+  @media (--m){
+    top:var(--h-height-lg);
+    max-height: calc(100vh - var(--h-height-lg));
+  }
+
+  @media (--s){
+    display: none
+  }
+
+  /**
+   * Classes added to body
+   */
+  .mobile-nav-is-active & {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .mobile-nav-is-hiding & {
+    opacity: 0;
+  }
+}
+
+/**
+ * <li> menu
+ */
+.nav__mobile__item {
+  border-bottom: 1px solid var(--black);
+  &:last-child {
+    border: 0;
+  }
+}
+
+.nav__mobile__submenu {
+  padding-left: 1em;
+}

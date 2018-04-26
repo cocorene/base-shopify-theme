@@ -1,0 +1,32 @@
+<section class="outer mt2 pt2">
+  <div class="container--s mha">
+    <h1 class="h2 mb0">
+      Account{% if account_page_title %} / <span class="c1">{{account_page_title}}</span>{%endif%}
+    </h1>
+
+    <nav class="account__nav p mb2 mt05">
+      <ul class='list--reset'>
+          <li class="account__nav__link inline-block mr1">
+            {% if template contains 'account' %}
+              <span>Account Home</span>
+            {% else %}
+              <a class="link" href="/account">Account Home</a>
+            {% endif %}
+          </li>
+          <li class="account__nav__link inline-block mr1">
+            {% if template contains 'address' %}
+              <span>Addresses</span>
+            {% else %}
+              <a class="link" href="/account/addresses">Addresses</a>
+            {% endif %}
+          </li>
+
+        <li class="account__nav__link inline-block mr1">
+          <a class="link" href="/account/logout">Logout</a>
+        </li>
+      </ul>
+    </nav>
+
+    <hr/>
+  </div>
+</section>

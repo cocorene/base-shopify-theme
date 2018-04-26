@@ -1,5 +1,9 @@
 # Base Shopify Changelog
 
+### v1.4.7
+- Refactors module workflow
+- Adds a number of new modules
+
 ### v1.4.6
 - Adds in multi ENV support to ci scripts
 

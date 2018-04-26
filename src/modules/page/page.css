@@ -1,0 +1,12 @@
+#page {
+  min-height: 100vh;
+}
+
+.outer {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  @media (--s) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}

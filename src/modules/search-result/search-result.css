@@ -1,0 +1,39 @@
+.search__result {
+  /**
+   * Shopify generated class from 'highlight' filter
+   */
+  .highlight {
+    background: var(--grey1);
+  }
+}
+/**
+ * For product listings
+ */
+.search__result--product {}
+
+/**
+ * Result title, caption
+ */
+.search__result__info {
+  @media (--s){
+    width: 75%;
+    padding-right: 2em;
+  }
+}
+
+/**
+ * Result image container
+ */
+.search__result__image {
+  order: -1;
+  overflow: hidden;
+  padding-top: 60%;
+  margin-bottom: 1.5em;
+
+  @media (--s){
+    width: 25%;
+    order: 2;
+    padding-top: 15%;
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,13 @@
+.account-entry-form {
+  max-width: 350px;
+}
+
+.orders__order {
+  padding: 1.2em;
+  border-radius: 4px;
+
+  &:nth-of-type(odd){
+    background-color: #f5f5f5;
+  }
+}
+

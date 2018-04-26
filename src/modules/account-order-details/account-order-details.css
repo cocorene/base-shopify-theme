@@ -1,0 +1,57 @@
+.order__meta {
+  margin: 0.25em 0.5em 0.25em 0;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+
+  span {
+    display: inline-block;
+    padding: 0.25em 0.75em;
+    background-color: #fff;
+
+    &:first-child {
+      background-color: #f5f5f5;
+      padding-top: 0.32em;
+    }
+  }
+}
+.order__meta--total {
+  border-color: var(--grey1);
+}
+
+.order__details {}
+.order__details__row {
+  padding: 1.2em;
+  border-radius: 4px;
+
+  &:nth-of-type(odd){
+    background-color: #f5f5f5;
+  }
+  .__image {
+    width: 100px;
+    padding-bottom: 1em;
+
+    @media (--m){
+      padding-right: 1em;
+      padding-bottom: 0;
+    }
+
+    img {
+      max-width: 100px;
+      max-height: 100px;
+    }
+  }
+  .__info {
+    min-width: 100%;
+    @media (--m){
+      min-width: 0;
+    }
+  }
+  .__total {
+    @media (--m){
+      text-align: right;
+    }
+  }
+}
+
+.order-total {}
+

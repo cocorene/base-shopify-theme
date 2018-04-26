@@ -1,0 +1,35 @@
+/**
+ * Search bar
+ */
+.nav__search {
+  transition: transform var(--speed) var(--ease);
+
+  &.is-active {
+    transform: translateY(100%);
+  }
+}
+
+form.nav__search__form {
+  padding: 1em 0;
+  @media (--m){
+    padding: 2em 0;
+  }
+}
+
+input.nav__search__input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(#FFF, 0.3);
+  padding: 0 0 0.1em;
+  color: white;
+
+  &::placeholder {
+    color: rgba(#FFF, 0.3);
+  }
+
+  &:focus {
+    outline: 0;
+    border: 0;
+    border-bottom: 1px solid rgba(#FFF, 0.3);
+  }
+}

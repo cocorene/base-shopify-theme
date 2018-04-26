@@ -2,6 +2,16 @@
   "name": "Logo and favicon",
   "settings": [
     {
+      "type": "header",
+      "content": "Development"
+    },
+    {
+      "type": "checkbox",
+      "id": "is_dev_mode",
+      "label": "Access site through BrowserSync?",
+      "default": false
+    },
+    {
       "type": "image",
       "id": "favicon.png",
       "label": "Favicon",

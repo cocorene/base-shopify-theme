@@ -5,3 +5,4 @@ node_modules
 *.html
 jscs.js
 jshint.js
+config.yml

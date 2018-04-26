@@ -1,5 +1,5 @@
 {% assign account_page_title = 'Addresses' %}
-{% include 'account-titles' %}
+{% include 'account-nav' %}
 
 {% paginate customer.addresses by 10 %}
 
@@ -15,7 +15,7 @@
     {% assign form_title = 'Add New Address' %}
     {% assign form_cta = 'Add Address' %}
     {% assign form_classes = 'mb2 pb1' %}
-    {% include 'account-address-form' %}
+    {% include 'account-new-address' %}
 
     {% comment %}
       List all customer addresses with a unique edit form.
@@ -48,7 +48,7 @@
     {% endfor %}
 
     {% if customer.addresses == empty %}
-      <div class="bg-cg1 pv2 ph2 align-c">You have no saved address.</div>
+      <div class="bg-grey2 pv2 ph2 align-c">You have no saved address.</div>
     {% endif %}
 
     {% include 'pagination' %}
@@ -84,7 +84,7 @@
       form.submit()
       document.body.removeChild(form)
     }
-  } 
+  }
 </script>
 
 {% endpaginate %}

@@ -1,0 +1,11 @@
+<!-- /snippets/search-bar.liquid -->
+{% comment %}
+  Search Bar
+  - appears below header. Slides down. Controlled by classes on the nav__search element.
+{% endcomment %}
+<div id="searchBar" class="nav__search outer bg-grey1 absolute fit-l fit-b w1 z0" data-module="header-search-bar">
+  <form class="nav__search__form block relative w1" action="/search">
+    <input class="nav__search__input ts3 block relative w1 mv0" name="q" type="text" placeholder="Search" value="{{search.terms | escape}}"/>
+    <button class="hide" type="submit">Search</button>
+  </form>
+</div>

@@ -1,0 +1,60 @@
+<div class="newsletter ph2 pv2 align-c bg-grey4" data-module="newsletter">
+
+  <div class="container--xs mha">
+    <h3 class="bold">Newsletter</h3>
+    <p>{{settings.newsletter_prompt}}</p>
+  </div>
+
+  <div class="newsletter__inner container--xs mha">
+    <div id="newsletterSuccess" class="newsletter__success mv05 p hide">{{settings.newsletter_success}}</div>
+    <div id="newsletterError" class="newsletter__success mv05 p hide">{{settings.newsletter_error}}</div>
+
+    {% if settings.mailchimp_enabled %}
+
+      <form target="_blank" action="{{ settings.mailchimp_url }}" method="post">
+        <div class="newsletter__field relative container--xs mha">
+          <input id="newsletterEmail" class="w1"
+            required
+            name="EMAIL"
+            type="email"
+            placeholder="Email Address"
+            value="{% if customer %}{{ customer.email }}{% endif %}"
+            autocorrect="off"
+            autocapitalize="off">
+          <span class="form-error absolute fit-l italic p00 hide italic">Email is invalid</span>
+          <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b075be5b166b58f7abfca70eb_84b14e6b78" tabindex="-1" value=""></div>
+        </div>
+
+        <button type="submit" class="button mt1">Submit</button>
+      </form>
+
+    {% else %}
+
+      {% form 'customer' %}
+        {% if form.posted_successfully? %}
+          <div id="newsletterSuccess" class="newsletter__success mv05 p">{{settings.newsletter_success}}</div>
+        {% else %}
+
+          <div class="newsletter__field relative container--xs mha">
+            <input id="newsletterEmail" class="w1"
+              required
+              name="contact[email]"
+              type="email"
+              placeholder="Email Address"
+              value="{% if customer %}{{ customer.email }}{% endif %}"
+              autocorrect="off"
+              autocapitalize="off">
+            <span class="form-error absolute fit-l italic p00 hide italic">Email is invalid</span>
+          </div>
+
+          <button type="submit" class="button mt1">Submit</button>
+
+          {% if form.errors %}
+            <p class="newsletter__error align-c c3 mt05">*Invalid email address, try again.</p>
+          {% endif %}
+        {% endif %}
+      {% endform %}
+
+    {% endif %}
+  </div>
+</div>

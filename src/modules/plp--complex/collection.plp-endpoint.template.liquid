@@ -1,0 +1,66 @@
+{% layout none %}
+{% paginate collection.products by 50 %}
+{
+"meta":{
+  "title":"{{collection.title | url_encode}}",
+  "description":"{{collection.description | url_encode}}",
+  "image":"{{collection.image | img_url: 'small' | url_encode}}"
+},
+"menu":[
+{% for level1 in linklists.plp-sidebar.links %}
+  {
+  "url": "{{level1.url}}",
+  "title": "{{level1.title}}",
+  "handle": "{{level1.object.handle | default: 'all' }}",
+  "links": [
+  {% if level1.links.size > 0 %}
+    {% for level2 in level1.links %}
+      {
+        "url": "{{level2.url}}",
+        "title": "{{level2.title}}",
+        "handle": "{{level2.object.handle | default: 'all' }}"
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  {% endif%}
+  ]
+  }{% unless forloop.last %},{% endunless %}
+{% endfor%}
+],
+"variants":[
+{% for product in collection.products %}
+{% assign isLast = forloop.last %}
+{% for variant in product.variants %}
+  {% assign _isLast = forloop.last %}
+  {% capture image %}
+  {% if variant.image.src %}
+    {{variant.image.src | img_url: 'grande' }}
+  {% else %}
+    {{product.featured_image.src | img_url: 'grande' }}
+  {% endif %}
+  {% endcapture %}
+  {
+  "product":{
+    "title":"{{product.title}}",
+    "id":"{{product.id}}",
+    "url":"{{product.url}}"
+  },
+  "id":"{{variant.id}}",
+  "available":{{variant.available}},
+  "image":"{{image | strip}}",
+  "price":"{{variant.price}}",
+  "compare":"{{variant.compare_at_price}}",
+  "url":"{{variant.url}}",
+  "options":{
+    {% for option in product.options %}
+      {% capture key %}option{{forloop.index}}{% endcapture %}
+      "{{option}}":"{{variant[key]}}"{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  }
+  }{% unless isLast and _isLast %},{% endunless %}
+{% endfor %}
+{% endfor %}
+],
+"pages":{{paginate.pages}},
+"page":{{current_page | minus: 1}}
+}
+{% endpaginate %}

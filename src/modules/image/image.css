@@ -1,0 +1,80 @@
+/* example img holder */
+.img-holder {
+  position: relative;
+  width: 600px;
+}
+.img-holder::before {
+  content: '';
+  display: block;
+  padding-bottom: calc(287/510 * 100%);
+  width: 100%;
+}
+/* remove example */
+
+.img,
+.img.fit-cover .img__el,
+.img.fit-contain .img__el {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+.img.fit-cover .img__el {
+  object-fit: cover;
+}
+.img.fit-contain .img__el {
+  object-fit: contain;
+}
+.img.is-loaded .img__el,
+.img .img__el.is-fallback {
+  opacity: 1;
+  visibility: visible;
+}
+.img.is-loaded .img__loader {
+  opacity: 0;
+  visibility: hidden;
+}
+.img__el {
+  opacity: 0;
+  transition: opacity var(--duration) var(--ease), opacity var(--duration) var(--ease);
+  visibility: hidden;
+  z-index: 2;
+}
+.img__loader {
+  animation: spin var(--duration) infinite;
+  background-color: var(--black);
+  height: 30px;
+  left: calc(50% - 15px);
+  position: absolute;
+  top: calc(50% - 15px);
+  transition: opacity var(--duration) var(--ease), opacity var(--duration) var(--ease);
+  width: 30px;
+  z-index: 0;
+}
+/* Object-fit Shim */
+.img.fit-cover .img__el--shim {
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  height: auto;
+  width: auto;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  /* max-width/max-height rules are determined based on aspect ratio -- see the objectFitShim() js function */
+}
+.img.fit-contain .img__el--shim {
+  position: absolute;
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  width: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}

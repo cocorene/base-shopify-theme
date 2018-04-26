@@ -1,0 +1,11 @@
+{% assign content = content | default: false %}
+{% if content and content != '' %}
+
+<section class="wysiwyg">
+  <div class="wysiwyg__container">
+    {{content}}
+  </div>
+</section>
+{% endif %}
+
+{% assign content = false %}

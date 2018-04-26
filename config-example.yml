@@ -1,0 +1,15 @@
+production:
+  theme_id: <theme-id>
+  api_key: <api-key>
+  password: <password>
+  store: <store.myshopify.com>
+staging:
+  theme_id: <theme-id>
+  api_key: <api-key>
+  password: <password>
+  store: <store.myshopify.com>
+development:
+  theme_id: <theme-id>
+  api_key: <api-key>
+  password: <password>
+  store: <store.myshopify.com>

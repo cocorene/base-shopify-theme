@@ -1,0 +1,13 @@
+.alert {
+  background-color: var(--grey1);
+  border-radius: 4px;
+}
+.alert__message {}
+.alert__icon {
+  font-size: 0;
+  svg {
+    height: 1.5rem;
+    width: 1.5rem;
+    color: $c1;
+  }
+}

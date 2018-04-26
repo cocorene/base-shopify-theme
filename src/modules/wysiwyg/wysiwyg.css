@@ -1,0 +1,52 @@
+.wysiwyg__container {
+
+/**
+ * Scoped as many editors will not support adding
+ * class names to tags. All typographic styles
+ * should be maintained in the typography css lib.
+ */
+
+  h1 {
+    @extend .h1;
+  }
+  h2 {
+    @extend .h2;
+  }
+  h3 {
+    @extend .h3;
+  }
+  h4, h5, h6 {
+    @extend .h4;
+  }
+
+  ol, ul {
+    @extend .list;
+  }
+  li {
+
+  }
+
+  blockquote {
+    @extend .blockquote;
+  }
+  img {
+    /* @extend .img; */
+  }
+
+  hr {
+    @extend .hr;
+  }
+
+  a {
+    @extend .link;
+  }
+
+  i, em {
+    @extend .italic;
+  }
+
+  b, strong {
+    @extend .bold;
+  }
+
+}

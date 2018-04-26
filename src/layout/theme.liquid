@@ -13,54 +13,43 @@
   {% comment %} <link rel="mask-icon" href="{{'safari-pinned-tab.svg' | asset_url }}" color="#5bbad5"> {% endcomment %}
   {% comment %} <meta name="theme-color" content="#ffffff"> {% endcomment %}
 
+  <script type="text/javascript">var SHOPIFY_CDN = "{{ 'test.jpg' | asset_url }}".replace(/test.jpg\?\d*/,'')</script>
+
   {% include 'social-meta' %}
 
   {{ content_for_header }}
 
-  <script>
-    /*
-    (function(d) {
-      var config = {
-        kitId: 'zzf3uyu',
-        scriptTimeout: 40000,
-        async: true
-      },
-      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-    })(document);
-
-    // Show fonts regardless of if they've loaded, after 10s
-    setTimeout(function(){
-      var doc = document.documentElement
-      if (!doc.classList.contains('wf-active')) doc.classList.add('wf-active')
-    }, 10000)
-    */
-  </script>
-
-  {{ 'main.css' | asset_url | stylesheet_tag }}
+  {% if settings.is_dev_mode %}
+    {{ '/dev/main.js' | script_tag }}
+  {% else %}
+    {{ 'main.min.css' | asset_url | stylesheet_tag }}
+  {% endif %}
 
   <script>
     /** Used in the account pages! */
-    window.barrel = window.barrel || {} 
+    window.barrel = window.barrel || {}
   </script>
 
   <title> {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %} </title>
 </head>
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
 
-  {% include 'promo' %}
+  {% include 'promobar' %}
   {% include 'header' %}
 
   <main id="page" class="relative z0" role="main">
     {{ content_for_layout }}
-
   </main>
 
-  {% include 'newsletter' %}
+  {% include 'mini-cart' %}
 
+  {% include 'newsletter' %}
   {% include 'footer' %}
 
-  {{ 'main.js' | asset_url | script_tag }}
+  {% unless settings.is_dev_mode %}
+    {{ 'main.js' | asset_url | script_tag }}
+  {% endunless %}
 
-  {% include 'icons' %}
+  {% include 'icon-paths' %}
 </body>
 </html>

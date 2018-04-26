@@ -1,0 +1,210 @@
+<div id="form_{{form_id}}" class="address__form relative w1 {{form_classes}}" style="display: none">
+
+  {% form 'customer_address', form_action %}
+
+    {% comment %}
+      form_id = address.id || 'new
+    {% endcomment %}
+    {% assign form_suffix = '_' | append: form_id %}
+    {% assign form_country_id = 'country' | append: form_suffix %}
+    {% assign form_province_container_id = 'provinceContainer' | append: form_suffix %}
+    {% assign form_province_id = 'province' | append: form_suffix %}
+
+    {% if form_id == 'new' %}
+      {% assign form_script = 'barrel.toggleNewForm()' %}
+    {% else %}
+      {% assign form_script = 'barrel.toggleForm(' | append: form_id | append: ')' %}
+    {% endif %}
+
+    <h4>{{form_title}}</h4>
+
+    <div class="address__form__group f fw jcb">
+      {% assign field_classes = 'address__form__field' %}
+      {% assign field_label = 'First Name:' %}
+      {% assign field_name = 'address[first_name]' %}
+      {% assign field_value = form.first_name %}
+      {% assign field_autocapitalize = 'words' %}
+      {% include 'input-text' %}
+
+      {% assign field_classes = 'address__form__field' %}
+      {% assign field_label = 'Last Name:' %}
+      {% assign field_name = 'address[last_name]' %}
+      {% assign field_value = form.last_name %}
+      {% assign field_autocapitalize = 'words' %}
+      {% include 'input-text' %}
+    </div>
+
+    <div class="address__form__group f fw jcb">
+      {% assign field_classes = 'address__form__field' %}
+      {% assign field_label = 'Company:' %}
+      {% assign field_name = 'address[company]' %}
+      {% assign field_value = form.company %}
+      {% include 'input-text' %}
+
+      {% assign field_classes = 'address__form__field' %}
+      {% assign field_label = 'Phone:' %}
+      {% assign field_name = 'address[phone]' %}
+      {% assign field_value = form.phone %}
+      {% assign field_type = 'tel' %}
+      {% include 'input-text' %}
+    </div>
+
+    <div class="address__form__group f fw jcb">
+      {% assign field_classes = 'address__form__field' %}
+      {% assign field_label = 'Address:' %}
+      {% assign field_name = 'address[address1]' %}
+      {% assign field_value = form.address1 %}
+      {% assign field_autocapitalize = 'words' %}
+      {% include 'input-text' %}
+
+      {% assign field_classes = 'address__form__field' %}
+      {% assign field_label = 'Address (contd):' %}
+      {% assign field_name = 'address[address2]' %}
+      {% assign field_value = form.address2 %}
+      {% assign field_autocapitalize = 'words' %}
+      {% include 'input-text' %}
+    </div>
+
+    <div class="address__form__group f fw jcb">
+      {% assign field_classes = 'address__form__field' %}
+      {% assign field_label = 'City:' %}
+      {% assign field_name = 'address[city]' %}
+      {% assign field_value = form.city %}
+      {% assign field_autocapitalize = 'words' %}
+      {% include 'input-text' %}
+
+      <p class="address__form__field">
+        <label for="{{form_country_id}}" class="block">Country:</label>
+        <span class="select-wrapper w1">
+          <select id="{{form_country_id}}" class="block w1" name="address[country]" data-default="{{ form.country }}">{{ country_option_tags }}</select>
+        </span>
+      </p>
+    </div>
+
+    <div class="address__form__group f fw jcb">
+      <p class="address__form__field">
+        <span id="{{form_province_container_id}}" style="display:none">
+          <label for="{{form_province_id}}" class="block">Province:</label>
+          <span class="select-wrapper w1">
+            <select id="{{form_province_id}}" class="w1" name="address[province]" data-default="{{ form.province }}"></select>
+          </span>
+        </span>
+      </p>
+
+      {% assign field_classes = 'address__form__field' %}
+      {% assign field_label = 'Zip:' %}
+      {% assign field_name = 'address[zip]' %}
+      {% assign field_value = form.zip %}
+      {% include 'input-text' %}
+    </div>
+
+    <p>
+      <label for="address_default_address_new{{form_suffix}}" class="checkbox mr05">
+        {{ form.set_as_default_checkbox }}
+        Set as default address
+      </label>
+    </p>
+
+    <p class="pt1">
+      <button type="submit" class="button">{{form_cta}}</button>
+      <button class="ml1 underline" type="button" onclick="{{form_script}}">Cancel</button>
+    </p>
+  {% endform %}
+
+</div>
+
+{% assign form_id = false %}
+{% assign form_classes = '' %}
+
+<script>
+(function(){
+  var form = document.getElementById({{form_outer_id | json}})
+  var countrySelector = document.getElementById({{form_country_id | json}})
+  var provinceContainer = document.getElementById({{form_province_container_id | json}})
+  var provinceSelector = document.getElementById({{form_province_id | json}})
+  var countryDefault = countrySelector.getAttribute('data-default') ? countrySelector.getAttribute('data-default') : countrySelector.options[0].value
+  var provinceDefault = provinceSelector.getAttribute('data-default')
+
+  /**
+   * Select an option within a <select>
+   * based on a given value
+   *
+   * @param {string} value Value to search for
+   * @param {element} select <select> element
+   * @return {element} The first matching select option
+   */
+  function selectOption(value, select){
+    return Array.prototype.slice.call(select.options).filter(function(option, i){
+      if (option.value === value){
+        select.selectedIndex = i
+        return true
+      }
+      return false
+    })[0]
+  }
+
+  /**
+   * Generate province options and show select element
+   *
+   * @param {array} options Array of arrays from selected country
+   */
+  function showProvinces(options){
+    var previousValue = provinceSelector.options[0] ? provinceSelector.options[0].value : false
+    var isNewValue = !previousValue || options[0][0] !== previousValue ? true : false
+
+    if (isNewValue){
+      // Emptry provinces select
+      provinceSelector.innerHTML = ''
+
+      // Generate new options from values
+      for (var i = 0; i < options.length; i++){
+        var option = document.createElement('option')
+        option.value = options[i][0]
+        option.innerHTML = options[i][1]
+        provinceSelector.appendChild(option)
+      }
+    }
+
+    // Select the default province
+    if (provinceDefault.length > 0) selectOption(provinceDefault, provinceSelector)
+
+    // Show provinces
+    provinceContainer.style.display = 'block'
+  }
+
+  /**
+   * Hide provinces container
+   */
+  function hideProvinces(){
+    provinceContainer.style.display = 'none'
+  }
+
+  /**
+   * If we have an active default country,
+   * select it and select it's default province
+   *
+   * (this is for the edit form)
+   */
+  function selectDefaults(){
+    if (countryDefault.length < 1) return
+
+    var selectedCountry = selectOption(countryDefault, countrySelector)
+    var options = JSON.parse(selectedCountry.getAttribute('data-provinces'))
+
+    showProvinces(options)
+  }
+
+  /**
+   * Get selected country, read it's
+   * provinces, and toss them into the
+   * provinces selector
+   */
+  countrySelector.onchange = function(){
+    var selectedCountry = countrySelector.options[countrySelector.selectedIndex]
+    var options = JSON.parse(selectedCountry.getAttribute('data-provinces')) || []
+    options.length > 0 ? showProvinces(options) : hideProvinces()
+  }
+
+  selectDefaults()
+})()
+</script>

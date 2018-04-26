@@ -1,0 +1,34 @@
+{% assign title = item.title %}
+{% assign caption = item.content %}
+{% assign image = item.image | img_url: '400x' %}
+{% assign url = item.url %}
+
+{% assign type = item.object_type %}
+
+{% if type == 'product' %}
+  {% assign title = item.title %}
+  {% assign caption = item.content | strip_html | truncatewords: 30 %}
+  {% assign image = item.featured_image | img_url: '400x' %}
+{% elsif type == 'article' %}
+  {% assign title = item.title %}
+  {% assign caption = item.excerpt_or_content | strip_html | truncatewords: 30 %}
+  {% assign image = item.image | img_url: '400x' %}
+{% else %}
+  {% assign title = item.title %}
+  {% assign caption = item.content | strip_html | truncatewords: 30 %}
+  {% assign image = false %}
+{% endif %}
+
+<article class="search__result relative pv2 f aic fw{% if type == 'product'%} search__result--product{% endif %}">
+  <div class="search__result__info w1">
+    <a href="{{url}}"><h4 class="c2 mv0">{{title | highlight: search.terms}}</h4></a>
+    <p class="mb0">{{caption | highlight: search.terms}}</p>
+  </div>
+  {% if image %}
+    <a href={{url}} class="search__result__image w1 object-fit-wrap relative">
+      <img class="w1 block absolute fit-x mxa" src="{{image}}"/>
+    </a>
+  {% endif %}
+</article>
+
+{% assign image = false %}

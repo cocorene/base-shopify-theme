@@ -1,0 +1,15 @@
+{% if alert_message %}
+  <div class="alert px1 mv1 f aic w1 {{alert_classes}}">
+    <div class="alert__message pr1 p">{{alert_message}}</div>
+
+    <div class="alert__icon fa align-r">
+      {% if alert_type == 'error' %}
+        {% include 'icon' with 'icon-alert' %}
+      {% else if alert_type == 'success' %}
+        {% include 'icon' with 'icon-checkmark' %}
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
+
+{% assign alert_message = false %}

@@ -1,0 +1,59 @@
+<header id="nav" class="nav relative f aic fit-t fit-l w1 bg-white z10">
+
+  {% include 'header-mobile-nav' %}
+
+  {% include 'header-search-bar' %}
+
+  {% comment %}
+    Nav Inner
+    - holds desktop menu links, icons (which are present on mobile as well), and logo
+    - vertically centered
+  {% endcomment %}
+  <div class="nav__inner f aic jcb w1 z1 bg-white outer">
+
+    <a class="nav__logo inline-block" href="{{ shop.url }}">
+      <img class="block w1" src="{{"logo.png" | asset_url}}" alt="Logo"/>
+    </a>
+
+    <nav class="nav__desktop inline-block mb025 f aic fa jce">
+      <ul class="list--reset inline-block f aic">
+
+        {% for link in linklists.main-menu.links %}
+          <li class="navav__item inline-block mr1">
+            <a id="{{link.title | camelcase}}" href="{{ link.url }}" class="nav__item__link h6 decoration--none pseudo-underline">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+
+        {% if shop.customer_accounts_enabled %}
+          <li class="nav__item inline-block mr1">
+            <a href="/account" class="nav__item__link h6 decoration--none pseudo-underline">Account</a>
+          </li>
+        {% endif %}
+
+      </ul>
+    </nav>
+
+    <div class="f aic">
+      <div class="nav__icon relative inline-block c1 ml1">
+        <a id="searchToggle" href="/search" class="block absolute fit-x mha mva no-ajax">
+          {% include 'icon' with 'icon-search' %}
+        </a>
+      </div>
+
+      <div class="nav__icon relative inline-block c1 ml1">
+        <a href="/cart" class="block absolute fit-x mha mva js-cart-btn">
+          {% include 'icon' with 'icon-cart' %}
+        </a>
+      </div>
+
+      <div id="mobileToggle" class="nav__mobile__toggle relative inline-block c1 ml1">
+        <button>
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</header>

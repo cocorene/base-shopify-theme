@@ -6,12 +6,12 @@
   <link rel="canonical" href="{{- canonical_url -}}">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
 
-  {%- comment -%} <link rel="apple-touch-icon" sizes="180x180" href="{{'apple-touch-icon.png' | asset_url -}}"> {%- endcomment -%}
-  {%- comment -%} <link rel="icon" type="image/png" href="{{'favicon-32x32.png' | asset_url -}}" sizes="32x32"> {%- endcomment -%}
-  {%- comment -%} <link rel="icon" type="image/png" href="{{'favicon-16x16.png' | asset_url -}}" sizes="16x16"> {%- endcomment -%}
-  {%- comment -%} <link rel="manifest" href="{{'manifest.json' | asset_url -}}"> {%- endcomment -%}
-  {%- comment -%} <link rel="mask-icon" href="{{'safari-pinned-tab.svg' | asset_url -}}" color="#5bbad5"> {%- endcomment -%}
-  {%- comment -%} <meta name="theme-color" content="#ffffff"> {%- endcomment -%}
+  {% comment %} <link rel="apple-touch-icon" sizes="180x180" href="{{'apple-touch-icon.png' | asset_url -}}"> {% endcomment %}
+  {% comment %} <link rel="icon" type="image/png" href="{{'favicon-32x32.png' | asset_url -}}" sizes="32x32"> {% endcomment %}
+  {% comment %} <link rel="icon" type="image/png" href="{{'favicon-16x16.png' | asset_url -}}" sizes="16x16"> {% endcomment %}
+  {% comment %} <link rel="manifest" href="{{'manifest.json' | asset_url -}}"> {% endcomment %}
+  {% comment %} <link rel="mask-icon" href="{{'safari-pinned-tab.svg' | asset_url -}}" color="#5bbad5"> {% endcomment %}
+  {% comment %} <meta name="theme-color" content="#ffffff"> {% endcomment %}
 
   <script type="text/javascript">var SHOPIFY_CDN = "{{- 'test.jpg' | asset_url -}}".replace(/test.jpg\?\d*/,'')</script>
 
@@ -51,5 +51,8 @@
   {%- endunless -%}
 
   {%- include 'icon-paths' -%}
+
+  {% comment %} Do not remove - This section handles all optinmonster campaigns on the store. {% endcomment %}
+  {%- section 'optinmonster' -%}
 </body>
 </html>

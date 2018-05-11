@@ -1,0 +1,38 @@
+{%- for block in section.blocks -%}
+  {%- assign campaign = block.settings -%}
+
+  {%- if campaign['url'] == blank and campaign['enable'] -%}
+    {{- campaign['script'] -}}
+  {%- elsif canonical_url contains campaign['url'] and campaign['enable'] -%}
+    {{- campaign['script'] -}}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- schema -%}
+  {
+    "name": "OptinMonster Campaigns",
+    "blocks": [ {
+      "type": "campaign",
+      "name": "Campaign",
+      "settings": [ {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      }, {
+        "type": "url",
+        "id": "url",
+        "label": "Page(s)",
+        "info": "Leave empty if the campaign needs to be active on all pages of the store."
+      }, {
+        "type": "html",
+        "id": "script",
+        "label": "Script"
+      }, {
+        "type": "checkbox",
+        "id": "enable",
+        "label": "Enable Campaign",
+        "default": true
+      } ]
+    } ]
+  }
+{%- endschema -%}

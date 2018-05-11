@@ -1,5 +1,5 @@
 <div class="product-card {{- class | escape -}}">
-  {%- comment -%}
+  {% comment %}
     Link to your product with the 'within: collection' filter for the link to be aware of the collection.
     This allows you to create collection-based navigation on the product page.
 
@@ -10,7 +10,7 @@
     For more info on navigation within a collection
       - http://docs.shopify.com/support/your-store/collections/how-to-navigate-within-a-collection
 
-  {%- endcomment -%}
+  {% endcomment %}
   <a href="{{- product.url | within: collection -}}" class="product-card__image">
     <img src="{{- product.featured_image.src | img_url: 'large' -}}" alt="{{- product.featured_image.alt | escape -}}">
   </a>
@@ -19,10 +19,10 @@
     <a href="{{- product.url | within: collection -}}">{{- product.title -}}</a>
   </p>
   <p>
-    {%- comment -%}
+    {% comment %}
       You can show a leading 'from' or 'up to' by checking 'product.price_varies'
       if your variants have different prices.
-    {%- endcomment -%}
+    {% endcomment %}
     {%- if on_sale -%}
       {%- if product.price_varies -%}
         {%- assign sale_price = product.price | money -%}

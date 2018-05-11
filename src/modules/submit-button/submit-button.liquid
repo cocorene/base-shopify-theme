@@ -1,4 +1,4 @@
-{%- comment -%}
+{% comment %}
   Reusable submit button snippet.
 
   Defaults:
@@ -7,9 +7,9 @@
   type default input
   disabled default false
 
-{%- endcomment -%}
+{% endcomment %}
 
-{%- comment -%} Set default values for submit button {%- endcomment -%}
+{% comment %} Set default values for submit button {% endcomment %}
 {%- assign value = value | Default: 'Submit' -%}
 {%- assign class = class | Default: blank -%}
 {%- assign type = type | Default: 'input' -%}
@@ -25,7 +25,7 @@
   <input type="submit" class="{{- classes -}}" value="{{- value -}}" {%- if disabled -%} disabled{%- endif -%}>
 {%- endif -%}
 
-{%- comment -%} Set default values to false {%- endcomment -%}
+{% comment %} Set default values to false {% endcomment %}
 {%- assign value = false -%}
 {%- assign class = false -%}
 {%- assign classes = false -%}

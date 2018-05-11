@@ -1,4 +1,4 @@
-{%- comment -%}
+{% comment %}
   Reusable text field snippet.
 
   Requires:
@@ -10,9 +10,9 @@
   value default ''
   autocorrect default false
   autocapitalize default false
-{%- endcomment -%}
+{% endcomment %}
 
-{%- comment -%} Set default values to false {%- endcomment -%}
+{% comment %} Set default values to false {% endcomment %}
 {%- assign name = name | default: false -%}
 {%- assign label = label | default: false -%}
 {%- assign type = type | default: 'text' -%}
@@ -38,7 +38,7 @@
   <p class="italic bold">Whoops! Looks like you missed a value for this field :)</p>
 {%- endif -%}
 
-{%- comment -%} Reset values to false {%- endcomment -%}
+{% comment %} Reset values to false {% endcomment %}
 {%- assign label = false -%}
 {%- assign name = false -%}
 {%- assign type = false -%}

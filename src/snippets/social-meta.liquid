@@ -38,12 +38,12 @@
   {%- endif -%}
 {%- endif -%}
 
-{%- comment -%}
+{% comment %}
   Page-level Overrides
 
   Override variable assignments below this
   using `template contains` and similar operators.
-{%- endcomment -%}
+{% endcomment %}
 
 <meta name="description" content="{{social_description | default: shop.name}}" />
 <meta property="og:url" content="{{canonical_url}}">

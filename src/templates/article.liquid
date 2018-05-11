@@ -1,5 +1,5 @@
 <!-- /templates/article.liquid -->
-{%- comment -%}
+{% comment %}
 
   Comments will not appear right after they are submitted, either to be checked for spam
   or to await moderation. When a comment is submitted, the browser is redirected to a page
@@ -9,13 +9,13 @@
   More information:
     - http://docs.shopify.com/themes/liquid-variables/comment
 
-{%- endcomment -%}
+{% endcomment %}
 
 {%- assign number_of_comments = article.comments_count -%}
 
-{%- comment -%}
+{% comment %}
   If a comment was just submitted and it has no blank fields, we have an extra comment to count.
-{%- endcomment -%}
+{% endcomment %}
 {%- if comment and comment.created_at -%}
   {%- assign number_of_comments = article.comments_count | plus: 1 -%}
 {%- endif -%}
@@ -39,9 +39,9 @@
       {{- article.content -}}
     </div>
 
-    {%- comment -%}
+    {% comment %}
       Create links to the next and previous articles, if available.
-    {%- endcomment -%}
+    {% endcomment %}
     {%- if blog.next_article or blog.previous_article -%}
       <hr>
       <p class="clearfix">
@@ -65,13 +65,13 @@
 
       <hr>
 
-      {%- comment -%}
+      {% comment %}
         Just like blog.liquid page, define how many comments should be on each page.
-      {%- endcomment -%}
+      {% endcomment %}
       {%- paginate article.comments by 5 -%}
-        {%- comment -%}
+        {% comment %}
           #comments is required, it is used as an anchor link by Shopify.
-        {%- endcomment -%}
+        {% endcomment %}
         <div id="comments">
 
           {%- if comment and comment.created_at -%}
@@ -86,18 +86,18 @@
 
           {%- if number_of_comments > 0 -%}
             <ul class="no-bullets">
-              {%- comment -%}
+              {% comment %}
                 If a comment was just submitted with no blank field, show it.
-              {%- endcomment -%}
+              {% endcomment %}
               {%- if comment and comment.created_at -%}
                 <li id="{{- comment.id -}}" class="comment first{%- if article.comments_count == 0 -%} last{%- endif -%}">
                   {%- include 'comment' -%}
                 </li>
               {%- endif -%}
 
-              {%- comment -%}
+              {% comment %}
                 Showing the rest of the comments.
-              {%- endcomment -%}
+              {% endcomment %}
               {%- for comment in article.comments -%}
                 <li id="{{- comment.id -}}" class="comment{%- unless number_of_comments > article.comments_count -%}{%- if forloop.first -%} first{%- endif -%}{%- endunless -%}{%- if forloop.last -%} last {%- endif -%}">
                   <div class="comment">

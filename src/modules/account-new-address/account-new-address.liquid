@@ -2,9 +2,9 @@
 
   {%- form 'customer_address', form_action -%}
 
-    {%- comment -%}
+    {% comment %}
       form_id = address.id || 'new
-    {%- endcomment -%}
+    {% endcomment %}
     {%- assign form_suffix = '_' | append: form_id -%}
     {%- assign form_country_id = 'country' | append: form_suffix -%}
     {%- assign form_province_container_id = 'provinceContainer' | append: form_suffix -%}

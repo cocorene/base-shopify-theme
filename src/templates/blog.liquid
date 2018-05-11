@@ -1,19 +1,19 @@
 <!-- /templates/blog.liquid -->
-{%- comment -%}
+{% comment %}
 
   Loop through a defined number of articles with the 'paginate' tag.
   Don't forget to close the tag after your loop.
 
-{%- endcomment -%}
+{% endcomment %}
 
 {%- paginate blog.articles by 5 -%}
 
 {%- include 'breadcrumb' -%}
 
-{%- comment -%}
+{% comment %}
   This template is also used for listing out articles of a specific tag.
   You can change layouts or styles by checking if current_tags is true.
-{%- endcomment -%}
+{% endcomment %}
 <div class="grid--rev">
 
   <div class="grid__item large--three-quarters">
@@ -24,12 +24,12 @@
       <h1>{{- blog.title -}}</h1>
     {%- endif -%}
 
-    {%- comment -%}
+    {% comment %}
       Loop through each article in your blog. This is limited to what you set for pagination above.
 
       For more info on article liquid tags:
         - http://docs.shopify.com/themes/liquid-variables/article
-    {%- endcomment -%}
+    {% endcomment %}
 
     {%- for article in blog.articles -%}
 
@@ -46,10 +46,10 @@
           </a>
         {%- endif -%}
 
-        {%- comment -%}
+        {% comment %}
           Add a surrounding div with class 'rte' to anything that will come from the rich text editor.
           Since this is just a listing page, you can either use the excerpt or truncate the full article.
-        {%- endcomment -%}
+        {% endcomment %}
         <div class="rte">
           {%- if article.excerpt.size > 0 -%}
             {{- article.excerpt -}}
@@ -58,9 +58,9 @@
           {%- endif -%}
         </div>
 
-        {%- comment -%}
+        {% comment %}
           Show off meta information like number of comments and tags.
-        {%- endcomment -%}
+        {% endcomment %}
         <ul class="inline-list">
           {%- if blog.comments_enabled? -%}
           <li>

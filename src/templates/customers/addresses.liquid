@@ -17,10 +17,10 @@
     {%- assign form_classes = 'mb2 pb1' -%}
     {%- include 'account-new-address' -%}
 
-    {%- comment -%}
+    {% comment %}
       List all customer addresses with a unique edit form.
       Also add pagination in case they have a large number of addresses
-    {%- endcomment -%}
+    {% endcomment %}
     {%- for address in customer.addresses -%}
       <div class="address w1 mb2">
         {%- assign name = address.name -%}

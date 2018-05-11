@@ -1,24 +1,24 @@
 <!-- /templates/collection.liquid -->
-{%- comment -%}
+{% comment %}
 
   For more information on collection tags:
     - http://docs.shopify.com/themes/liquid-variables/collection
 
-{%- endcomment -%}
+{% endcomment %}
 
 {%- paginate collection.products by 12 -%}
 
 {%- include 'breadcrumb' -%}
 
-{%- comment -%}
+{% comment %}
   Use .grid--rev so that the collection tags appear below the products on mobile
-{%- endcomment -%}
+{% endcomment %}
 <div class="grid--rev">
   <div class="grid__item large--three-quarters">
 
-    {%- comment -%}
+    {% comment %}
       Different markup if a collection description exists
-    {%- endcomment -%}
+    {% endcomment %}
     {%- if collection.description != blank -%}
       <header class="section-header">
         <h1 class="section-header__title">{{- collection.title -}}</h1>
@@ -41,16 +41,16 @@
       </header>
     {%- endif -%}
 
-    {%- comment -%}
+    {% comment %}
       Use class grid-uniform to have evenly sized columns clear
       each other properly at each breakpoint.
-    {%- endcomment -%}
+    {% endcomment %}
     <div class="grid-uniform">
 
-      {%- comment -%}
+      {% comment %}
         Loop through our products in the current collection.
         See the snippet 'product-grid-item' for the layout.
-      {%- endcomment -%}
+      {% endcomment %}
       {%- for product in collection.products -%}
 
         {%- include 'product-grid-item' -%}
@@ -59,9 +59,9 @@
 
         {%- if collection.handle == 'all' and current_tags == '' -%}
 
-          {%- comment -%}
+          {% comment %}
             Add default products to help with onboarding for collections/all only
-          {%- endcomment -%}
+          {% endcomment %}
           {%- unless emptyState -%}
             {{- 'theme-onboarding.css' | global_asset_url | stylesheet_tag -}}
             {%- assign emptyState = true -%}
@@ -70,9 +70,9 @@
 
         {%- else -%}
 
-          {%- comment -%}
+          {% comment %}
             If collection exists but is empty, display message
-          {%- endcomment -%}
+          {% endcomment %}
           <div class="grid__item">
             <p>{{- 'collections.general.no_matches' | t -}}</p>
           </div>

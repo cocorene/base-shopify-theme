@@ -1,100 +1,100 @@
 <!-- /templates/collection.liquid -->
-{% comment %}
+{%- comment -%}
 
   For more information on collection tags:
     - http://docs.shopify.com/themes/liquid-variables/collection
 
-{% endcomment %}
+{%- endcomment -%}
 
-{% paginate collection.products by 12 %}
+{%- paginate collection.products by 12 -%}
 
-{% include 'breadcrumb' %}
+{%- include 'breadcrumb' -%}
 
-{% comment %}
+{%- comment -%}
   Use .grid--rev so that the collection tags appear below the products on mobile
-{% endcomment %}
+{%- endcomment -%}
 <div class="grid--rev">
   <div class="grid__item large--three-quarters">
 
-    {% comment %}
+    {%- comment -%}
       Different markup if a collection description exists
-    {% endcomment %}
-    {% if collection.description != blank %}
+    {%- endcomment -%}
+    {%- if collection.description != blank -%}
       <header class="section-header">
-        <h1 class="section-header__title">{{ collection.title }}</h1>
+        <h1 class="section-header__title">{{- collection.title -}}</h1>
         <div class="rte rte--header">
-          {{ collection.description }}
+          {{- collection.description -}}
         </div>
       </header>
       <hr>
       <div class="section-header">
         <div class="section-header__right">
-          {% include 'collection-sorting' %}
+          {%- include 'collection-sorting' -%}
         </div>
       </div>
-    {% else %}
+    {%- else -%}
       <header class="section-header">
-        <h1 class="section-header__title section-header__left">{{ collection.title }}</h1>
+        <h1 class="section-header__title section-header__left">{{- collection.title -}}</h1>
         <div class="section-header__right">
-          {% include 'collection-sorting' %}
+          {%- include 'collection-sorting' -%}
         </div>
       </header>
-    {% endif %}
+    {%- endif -%}
 
-    {% comment %}
+    {%- comment -%}
       Use class grid-uniform to have evenly sized columns clear
       each other properly at each breakpoint.
-    {% endcomment %}
+    {%- endcomment -%}
     <div class="grid-uniform">
 
-      {% comment %}
+      {%- comment -%}
         Loop through our products in the current collection.
         See the snippet 'product-grid-item' for the layout.
-      {% endcomment %}
-      {% for product in collection.products %}
+      {%- endcomment -%}
+      {%- for product in collection.products -%}
 
-        {% include 'product-grid-item' %}
+        {%- include 'product-grid-item' -%}
 
-      {% else %}
+      {%- else -%}
 
-        {% if collection.handle == 'all' and current_tags == '' %}
+        {%- if collection.handle == 'all' and current_tags == '' -%}
 
-          {% comment %}
+          {%- comment -%}
             Add default products to help with onboarding for collections/all only
-          {% endcomment %}
-          {% unless emptyState %}
-            {{ 'theme-onboarding.css' | global_asset_url | stylesheet_tag }}
-            {% assign emptyState = true %}
-          {% endunless %}
-          {% include 'onboarding-empty-collection' %}
+          {%- endcomment -%}
+          {%- unless emptyState -%}
+            {{- 'theme-onboarding.css' | global_asset_url | stylesheet_tag -}}
+            {%- assign emptyState = true -%}
+          {%- endunless -%}
+          {%- include 'onboarding-empty-collection' -%}
 
-        {% else %}
+        {%- else -%}
 
-          {% comment %}
+          {%- comment -%}
             If collection exists but is empty, display message
-          {% endcomment %}
+          {%- endcomment -%}
           <div class="grid__item">
-            <p>{{ 'collections.general.no_matches' | t }}</p>
+            <p>{{- 'collections.general.no_matches' | t -}}</p>
           </div>
 
-        {% endif %}
+        {%- endif -%}
 
-      {% endfor %}
+      {%- endfor -%}
 
     </div>
 
-    {% if paginate.pages > 1 %}
+    {%- if paginate.pages > 1 -%}
       <hr>
       <div class="pagination">
-        {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+        {{- paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' -}}
       </div>
-    {% endif %}
+    {%- endif -%}
 
   </div>
 
   <div class="grid__item large--one-quarter">
-    {% include 'collection-sidebar' %}
+    {%- include 'collection-sidebar' -%}
   </div>
 </div>
 
-{% endpaginate %}
+{%- endpaginate -%}

@@ -1,6 +1,6 @@
 <section class="outer pt1 pb2 ts2">
   <div class="container--xs mha tsx">
-	{% assign content = page.content | default: false %}
-  	{% include 'wysiwyg' with 'content' %}
+	{%- assign content = page.content | default: false -%}
+  	{%- include 'wysiwyg' with 'content' -%}
   </div>
 </section>

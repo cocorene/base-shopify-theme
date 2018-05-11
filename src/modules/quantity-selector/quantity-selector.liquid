@@ -1,31 +1,31 @@
-{% assign class = class | default: blank %}
-{% assign id = id | default: false %}
-{% assign name = name | default: false %}
-{% assign min = min | default: false %}
-{% assign max = max | default: false %}
-{% assign value = value | default: min | default: '0' %}
-{% assign disabled = disabled | default: false %}
+{%- assign class = class | default: blank -%}
+{%- assign id = id | default: false -%}
+{%- assign name = name | default: false -%}
+{%- assign min = min | default: false -%}
+{%- assign max = max | default: false -%}
+{%- assign value = value | default: min | default: '0' -%}
+{%- assign disabled = disabled | default: false -%}
 
-{% capture css %}
-  quantity-selector {{ class }}
-{% endcapture %}
+{%- capture css -%}
+  quantity-selector {{- class -}}
+{%- endcapture -%}
 
-{% capture attributes %}
-  {% if id %}id="{{ id }}"{% endif %} {% if name %}name="{{ name }}"{% endif %} {% if min %}min="{{ min }}"{% endif %} {% if max %}max="{{ max }}"{% endif %} {% if value %}value="{{ value }}"{% endif %} {% if disabled %}disabled{% endif %}
-{% endcapture %}
+{%- capture attributes -%}
+  {%- if id -%}id="{{- id -}}"{%- endif -%} {%- if name -%}name="{{- name -}}"{%- endif -%} {%- if min -%}min="{{- min -}}"{%- endif -%} {%- if max -%}max="{{- max -}}"{%- endif -%} {%- if value -%}value="{{- value -}}"{%- endif -%} {%- if disabled -%}disabled{%- endif -%}
+{%- endcapture -%}
 
-<div class="{{ css | strip }}" data-module="quantity-selector" {% if disabled %}disabled{% endif %}>
+<div class="{{- css | strip -}}" data-module="quantity-selector" {%- if disabled -%}disabled{%- endif -%}>
   <button class="quantity-selector__action" type="button" data-count="-"><span>-</span></button>
-  <input class="quantity-selector__field" type="number" {{ attributes | strip }}>
+  <input class="quantity-selector__field" type="number" {{- attributes | strip -}}>
   <button class="quantity-selector__action" type="button" data-count="+"><span>+</span></button>
 </div>
 
-{% assign class = false %}
-{% assign id = false %}
-{% assign name = false %}
-{% assign min = false %}
-{% assign max = false %}
-{% assign value = false %}
-{% assign disabled = false %}
-{% assign css = false %}
-{% assign attributes = false %}
+{%- assign class = false -%}
+{%- assign id = false -%}
+{%- assign name = false -%}
+{%- assign min = false -%}
+{%- assign max = false -%}
+{%- assign value = false -%}
+{%- assign disabled = false -%}
+{%- assign css = false -%}
+{%- assign attributes = false -%}

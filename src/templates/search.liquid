@@ -1,36 +1,36 @@
-{% capture search_form %}
+{%- capture search_form -%}
   <form class="search__form block relative w1 mt2" action="/search" data-component="search-page-form">
     <input class="search__input block relative w1 mv0" name="q" type="text" placeholder="Search" value="{{search.terms | escape}}"/>
     <button class="hide" type="submit">Search</button>
   </form>
-{% endcapture %}
+{%- endcapture -%}
 
-{% paginate search.results by 4 %}
+{%- paginate search.results by 4 -%}
 
 <section class="outer pt1 pb2 ts2">
   <div class="container--xs mha tsx">
 
-    {% if search.performed %}
+    {%- if search.performed -%}
 
-      {% if search.results_count == 0 %}
+      {%- if search.results_count == 0 -%}
         <h4 class="c2 align-c mb1">Sorry, there were no results for "{{search.terms}}"</h4>
 
         <hr class="gray"/>
 
         {{search_form}}
-      {% else %}
+      {%- else -%}
         <h4 class="c2 align-c mb1">Showing results for "{{search.terms}}"</h4>
         <hr class="gray"/>
-      {% endif %}
+      {%- endif -%}
 
-      {% for item in search.results %}
-        {% include 'search-result' %}
+      {%- for item in search.results -%}
+        {%- include 'search-result' -%}
         <hr class="gray"/>
-      {% endfor %}
+      {%- endfor -%}
 
-      {% include 'pagination' %}
+      {%- include 'pagination' -%}
 
-    {% else %}
+    {%- else -%}
 
       <h5 class="c2 align-c mb1">Enter your search below:</h5>
 
@@ -38,10 +38,10 @@
 
       {{search_form}}
 
-    {% endif %}
+    {%- endif -%}
 
   </div>
 </section>
 
-{% endpaginate %}
+{%- endpaginate -%}
 

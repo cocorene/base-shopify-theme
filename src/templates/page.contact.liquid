@@ -1,9 +1,9 @@
-{% capture success_message %}
-  {% assign alert_message = "Thanks for your message! We'll get back to you as soon as we can." %}
-  {% assign alert_type = 'success' %}
-  {% assign alert_classes = 'mb2' %}
-  {% include 'alert' %}
-{% endcapture %}
+{%- capture success_message -%}
+  {%- assign alert_message = "Thanks for your message! We'll get back to you as soon as we can." -%}
+  {%- assign alert_type = 'success' -%}
+  {%- assign alert_classes = 'mb2' -%}
+  {%- include 'alert' -%}
+{%- endcapture -%}
 
 <section class="outer mt2 pt2">
   <div class="container--s mha">
@@ -14,52 +14,52 @@
 <div class="outer pv2">
   <div class="container--s mha mb2">
     <div class="p wysiwyg">
-      {{ page.content }}
+      {{- page.content -}}
     </div>
   </div>
 
   <div class="container--s mha mv1 pb2" data-module="contact-form">
-    {% form 'contact' %}
-      {% if form.posted_successfully? %}
+    {%- form 'contact' -%}
+      {%- if form.posted_successfully? -%}
         {{success_message}}
-      {% endif %}
+      {%- endif -%}
 
       <div id="contactFormSuccess" style="display: none">{{success_message}}</div>
 
-      {% assign field_label = 'Full Name' %}
-      {% assign field_name = 'contact[name]' %}
-      {% assign field_type = 'text' %}
-      {% assign field_placeholder = 'Full Name' %}
-      {% assign field_autocapitalize = 'words' %}
-      {% if form['name'] %}
-        {% assign field_value = form['name'] %}
-      {% elsif customer %}
-        {% assign field_value = customer.name %}
-      {% endif %}
-      {% include 'input-text' %}
+      {%- assign field_label = 'Full Name' -%}
+      {%- assign field_name = 'contact[name]' -%}
+      {%- assign field_type = 'text' -%}
+      {%- assign field_placeholder = 'Full Name' -%}
+      {%- assign field_autocapitalize = 'words' -%}
+      {%- if form['name'] -%}
+        {%- assign field_value = form['name'] -%}
+      {%- elsif customer -%}
+        {%- assign field_value = customer.name -%}
+      {%- endif -%}
+      {%- include 'input-text' -%}
 
-      {% assign field_label = 'Email' %}
-      {% assign field_name = 'contact[email]' %}
-      {% assign field_type = 'email' %}
-      {% assign field_placeholder = 'Email' %}
-      {% assign field_autocomplete = false %}
-      {% if form['email'] %}
-        {% assign field_value = form['email'] %}
-      {% elsif customer %}
-        {% assign field_value = customer.email %}
-      {% endif %}
-      {% include 'input-text' %}
+      {%- assign field_label = 'Email' -%}
+      {%- assign field_name = 'contact[email]' -%}
+      {%- assign field_type = 'email' -%}
+      {%- assign field_placeholder = 'Email' -%}
+      {%- assign field_autocomplete = false -%}
+      {%- if form['email'] -%}
+        {%- assign field_value = form['email'] -%}
+      {%- elsif customer -%}
+        {%- assign field_value = customer.email -%}
+      {%- endif -%}
+      {%- include 'input-text' -%}
 
-      {% assign field_label = 'Phone Number' %}
-      {% assign field_name = 'contact[phone]' %}
-      {% assign field_type = 'tel' %}
-      {% assign field_placeholder = 'Phone Number' %}
-      {% if form['phone'] %}
-        {% assign field_value = form['phone'] %}
-      {% elsif customer %}
-        {% assign field_value = customer.phone %}
-      {% endif %}
-      {% include 'input-text' %}
+      {%- assign field_label = 'Phone Number' -%}
+      {%- assign field_name = 'contact[phone]' -%}
+      {%- assign field_type = 'tel' -%}
+      {%- assign field_placeholder = 'Phone Number' -%}
+      {%- if form['phone'] -%}
+        {%- assign field_value = form['phone'] -%}
+      {%- elsif customer -%}
+        {%- assign field_value = customer.phone -%}
+      {%- endif -%}
+      {%- include 'input-text' -%}
 
       <p>
         <label for="subject" class="block">Subject:</label>
@@ -82,13 +82,13 @@
 
       <p>
         <label for="message" class="block w1">Message:</label>
-        <textarea required rows="5" id="message" class="block w1 mt05 mb1" name="contact[body]" placeholder="Message">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+        <textarea required rows="5" id="message" class="block w1 mt05 mb1" name="contact[body]" placeholder="Message">{%- if form.body -%}{{- form.body -}}{%- endif -%}</textarea>
       </p>
 
       <div class="mt2 mb1 align-c">
         <button type="submit" class="button">Submit</button>
       </div>
 
-    {% endform %}
+    {%- endform -%}
   </div>
 </div>

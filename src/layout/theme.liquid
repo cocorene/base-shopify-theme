@@ -3,53 +3,53 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="canonical" href="{{ canonical_url }}">
+  <link rel="canonical" href="{{- canonical_url -}}">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
 
-  {% comment %} <link rel="apple-touch-icon" sizes="180x180" href="{{'apple-touch-icon.png' | asset_url }}"> {% endcomment %}
-  {% comment %} <link rel="icon" type="image/png" href="{{'favicon-32x32.png' | asset_url }}" sizes="32x32"> {% endcomment %}
-  {% comment %} <link rel="icon" type="image/png" href="{{'favicon-16x16.png' | asset_url }}" sizes="16x16"> {% endcomment %}
-  {% comment %} <link rel="manifest" href="{{'manifest.json' | asset_url }}"> {% endcomment %}
-  {% comment %} <link rel="mask-icon" href="{{'safari-pinned-tab.svg' | asset_url }}" color="#5bbad5"> {% endcomment %}
-  {% comment %} <meta name="theme-color" content="#ffffff"> {% endcomment %}
+  {%- comment -%} <link rel="apple-touch-icon" sizes="180x180" href="{{'apple-touch-icon.png' | asset_url -}}"> {%- endcomment -%}
+  {%- comment -%} <link rel="icon" type="image/png" href="{{'favicon-32x32.png' | asset_url -}}" sizes="32x32"> {%- endcomment -%}
+  {%- comment -%} <link rel="icon" type="image/png" href="{{'favicon-16x16.png' | asset_url -}}" sizes="16x16"> {%- endcomment -%}
+  {%- comment -%} <link rel="manifest" href="{{'manifest.json' | asset_url -}}"> {%- endcomment -%}
+  {%- comment -%} <link rel="mask-icon" href="{{'safari-pinned-tab.svg' | asset_url -}}" color="#5bbad5"> {%- endcomment -%}
+  {%- comment -%} <meta name="theme-color" content="#ffffff"> {%- endcomment -%}
 
-  <script type="text/javascript">var SHOPIFY_CDN = "{{ 'test.jpg' | asset_url }}".replace(/test.jpg\?\d*/,'')</script>
+  <script type="text/javascript">var SHOPIFY_CDN = "{{- 'test.jpg' | asset_url -}}".replace(/test.jpg\?\d*/,'')</script>
 
-  {% include 'social-meta' %}
+  {%- include 'social-meta' -%}
 
-  {{ content_for_header }}
+  {{- content_for_header -}}
 
-  {% if settings.is_dev_mode %}
-    {{ '/dev/main.js' | script_tag }}
-  {% else %}
-    {{ 'main.min.css' | asset_url | stylesheet_tag }}
-  {% endif %}
+  {%- if settings.is_dev_mode -%}
+    {{- '/dev/main.js' | script_tag -}}
+  {%- else -%}
+    {{- 'main.min.css' | asset_url | stylesheet_tag -}}
+  {%- endif -%}
 
   <script>
     /** Used in the account pages! */
     window.barrel = window.barrel || {}
   </script>
 
-  <title> {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %} </title>
+  <title> {{- page_title -}}{%- if current_tags -%}{%- assign meta_tags = current_tags | join: ', ' -%} &ndash; {{- 'general.meta.tags' | t: tags: meta_tags -}}{%- endif -%}{%- if current_page != 1 -%} &ndash; {{- 'general.meta.page' | t: page: current_page -}}{%- endif -%}{%- unless page_title contains shop.name -%} &ndash; {{- shop.name -}}{%- endunless -%} </title>
 </head>
-<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
+<body id="{{- page_title | handle -}}" class="{%- if customer -%}customer-logged-in {%- endif -%}template-{{- template | replace: '.', ' ' | truncatewords: 1, '' | handle -}}" >
 
-  {% include 'promobar' %}
-  {% include 'header' %}
+  {%- include 'promobar' -%}
+  {%- include 'header' -%}
 
   <main id="page" class="relative z0" role="main">
-    {{ content_for_layout }}
+    {{- content_for_layout -}}
   </main>
 
-  {% include 'mini-cart' %}
+  {%- include 'mini-cart' -%}
 
-  {% include 'newsletter' %}
-  {% include 'footer' %}
+  {%- include 'newsletter' -%}
+  {%- include 'footer' -%}
 
-  {% unless settings.is_dev_mode %}
-    {{ 'main.js' | asset_url | script_tag }}
-  {% endunless %}
+  {%- unless settings.is_dev_mode -%}
+    {{- 'main.js' | asset_url | script_tag -}}
+  {%- endunless -%}
 
-  {% include 'icon-paths' %}
+  {%- include 'icon-paths' -%}
 </body>
 </html>

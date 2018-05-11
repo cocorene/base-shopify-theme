@@ -9,16 +9,16 @@
     <div id="newsletterSuccess" class="newsletter__success mv05 p hide">{{settings.newsletter_success}}</div>
     <div id="newsletterError" class="newsletter__success mv05 p hide">{{settings.newsletter_error}}</div>
 
-    {% if settings.mailchimp_enabled %}
+    {%- if settings.mailchimp_enabled -%}
 
-      <form target="_blank" action="{{ settings.mailchimp_url }}" method="post">
+      <form target="_blank" action="{{- settings.mailchimp_url -}}" method="post">
         <div class="newsletter__field relative container--xs mha">
           <input id="newsletterEmail" class="w1"
             required
             name="EMAIL"
             type="email"
             placeholder="Email Address"
-            value="{% if customer %}{{ customer.email }}{% endif %}"
+            value="{%- if customer -%}{{- customer.email -}}{%- endif -%}"
             autocorrect="off"
             autocapitalize="off">
           <span class="form-error absolute fit-l italic p00 hide italic">Email is invalid</span>
@@ -28,12 +28,12 @@
         <button type="submit" class="button mt1">Submit</button>
       </form>
 
-    {% else %}
+    {%- else -%}
 
-      {% form 'customer' %}
-        {% if form.posted_successfully? %}
+      {%- form 'customer' -%}
+        {%- if form.posted_successfully? -%}
           <div id="newsletterSuccess" class="newsletter__success mv05 p">{{settings.newsletter_success}}</div>
-        {% else %}
+        {%- else -%}
 
           <div class="newsletter__field relative container--xs mha">
             <input id="newsletterEmail" class="w1"
@@ -41,7 +41,7 @@
               name="contact[email]"
               type="email"
               placeholder="Email Address"
-              value="{% if customer %}{{ customer.email }}{% endif %}"
+              value="{%- if customer -%}{{- customer.email -}}{%- endif -%}"
               autocorrect="off"
               autocapitalize="off">
             <span class="form-error absolute fit-l italic p00 hide italic">Email is invalid</span>
@@ -49,12 +49,12 @@
 
           <button type="submit" class="button mt1">Submit</button>
 
-          {% if form.errors %}
+          {%- if form.errors -%}
             <p class="newsletter__error align-c c3 mt05">*Invalid email address, try again.</p>
-          {% endif %}
-        {% endif %}
-      {% endform %}
+          {%- endif -%}
+        {%- endif -%}
+      {%- endform -%}
 
-    {% endif %}
+    {%- endif -%}
   </div>
 </div>

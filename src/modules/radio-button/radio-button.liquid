@@ -1,33 +1,33 @@
-{% assign class = class | default: false %}
-{% assign id = id | default: false %}
-{% assign name = name | default: false %}
-{% assign value = value | default: false %}
-{% assign checked = checked | default: false %}
-{% assign label = label | default: false %}
+{%- assign class = class | default: false -%}
+{%- assign id = id | default: false -%}
+{%- assign name = name | default: false -%}
+{%- assign value = value | default: false -%}
+{%- assign checked = checked | default: false -%}
+{%- assign label = label | default: false -%}
 
-{% capture css %}
-  radio-button {{ class }}
-{% endcapture %}
+{%- capture css -%}
+  radio-button {{- class -}}
+{%- endcapture -%}
 
-{% capture attributes %}
-  {% if id %}id="{{ id }}"{% endif %} {% if name %}name="{{ name }}"{% endif %} {% if value %}value="{{ value }}"{% endif %}
-{% endcapture %}
+{%- capture attributes -%}
+  {%- if id -%}id="{{- id -}}"{%- endif -%} {%- if name -%}name="{{- name -}}"{%- endif -%} {%- if value -%}value="{{- value -}}"{%- endif -%}
+{%- endcapture -%}
 
-<div class="{{ css | strip }}">
+<div class="{{- css | strip -}}">
   <span class="radio-button__holder">
-    <input class="radio-button__el" type="radio" {{ attributes | strip }}>
+    <input class="radio-button__el" type="radio" {{- attributes | strip -}}>
     <i class="radio-button__checked"></i>
   </span>
-  {% if label %}
-    <label class="radio-button__label" {% if id %}for="{{ id }}"{% endif %}>{{ label }}</label>
-  {% endif %}
+  {%- if label -%}
+    <label class="radio-button__label" {%- if id -%}for="{{- id -}}"{%- endif -%}>{{- label -}}</label>
+  {%- endif -%}
 </div>
 
-{% assign class = false %}
-{% assign id = false %}
-{% assign name = false %}
-{% assign value = false %}
-{% assign checked = false %}
-{% assign label = false %}
-{% assign css = false %}
-{% assign attributes = false %}
+{%- assign class = false -%}
+{%- assign id = false -%}
+{%- assign name = false -%}
+{%- assign value = false -%}
+{%- assign checked = false -%}
+{%- assign label = false -%}
+{%- assign css = false -%}
+{%- assign attributes = false -%}

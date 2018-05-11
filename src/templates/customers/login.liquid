@@ -1,33 +1,33 @@
 <div class="outer mt2 align-l" data-module="account-login">
 
   <div id="login_form" class="account-entry-form mha">
-    <h1 class="h2 mb05">{{ 'customer.login.title' | t }}</h1>
+    <h1 class="h2 mb05">{{- 'customer.login.title' | t -}}</h1>
 
-    {% form 'customer_login', class: 'mha' %}
-      {% assign field_label = 'Email' %}
-      {% assign field_name = 'customer[email]' %}
-      {% assign field_type = 'email' %}
-      {% include 'input-text' %}
+    {%- form 'customer_login', class: 'mha' -%}
+      {%- assign field_label = 'Email' -%}
+      {%- assign field_name = 'customer[email]' -%}
+      {%- assign field_type = 'email' -%}
+      {%- include 'input-text' -%}
 
-      {% assign field_label = 'Password' %}
-      {% assign field_name = 'customer[password]' %}
-      {% assign field_type = 'password' %}
-      {% include 'input-text' %}
+      {%- assign field_label = 'Password' -%}
+      {%- assign field_name = 'customer[password]' -%}
+      {%- assign field_type = 'password' -%}
+      {%- include 'input-text' -%}
 
-      {% if form.errors %}
-        {% for field in form.errors %}
-          {% if field == 'form' %}
-            <p class="p0 c3 align-c">{{ form.errors.messages[field] }}</p>
-          {% else %}
-            <p class="p0 c3 align-c">{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}</p>
-          {% endif %}
-        {% endfor %}
-      {% endif %}
+      {%- if form.errors -%}
+        {%- for field in form.errors -%}
+          {%- if field == 'form' -%}
+            <p class="p0 c3 align-c">{{- form.errors.messages[field] -}}</p>
+          {%- else -%}
+            <p class="p0 c3 align-c">{{- form.errors.translated_fields[field] | capitalize -}} {{- form.errors.messages[field] -}}</p>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
 
       <div class="mt2">
         <button type="submit" class="button">Sign In</button>
       </div>
-    {% endform %}
+    {%- endform -%}
 
     <p class="mb0">
       <a class="link mt1" id="recovery_link" href="#recover">Forgot your password?</a>
@@ -44,32 +44,32 @@
     <p>Enter your email and we will send you a password reset link.</p>
 
     <div class="inline-block">
-      {% form 'recover_customer_password', class: 'mha' %}
+      {%- form 'recover_customer_password', class: 'mha' -%}
 
-        {% if form.posted_successfully? %}
+        {%- if form.posted_successfully? -%}
           <span class="mb1 recovery-success">Success! Check your email for a link to reset your password.</span>
-        {% else %}
-          {% assign field_label = 'Email' %}
-          {% assign field_name = 'customer[email]' %}
-          {% assign field_type = 'email' %}
-          {% include 'input-text' %}
+        {%- else -%}
+          {%- assign field_label = 'Email' -%}
+          {%- assign field_name = 'customer[email]' -%}
+          {%- assign field_type = 'email' -%}
+          {%- include 'input-text' -%}
 
-          {% if form.errors %}
-            {% for field in form.errors %}
-              {% if field == 'form' %}
-                <p class="p0 c3">{{ form.errors.messages[field] }}</p>
-              {% else %}
-                <p class="p0 c3">{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}.</p>
-              {% endif %}
-            {% endfor %}
-          {% endif %}
+          {%- if form.errors -%}
+            {%- for field in form.errors -%}
+              {%- if field == 'form' -%}
+                <p class="p0 c3">{{- form.errors.messages[field] -}}</p>
+              {%- else -%}
+                <p class="p0 c3">{{- form.errors.translated_fields[field] | capitalize -}} {{- form.errors.messages[field] -}}.</p>
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
 
           <div class="mt2">
             <button type="submit" class="button">Reset Password</button>
           </div>
-        {% endif %}
+        {%- endif -%}
 
-      {% endform %}
+      {%- endform -%}
     </div>
 
     <a href="#0" class="link block mt1" id="cancel_recover">Cancel</a>

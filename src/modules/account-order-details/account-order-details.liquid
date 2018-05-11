@@ -16,17 +16,17 @@
 
 <section class="outer">
   <div class="container--s mha">
-    {% if order.cancelled %}
-      {% assign cancelled_at = order.cancelled_at | date: "%b %d, %Y @ %I:%M %p" %}
-      {% capture alert_message %}
+    {%- if order.cancelled -%}
+      {%- assign cancelled_at = order.cancelled_at | date: "%b %d, %Y @ %I:%M %p" -%}
+      {%- capture alert_message -%}
         <p class="mv0 pr1">
-          <strong>Order canceled:</strong> {{ cancelled_at }}<br/>
-          <strong>Reason:</strong> {{ order.cancel_reason | capitalize }}
+          <strong>Order canceled:</strong> {{- cancelled_at -}}<br/>
+          <strong>Reason:</strong> {{- order.cancel_reason | capitalize -}}
         </p>
-      {% endcapture %}
-      {% assign alert_type = 'error' %}
-      {% include 'alert' %}
-    {% endif %}
+      {%- endcapture -%}
+      {%- assign alert_type = 'error' -%}
+      {%- include 'alert' -%}
+    {%- endif -%}
   </div>
 </section>
 
@@ -38,18 +38,18 @@
     <hr/>
 
     <ul class="order__details block relative w1 mt1">
-      {% for item in order.line_items %}
-        {% assign url = item.product.url %}
-        {% assign image = item.image | img_url: '100x' %}
-        {% assign title = item.product.title %}
-        {% assign variant = item.variant %}
-        {% assign price = item.price %}
-        {% assign props = item.properties %}
-        {% assign sku = item.sku %}
-        {% assign quantity = item.quantity %}
-        {% assign created_at = item.fulfillment.created_at | date: '%b %d, %Y' %}
-        {% assign tracking_url = line_item.fulfillment.tracking_url %}
-        {% assign tracking_number = line_item.fulfillment.tracking_number %}
+      {%- for item in order.line_items -%}
+        {%- assign url = item.product.url -%}
+        {%- assign image = item.image | img_url: '100x' -%}
+        {%- assign title = item.product.title -%}
+        {%- assign variant = item.variant -%}
+        {%- assign price = item.price -%}
+        {%- assign props = item.properties -%}
+        {%- assign sku = item.sku -%}
+        {%- assign quantity = item.quantity -%}
+        {%- assign created_at = item.fulfillment.created_at | date: '%b %d, %Y' -%}
+        {%- assign tracking_url = line_item.fulfillment.tracking_url -%}
+        {%- assign tracking_number = line_item.fulfillment.tracking_number -%}
 
         <li class="order__details__row f fw ais px1">
           <div class="__image">
@@ -59,32 +59,32 @@
           <div class="__info">
             <a href="{{url}}"><h4 class="inline-block mv0">{{title}}</h4></a>
             <p class="mv0">
-              {% if variant and variant.title != 'Default title'%}{{variant.title}}<br/>{% endif %}
-              {% if quantity > 1 %}<strong>Quantity:</strong> {{quantity}}<br/>{% endif %}
-              {% if sku != blank %}<strong>SKU:</strong> {{sku}}<br/>{% endif %}
+              {%- if variant and variant.title != 'Default title'%}{{variant.title}}<br/>{%- endif -%}
+              {%- if quantity > 1 -%}<strong>Quantity:</strong> {{quantity}}<br/>{%- endif -%}
+              {%- if sku != blank -%}<strong>SKU:</strong> {{sku}}<br/>{%- endif -%}
 
-              {% unless props == 'empty '%}
-                {% for p in props %}
+              {%- unless props == 'empty '%}
+                {%- for p in props -%}
                   <strong>{{p.first}}:</strong> {{p.last}}<br/>
-                {% endfor %}
-              {% endunless %}
+                {%- endfor -%}
+              {%- endunless -%}
             </p>
 
 
-            {% if item.fulfillment and tracking_number %}
+            {%- if item.fulfillment and tracking_number -%}
               <div class="mt05">
                 <a href="{{tracking_url}}" class="order__meta inline-block h5">
                   <span>Track:</span><span>{{tracking_number}}</span>
                 </a>
               </div>
-            {% endif %}
+            {%- endif -%}
           </div>
 
           <div class="__total fa">
             <h4 class="mv0 c1">{{quantity | times: price | money}}</h4>
           </div>
         </li>
-      {% endfor %}
+      {%- endfor -%}
     </ul>
   </div>
 </section>
@@ -96,50 +96,50 @@
 
     <hr/>
 
-    {% assign subtotal = order.subtotal_price | money %}
-    {% assign total = order.total_price | money %}
+    {%- assign subtotal = order.subtotal_price | money -%}
+    {%- assign total = order.total_price | money -%}
 
-    {% if order.discounts.size > 0 %}
+    {%- if order.discounts.size > 0 -%}
       <div class="order__total mv1">
         <h5 class="inline-block mt0">Discounts</h5>
-        {% for discount in order.discounts %}
+        {%- for discount in order.discounts -%}
           <div class="f fw aic">
             <h6 class="mv0">{{discount.code}}</h6>
             <p class="fa mv0 align-r">{{discount.savings | money}}</p>
           </div>
-        {% endfor %}
+        {%- endfor -%}
       </div>
 
       <hr/>
-    {% endif %}
+    {%- endif -%}
 
-    {% if order.shipping_methods.size > 0 %}
+    {%- if order.shipping_methods.size > 0 -%}
       <div class="order__total mv1">
         <h5 class="inline-block mt0">Shipping</h5>
-        {% for ship in order.shipping_methods %}
+        {%- for ship in order.shipping_methods -%}
           <div class="f fw aic">
             <h6 class="mv0">{{ship.title | replace: 'Shipping', ''}}</h6>
             <p class="fa mv0 align-r">{{ship.price | money}}</p>
           </div>
-        {% endfor %}
+        {%- endfor -%}
       </div>
 
       <hr/>
-    {% endif %}
+    {%- endif -%}
 
-    {% if order.tax_lines.size > 0 %}
+    {%- if order.tax_lines.size > 0 -%}
       <div class="order__total mv1">
         <h5 class="inline-block mt0">Tax</h5>
-        {% for tax in order.tax_lines %}
+        {%- for tax in order.tax_lines -%}
           <div class="f fw aic">
             <h6 class="mv0">{{tax.title | replace: 'Tax', ''}} ({{tax.rate | times: 100}}%)</h6>
             <p class="fa mv0 align-r">{{tax.price | money}}</p>
           </div>
-        {% endfor %}
+        {%- endfor -%}
       </div>
 
       <hr/>
-    {% endif %}
+    {%- endif -%}
 
     <h3 class="align-r">Total: <span class="c1">{{total}}</span></h3>
 
@@ -153,32 +153,32 @@
       <div class="w1 w12_m ph1 mb1 auto-height">
         <h4>Billing</h4>
 
-        {% assign billing = order.billing_address %}
-        {% assign name = billing.name %}
-        {% assign company = billing.company %}
-        {% assign street = billing.street %}
-        {% assign city = billing.city %}
-        {% assign province = billing.province %}
-        {% assign zip = billing.zip %}
-        {% assign country = billing.country %}
-        {% assign phone = billing.phone %}
-        {% include 'account-address' %}
+        {%- assign billing = order.billing_address -%}
+        {%- assign name = billing.name -%}
+        {%- assign company = billing.company -%}
+        {%- assign street = billing.street -%}
+        {%- assign city = billing.city -%}
+        {%- assign province = billing.province -%}
+        {%- assign zip = billing.zip -%}
+        {%- assign country = billing.country -%}
+        {%- assign phone = billing.phone -%}
+        {%- include 'account-address' -%}
 
       </div>
 
       <div class="w1 w12_m ph1 mb1 auto-height">
         <h4>Shipping</h4>
 
-        {% assign shipping = order.shipping_address %}
-        {% assign name = shipping.name %}
-        {% assign company = shipping.company %}
-        {% assign street = shipping.street %}
-        {% assign city = shipping.city %}
-        {% assign province = shipping.province %}
-        {% assign zip = shipping.zip %}
-        {% assign country = shipping.country %}
-        {% assign phone = shipping.phone %}
-        {% include 'account-address' %}
+        {%- assign shipping = order.shipping_address -%}
+        {%- assign name = shipping.name -%}
+        {%- assign company = shipping.company -%}
+        {%- assign street = shipping.street -%}
+        {%- assign city = shipping.city -%}
+        {%- assign province = shipping.province -%}
+        {%- assign zip = shipping.zip -%}
+        {%- assign country = shipping.country -%}
+        {%- assign phone = shipping.phone -%}
+        {%- include 'account-address' -%}
 
       </div>
     </div>

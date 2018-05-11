@@ -3,12 +3,12 @@
 
     <h2 class="h4 mb05 mt0 uppercase">Order History</h2>
 
-    {% paginate customer.orders by 99 %}
+    {%- paginate customer.orders by 99 -%}
 
-      {% if customer.orders.size != 0 %}
+      {%- if customer.orders.size != 0 -%}
 
         <ul class="orders">
-          {% for order in customer.orders %}
+          {%- for order in customer.orders -%}
             <li class="orders__order">
               <a href="{{order.customer_url}}" class="link">
                 <h5 class="inline-block mv0 uppercase">Order {{order.name}}</h5>
@@ -26,18 +26,18 @@
                 <span>Shipping:</span><span>{{order.fulfillment_status_label}}</span>
               </div>
             </li>
-          {% endfor %}
+          {%- endfor -%}
         </ul>
 
-      {% else %}
+      {%- else -%}
 
         <p class="align-c px2 bg-cg1">You don't have any orders yet!</p>
 
-      {% endif %}
+      {%- endif -%}
 
-      {% include 'pagination' %}
+      {%- include 'pagination' -%}
 
-    {% endpaginate %}
+    {%- endpaginate -%}
 
   </div>
 </section>

@@ -10,22 +10,22 @@
     <!-- 1. Wysiwyg -->
     <p class="h1">Wysiwyg</p>
     <hr/>
-    {% include 'wysiwyg' with content: page.content %}
+    {%- include 'wysiwyg' with content: page.content -%}
 
     <!-- 2. Forms -->
     <p class="h1 mt2">Forms</p>
     <hr/>
     <form class="mt2">
       <div>
-        {% include 'checkbox', name: 'checkbox', label: 'Checkbox' %}
+        {%- include 'checkbox', name: 'checkbox', label: 'Checkbox' -%}
       </div>
       <div>
-        {% include 'text-input', name: 'text-input', label: 'Text Input', placeholder: 'Write..' %}
+        {%- include 'text-input', name: 'text-input', label: 'Text Input', placeholder: 'Write..' -%}
       </div>
       <div>
-        {% assign selectOptions = 'Select Option 1,Select Option 2,Select Option 3,Select Option 4' | split: ',' %}
-        {% assign selectValues = '1,2,3,4' | split: ',' %}
-        {% include 'select',
+        {%- assign selectOptions = 'Select Option 1,Select Option 2,Select Option 3,Select Option 4' | split: ',' -%}
+        {%- assign selectValues = '1,2,3,4' | split: ',' -%}
+        {%- include 'select',
             name: 'select',
             class: 'styleguide-select',
             label: 'Select Input',
@@ -33,7 +33,7 @@
             options: selectOptions,
             values: selectValues,
             value: false
-        %}
+        -%}
       </div>
 
     <!-- 3. Icons -->
@@ -41,40 +41,40 @@
     <hr/>
 
     <div class="icon--s p mt1 mr1 inline-block">
-      {% include 'icon' with 'icon-search' %}
+      {%- include 'icon' with 'icon-search' -%}
     </div>
     <div class="icon--s p mt1 mr1 inline-block">
-      {% include 'icon' with 'icon-map' %}
+      {%- include 'icon' with 'icon-map' -%}
     </div>
     <div class="icon--s p mt1 mr1 inline-block">
-      {% include 'icon' with 'icon-checkmark' %}
+      {%- include 'icon' with 'icon-checkmark' -%}
     </div>
     <div class="icon--s p mt1 mr1 inline-block">
-      {% include 'icon' with 'icon-alert' %}
+      {%- include 'icon' with 'icon-alert' -%}
     </div>
     <div class="icon--s p mt1 mr1 inline-block">
-      {% include 'icon' with 'icon-cart' %}
+      {%- include 'icon' with 'icon-cart' -%}
     </div>
     <div class="icon--s p mt1 mr1 inline-block">
-      {% include 'icon' with 'icon-facebook' %}
+      {%- include 'icon' with 'icon-facebook' -%}
     </div>
     <div class="icon--s p mt1 mr1 inline-block">
-      {% include 'icon' with 'icon-twitter' %}
+      {%- include 'icon' with 'icon-twitter' -%}
     </div>
     <div class="icon--s p mt1 mr1 inline-block">
-      {% include 'icon' with 'icon-instagram' %}
+      {%- include 'icon' with 'icon-instagram' -%}
     </div>
     <div class="icon--s p mt1 mr1 inline-block">
-      {% include 'icon' with 'icon-pinterest' %}
+      {%- include 'icon' with 'icon-pinterest' -%}
     </div>
     <div class="icon--s p mt1 mr1 inline-block">
-      {% include 'icon' with 'icon-youtube' %}
+      {%- include 'icon' with 'icon-youtube' -%}
     </div>
     <div class="icon--s p mt1 mr1 inline-block">
-      {% include 'icon' with 'icon-x' %}
+      {%- include 'icon' with 'icon-x' -%}
     </div>
     <div class="icon--s p mt1 mr1 inline-block">
-      {% include 'icon' with 'icon-refresh' %}
+      {%- include 'icon' with 'icon-refresh' -%}
     </div>
 
   </div>

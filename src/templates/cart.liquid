@@ -6,7 +6,7 @@
   </div>
 
   <div class="container--m mha">
-    {% if cart.item_count > 0 %}
+    {%- if cart.item_count > 0 -%}
       <form action="/cart" method="post" novalidate class="cart table-wrap">
         <div class="cart w1">
           <div class="cart__header table__row-header">
@@ -16,20 +16,20 @@
             <div class="cart__header__item table__cell pv05 align-c">Total</div>
           </div>
           <div class="cart__body pb1 mb2 w1">
-            {% for item in cart.items %}
-              {% include 'cart-item' %}
-            {% endfor %}
+            {%- for item in cart.items -%}
+              {%- include 'cart-item' -%}
+            {%- endfor -%}
           </div>
         </div>
         <div class="cart__note mv2">
           <div class="">
             <label for="cartNote">Add a note to your order:</label>
-            <textarea name="note" class="w1" id="cartNote" rows="5">{{ cart.note }}</textarea>
+            <textarea name="note" class="w1" id="cartNote" rows="5">{{- cart.note -}}</textarea>
           </div>
         </div>
         <div class="cart__footer align-c">
-          <h3 class="mb025">Subtotal: {{ cart.total_price | money }}</h3>
-          <h4 class="cg6">Savings: {{ cart.total_discounts | money }}</h4>
+          <h3 class="mb025">Subtotal: {{- cart.total_price | money -}}</h3>
+          <h4 class="cg6">Savings: {{- cart.total_discounts | money -}}</h4>
         </div>
 
         <div class="cart__footer__bottom outer mb2">
@@ -41,7 +41,7 @@
           </div>
         </div>
       </form>
-    {% else %}
+    {%- else -%}
       <div class="align-c mb2">
         <h3>Your cart is currently empty.</h3>
       </div>
@@ -51,8 +51,8 @@
           <a href="/collections/new-arrivals" class="button">Shop New Arrivals</a>
         </div>
       </div>
-    {% endif %}
+    {%- endif -%}
   </div>
 </section>
 
-{% include 'shipping-calculator' %}
+{%- include 'shipping-calculator' -%}

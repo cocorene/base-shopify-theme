@@ -1,17 +1,17 @@
-{% assign checked = checked | default: false %}
-{% assign id = id | default: false %}
-{% assign label = label | default: false %}
-{% assign name = name | default: false %}
+{%- assign checked = checked | default: false -%}
+{%- assign id = id | default: false -%}
+{%- assign label = label | default: false -%}
+{%- assign name = name | default: false -%}
 
 <div class="checkbox">
-  <input class="checkbox__el" {% if id %}id="{{ id }}"{% endif %} type="checkbox" {% if name %}name="{{ name }}"{% endif %} {% if checked %}checked{% endif %}>
+  <input class="checkbox__el" {%- if id -%}id="{{- id -}}"{%- endif -%} type="checkbox" {%- if name -%}name="{{- name -}}"{%- endif -%} {%- if checked -%}checked{%- endif -%}>
   <span class="checkbox__icon">☑️</span>
-  {% if label %}
-    <label class="checkbox__label p" {% if id %}for="{{ id }}"{% endif %}>{{ label }}</label>
-  {% endif %}
+  {%- if label -%}
+    <label class="checkbox__label p" {%- if id -%}for="{{- id -}}"{%- endif -%}>{{- label -}}</label>
+  {%- endif -%}
 </div>
 
-{% assign checked = false %}
-{% assign id = false %}
-{% assign label = false %}
-{% assign name = false %}
+{%- assign checked = false -%}
+{%- assign id = false -%}
+{%- assign label = false -%}
+{%- assign name = false -%}

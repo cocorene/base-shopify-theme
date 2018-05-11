@@ -1,35 +1,35 @@
 <ul class="pagination relative h5 align-c pv2">
-  {% if paginate.previous %}
+  {%- if paginate.previous -%}
     <li class="pagination__arrow mr05 inline-block">
-      <a href="{{ paginate.previous.url }}" class="inline-block" title="{{ paginate.previous.title }}">
+      <a href="{{- paginate.previous.url -}}" class="inline-block" title="{{- paginate.previous.title -}}">
         <i class="o-caret o-caret--left"></i>
       </a>
     </li>
-  {% endif %}
+  {%- endif -%}
 
-  {% for part in paginate.parts %}
-    {% if part.is_link %}
+  {%- for part in paginate.parts -%}
+    {%- if part.is_link -%}
       <li class="pagination__page mh05 inline-block">
-        <a href="{{ part.url }}" class="inline-block" title="">{{ part.title }}</a>
+        <a href="{{- part.url -}}" class="inline-block" title="">{{- part.title -}}</a>
       </li>
-    {% else %}
-      {% if part.title == paginate.current_page %}
+    {%- else -%}
+      {%- if part.title == paginate.current_page -%}
         <li class="pagination__page mh05 is-acitve inline-block">
-          <span class="inline-block">{{ part.title }}</span>
+          <span class="inline-block">{{- part.title -}}</span>
         </li>
-      {% else %}
+      {%- else -%}
         <li class="pagination__page mh05 is-disabled inline-block">
-          <span class="inline-block">{{ part.title }}</span>
+          <span class="inline-block">{{- part.title -}}</span>
         </li>
-      {% endif %}
-    {% endif %}
-  {% endfor %}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
 
-  {% if paginate.next %}
+  {%- if paginate.next -%}
     <li class="pagination__arrow mr05 inline-block">
-      <a href="{{ paginate.next.url }}" class="inline-block" title="{{ paginate.next.title }}">
+      <a href="{{- paginate.next.url -}}" class="inline-block" title="{{- paginate.next.title -}}">
         <i class="o-caret"></i>
       </a>
     </li>
-  {% endif %}
+  {%- endif -%}
 </ul>

@@ -1,43 +1,43 @@
-{% assign name = name | default: false %}
-{% assign company = company | default: false %}
-{% assign street = street | default: false %}
-{% assign city = city | default: false %}
-{% assign province = province | default: false %}
-{% assign zip = zip | default: false %}
-{% assign country = country | default: false %}
-{% assign phone = phone | default: false %}
-{% assign default = default | default: false %}
-{% assign edit = edit | default: false %}
+{%- assign name = name | default: false -%}
+{%- assign company = company | default: false -%}
+{%- assign street = street | default: false -%}
+{%- assign city = city | default: false -%}
+{%- assign province = province | default: false -%}
+{%- assign zip = zip | default: false -%}
+{%- assign country = country | default: false -%}
+{%- assign phone = phone | default: false -%}
+{%- assign default = default | default: false -%}
+{%- assign edit = edit | default: false -%}
 
 <div class="address pv2 ph2 bg-cg1 relative">
-  {% if default %}
+  {%- if default -%}
     <div class="address__default absolute fit-r h6 bg-cw uppercase">Default</div>
-  {% endif %}
+  {%- endif -%}
 
   <p class="mv0">
     <strong>{{name}}</strong><br>
     {%if company%}{{company}}<br>{%endif%}
-    {{ street }}<br>
+    {{- street -}}<br>
     {{city}}{%if province%}, {{province | upcase}} {%endif%} {{zip | upcase}}<br>
     {{country}}<br>
     {%if phone%}{{phone}}{%endif%}
   </p>
 
-  {% if edit %}
+  {%- if edit -%}
     <div class="address__footer mt2">
       <button class="link mr05" onclick="barrel.toggleForm({{address.id}})">Edit</button>
       <button class="link" onclick="barrel.removeAddress({{address.id}})">Delete</button>
     </div>
-  {% endif %}
+  {%- endif -%}
 </div>
 
-{% assign name = false %}
-{% assign company = false %}
-{% assign street = false %}
-{% assign city = false %}
-{% assign province = false %}
-{% assign zip = false %}
-{% assign country = false %}
-{% assign phone = false %}
-{% assign default = false %}
-{% assign edit = false %}
+{%- assign name = false -%}
+{%- assign company = false -%}
+{%- assign street = false -%}
+{%- assign city = false -%}
+{%- assign province = false -%}
+{%- assign zip = false -%}
+{%- assign country = false -%}
+{%- assign phone = false -%}
+{%- assign default = false -%}
+{%- assign edit = false -%}
